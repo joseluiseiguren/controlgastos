@@ -1,0 +1,38 @@
+
+
+.importe {
+    text-align:right;
+  }
+
+.saldo {
+    font-weight: bold;
+  }
+
+.saldoNegativo {
+    color: red;
+  }
+
+.rad tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.rad th {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.rad tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+        padding: 4px;
+        font-size: 11px;
+    }
+    
+    .table {
+        margin-bottom: 10px;
+    }
+}
