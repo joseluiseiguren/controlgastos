@@ -2,3 +2,11 @@ UI/node_modules/
 Backend/Backend/bin/
 Backend/Backend/obj/
 Backend/.vs/
+/Backend/ControlGastos.Models/obj/Debug/net5.0
+/Backend/ControlGastos.Models/obj
+/Backend/ControlGastos.Models/bin/Debug/net5.0
+/Backend/Repository.CosmosDB/obj
+/Backend/Repository.Interfaces/obj
+/Tips/POCCosmosDB/.vs/CosmosGettingStarted
+/Tips/POCCosmosDB/CosmosGettingStartedTutorial/bin/Debug/netcoreapp2.1
+/Tips/POCCosmosDB/CosmosGettingStartedTutorial/obj

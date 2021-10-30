@@ -3,7 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.csproj", "{E49CE49A-A2E2-4A45-9E9F-59E84A4A56E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.csproj", "{E49CE49A-A2E2-4A45-9E9F-59E84A4A56E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.WebApi", "1.WebApi", "{3B0004FD-2889-436A-A0FC-5927FEDA7998}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.ApplicationServices", "2.ApplicationServices", "{19201C58-6D68-49FD-AB7D-B73B81DBCF16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Infrastructure", "3.Infrastructure", "{A13DE716-D3DD-4485-925D-77F3F87D21F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Domain", "4.Domain", "{AE52E219-A437-4E2C-9EFB-3CB6EB22D00B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Shared", "5.Shared", "{0232580E-12DC-47FD-A72E-9D24600FD1C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlGastos.Models", "ControlGastos.Models\ControlGastos.Models.csproj", "{40DA3DAE-EFEE-4BC9-93DC-9321319C57DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Interfaces", "Repository.Interfaces\Repository.Interfaces.csproj", "{F01BEE48-8352-4EA2-A18D-8CFBE18B69C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.CosmosDB", "Repository.CosmosDB\Repository.CosmosDB.csproj", "{B9CB8061-9CC7-4E02-8009-3C23F39BE7B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +31,27 @@ Global
 		{E49CE49A-A2E2-4A45-9E9F-59E84A4A56E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E49CE49A-A2E2-4A45-9E9F-59E84A4A56E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E49CE49A-A2E2-4A45-9E9F-59E84A4A56E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40DA3DAE-EFEE-4BC9-93DC-9321319C57DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40DA3DAE-EFEE-4BC9-93DC-9321319C57DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40DA3DAE-EFEE-4BC9-93DC-9321319C57DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40DA3DAE-EFEE-4BC9-93DC-9321319C57DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F01BEE48-8352-4EA2-A18D-8CFBE18B69C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F01BEE48-8352-4EA2-A18D-8CFBE18B69C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F01BEE48-8352-4EA2-A18D-8CFBE18B69C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F01BEE48-8352-4EA2-A18D-8CFBE18B69C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9CB8061-9CC7-4E02-8009-3C23F39BE7B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CB8061-9CC7-4E02-8009-3C23F39BE7B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CB8061-9CC7-4E02-8009-3C23F39BE7B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CB8061-9CC7-4E02-8009-3C23F39BE7B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E49CE49A-A2E2-4A45-9E9F-59E84A4A56E9} = {3B0004FD-2889-436A-A0FC-5927FEDA7998}
+		{40DA3DAE-EFEE-4BC9-93DC-9321319C57DA} = {AE52E219-A437-4E2C-9EFB-3CB6EB22D00B}
+		{F01BEE48-8352-4EA2-A18D-8CFBE18B69C1} = {A13DE716-D3DD-4485-925D-77F3F87D21F4}
+		{B9CB8061-9CC7-4E02-8009-3C23F39BE7B2} = {A13DE716-D3DD-4485-925D-77F3F87D21F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {23B91524-CA05-419C-A895-5F305A1D2884}

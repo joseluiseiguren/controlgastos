@@ -1,0 +1,72 @@
+﻿{"id":"5ad1cfefff20ea300c210165","descripcion":"Sueldo","credito":true,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695573}
+{"id":"5ad1cfefff20ea300c210167","descripcion":"Perros","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695603}
+{"id":"5ad1cfefff20ea300c210166","descripcion":"Supermercado","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695603}
+{"id":"5ad1cfefff20ea300c210169","descripcion":"Comida Work","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695604}
+{"id":"5ad1cfefff20ea300c210168","descripcion":"Viajes Work","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695603}
+{"id":"5ad1cfefff20ea300c21016a","descripcion":"Gym","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695604}
+{"id":"5ad1cfefff20ea300c21016b","descripcion":"Beauty","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695604}
+{"id":"5ad1cfefff20ea300c21016d","descripcion":"Ahorro","credito":true,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695604}
+{"id":"5ad1cfefff20ea300c21016e","descripcion":"Alquiler","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695605}
+{"id":"5ad1cfefff20ea300c21016c","descripcion":"Salidas","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695604}
+{"id":"5ad1cfefff20ea300c210171","descripcion":"Gas","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695605}
+{"id":"5ad1cfefff20ea300c210172","descripcion":"Agua","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695606}
+{"id":"5ad1cfefff20ea300c21016f","descripcion":"Orange","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695605}
+{"id":"5ad1cfefff20ea300c210176","descripcion":"Salud","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695607}
+{"id":"5ad1cfefff20ea300c210170","descripcion":"Luz","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695605}
+{"id":"5ad1cfefff20ea300c210174","descripcion":"Odontólogo","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695606}
+{"id":"5ad1cfefff20ea300c21017b","descripcion":"Vacaciones","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695608}
+{"id":"5ad1cfefff20ea300c210175","descripcion":"Cursos","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695606}
+{"id":"5ad1cfefff20ea300c210179","descripcion":"Ajuste","credito":true,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695607}
+{"id":"5ad1cfefff20ea300c21017a","descripcion":"Varios","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695607}
+{"id":"5ad1cfefff20ea300c210178","descripcion":"Deco Casa","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695607}
+{"id":"5ad1cfefff20ea300c210173","descripcion":"Seguros","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695606}
+{"id":"5ad1cfefff20ea300c210177","descripcion":"Reposteria","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695607}
+{"id":"5ad1cfefff20ea300c21017c","descripcion":"Look","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1523699695608}
+{"id":"5ad1d02a110cdf04dcb6c1ba","descripcion":"Plazo Fijo","credito":true,"user":"5ad1ce4cbefd252f74b413ca","fechaalta":1523699754191}
+{"id":"5ad1d02a110cdf04dcb6c1bc","descripcion":"Haras","credito":false,"user":"5ad1ce4cbefd252f74b413ca","fechaalta":1523699754221}
+{"id":"5ad1d02a110cdf04dcb6c1bb","descripcion":"Varios","credito":false,"user":"5ad1ce4cbefd252f74b413ca","fechaalta":1523699754221}
+{"id":"5ad1d02a110cdf04dcb6c1bd","descripcion":"Ahorros Arg","credito":true,"user":"5ad1ce4cbefd252f74b413ca","fechaalta":1523699754221}
+{"id":"5ad1d02a110cdf04dcb6c1bf","descripcion":"Venta Muebles","credito":true,"user":"5ad1ce4cbefd252f74b413ca","fechaalta":1523699754222}
+{"id":"5ad1d02a110cdf04dcb6c1be","descripcion":"Netflix","credito":false,"user":"5ad1ce4cbefd252f74b413ca","fechaalta":1523699754222}
+{"id":"5ad1d02a110cdf04dcb6c1c1","descripcion":"Tarjeta flor","credito":false,"user":"5ad1ce4cbefd252f74b413ca","fechaalta":1523699754222}
+{"id":"5ad1d02a110cdf04dcb6c1c0","descripcion":"Pluralsight","credito":false,"user":"5ad1ce4cbefd252f74b413ca","fechaalta":1523699754222}
+{"id":"5ad1d09c922a5e05dc0f8c5a","descripcion":"Suedo","credito":true,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1523699868606}
+{"id":"5b83dc0753913000347601aa","descripcion":"Spotify","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1535368199209}
+{"id":"5b9a1f7353913000347601ec","descripcion":"Cursos IT","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1536827251555}
+{"id":"5ba92e685391300034760212","descripcion":"Netflix ","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1537814120987}
+{"id":"5bb08f84539130003476022e","descripcion":"Tv Arg (Fanatiz) ","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1538297732088}
+{"id":"5bb27ebb539130003476023b","descripcion":"Hosting (Evenode) ","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1538424507480}
+{"id":"5bc76f81539130003476027c","descripcion":"Regalos cumpleaños ","credito":false,"user":"5ad1ce4cbefd252f74b413ca","fechaalta":1539796865753}
+{"id":"5bd4b1d75391300034760294","descripcion":"Vpn Argentina ","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1540665815956}
+{"id":"5bfad43753913000347602fa","descripcion":"Libro Flor","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1543164983764}
+{"id":"5c083fd05391300034760329","descripcion":"Supermercado","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1544044496649}
+{"id":"5c083fda539130003476032a","descripcion":"Celular","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1544044506753}
+{"id":"5c083fe3539130003476032b","descripcion":"Salidas","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1544044515701}
+{"id":"5c0a9a265391300034760334","descripcion":"Transporte","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1544198694331}
+{"id":"5c1935595391300034760352","descripcion":"Auto Compra","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1545155929786}
+{"id":"5c1a97c45391300034760356","descripcion":"Auto Uso","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1545246660095}
+{"id":"5c800c2db424de00357a365e","descripcion":"Auto Cochera","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1551895597048}
+{"id":"5ca096e5b424de00357a3697","descripcion":"Haras","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1554028261337}
+{"id":"5ca26183b424de00357a36a1","descripcion":"Apuestas","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1554145667518}
+{"id":"5ccdab86497915003596a44f","descripcion":"Limpieza Casa","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1556982662216}
+{"id":"5cd073ca497915003596a457","descripcion":"Dpto Compra","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1557165002264}
+{"id":"5ced92de7bbba900316faca5","descripcion":"Ahorro","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1559073502622}
+{"id":"5ced92e57bbba900316faca6","descripcion":"Préstamo ","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1559073509117}
+{"id":"5ced92eb7bbba900316faca7","descripcion":"Bet","credito":true,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1559073515348}
+{"id":"5cf25cb77bbba900316facb9","descripcion":"Alquiler","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1559387319261}
+{"id":"5cf25d097bbba900316facbb","descripcion":"Farmacia","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1559387401152}
+{"id":"5cf769df7bbba900316faccd","descripcion":"Master","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1559718367551}
+{"id":"5cfa81e27bbba900316facdc","descripcion":"Cuidado corporal","credito":false,"user":"5ad1ce4cbefd252f74b413cb","fechaalta":1559921122401}
+{"id":"5d52f70193b3b40033a8a65e","descripcion":"Dpto Hipoteca (Sabadell)","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1565718273669}
+{"id":"5d768b215f0b140032f85726","descripcion":"Dpto Gastos Comunidad ","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1568049953843}
+{"id":"5d9190defed8f500328fe55f","descripcion":"Dpto Préstamo Caixa Flor","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1569820894089}
+{"id":"5d978b963543d30032ad1fc5","descripcion":"Dpto Préstamo reforma caixa","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1570212758592}
+{"id":"5de38a6298546b0032c83a7c","descripcion":"Dpto préstamo Deutsche ","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1575193186052}
+{"id":"5e0c9ee398546b0032c83ad8","descripcion":"Dpto Prestamo bbva","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1577885411496}
+{"id":"5e842d9b98546b0032c83be9","descripcion":"Dpto Préstamo Padres","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1585720731143}
+{"id":"5f1ab6727120a50028bdc1cd","descripcion":"Alarma Dpto","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1595586162417}
+{"id":"5f4a50cc7120a50028bdc246","descripcion":"Bicing","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1598705868418}
+{"id":"5fd4d0ad7120a50028bdc3a9","descripcion":"Beibi","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1607782573961}
+{"id":"60034a8c7120a50028bdc431","descripcion":"Pension Retiro","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1610828428302}
+{"id":"603d2125a62d9f0033ce68ab","descripcion":"Dpto IBI","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1614618917444}
+{"id":"60b740da6e454700336b1b62","descripcion":"Beibi Ahorro","credito":false,"user":"5ad1ce4cbefd252f74b413c9","fechaalta":1622622426556}
