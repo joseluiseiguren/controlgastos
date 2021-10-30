@@ -10,3 +10,7 @@ Backend/.vs/
 /Tips/POCCosmosDB/.vs/CosmosGettingStarted
 /Tips/POCCosmosDB/CosmosGettingStartedTutorial/bin/Debug/netcoreapp2.1
 /Tips/POCCosmosDB/CosmosGettingStartedTutorial/obj
+/Backend/Infrastructure.Configuration/bin/Debug/net5.0
+/Backend/Infrastructure.Configuration/obj
+/Backend/Repository.CosmosDB/bin/Debug/net5.0
+/Backend/Repository.Interfaces/bin/Debug/net5.0
