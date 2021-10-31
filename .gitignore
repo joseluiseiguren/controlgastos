@@ -14,3 +14,11 @@ Backend/.vs/
 /Backend/Infrastructure.Configuration/obj
 /Backend/Repository.CosmosDB/bin/Debug/net5.0
 /Backend/Repository.Interfaces/bin/Debug/net5.0
+/Backend/Services.Configuration/bin/Debug/net5.0
+/Backend/Services.Configuration/obj
+/Backend/Services.Implementation/bin/Debug/net5.0
+/Backend/Services.Implementation/obj
+/Backend/Services.Interfaces/bin/Debug/net5.0
+/Backend/Services.Interfaces/obj
+/Backend/Shared.Execptions/bin/Debug/net5.0
+/Backend/Shared.Execptions/obj

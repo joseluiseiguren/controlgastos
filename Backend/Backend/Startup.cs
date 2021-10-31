@@ -1,3 +1,4 @@
+using Backend.Middlewares;
 using Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Services.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,8 @@ namespace Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureRepository(Configuration.GetConnectionString("cosmosdb"));
+            services.ConfigureServices();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -44,6 +48,8 @@ namespace Backend
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Backend v1"));
             }
+
+            app.UseMiddleware<ErrorMiddleware>();
 
             app.UseHttpsRedirection();
 
