@@ -22,3 +22,16 @@ Backend/.vs/
 /Backend/Services.Interfaces/obj
 /Backend/Shared.Execptions/bin/Debug/net5.0
 /Backend/Shared.Execptions/obj
+/Backend/Backend/.config
+/Backend/Backend/Properties/PublishProfiles
+/Backend/Backend/Properties/ServiceDependencies/controlgastosbackend - Web Deploy
+/Backend/Backend/Properties
+/Backend/Backend/Backend.csproj.user
+/Backend/ControlGastos.Models/bin/Release/net5.0
+/Backend/Infrastructure.Configuration/bin/Release/net5.0
+/Backend/Repository.CosmosDB/bin/Release/net5.0
+/Backend/Repository.Interfaces/bin/Release/net5.0
+/Backend/Services.Configuration/bin/Release/net5.0
+/Backend/Services.Implementation/bin/Release/net5.0
+/Backend/Services.Interfaces/bin/Release/net5.0
+/Backend/Shared.Execptions/bin/Release/net5.0

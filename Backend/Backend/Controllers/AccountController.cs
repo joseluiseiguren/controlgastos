@@ -24,6 +24,9 @@ namespace Backend.Controllers
         [Route("usuarios/login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
+            _logger.LogInformation("Test log information");
+            _logger.LogWarning("Test log warn");
+
             var token = await _userService.Login(loginDto?.Email, loginDto?.Password);
 
             return Ok(new { token = token });
@@ -34,6 +37,16 @@ namespace Backend.Controllers
         [Route("usuarios/dummy")]
         public async Task<IActionResult> Dummy()
         {
+            return Ok(new { UserId = this.UserId, Name = UserName });
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("usuarios/dummyException")]
+        public async Task<IActionResult> DummyException()
+        {
+            var i = 0;
+            var j = 10 / i;
             return Ok(new { UserId = this.UserId, Name = UserName });
         }
     }
