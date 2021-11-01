@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "a0637efd-fc09-4050-b2fc-504dc6f18cd4",
+		"name": "ControlGastos_v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"flopyglorias@gmail.com\",\n\t\"password\":\"mataderos\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44362/usuarios/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"usuarios",
+						"login"
+					]
+				},
+				"description": "X\t"
+			},
+			"response": []
+		},
+		{
+			"name": "Dummy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM1NzU3MTc4LCJleHAiOjE2MzYzNjE5NzgsImlhdCI6MTYzNTc1NzE3OH0.WuSEGdRCzmc7L7oKnGf3LG7E85QHXAjZVP6pCfmmiXI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44362/usuarios/dummy",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"usuarios",
+						"dummy"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

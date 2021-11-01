@@ -1,8 +1,15 @@
-﻿using Repository.Interfaces;
+﻿using ControlGastos.Models;
+using Microsoft.IdentityModel.Tokens;
+using Repository.Interfaces;
 using Services.Interfaces;
+using Shared.Constants;
 using Shared.Enums;
 using Shared.Execptions;
 using Shared.Helpers;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Services.Implementation
@@ -41,9 +48,29 @@ namespace Services.Implementation
                 throw new BusinessException("Password Invalido");
             }
 
+            var token = GenerateJwtToken(user);
 
+            return token;
+        }
 
-            return "";
+        private string GenerateJwtToken(User user)
+        {
+            // generate token that is valid for 7 days
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(Constants.ACCESS_TOKEN_SECRET);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[] 
+                { 
+                    new Claim(Constants.ACCESS_TOKEN_USERID, user.id.ToString()), 
+                    new Claim(Constants.ACCESS_TOKEN_CURRENCY, user.Currency.ToString()),
+                    new Claim(Constants.ACCESS_TOKEN_USERNAME, user.Name.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
     }
 }

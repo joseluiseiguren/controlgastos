@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Repository.Interfaces\Repository.Interfaces.csproj" />
     <ProjectReference Include="..\Services.Interfaces\Services.Interfaces.csproj" />
     <ProjectReference Include="..\Shared.Execptions\Shared.csproj" />
