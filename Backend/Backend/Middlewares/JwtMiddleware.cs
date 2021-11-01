@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Constants;
+using Shared.Settings;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -12,10 +13,12 @@ namespace Backend.Middlewares
     public class JwtMiddleware
     {
         private readonly RequestDelegate _next;
-        
-        public JwtMiddleware(RequestDelegate next)
+        private readonly SecuritySettings _securitySettings;
+
+        public JwtMiddleware(RequestDelegate next, SecuritySettings securitySettings)
         {
             _next = next;
+            _securitySettings = securitySettings;
         }
 
         public async Task Invoke(HttpContext context)
@@ -35,7 +38,7 @@ namespace Backend.Middlewares
             try
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(Constants.ACCESS_TOKEN_SECRET);
+                var key = Encoding.ASCII.GetBytes(_securitySettings.AccessTokenSecret);
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,

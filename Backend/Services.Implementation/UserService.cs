@@ -6,6 +6,7 @@ using Shared.Constants;
 using Shared.Enums;
 using Shared.Execptions;
 using Shared.Helpers;
+using Shared.Settings;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -17,12 +18,14 @@ namespace Services.Implementation
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly SecuritySettings _securitySettings;
 
         private const int MAX_INTENTOS_FALLIDOS_LOGIN = 3;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, SecuritySettings securitySettings)
         {
             _userRepository = userRepository;
+            _securitySettings = securitySettings;
         }
 
         public async Task<string> Login(string email, string password)
@@ -57,7 +60,7 @@ namespace Services.Implementation
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(Constants.ACCESS_TOKEN_SECRET);
+            var key = Encoding.ASCII.GetBytes(_securitySettings.AccessTokenSecret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] 
