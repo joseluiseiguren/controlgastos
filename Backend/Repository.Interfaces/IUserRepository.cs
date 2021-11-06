@@ -1,4 +1,4 @@
-﻿using ControlGastos.Models;
+﻿using Domain.Models;
 using System.Threading.Tasks;
 
 namespace Repository.Interfaces

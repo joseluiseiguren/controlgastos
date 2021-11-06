@@ -3,7 +3,7 @@ using Repository.Interfaces;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using User = ControlGastos.Models.User;
+using User = Domain.Models.User;
 
 namespace Repository.CosmosDB
 {
@@ -30,29 +30,47 @@ namespace Repository.CosmosDB
 
             var database = this._cosmosClient.GetDatabase(_databaseId);
             var container = database.GetContainer(_containerUsers);
-            var queryResultSetIterator = container.GetItemQueryIterator<User>(queryDefinition);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
             var currentResultSet = await queryResultSetIterator.ReadNextAsync();
             var userFound = currentResultSet.FirstOrDefault();
 
-            return userFound;
+            return CreateUserObjetcFromDynamic(userFound);
         }
 
         public async Task UpdateUserAsync(User user)
         {
             var database = this._cosmosClient.GetDatabase(_databaseId);
             var container = database.GetContainer(_containerUsers);
-            var containerResponse = await container.ReadItemAsync<User>(user.id, new PartitionKey(user.Email));
-            var userDB = containerResponse.Resource;
+            var containerResponse = await container.ReadItemAsync<dynamic>(user.id, new PartitionKey(user.Email));
+            User userDB = CreateUserObjetcFromDynamic(containerResponse.Resource);
 
-            userDB.BornDate = user.BornDate;
-            userDB.Currency = user.Currency;
-            userDB.InvalidLoginAttempts = user.InvalidLoginAttempts;
-            userDB.Name = user.Name;
-            userDB.Password = user.Password;
-            userDB.StatusId = user.StatusId;
+            userDB.UpdateBornDate(user.BornDate);
+            userDB.UpdateCurrecny(user.Currency);
+            userDB.UpdateInvalidLoginAttempts(user.InvalidLoginAttempts);
+            userDB.UpdateName(user.Name);
+            userDB.UpdatePassword(user.Password);
+            userDB.UpdateStatus(user.StatusId);
 
             await container.ReplaceItemAsync<User>(userDB, userDB.id, new PartitionKey(userDB.Email));
+        }
+
+        private User CreateUserObjetcFromDynamic(dynamic userDB)
+        {
+            if (userDB == null)
+            {
+                return null;
+            }
+
+            return new User(id: userDB.id.ToString(),
+                            invalidLoginAttempts: Convert.ToInt32(userDB.InvalidLoginAttempts),
+                            email: userDB.Email.ToString(),
+                            name: userDB.Name.ToString(),
+                            bornDate: DateTime.Parse(userDB.BornDate.ToString()),
+                            statusId: Convert.ToInt32(userDB.StatusId),
+                            currency: userDB.Currency.ToString(),
+                            password: userDB.Password.ToString(),
+                            entryDate: DateTime.Parse(userDB.EntryDate.ToString()));
         }
     }
 }

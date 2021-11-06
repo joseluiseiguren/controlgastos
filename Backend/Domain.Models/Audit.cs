@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Models;
+using System;
 
-namespace ControlGastos.Models
+namespace Domain.Models
 {
     public class Audit : ModelBase
     {

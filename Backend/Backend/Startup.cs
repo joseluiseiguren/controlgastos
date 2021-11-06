@@ -1,4 +1,6 @@
 using Backend.Middlewares;
+using Cotecna.Domain.Core;
+using Domain.Commands;
 using Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Services.Configuration;
+using Services.CommandHandlers.User;
+using Services.Handlers.User;
 using Shared.Settings;
 
 namespace Backend
@@ -24,6 +27,10 @@ namespace Backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMediator()
+               .AddAsyncCommandHandler<UserLoginCommand, UserLoginCommandHandler, string>()
+               .AddAsyncCommandHandler<UserSignupCommand, UserSignupCommandHandler>();
+
             services.AddLogging(config =>
             {
                 config.AddDebug();
@@ -34,7 +41,6 @@ namespace Backend
 
             services.AddSingleton<SecuritySettings>(x => new SecuritySettings(Configuration.GetValue(typeof(string), "AccessTokenSecret").ToString()));
             services.ConfigureRepository(Configuration.GetConnectionString("cosmosdb"));
-            services.ConfigureServices();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

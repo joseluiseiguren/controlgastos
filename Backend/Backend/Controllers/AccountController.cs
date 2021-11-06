@@ -1,8 +1,8 @@
 ﻿using Backend.Attributes;
+using Backend.Dto;
+using Cotecna.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Services.Interfaces;
-using Services.Interfaces.Dto;
 using System.Threading.Tasks;
 
 namespace Backend.Controllers
@@ -11,12 +11,12 @@ namespace Backend.Controllers
     public class AccountController : BaseController
     {
         private readonly ILogger<AccountController> _logger;
-        private readonly IUserService _userService;
+        private readonly IApplicationMediator _applicationMediator;
 
-        public AccountController(ILogger<AccountController> logger, IUserService userService)
+        public AccountController(ILogger<AccountController> logger, IApplicationMediator applicationMediator)
         {
             _logger = logger;
-            _userService = userService;
+            _applicationMediator = applicationMediator;
         }
 
         [Microsoft.AspNetCore.Authorization.AllowAnonymous]
@@ -24,12 +24,23 @@ namespace Backend.Controllers
         [Route("usuarios/login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
-            _logger.LogInformation("Test log information");
-            _logger.LogWarning("Test log warn");
+            var command = loginDto.ToCommand();
 
-            var token = await _userService.Login(loginDto?.Email, loginDto?.Password);
+            var token = await _applicationMediator.DispatchAsync<string>(command);
 
             return Ok(new { token = token });
+        }
+
+        [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+        [HttpPost]
+        [Route("usuarios/registracion")]
+        public async Task<IActionResult> SignUp([FromBody] SignupDto signupDto)
+        {
+            var command = signupDto.ToCommand();
+
+            await _applicationMediator.DispatchAsync(command);
+
+            return Ok();
         }
 
         [Authorize]
@@ -37,7 +48,7 @@ namespace Backend.Controllers
         [Route("usuarios/dummy")]
         public async Task<IActionResult> Dummy()
         {
-            return Ok(new { UserId = this.UserId, Name = UserName });
+            return Ok(await Task.FromResult(new { UserId = this.UserId, Name = UserName }));
         }
 
         [Authorize]
@@ -47,7 +58,7 @@ namespace Backend.Controllers
         {
             var i = 0;
             var j = 10 / i;
-            return Ok(new { UserId = this.UserId, Name = UserName });
+            return Ok(await Task.FromResult(new { UserId = this.UserId, Name = UserName }));
         }
     }
 }

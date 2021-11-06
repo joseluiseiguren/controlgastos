@@ -5,14 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Cotecna.Domain.Core.Configuration" Version="1.2.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.18.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure.Configuration\Infrastructure.Configuration.csproj" />
-    <ProjectReference Include="..\Services.Configuration\Services.Configuration.csproj" />
-    <ProjectReference Include="..\Services.Interfaces\Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Services.CommandHandlers\Services.CommandHandlers.csproj" />
     <ProjectReference Include="..\Shared.Execptions\Shared.csproj" />
   </ItemGroup>
 

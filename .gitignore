@@ -35,3 +35,12 @@ Backend/.vs/
 /Backend/Services.Implementation/bin/Release/net5.0
 /Backend/Services.Interfaces/bin/Release/net5.0
 /Backend/Shared.Execptions/bin/Release/net5.0
+/Backend/Domain.Commands/bin/Debug/net5.0
+/Backend/Domain.Commands/obj/Debug/net5.0
+/Backend/Domain.Commands/obj
+/Backend/Domain.Models/bin/Debug/net5.0
+/Backend/Domain.Models/obj/Debug/net5.0
+/Backend/Domain.Models/obj
+/Backend/Services.CommandHandlers/bin/Debug/net5.0
+/Backend/Services.CommandHandlers/obj/Debug/net5.0
+/Backend/Services.CommandHandlers/obj
