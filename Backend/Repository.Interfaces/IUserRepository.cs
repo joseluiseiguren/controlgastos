@@ -7,6 +7,8 @@ namespace Repository.Interfaces
     {
         Task<User> GetUserByEmailAsync(string email);
 
+        Task<User> GetUserByIdAsync(string id);
+
         Task UpdateUserAsync(User user);
 
         Task InsertUserAsync(User user);

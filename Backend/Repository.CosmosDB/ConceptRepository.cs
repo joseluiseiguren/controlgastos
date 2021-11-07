@@ -20,7 +20,7 @@ namespace Repository.CosmosDB
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
             var database = this._cosmosClient.GetDatabase(_databaseId);
-            var container = database.GetContainer(_containerConceptos);
+            var container = database.GetContainer(_containerConcepts);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
             var result = new List<Concept>();

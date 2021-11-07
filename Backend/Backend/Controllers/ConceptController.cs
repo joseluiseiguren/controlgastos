@@ -33,6 +33,18 @@ namespace Backend.Controllers
             return Ok(result.Select(x => Map(x)));
         }
 
+        [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+        [HttpGet]
+        [Route("conceptos/mensual/{month}/sumary")]
+        public async Task<IActionResult> GetMonthlyConcepts(string month) //YYYYMM
+        {
+            var query = new ConceptMonthlyQuery(this.UserId, month);
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }
+
         private ConceptDto Map(ConceptOutput conceptOutput)
         {
             return new ConceptDto()

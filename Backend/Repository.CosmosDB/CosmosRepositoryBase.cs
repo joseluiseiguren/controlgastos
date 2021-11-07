@@ -9,8 +9,8 @@ namespace Repository.CosmosDB
         protected const string _databaseId = "controlgastos";
         protected const string _containerUsers = "users";
         protected const string _containerAudits = "audits";
-        protected const string _containerConceptos = "concepts";
-        protected const string _containerMovimientos = "transactions";
+        protected const string _containerConcepts = "concepts";
+        protected const string _containerTransactions = "transactions";
 
         public CosmosRepositoryBase(string connectionString)
         {

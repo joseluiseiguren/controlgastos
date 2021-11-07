@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using Services.CommandHandlers.User;
 using Services.Handlers.User;
 using Services.QueryHandlers.Concept;
+using Services.QueryHandlers.User;
 using Shared.Settings;
 using System.Collections.Generic;
 
@@ -35,7 +36,10 @@ namespace Backend
             services.AddMediator()
                .AddAsyncCommandHandler<UserLoginCommand, UserLoginCommandHandler, string>()
                .AddAsyncCommandHandler<UserSignupCommand, UserSignupCommandHandler>()
-               .AddAsyncQueryHandler<ConceptsQuery, ConceptQueryHandler, IEnumerable<ConceptOutput>>();
+               .AddAsyncCommandHandler<UserUpdateProfileCommand, UserUpdateProfileCommandHandler>()
+               .AddAsyncQueryHandler<ConceptsQuery, ConceptQueryHandler, IEnumerable<ConceptOutput>>()
+               .AddAsyncQueryHandler<UserProfileQuery, UserProfileQueryHandler, UserProfileOutput>()
+               .AddAsyncQueryHandler<ConceptMonthlyQuery, ConceptMonthlyQueryHandler, IEnumerable<ConceptMonthlyOutput>>();
 
             services.AddLogging(config =>
             {

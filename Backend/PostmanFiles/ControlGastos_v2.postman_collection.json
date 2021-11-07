@@ -106,6 +106,65 @@
 			"response": []
 		},
 		{
+			"name": "Update Profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2MjgxNDMwLCJleHAiOjE2MzY4ODYyMzAsImlhdCI6MTYzNjI4MTQzMH0.pOlcTlSL_AOseZhPHJLBTC51UgQuiuK9Gle-5LlWAiI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"flopyglorias@gmail.com\",\n\t\"password\":\"mataderos\",\n    \"moneda\": \"$\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"fora2\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44362/usuario",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"usuario"
+					]
+				},
+				"description": "X\t"
+			},
+			"response": []
+		},
+		{
 			"name": "Dummy",
 			"request": {
 				"auth": {
@@ -136,6 +195,35 @@
 			"response": []
 		},
 		{
+			"name": "Usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2Mjc2MjM5LCJleHAiOjE2MzY4ODEwMzgsImlhdCI6MTYzNjI3NjIzOX0.kv2LrkHUcQ_QbLf6-4kqezHmPB-TLQwAq9tOZmpo2jg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44362/usuario",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Conceptos",
 			"request": {
 				"auth": {
@@ -160,6 +248,38 @@
 					"path": [
 						"usuarios",
 						"conceptos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conceptos Mensual",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2Mjc2MjM5LCJleHAiOjE2MzY4ODEwMzgsImlhdCI6MTYzNjI3NjIzOX0.kv2LrkHUcQ_QbLf6-4kqezHmPB-TLQwAq9tOZmpo2jg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44362/conceptos/mensual/202005/sumary",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"conceptos",
+						"mensual",
+						"202005",
+						"sumary"
 					]
 				}
 			},

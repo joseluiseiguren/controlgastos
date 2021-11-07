@@ -29,6 +29,22 @@ namespace Repository.CosmosDB
             return CreateUserObjetcFromDynamic(userFound);
         }
 
+        public async Task<User> GetUserByIdAsync(string id)
+        {
+            var sqlQueryText = $"SELECT * FROM c WHERE c.id = '{id}'";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerUsers);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var currentResultSet = await queryResultSetIterator.ReadNextAsync();
+            var userFound = currentResultSet.FirstOrDefault();
+
+            return CreateUserObjetcFromDynamic(userFound);
+        }
+
         public async Task UpdateUserAsync(User user)
         {
             var database = this._cosmosClient.GetDatabase(_databaseId);

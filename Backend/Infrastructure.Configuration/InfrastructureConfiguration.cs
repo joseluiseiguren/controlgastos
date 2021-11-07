@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Repository.CosmosDB;
 using Repository.Interfaces;
-using System;
 
 namespace Infrastructure.Configuration
 {
@@ -11,6 +10,7 @@ namespace Infrastructure.Configuration
         {
             serviceCollection.AddTransient<IUserRepository>(x => new UserRepository(coreConnectionString));
             serviceCollection.AddTransient<IConceptRepository>(x => new ConceptRepository(coreConnectionString));
+            serviceCollection.AddTransient<ITransactionRepository>(x => new TransactionRepository(coreConnectionString));
         }
     }
 }
