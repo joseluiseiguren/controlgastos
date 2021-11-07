@@ -7,20 +7,11 @@ using User = Domain.Models.User;
 
 namespace Repository.CosmosDB
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : CosmosRepositoryBase, IUserRepository
     {
-        private readonly CosmosClient _cosmosClient;
-
-        private const string _databaseId = "controlgastos";
-        private const string _containerUsers = "users";
-        private const string _containerAudits = "audits";
-        private const string _containerConceptos = "concepts";
-        private const string _containerMovimientos = "transactions";
-
         public UserRepository(string connectionString)
-        {
-            _cosmosClient = new CosmosClient(connectionString);
-        }
+            : base(connectionString)
+        { }
 
         public async Task<User> GetUserByEmailAsync(string email)
         {
@@ -53,6 +44,14 @@ namespace Repository.CosmosDB
             userDB.UpdateStatus(user.StatusId);
 
             await container.ReplaceItemAsync<User>(userDB, userDB.id, new PartitionKey(userDB.Email));
+        }
+
+        public async Task InsertUserAsync(User user)
+        {
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerUsers);
+
+            await container.CreateItemAsync<User>(user, new PartitionKey(user.Email));
         }
 
         private User CreateUserObjetcFromDynamic(dynamic userDB)

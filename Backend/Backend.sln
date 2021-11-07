@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31825.309
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend\Backend.csproj", "{E49CE49A-A2E2-4A45-9E9F-59E84A4A56E9}"
 EndProject
@@ -25,9 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Configuratio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared.Execptions\Shared.csproj", "{1CD1FFE7-74B0-4884-90B9-88386B961E20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.CommandHandlers", "Services.CommandHandlers\Services.CommandHandlers.csproj", "{D0DE9B65-BEEA-417D-B45C-C38C5C58BDC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.CommandHandlers", "Services.CommandHandlers\Services.CommandHandlers.csproj", "{D0DE9B65-BEEA-417D-B45C-C38C5C58BDC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Commands", "Domain.Commands\Domain.Commands.csproj", "{66122E3E-409C-4863-BF30-F8EECACC5B17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Commands", "Domain.Commands\Domain.Commands.csproj", "{66122E3E-409C-4863-BF30-F8EECACC5B17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Queries", "Domain.Queries\Domain.Queries.csproj", "{3F84487F-5EC7-4D75-963D-D0F2233C3DE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.QueryHandlers", "Services.QueryHandlers\Services.QueryHandlers.csproj", "{405DA475-D67F-4636-B276-2CB4B3712AF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,14 @@ Global
 		{66122E3E-409C-4863-BF30-F8EECACC5B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66122E3E-409C-4863-BF30-F8EECACC5B17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66122E3E-409C-4863-BF30-F8EECACC5B17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F84487F-5EC7-4D75-963D-D0F2233C3DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F84487F-5EC7-4D75-963D-D0F2233C3DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F84487F-5EC7-4D75-963D-D0F2233C3DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F84487F-5EC7-4D75-963D-D0F2233C3DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{405DA475-D67F-4636-B276-2CB4B3712AF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{405DA475-D67F-4636-B276-2CB4B3712AF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{405DA475-D67F-4636-B276-2CB4B3712AF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{405DA475-D67F-4636-B276-2CB4B3712AF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +92,8 @@ Global
 		{1CD1FFE7-74B0-4884-90B9-88386B961E20} = {0232580E-12DC-47FD-A72E-9D24600FD1C4}
 		{D0DE9B65-BEEA-417D-B45C-C38C5C58BDC2} = {19201C58-6D68-49FD-AB7D-B73B81DBCF16}
 		{66122E3E-409C-4863-BF30-F8EECACC5B17} = {AE52E219-A437-4E2C-9EFB-3CB6EB22D00B}
+		{3F84487F-5EC7-4D75-963D-D0F2233C3DE3} = {AE52E219-A437-4E2C-9EFB-3CB6EB22D00B}
+		{405DA475-D67F-4636-B276-2CB4B3712AF0} = {19201C58-6D68-49FD-AB7D-B73B81DBCF16}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {23B91524-CA05-419C-A895-5F305A1D2884}

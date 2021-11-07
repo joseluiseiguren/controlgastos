@@ -1,6 +1,9 @@
+using Backend.Dto;
 using Backend.Middlewares;
 using Cotecna.Domain.Core;
 using Domain.Commands;
+using Domain.Queries;
+using Domain.Queries.Outputs;
 using Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +14,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Services.CommandHandlers.User;
 using Services.Handlers.User;
+using Services.QueryHandlers.Concept;
 using Shared.Settings;
+using System.Collections.Generic;
 
 namespace Backend
 {
@@ -29,7 +34,8 @@ namespace Backend
         {
             services.AddMediator()
                .AddAsyncCommandHandler<UserLoginCommand, UserLoginCommandHandler, string>()
-               .AddAsyncCommandHandler<UserSignupCommand, UserSignupCommandHandler>();
+               .AddAsyncCommandHandler<UserSignupCommand, UserSignupCommandHandler>()
+               .AddAsyncQueryHandler<ConceptsQuery, ConceptQueryHandler, IEnumerable<ConceptOutput>>();
 
             services.AddLogging(config =>
             {

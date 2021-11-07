@@ -11,8 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domain.Queries\Domain.Queries.csproj" />
     <ProjectReference Include="..\Infrastructure.Configuration\Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\Services.CommandHandlers\Services.CommandHandlers.csproj" />
+    <ProjectReference Include="..\Services.QueryHandlers\Services.QueryHandlers.csproj" />
     <ProjectReference Include="..\Shared.Execptions\Shared.csproj" />
   </ItemGroup>
 

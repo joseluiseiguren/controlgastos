@@ -44,3 +44,7 @@ Backend/.vs/
 /Backend/Services.CommandHandlers/bin/Debug/net5.0
 /Backend/Services.CommandHandlers/obj/Debug/net5.0
 /Backend/Services.CommandHandlers/obj
+/Backend/Domain.Queries/bin/Debug/net5.0
+/Backend/Domain.Queries/obj
+/Backend/Services.QueryHandlers/bin/Debug/net5.0
+/Backend/Services.QueryHandlers/obj

@@ -10,6 +10,7 @@ namespace Infrastructure.Configuration
         public static void ConfigureRepository(this IServiceCollection serviceCollection, string coreConnectionString)
         {
             serviceCollection.AddTransient<IUserRepository>(x => new UserRepository(coreConnectionString));
+            serviceCollection.AddTransient<IConceptRepository>(x => new ConceptRepository(coreConnectionString));
         }
     }
 }

@@ -56,22 +56,41 @@
 			"response": []
 		},
 		{
-			"name": "Dummy",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM1NzU3MTc4LCJleHAiOjE2MzYzNjE5NzgsImlhdCI6MTYzNTc1NzE3OH0.WuSEGdRCzmc7L7oKnGf3LG7E85QHXAjZVP6pCfmmiXI",
-							"type": "string"
-						}
-					]
+			"name": "Signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
 				},
-				"method": "GET",
-				"header": [],
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"bbb@gmail.com\",\n\t\"password\":\"mataderos11\",\n    \"moneda\": \"USD\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"pepe\"\n}"
+				},
 				"url": {
-					"raw": "https://localhost:44362/usuarios/dummy",
+					"raw": "https://localhost:44362/usuarios/registracion",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -79,7 +98,98 @@
 					"port": "44362",
 					"path": [
 						"usuarios",
-						"dummy"
+						"registracion"
+					]
+				},
+				"description": "X\t"
+			},
+			"response": []
+		},
+		{
+			"name": "Dummy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM1NzY0MjI5LCJleHAiOjE2MzYzNjkwMjksImlhdCI6MTYzNTc2NDIyOX0.Zi3uBI5Vs5PlvXIpawLa_iScZZ4lZmC-NCZLBsTj3Vk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44362/usuarios/dummyexception",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"usuarios",
+						"dummyexception"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conceptos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2Mjc2MjM5LCJleHAiOjE2MzY4ODEwMzgsImlhdCI6MTYzNjI3NjIzOX0.kv2LrkHUcQ_QbLf6-4kqezHmPB-TLQwAq9tOZmpo2jg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44362/usuarios/conceptos",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"usuarios",
+						"conceptos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dummy Exception",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM1NzY0MjI5LCJleHAiOjE2MzYzNjkwMjksImlhdCI6MTYzNTc2NDIyOX0.Zi3uBI5Vs5PlvXIpawLa_iScZZ4lZmC-NCZLBsTj3Vk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44362/usuarios/dummyexception",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"usuarios",
+						"dummyexception"
 					]
 				}
 			},
