@@ -17,7 +17,7 @@ namespace Repository.CosmosDB
 
         public async Task<decimal> GetTotalAmmountByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId)
         {
-            var sqlQueryText = $"SELECT SUM(c.Ammount) as Total FROM c WHERE c.ConceptId = '{conceptId}' AND c.TransactionDate >= '{dateFrom}' AND c.TransactionDate <= '{dateTo}'";
+            var sqlQueryText = $"SELECT SUM(c.Ammount) as Total FROM c WHERE c.ConceptId = '{conceptId}' AND c.TransactionDate >= '{dateFrom.ToString("o")}' AND c.TransactionDate <= '{dateTo.ToString("o")}'";
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 

@@ -32,7 +32,7 @@ namespace Services.QueryHandlers.Concept
             foreach (var userConcept in userConcepts)
             {
                 var totalAmmount = await _transactionRepository.GetTotalAmmountByFilterAsync(dateFrom.ToUniversalTime(), dateTo.ToUniversalTime(), userConcept.id);
-                result.Add(new ConceptMonthlyOutput() { ConceptId = userConcept.id, Description = userConcept.Description, Balance = totalAmmount });
+                result.Add(new ConceptMonthlyOutput() { ConceptId = userConcept.id, Description = userConcept.Description, Balance = Math.Round(totalAmmount, 2) });
             }
 
             return result;
