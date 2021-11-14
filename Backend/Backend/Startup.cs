@@ -1,4 +1,3 @@
-using Backend.Dto;
 using Backend.Middlewares;
 using Cotecna.Domain.Core;
 using Domain.Commands;
@@ -12,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Services.CommandHandlers.Concept;
 using Services.CommandHandlers.User;
 using Services.Handlers.User;
 using Services.QueryHandlers.Concept;
@@ -39,7 +39,10 @@ namespace Backend
                .AddAsyncCommandHandler<UserUpdateProfileCommand, UserUpdateProfileCommandHandler>()
                .AddAsyncQueryHandler<ConceptsQuery, ConceptQueryHandler, IEnumerable<ConceptOutput>>()
                .AddAsyncQueryHandler<UserProfileQuery, UserProfileQueryHandler, UserProfileOutput>()
-               .AddAsyncQueryHandler<ConceptMonthlyQuery, ConceptMonthlyQueryHandler, IEnumerable<ConceptMonthlyOutput>>();
+               .AddAsyncQueryHandler<ConceptMonthlyQuery, ConceptMonthlyQueryHandler, IEnumerable<ConceptMonthlyOutput>>()
+               .AddAsyncQueryHandler<ConceptMonthlyByConceptQuery, ConceptMonthlyByConceptQueryHandler, IEnumerable<ConceptMonthlyByConceptOutput>>()
+               .AddAsyncCommandHandler<ConceptCreationCommand, ConceptCreationCommandHandler>()
+               .AddAsyncCommandHandler<ConceptUpdateCommand, ConceptUpdateCommandHandler>();
 
             services.AddLogging(config =>
             {

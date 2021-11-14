@@ -133,7 +133,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2MjgxNDMwLCJleHAiOjE2MzY4ODYyMzAsImlhdCI6MTYzNjI4MTQzMH0.pOlcTlSL_AOseZhPHJLBTC51UgQuiuK9Gle-5LlWAiI",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODg0NzMxLCJleHAiOjE2Mzc0ODk1MzEsImlhdCI6MTYzNjg4NDczMX0.H-1kIm4L251Na8-KNQb5FOQMpwd4gWjIJPQ2Yo240Gs",
 							"type": "string"
 						}
 					]
@@ -147,7 +147,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\":\"flopyglorias@gmail.com\",\n\t\"password\":\"mataderos\",\n    \"moneda\": \"$\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"fora2\"\n}"
+					"raw": "{\n    \"email\": \"flopyglorias@gmail.com2\",\n\t\"password\":\"mataderos\",\n    \"moneda\": \"$\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"fora5\"\n}"
 				},
 				"url": {
 					"raw": "https://localhost:44362/usuario",
@@ -202,7 +202,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2Mjc2MjM5LCJleHAiOjE2MzY4ODEwMzgsImlhdCI6MTYzNjI3NjIzOX0.kv2LrkHUcQ_QbLf6-4kqezHmPB-TLQwAq9tOZmpo2jg",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTIiLCJuYmYiOjE2MzYyODg0MTIsImV4cCI6MTYzNjg5MzIxMiwiaWF0IjoxNjM2Mjg4NDEyfQ.GxLZlaDpR5H_UMPskF0krXSem3fpwmrgDMlkoBPOptw",
 							"type": "string"
 						}
 					]
@@ -231,7 +231,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2Mjc2MjM5LCJleHAiOjE2MzY4ODEwMzgsImlhdCI6MTYzNjI3NjIzOX0.kv2LrkHUcQ_QbLf6-4kqezHmPB-TLQwAq9tOZmpo2jg",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODg0NzMxLCJleHAiOjE2Mzc0ODk1MzEsImlhdCI6MTYzNjg4NDczMX0.H-1kIm4L251Na8-KNQb5FOQMpwd4gWjIJPQ2Yo240Gs",
 							"type": "string"
 						}
 					]
@@ -261,7 +261,158 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2Mjc2MjM5LCJleHAiOjE2MzY4ODEwMzgsImlhdCI6MTYzNjI3NjIzOX0.kv2LrkHUcQ_QbLf6-4kqezHmPB-TLQwAq9tOZmpo2jg",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODc4MTY1LCJleHAiOjE2Mzc0ODI5NjUsImlhdCI6MTYzNjg3ODE2NX0.jYHn-5v6PzSKGjuxVTLHQOuGgwGFlicmu-efKZLBM0s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44362/conceptos/5ad1cfefff20ea300c210166/movimientos/mensual/202005",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"conceptos",
+						"5ad1cfefff20ea300c210166",
+						"movimientos",
+						"mensual",
+						"202005"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Concepto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODgyOTQwLCJleHAiOjE2Mzc0ODc3NDAsImlhdCI6MTYzNjg4Mjk0MH0.4EBVoIxbkTj10vZWPVhGt2CjSj04RYvOXNcfF3S7iFI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Description\":\"Sueldo-aaa\",\n\t\"credit\": false\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44362/concepto",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"concepto"
+					]
+				},
+				"description": "X\t"
+			},
+			"response": []
+		},
+		{
+			"name": "Concepto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODgyOTQwLCJleHAiOjE2Mzc0ODc3NDAsImlhdCI6MTYzNjg4Mjk0MH0.4EBVoIxbkTj10vZWPVhGt2CjSj04RYvOXNcfF3S7iFI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ConceptId\": \"5ad1cfefff20ea300c210167\",\n\t\"Description\":\"perros-bbb\",\n\t\"credit\": true\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44362/concepto",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44362",
+					"path": [
+						"concepto"
+					]
+				},
+				"description": "X\t"
+			},
+			"response": []
+		},
+		{
+			"name": "Conceptos Mensual By Concept",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTIiLCJuYmYiOjE2MzYyODg0MTIsImV4cCI6MTYzNjg5MzIxMiwiaWF0IjoxNjM2Mjg4NDEyfQ.GxLZlaDpR5H_UMPskF0krXSem3fpwmrgDMlkoBPOptw",
 							"type": "string"
 						}
 					]

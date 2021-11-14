@@ -11,8 +11,8 @@ namespace CosmosGettingStartedTutorial.Extensions
             return new UserCosmos()
             {
                 Email = userMongo.Email,
-                EntryDate = new DateTime(1970,1,1).AddMilliseconds(userMongo.FechaAlta),
-                BornDate = new DateTime(1970, 1, 1).AddMilliseconds(userMongo.FechaNacimiento),
+                EntryDate = new DateTime(1970, 1, 1).AddMilliseconds(userMongo.FechaAlta).ToUniversalTime(),
+                BornDate = new DateTime(1970, 1, 1).AddMilliseconds(userMongo.FechaNacimiento).Date,
                 id = userMongo.Id,
                 StatusId = userMongo.IdEstado,
                 InvalidLoginAttempts = userMongo.IntentosFallidosLogin,
@@ -26,7 +26,7 @@ namespace CosmosGettingStartedTutorial.Extensions
         {
             return new ConceptoCosmos()
             {
-                EntryDate = new DateTime(1970, 1, 1).AddMilliseconds(conceptoMongo.FechaAlta),
+                EntryDate = new DateTime(1970, 1, 1).AddMilliseconds(conceptoMongo.FechaAlta).ToUniversalTime(),
                 id = conceptoMongo.Id,
                 Credit = conceptoMongo.Credito,
                 Description = conceptoMongo.Descripcion,
@@ -38,11 +38,11 @@ namespace CosmosGettingStartedTutorial.Extensions
         {
             return new MovimientoCosmos()
             {
-                EntryDate = new DateTime(1970, 1, 1).AddMilliseconds(movimientoMongo.FechaAlta),
+                EntryDate = new DateTime(1970, 1, 1).AddMilliseconds(movimientoMongo.FechaAlta).ToUniversalTime(),
                 id = movimientoMongo.Id,
                 UserId = movimientoMongo.User,
                 ConceptId = movimientoMongo.Concepto,
-                TransactionDate = new DateTime(1970, 1, 1).AddMilliseconds(movimientoMongo.Fecha),
+                TransactionDate = new DateTime(1970, 1, 1).AddMilliseconds(movimientoMongo.Fecha).ToUniversalTime(),
                 Ammount = movimientoMongo.Importe,
                 Tags = movimientoMongo.MovimTags
             };

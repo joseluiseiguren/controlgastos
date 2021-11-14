@@ -48,3 +48,4 @@ Backend/.vs/
 /Backend/Domain.Queries/obj
 /Backend/Services.QueryHandlers/bin/Debug/net5.0
 /Backend/Services.QueryHandlers/obj
+/Tips/POCCosmosDB/CosmosGettingStartedTutorial/bin/Debug/net5.0

@@ -33,8 +33,7 @@ namespace Domain.Models
                     string password, 
                     DateTime entryDate)
         {
-            this.id = id;
-
+            UpdateId(id);
             UpdateInvalidLoginAttempts(invalidLoginAttempts);
             UpdateEmail(email);
             UpdateStatus(statusId);

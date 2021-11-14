@@ -19,8 +19,7 @@ namespace Domain.Models
                        string userId, 
                        DateTime entryDate)
         {
-            this.id = id;
-
+            UpdateId(id);
             UpdateDescription(description);
             UpdateCredit(credit);
             UpdateUserId(userId);

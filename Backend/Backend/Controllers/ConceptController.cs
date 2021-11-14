@@ -1,4 +1,5 @@
-﻿using Backend.Dto;
+﻿using Backend.Attributes;
+using Backend.Dto;
 using Cotecna.Domain.Core;
 using Domain.Queries;
 using Domain.Queries.Outputs;
@@ -21,7 +22,7 @@ namespace Backend.Controllers
             _applicationMediator = applicationMediator;
         }
 
-        [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+        [Authorize]
         [HttpGet]
         [Route("usuarios/conceptos")]
         public async Task<IActionResult> GetConcepts()
@@ -33,7 +34,7 @@ namespace Backend.Controllers
             return Ok(result.Select(x => Map(x)));
         }
 
-        [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+        [Authorize]
         [HttpGet]
         [Route("conceptos/mensual/{month}/sumary")]
         public async Task<IActionResult> GetMonthlyConcepts(string month) //YYYYMM
@@ -43,6 +44,42 @@ namespace Backend.Controllers
             var result = await _applicationMediator.DispatchAsync(query);
 
             return Ok(result);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("conceptos/{conceptId}/movimientos/mensual/{month}")]
+        public async Task<IActionResult> GetMonthlyConceptsByConcept(string month, string conceptId) //YYYYMM
+        {
+            var query = new ConceptMonthlyByConceptQuery(this.UserId, month, conceptId);
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("concepto")]
+        public async Task<IActionResult> CreateConcept([FromBody] CreateConceptDto createConceptDto)
+        {
+            var command = createConceptDto.ToCommand(this.UserId);
+
+            await _applicationMediator.DispatchAsync(command);
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPut]
+        [Route("concepto")]
+        public async Task<IActionResult> UpdateConcept([FromBody] UpdateConceptDto updateConceptDto)
+        {
+            var command = updateConceptDto.ToCommand(this.UserId);
+
+            await _applicationMediator.DispatchAsync(command);
+
+            return Ok();
         }
 
         private ConceptDto Map(ConceptOutput conceptOutput)

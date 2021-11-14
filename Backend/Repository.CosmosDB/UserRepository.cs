@@ -49,17 +49,8 @@ namespace Repository.CosmosDB
         {
             var database = this._cosmosClient.GetDatabase(_databaseId);
             var container = database.GetContainer(_containerUsers);
-            var containerResponse = await container.ReadItemAsync<dynamic>(user.id, new PartitionKey(user.Email));
-            User userDB = CreateUserObjetcFromDynamic(containerResponse.Resource);
-
-            userDB.UpdateBornDate(user.BornDate);
-            userDB.UpdateCurrecny(user.Currency);
-            userDB.UpdateInvalidLoginAttempts(user.InvalidLoginAttempts);
-            userDB.UpdateName(user.Name);
-            userDB.UpdatePassword(user.Password);
-            userDB.UpdateStatus(user.StatusId);
-
-            await container.ReplaceItemAsync<User>(userDB, userDB.id, new PartitionKey(userDB.Email));
+            
+            await container.ReplaceItemAsync<User>(user, user.id);
         }
 
         public async Task InsertUserAsync(User user)
@@ -67,7 +58,7 @@ namespace Repository.CosmosDB
             var database = this._cosmosClient.GetDatabase(_databaseId);
             var container = database.GetContainer(_containerUsers);
 
-            await container.CreateItemAsync<User>(user, new PartitionKey(user.Email));
+            await container.CreateItemAsync<User>(user);
         }
 
         private User CreateUserObjetcFromDynamic(dynamic userDB)

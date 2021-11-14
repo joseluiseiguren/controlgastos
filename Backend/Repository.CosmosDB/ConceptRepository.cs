@@ -3,6 +3,7 @@ using Microsoft.Azure.Cosmos;
 using Repository.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Repository.CosmosDB
@@ -34,6 +35,54 @@ namespace Repository.CosmosDB
             }
 
             return result;
+        }
+
+        public async Task<Concept> GetConceptByUserAndDescription(string userId, string description)
+        {
+            var sqlQueryText = $"SELECT * FROM c WHERE c.UserId = '{userId}' AND c.Description = '{description}'";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerConcepts);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var currentResultSet = await queryResultSetIterator.ReadNextAsync();
+            var conceptFound = currentResultSet.FirstOrDefault();
+
+            return CreateConceptObjetcFromDynamic(conceptFound);
+        }
+
+        public async Task<Concept> GetConceptByUserAndConceptId(string userId, string conceptId)
+        {
+            var sqlQueryText = $"SELECT * FROM c WHERE c.UserId = '{userId}' AND c.id = '{conceptId}'";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerConcepts);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var currentResultSet = await queryResultSetIterator.ReadNextAsync();
+            var conceptFound = currentResultSet.FirstOrDefault();
+
+            return CreateConceptObjetcFromDynamic(conceptFound);
+        }
+
+        public async Task InsertConceptAsync(Concept concept)
+        {
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerConcepts);
+
+            await container.CreateItemAsync<Concept>(concept);
+        }
+
+        public async Task UpdateConceptAsync(Concept concept)
+        {
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerConcepts);
+
+            await container.ReplaceItemAsync<Concept>(concept, concept.id);
         }
 
         private Concept CreateConceptObjetcFromDynamic(dynamic conceptDB)

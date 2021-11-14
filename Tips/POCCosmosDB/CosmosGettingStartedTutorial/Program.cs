@@ -23,7 +23,7 @@ namespace CosmosGettingStartedTutorial
         private CosmosClient cosmosClient;
 
         // The name of the database and container we will create
-        private string _databaseId = "controlgastos";
+        private string _databaseId = "controlgastos_v6";
         private string _containerUsers = "users";
         private string _containerAudits = "audits";
         private string _containerConceptos = "concepts";
@@ -106,11 +106,11 @@ namespace CosmosGettingStartedTutorial
             // Create a new container
             var database = this.cosmosClient.GetDatabase(_databaseId);
 
-            var containerCreated = await database.CreateContainerIfNotExistsAsync(_containerUsers, "/Email", 400);
+            var containerCreated = await database.CreateContainerIfNotExistsAsync(_containerUsers, "/id", 400);
             Console.WriteLine("Created Container: {0}\n", containerCreated.Container.Id);
             containerCreated = await database.CreateContainerIfNotExistsAsync(_containerAudits, "/UserId", 400);
             Console.WriteLine("Created Container: {0}\n", containerCreated.Container.Id);
-            containerCreated = await database.CreateContainerIfNotExistsAsync(_containerConceptos, "/Description", 400);
+            containerCreated = await database.CreateContainerIfNotExistsAsync(_containerConceptos, "/UserId", 400);
             Console.WriteLine("Created Container: {0}\n", containerCreated.Container.Id);
             containerCreated = await database.CreateContainerIfNotExistsAsync(_containerMovimientos, "/UserId", 400);
             Console.WriteLine("Created Container: {0}\n", containerCreated.Container.Id);
@@ -153,13 +153,13 @@ namespace CosmosGettingStartedTutorial
                 try
                 {
                     // Read the item to see if it exists.  
-                    ItemResponse<UserCosmos> userResponse = await userContainer.ReadItemAsync<UserCosmos>(userToInsert.Id, new PartitionKey(userToInsert.Email));
+                    ItemResponse<UserCosmos> userResponse = await userContainer.ReadItemAsync<UserCosmos>(userToInsert.Id, new PartitionKey(userToInsert.Id));
                     Console.WriteLine("Item in database with id: {0} already exists\n", userResponse.Resource.id);
                 }
                 catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
                 {
                     // Create an item in the container representing the Andersen family. Note we provide the value of the partition key for this item, which is "Andersen"
-                    ItemResponse<UserCosmos> userResponse = await userContainer.CreateItemAsync<UserCosmos>(userToInsert.ToUserCosmos(), new PartitionKey(userToInsert.Email));
+                    ItemResponse<UserCosmos> userResponse = await userContainer.CreateItemAsync<UserCosmos>(userToInsert.ToUserCosmos(), new PartitionKey(userToInsert.Id));
 
                     // Note that after creating the item, we can access the body of the item with the Resource property off the ItemResponse. We can also access the RequestCharge property to see the amount of RUs consumed on this request.
                     Console.WriteLine("Created user in database with id: {0} Operation consumed {1} RUs.\n", userResponse.Resource.id, userResponse.RequestCharge);
@@ -182,13 +182,13 @@ namespace CosmosGettingStartedTutorial
                 try
                 {
                     // Read the item to see if it exists.                      
-                    ItemResponse<ConceptoCosmos> conceptoResponse = await conceptoContainer.ReadItemAsync<ConceptoCosmos>(conceptoCosmos.id, new PartitionKey(conceptoCosmos.Description));
+                    ItemResponse<ConceptoCosmos> conceptoResponse = await conceptoContainer.ReadItemAsync<ConceptoCosmos>(conceptoCosmos.id, new PartitionKey(conceptoCosmos.UserId));
                     Console.WriteLine("Item in database with id: {0} already exists\n", conceptoResponse.Resource.id);
                 }
                 catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
                 {
                     // Create an item in the container representing the Andersen family. Note we provide the value of the partition key for this item, which is "Andersen"
-                    ItemResponse<ConceptoCosmos> conceptoResponse = await conceptoContainer.CreateItemAsync<ConceptoCosmos>(conceptoCosmos, new PartitionKey(conceptoCosmos.Description));
+                    ItemResponse<ConceptoCosmos> conceptoResponse = await conceptoContainer.CreateItemAsync<ConceptoCosmos>(conceptoCosmos, new PartitionKey(conceptoCosmos.UserId));
 
                     // Note that after creating the item, we can access the body of the item with the Resource property off the ItemResponse. We can also access the RequestCharge property to see the amount of RUs consumed on this request.
                     Console.WriteLine("Created concepto in database with id: {0} Operation consumed {1} RUs.\n", conceptoResponse.Resource.id, conceptoResponse.RequestCharge);

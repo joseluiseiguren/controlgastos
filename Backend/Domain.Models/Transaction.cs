@@ -25,7 +25,7 @@ namespace Domain.Models
                             DateTime entryDate,
                             decimal ammount)
         {
-            this.id = id;
+            UpdateId(id);
             UpdateAmmount(ammount);
             UpdateConceptId(conceptId);
             UpdateEntryDate(entryDate);

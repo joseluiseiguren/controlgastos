@@ -4,7 +4,6 @@ using Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Repository.CosmosDB
@@ -29,6 +28,29 @@ namespace Repository.CosmosDB
             var totalAmmount = currentResultSet.First();
 
             return Convert.ToDecimal(totalAmmount.Total.ToString());
+        }
+
+        public async Task<IEnumerable<Transaction>> GetTransactionsByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId)
+        {
+            var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' AND c.TransactionDate >= '{dateFrom.ToString("o")}' AND c.TransactionDate <= '{dateTo.ToString("o")}'";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerTransactions);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var result = new List<Transaction>();
+            while (queryResultSetIterator.HasMoreResults)
+            {
+                FeedResponse<dynamic> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (dynamic conceptCosmos in currentResultSet)
+                {
+                    result.Add(CreateTransactionObjetcFromDynamic(conceptCosmos));
+                }
+            }
+
+            return result;
         }
 
         private Transaction CreateTransactionObjetcFromDynamic(dynamic transactionDB)
