@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Queries
 {
-    public class ConceptSummaryByMonthQuery : QueryBase<IEnumerable<ConceptBalanceOutputByDate>>
+    public class ConceptSummaryByMonthQuery : QueryBase<IReadOnlyList<ConceptBalanceOutputByDate>>
     {
         public string Month { get; init; } //YYYMM
 

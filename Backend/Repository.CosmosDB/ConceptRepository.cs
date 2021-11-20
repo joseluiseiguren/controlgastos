@@ -14,7 +14,7 @@ namespace Repository.CosmosDB
             : base(connectionString)
         { }
 
-        public async Task<IEnumerable<Concept>> GetConceptsByUser(string userId)
+        public async Task<IReadOnlyList<Concept>> GetConceptsByUser(string userId)
         {
             var sqlQueryText = $"SELECT * FROM c WHERE c.UserId = '{userId}'";
 

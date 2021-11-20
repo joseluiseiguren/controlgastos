@@ -9,7 +9,7 @@ using ConceptModel = Domain.Models.Concept;
 
 namespace Services.QueryHandlers.Concept
 {
-    public class ConceptQueryHandler : IAsyncQueryHandler<ConceptsQuery, IEnumerable<ConceptOutput>>
+    public class ConceptQueryHandler : IAsyncQueryHandler<ConceptsQuery, IReadOnlyList<ConceptOutput>>
     {
         private readonly IConceptRepository _conceptRepository;
 
@@ -18,7 +18,7 @@ namespace Services.QueryHandlers.Concept
             _conceptRepository = conceptRepository;
         }
 
-        public async Task<IEnumerable<ConceptOutput>> HandleAsync(ConceptsQuery query)
+        public async Task<IReadOnlyList<ConceptOutput>> HandleAsync(ConceptsQuery query)
         {
             var concepts = await _conceptRepository.GetConceptsByUser(query.UserId);
 

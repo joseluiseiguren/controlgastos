@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Services.QueryHandlers.Concept
 {
-    public class ConceptSummaryByMonthHandler : IAsyncQueryHandler<ConceptSummaryByMonthQuery, IEnumerable<ConceptBalanceOutputByDate>>
+    public class ConceptSummaryByMonthHandler : IAsyncQueryHandler<ConceptSummaryByMonthQuery, IReadOnlyList<ConceptBalanceOutputByDate>>
     {
         private readonly ITransactionRepository _transactionRepository;
 
@@ -18,7 +18,7 @@ namespace Services.QueryHandlers.Concept
             _transactionRepository = transactionRepository;
         }
 
-        public async Task<IEnumerable<ConceptBalanceOutputByDate>> HandleAsync(ConceptSummaryByMonthQuery query)
+        public async Task<IReadOnlyList<ConceptBalanceOutputByDate>> HandleAsync(ConceptSummaryByMonthQuery query)
         {
             var result = new List<ConceptBalanceOutputByDate>();
 

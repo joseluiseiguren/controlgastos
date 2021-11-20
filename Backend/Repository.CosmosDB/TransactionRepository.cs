@@ -30,7 +30,7 @@ namespace Repository.CosmosDB
             return Convert.ToDecimal(totalAmmount.Total.ToString());
         }
 
-        public async Task<IEnumerable<Transaction>> GetTransactionsByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId)
+        public async Task<IReadOnlyList<Transaction>> GetTransactionsByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId)
         {
             var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' AND c.TransactionDate >= '{dateFrom.ToString("o")}' AND c.TransactionDate <= '{dateTo.ToString("o")}'";
 

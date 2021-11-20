@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Queries
 {
-    public class ConceptSummaryHistoricQuery : QueryBase<IEnumerable<ConceptBalanceOutputByYear>>
+    public class ConceptSummaryHistoricQuery : QueryBase<IReadOnlyList<ConceptBalanceOutputByYear>>
     {
         public string ConceptId { get; init; }
 
