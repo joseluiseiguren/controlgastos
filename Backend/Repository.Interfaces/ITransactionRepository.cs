@@ -9,6 +9,8 @@ namespace Repository.Interfaces
     {
         Task<decimal> GetTotalAmmountByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId);
 
+        Task<decimal> GetTotalAmmountByUserAsync(DateTime dateFrom, DateTime dateTo, string userId, bool? income);
+
         Task<IReadOnlyList<Transaction>> GetTransactionsByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId);
     }
 }

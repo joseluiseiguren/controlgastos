@@ -30,6 +30,33 @@ namespace Repository.CosmosDB
             return Convert.ToDecimal(totalAmmount.Total.ToString());
         }
 
+        public async Task<decimal> GetTotalAmmountByUserAsync(DateTime dateFrom, DateTime dateTo, string userId, bool? income)
+        {
+            var sqlQueryText = $"SELECT SUM(c.Ammount) as Total FROM c WHERE c.UserId = '{userId}' AND c.TransactionDate >= '{dateFrom.ToString("o")}' AND c.TransactionDate <= '{dateTo.ToString("o")}'";
+            if (income.HasValue)
+            {
+                if (income.Value)
+                {
+                    sqlQueryText += " AND c.Ammount > 0";
+                }
+                else
+                {
+                    sqlQueryText += " AND c.Ammount < 0";
+                }
+            }
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerTransactions);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var currentResultSet = await queryResultSetIterator.ReadNextAsync();
+            var totalAmmount = currentResultSet.First();
+
+            return Convert.ToDecimal(totalAmmount.Total.ToString());
+        }
+
         public async Task<IReadOnlyList<Transaction>> GetTransactionsByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId)
         {
             var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' AND c.TransactionDate >= '{dateFrom.ToString("o")}' AND c.TransactionDate <= '{dateTo.ToString("o")}'";

@@ -15,6 +15,7 @@ using Services.CommandHandlers.Concept;
 using Services.CommandHandlers.User;
 using Services.Handlers.User;
 using Services.QueryHandlers.Concept;
+using Services.QueryHandlers.Period;
 using Services.QueryHandlers.User;
 using Shared.Settings;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace Backend
                .AddAsyncCommandHandler<UserUpdateProfileCommand, UserUpdateProfileCommandHandler>()
                .AddAsyncQueryHandler<ConceptsQuery, ConceptQueryHandler, IReadOnlyList<ConceptOutput>>()
                .AddAsyncQueryHandler<UserProfileQuery, UserProfileQueryHandler, UserProfileOutput>()
+               .AddAsyncQueryHandler<TotalInOutMonthyQuery, TotalInOutMonthyQueryHandler, TotalInOutOutput>()
                .AddAsyncQueryHandler<ConceptMonthlyQuery, ConceptMonthlyQueryHandler, IReadOnlyList<ConceptPeriodOutput>>()
                .AddAsyncQueryHandler<ConceptAnnualQuery, ConceptAnnualQueryHandler, IReadOnlyList<ConceptPeriodOutput>>()
                .AddAsyncQueryHandler<ConceptHistoricQuery, ConceptHistoricQueryHandler, IReadOnlyList<ConceptPeriodOutput>>()

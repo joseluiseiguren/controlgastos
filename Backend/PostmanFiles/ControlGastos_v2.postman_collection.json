@@ -269,7 +269,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODg0NzMxLCJleHAiOjE2Mzc0ODk1MzEsImlhdCI6MTYzNjg4NDczMX0.H-1kIm4L251Na8-KNQb5FOQMpwd4gWjIJPQ2Yo240Gs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2Mzc0MDQ0NDgsImV4cCI6MTYzODAwOTI0OCwiaWF0IjoxNjM3NDA0NDQ4fQ.rmGtIKey5VLNppzZoZhvro_bWglXtTeQCRIdiZl43fc",
 									"type": "string"
 								}
 							]
@@ -298,7 +298,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODc4MTY1LCJleHAiOjE2Mzc0ODI5NjUsImlhdCI6MTYzNjg3ODE2NX0.jYHn-5v6PzSKGjuxVTLHQOuGgwGFlicmu-efKZLBM0s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2Mzc0MDQ0NDgsImV4cCI6MTYzODAwOTI0OCwiaWF0IjoxNjM3NDA0NDQ4fQ.rmGtIKey5VLNppzZoZhvro_bWglXtTeQCRIdiZl43fc",
 									"type": "string"
 								}
 							]
@@ -598,6 +598,43 @@
 							]
 						},
 						"description": "X\t"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Period",
+			"item": [
+				{
+					"name": "Total InOut Monthly",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTUwMTcsImV4cCI6MTYzNzk5OTgxNywiaWF0IjoxNjM3Mzk1MDE3fQ.hKFJ9kFT_FSMX6v9vq_hWSDj7DrJDGQTkhRAuYA-rQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/period/totalinout/2020/04",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"period",
+								"totalinout",
+								"2020",
+								"04"
+							]
+						}
 					},
 					"response": []
 				}

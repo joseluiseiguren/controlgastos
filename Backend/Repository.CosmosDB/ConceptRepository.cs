@@ -14,9 +14,13 @@ namespace Repository.CosmosDB
             : base(connectionString)
         { }
 
-        public async Task<IReadOnlyList<Concept>> GetConceptsByUser(string userId)
+        public async Task<IReadOnlyList<Concept>> GetConceptsByUser(string userId, bool? creditType = null)
         {
             var sqlQueryText = $"SELECT * FROM c WHERE c.UserId = '{userId}'";
+            if (creditType.HasValue)
+            {
+                sqlQueryText += $" AND c.Credit = {creditType.Value.ToString()}";
+            }
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 

@@ -6,7 +6,7 @@ namespace Repository.Interfaces
 {
     public interface IConceptRepository
     {
-        Task<IReadOnlyList<Concept>> GetConceptsByUser(string userId);
+        Task<IReadOnlyList<Concept>> GetConceptsByUser(string userId, bool? creditType = null);
 
         Task<Concept> GetConceptByUserAndDescription(string userId, string description);
 
