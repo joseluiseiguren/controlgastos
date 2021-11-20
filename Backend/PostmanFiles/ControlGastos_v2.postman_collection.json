@@ -6,465 +6,602 @@
 	},
 	"item": [
 		{
-			"name": "Login",
-			"event": [
+			"name": "Account",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"email\":\"flopyglorias@gmail.com\",\n\t\"password\":\"mataderos\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:44362/usuarios/login",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44362",
-					"path": [
-						"usuarios",
-						"login"
-					]
-				},
-				"description": "X\t"
-			},
-			"response": []
-		},
-		{
-			"name": "Signup",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"email\":\"bbb@gmail.com\",\n\t\"password\":\"mataderos11\",\n    \"moneda\": \"USD\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"pepe\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:44362/usuarios/registracion",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44362",
-					"path": [
-						"usuarios",
-						"registracion"
-					]
-				},
-				"description": "X\t"
-			},
-			"response": []
-		},
-		{
-			"name": "Update Profile",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Login",
+					"event": [
 						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODg0NzMxLCJleHAiOjE2Mzc0ODk1MzEsImlhdCI6MTYzNjg4NDczMX0.H-1kIm4L251Na8-KNQb5FOQMpwd4gWjIJPQ2Yo240Gs",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"flopyglorias@gmail.com2\",\n\t\"password\":\"mataderos\",\n    \"moneda\": \"$\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"fora5\"\n}"
-				},
-				"url": {
-					"raw": "https://localhost:44362/usuario",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44362",
-					"path": [
-						"usuario"
-					]
-				},
-				"description": "X\t"
-			},
-			"response": []
-		},
-		{
-			"name": "Dummy",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
 						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM1NzY0MjI5LCJleHAiOjE2MzYzNjkwMjksImlhdCI6MTYzNTc2NDIyOX0.Zi3uBI5Vs5PlvXIpawLa_iScZZ4lZmC-NCZLBsTj3Vk",
-							"type": "string"
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44362/usuarios/dummyexception",
-					"protocol": "https",
-					"host": [
-						"localhost"
 					],
-					"port": "44362",
-					"path": [
-						"usuarios",
-						"dummyexception"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Usuario",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTIiLCJuYmYiOjE2MzYyODg0MTIsImV4cCI6MTYzNjg5MzIxMiwiaWF0IjoxNjM2Mjg4NDEyfQ.GxLZlaDpR5H_UMPskF0krXSem3fpwmrgDMlkoBPOptw",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44362/usuario",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44362",
-					"path": [
-						"usuario"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Conceptos",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODg0NzMxLCJleHAiOjE2Mzc0ODk1MzEsImlhdCI6MTYzNjg4NDczMX0.H-1kIm4L251Na8-KNQb5FOQMpwd4gWjIJPQ2Yo240Gs",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44362/usuarios/conceptos",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44362",
-					"path": [
-						"usuarios",
-						"conceptos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Conceptos Mensual",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODc4MTY1LCJleHAiOjE2Mzc0ODI5NjUsImlhdCI6MTYzNjg3ODE2NX0.jYHn-5v6PzSKGjuxVTLHQOuGgwGFlicmu-efKZLBM0s",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44362/conceptos/5ad1cfefff20ea300c210166/movimientos/mensual/202005",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44362",
-					"path": [
-						"conceptos",
-						"5ad1cfefff20ea300c210166",
-						"movimientos",
-						"mensual",
-						"202005"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Concepto",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
 						],
-						"type": "text/javascript"
-					}
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"flopyglorias@gmail.com2\",\n\t\"password\":\"mataderos\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44362/account/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"account",
+								"login"
+							]
+						},
+						"description": "X\t"
+					},
+					"response": []
 				},
 				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Signup",
+					"event": [
 						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODgyOTQwLCJleHAiOjE2Mzc0ODc3NDAsImlhdCI6MTYzNjg4Mjk0MH0.4EBVoIxbkTj10vZWPVhGt2CjSj04RYvOXNcfF3S7iFI",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"Description\":\"Sueldo-aaa\",\n\t\"credit\": false\n}"
-				},
-				"url": {
-					"raw": "https://localhost:44362/concepto",
-					"protocol": "https",
-					"host": [
-						"localhost"
 					],
-					"port": "44362",
-					"path": [
-						"concepto"
-					]
-				},
-				"description": "X\t"
-			},
-			"response": []
-		},
-		{
-			"name": "Concepto",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							""
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
 						],
-						"type": "text/javascript"
-					}
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"bbb@gmail.com\",\n\t\"password\":\"mataderos11\",\n    \"moneda\": \"USD\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"pepe\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44362/account/signup",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"account",
+								"signup"
+							]
+						},
+						"description": "X\t"
+					},
+					"response": []
 				},
 				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
+					"name": "Update Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTQ1NjgsImV4cCI6MTYzNzk5OTM2OCwiaWF0IjoxNjM3Mzk0NTY4fQ.pWIcPdQasB-pfNn7NZoGutLdiOW0VbN6os2RdwXbyhU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
 						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODgyOTQwLCJleHAiOjE2Mzc0ODc3NDAsImlhdCI6MTYzNjg4Mjk0MH0.4EBVoIxbkTj10vZWPVhGt2CjSj04RYvOXNcfF3S7iFI",
-							"type": "string"
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"flopyglorias@gmail.com2\",\n\t\"password\":\"mataderos\",\n    \"moneda\": \"A\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"fora5\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44362/account",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"account"
+							]
+						},
+						"description": "X\t"
+					},
+					"response": []
+				},
+				{
+					"name": "Dummy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTQ1NjgsImV4cCI6MTYzNzk5OTM2OCwiaWF0IjoxNjM3Mzk0NTY4fQ.pWIcPdQasB-pfNn7NZoGutLdiOW0VbN6os2RdwXbyhU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/account/dummy",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"account",
+								"dummy"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"ConceptId\": \"5ad1cfefff20ea300c210167\",\n\t\"Description\":\"perros-bbb\",\n\t\"credit\": true\n}"
+				{
+					"name": "Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTQ1NjgsImV4cCI6MTYzNzk5OTM2OCwiaWF0IjoxNjM3Mzk0NTY4fQ.pWIcPdQasB-pfNn7NZoGutLdiOW0VbN6os2RdwXbyhU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/account",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44362/concepto",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44362",
-					"path": [
-						"concepto"
-					]
-				},
-				"description": "X\t"
-			},
-			"response": []
+				{
+					"name": "Dummy Exception",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTQ1NjgsImV4cCI6MTYzNzk5OTM2OCwiaWF0IjoxNjM3Mzk0NTY4fQ.pWIcPdQasB-pfNn7NZoGutLdiOW0VbN6os2RdwXbyhU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/account/dummyexception",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"account",
+								"dummyexception"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "Conceptos Mensual By Concept",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTIiLCJuYmYiOjE2MzYyODg0MTIsImV4cCI6MTYzNjg5MzIxMiwiaWF0IjoxNjM2Mjg4NDEyfQ.GxLZlaDpR5H_UMPskF0krXSem3fpwmrgDMlkoBPOptw",
-							"type": "string"
+			"name": "Concepts",
+			"item": [
+				{
+					"name": "Concepts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODg0NzMxLCJleHAiOjE2Mzc0ODk1MzEsImlhdCI6MTYzNjg4NDczMX0.H-1kIm4L251Na8-KNQb5FOQMpwd4gWjIJPQ2Yo240Gs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/concept",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"concept"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44362/conceptos/mensual/202005/sumary",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44362",
-					"path": [
-						"conceptos",
-						"mensual",
-						"202005",
-						"sumary"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Dummy Exception",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM1NzY0MjI5LCJleHAiOjE2MzYzNjkwMjksImlhdCI6MTYzNTc2NDIyOX0.Zi3uBI5Vs5PlvXIpawLa_iScZZ4lZmC-NCZLBsTj3Vk",
-							"type": "string"
+				{
+					"name": "Transactions by Month by Concept",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODc4MTY1LCJleHAiOjE2Mzc0ODI5NjUsImlhdCI6MTYzNjg3ODE2NX0.jYHn-5v6PzSKGjuxVTLHQOuGgwGFlicmu-efKZLBM0s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/concept/5ad1cfefff20ea300c210166/monthly/202005/summary",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"concept",
+								"5ad1cfefff20ea300c210166",
+								"monthly",
+								"202005",
+								"summary"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44362/usuarios/dummyexception",
-					"protocol": "https",
-					"host": [
-						"localhost"
+				{
+					"name": "Concept Annual Summay by Concept",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODc4MTY1LCJleHAiOjE2Mzc0ODI5NjUsImlhdCI6MTYzNjg3ODE2NX0.jYHn-5v6PzSKGjuxVTLHQOuGgwGFlicmu-efKZLBM0s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/concept/5ad1cfefff20ea300c210165/annual/2020/summary",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"concept",
+								"5ad1cfefff20ea300c210165",
+								"annual",
+								"2020",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concept Historic Summay by Concept",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODc4MTY1LCJleHAiOjE2Mzc0ODI5NjUsImlhdCI6MTYzNjg3ODE2NX0.jYHn-5v6PzSKGjuxVTLHQOuGgwGFlicmu-efKZLBM0s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/concept/5ad1cfefff20ea300c210166/historic/summary",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"concept",
+								"5ad1cfefff20ea300c210166",
+								"historic",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concept",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "44362",
-					"path": [
-						"usuarios",
-						"dummyexception"
-					]
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODgyOTQwLCJleHAiOjE2Mzc0ODc3NDAsImlhdCI6MTYzNjg4Mjk0MH0.4EBVoIxbkTj10vZWPVhGt2CjSj04RYvOXNcfF3S7iFI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Description\":\"Sueldo-cccz\",\n\t\"credit\": false\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44362/concept",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"concept"
+							]
+						},
+						"description": "X\t"
+					},
+					"response": []
+				},
+				{
+					"name": "Concepts Monthly Summary",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTUwMTcsImV4cCI6MTYzNzk5OTgxNywiaWF0IjoxNjM3Mzk1MDE3fQ.hKFJ9kFT_FSMX6v9vq_hWSDj7DrJDGQTkhRAuYA-rQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/concept/monthly/202005/summary",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"concept",
+								"monthly",
+								"202005",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concepts Annual Summary",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTUwMTcsImV4cCI6MTYzNzk5OTgxNywiaWF0IjoxNjM3Mzk1MDE3fQ.hKFJ9kFT_FSMX6v9vq_hWSDj7DrJDGQTkhRAuYA-rQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/concept/annual/2021/summary",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"concept",
+								"annual",
+								"2021",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concepts Historic Summary",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTUwMTcsImV4cCI6MTYzNzk5OTgxNywiaWF0IjoxNjM3Mzk1MDE3fQ.hKFJ9kFT_FSMX6v9vq_hWSDj7DrJDGQTkhRAuYA-rQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/concept/historic/summary",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"concept",
+								"historic",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Concept",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODgyOTQwLCJleHAiOjE2Mzc0ODc3NDAsImlhdCI6MTYzNjg4Mjk0MH0.4EBVoIxbkTj10vZWPVhGt2CjSj04RYvOXNcfF3S7iFI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ConceptId\": \"5ad1cfefff20ea300c210167\",\n\t\"Description\":\"perros-bbb\",\n\t\"credit\": true\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44362/concept",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"concept"
+							]
+						},
+						"description": "X\t"
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }

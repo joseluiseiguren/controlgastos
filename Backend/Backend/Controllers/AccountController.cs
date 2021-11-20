@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace Backend.Controllers
 {
     [ApiController]
+    [Route("[controller]")]
     public class AccountController : BaseController
     {
         private readonly ILogger<AccountController> _logger;
@@ -22,7 +23,7 @@ namespace Backend.Controllers
 
         [Microsoft.AspNetCore.Authorization.AllowAnonymous]
         [HttpPost]
-        [Route("usuarios/login")]
+        [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var command = loginDto.ToCommand();
@@ -34,7 +35,7 @@ namespace Backend.Controllers
 
         [Microsoft.AspNetCore.Authorization.AllowAnonymous]
         [HttpPost]
-        [Route("usuarios/registracion")]
+        [Route("signup")]
         public async Task<IActionResult> SignUp([FromBody] SignupDto signupDto)
         {
             var command = signupDto.ToCommand();
@@ -46,7 +47,6 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpPut]
-        [Route("usuario")]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateUserProfileDto updateUserProfileDto)
         {
             var command = updateUserProfileDto.ToCommand(this.UserId);
@@ -58,7 +58,6 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("usuario")]
         public async Task<IActionResult> GetUserProfile()
         {
             var query = new UserProfileQuery(this.UserId);
@@ -70,7 +69,7 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("usuarios/dummy")]
+        [Route("dummy")]
         public async Task<IActionResult> Dummy()
         {
             return Ok(await Task.FromResult(new { UserId = this.UserId, Name = UserName }));
@@ -78,7 +77,7 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("usuarios/dummyException")]
+        [Route("dummyException")]
         public async Task<IActionResult> DummyException()
         {
             var i = 0;

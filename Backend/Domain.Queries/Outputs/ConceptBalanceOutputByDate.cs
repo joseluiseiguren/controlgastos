@@ -2,9 +2,9 @@
 
 namespace Domain.Queries.Outputs
 {
-    public class ConceptMonthlyByConceptOutput
+    public class ConceptBalanceOutputByDate
     {
-        public DateTime Date { get; set; }  //Month
+        public DateTime Date { get; set; }
 
         public decimal Balance { get; set; }
     }

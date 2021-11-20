@@ -1,6 +1,6 @@
 ﻿namespace Domain.Queries.Outputs
 {
-    public class ConceptMonthlyOutput
+    public class ConceptPeriodOutput
     {
         public string ConceptId { get; set; }
 

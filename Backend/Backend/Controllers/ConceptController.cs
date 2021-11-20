@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace Backend.Controllers
 {
     [ApiController]
+    [Route("[controller]")]
     public class ConceptController : BaseController
     {
         private readonly ILogger<AccountController> _logger;
@@ -24,7 +25,6 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("usuarios/conceptos")]
         public async Task<IActionResult> GetConcepts()
         {
             var query = new ConceptsQuery(this.UserId);
@@ -36,8 +36,8 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("conceptos/mensual/{month}/sumary")]
-        public async Task<IActionResult> GetMonthlyConcepts(string month) //YYYYMM
+        [Route("monthly/{month}/summary")]
+        public async Task<IActionResult> GetSummaryByMonth(string month) //YYYYMM
         {
             var query = new ConceptMonthlyQuery(this.UserId, month);
 
@@ -48,10 +48,58 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("conceptos/{conceptId}/movimientos/mensual/{month}")]
-        public async Task<IActionResult> GetMonthlyConceptsByConcept(string month, string conceptId) //YYYYMM
+        [Route("{conceptId}/monthly/{month}/summary")]
+        public async Task<IActionResult> GetMonthlyTransactionsByConcept(string month, string conceptId) //YYYYMM
         {
-            var query = new ConceptMonthlyByConceptQuery(this.UserId, month, conceptId);
+            var query = new ConceptSummaryByMonthQuery(this.UserId, month, conceptId);
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("annual/{year}/summary")]
+        public async Task<IActionResult> GetSummaryByYear(int year)
+        {
+            var query = new ConceptAnnualQuery(this.UserId, year);
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("{conceptId}/annual/{year}/summary")]
+        public async Task<IActionResult> GetAnnualTransactionsByConcept(int year, string conceptId)
+        {
+            var query = new ConceptSummaryByYearQuery(this.UserId, year, conceptId);
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("historic/summary")]
+        public async Task<IActionResult> GetSummaryHistoric()
+        {
+            var query = new ConceptHistoricQuery(this.UserId);
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }        
+
+        [Authorize]
+        [HttpGet]
+        [Route("{conceptId}/historic/summary")]
+        public async Task<IActionResult> GetHistoricTransactionsByConcept(string conceptId)
+        {
+            var query = new ConceptSummaryHistoricQuery(this.UserId, conceptId);
 
             var result = await _applicationMediator.DispatchAsync(query);
 
@@ -60,7 +108,6 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpPost]
-        [Route("concepto")]
         public async Task<IActionResult> CreateConcept([FromBody] CreateConceptDto createConceptDto)
         {
             var command = createConceptDto.ToCommand(this.UserId);
@@ -72,7 +119,6 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpPut]
-        [Route("concepto")]
         public async Task<IActionResult> UpdateConcept([FromBody] UpdateConceptDto updateConceptDto)
         {
             var command = updateConceptDto.ToCommand(this.UserId);

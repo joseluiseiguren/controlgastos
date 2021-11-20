@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Domain.Queries
 {
-    public class ConceptsQuery : QueryBase<IEnumerable<ConceptOutput>>
+    public class ConceptHistoricQuery : QueryBase<IEnumerable<ConceptPeriodOutput>>
     {
-        public ConceptsQuery(string userId)
+        public ConceptHistoricQuery(string userId)
             : base(userId)
         {
         }

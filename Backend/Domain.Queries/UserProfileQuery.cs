@@ -1,15 +1,12 @@
-﻿using Cotecna.Domain.Core;
-using Domain.Queries.Outputs;
+﻿using Domain.Queries.Outputs;
 
 namespace Domain.Queries
 {
-    public class UserProfileQuery : Query<UserProfileOutput>
+    public class UserProfileQuery : QueryBase<UserProfileOutput>
     {
-        public string UserId { get; init; }
-
         public UserProfileQuery(string userId)
+            : base(userId)
         {
-            this.UserId = userId;
         }
     }
 }

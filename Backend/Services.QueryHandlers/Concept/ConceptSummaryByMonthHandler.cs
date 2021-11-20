@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace Services.QueryHandlers.Concept
 {
-    public class ConceptMonthlyByConceptQueryHandler : IAsyncQueryHandler<ConceptMonthlyByConceptQuery, IEnumerable<ConceptMonthlyByConceptOutput>>
+    public class ConceptSummaryByMonthHandler : IAsyncQueryHandler<ConceptSummaryByMonthQuery, IEnumerable<ConceptBalanceOutputByDate>>
     {
         private readonly ITransactionRepository _transactionRepository;
 
-        public ConceptMonthlyByConceptQueryHandler(ITransactionRepository transactionRepository)
+        public ConceptSummaryByMonthHandler(ITransactionRepository transactionRepository)
         {
             _transactionRepository = transactionRepository;
         }
 
-        public async Task<IEnumerable<ConceptMonthlyByConceptOutput>> HandleAsync(ConceptMonthlyByConceptQuery query)
+        public async Task<IEnumerable<ConceptBalanceOutputByDate>> HandleAsync(ConceptSummaryByMonthQuery query)
         {
-            var result = new List<ConceptMonthlyByConceptOutput>();
+            var result = new List<ConceptBalanceOutputByDate>();
 
             var dateFrom = DateTime.ParseExact(query.Month + "01", "yyyyMMdd", null);
             var dateTo = dateFrom.AddMonths(1).AddSeconds(-1);
@@ -30,7 +30,7 @@ namespace Services.QueryHandlers.Concept
 
             foreach (var item in transactionsGroupedByDate)
             {
-                result.Add(new ConceptMonthlyByConceptOutput() { Date = item.Key, Balance = item.Sum() });
+                result.Add(new ConceptBalanceOutputByDate() { Date = item.Key, Balance = item.Sum() });
             }
 
             return result;

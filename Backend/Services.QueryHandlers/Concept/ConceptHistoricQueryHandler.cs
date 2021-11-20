@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace Services.QueryHandlers.Concept
 {
-    public class ConceptMonthlyQueryHandler : IAsyncQueryHandler<ConceptMonthlyQuery, IEnumerable<ConceptPeriodOutput>>
+    public class ConceptHistoricQueryHandler : IAsyncQueryHandler<ConceptHistoricQuery, IEnumerable<ConceptPeriodOutput>>
     {
         private readonly IConceptRepository _conceptRepository;
         private readonly ITransactionRepository _transactionRepository;
 
-        public ConceptMonthlyQueryHandler(IConceptRepository conceptRepository, ITransactionRepository transactionRepository)
+        public ConceptHistoricQueryHandler(IConceptRepository conceptRepository, ITransactionRepository transactionRepository)
         {
             _conceptRepository = conceptRepository;
             _transactionRepository = transactionRepository;
         }
 
-        public async Task<IEnumerable<ConceptPeriodOutput>> HandleAsync(ConceptMonthlyQuery query)
+        public async Task<IEnumerable<ConceptPeriodOutput>> HandleAsync(ConceptHistoricQuery query)
         {
             var result = new List<ConceptPeriodOutput>();
 
-            var dateFrom = DateTime.ParseExact(query.Month + "01", "yyyyMMdd", null);
-            var dateTo = dateFrom.AddMonths(1).AddSeconds(-1);
+            var dateFrom = DateTime.MinValue;
+            var dateTo = DateTime.MaxValue;
 
             var userConcepts = await _conceptRepository.GetConceptsByUser(query.UserId);
             foreach (var userConcept in userConcepts)

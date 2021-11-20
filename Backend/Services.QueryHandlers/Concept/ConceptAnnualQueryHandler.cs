@@ -1,4 +1,4 @@
-﻿using Cotecna.Domain.Core;
+﻿    using Cotecna.Domain.Core;
 using Domain.Queries;
 using Domain.Queries.Outputs;
 using Repository.Interfaces;
@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace Services.QueryHandlers.Concept
 {
-    public class ConceptMonthlyQueryHandler : IAsyncQueryHandler<ConceptMonthlyQuery, IEnumerable<ConceptPeriodOutput>>
+    public class ConceptAnnualQueryHandler : IAsyncQueryHandler<ConceptAnnualQuery, IEnumerable<ConceptPeriodOutput>>
     {
         private readonly IConceptRepository _conceptRepository;
         private readonly ITransactionRepository _transactionRepository;
 
-        public ConceptMonthlyQueryHandler(IConceptRepository conceptRepository, ITransactionRepository transactionRepository)
+        public ConceptAnnualQueryHandler(IConceptRepository conceptRepository, ITransactionRepository transactionRepository)
         {
             _conceptRepository = conceptRepository;
             _transactionRepository = transactionRepository;
         }
 
-        public async Task<IEnumerable<ConceptPeriodOutput>> HandleAsync(ConceptMonthlyQuery query)
+        public async Task<IEnumerable<ConceptPeriodOutput>> HandleAsync(ConceptAnnualQuery query)
         {
             var result = new List<ConceptPeriodOutput>();
 
-            var dateFrom = DateTime.ParseExact(query.Month + "01", "yyyyMMdd", null);
-            var dateTo = dateFrom.AddMonths(1).AddSeconds(-1);
+            var dateFrom = DateTime.ParseExact(query.Year + "0101", "yyyyMMdd", null);
+            var dateTo = dateFrom.AddMonths(12).AddSeconds(-1);
 
             var userConcepts = await _conceptRepository.GetConceptsByUser(query.UserId);
             foreach (var userConcept in userConcepts)

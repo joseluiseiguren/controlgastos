@@ -39,8 +39,12 @@ namespace Backend
                .AddAsyncCommandHandler<UserUpdateProfileCommand, UserUpdateProfileCommandHandler>()
                .AddAsyncQueryHandler<ConceptsQuery, ConceptQueryHandler, IEnumerable<ConceptOutput>>()
                .AddAsyncQueryHandler<UserProfileQuery, UserProfileQueryHandler, UserProfileOutput>()
-               .AddAsyncQueryHandler<ConceptMonthlyQuery, ConceptMonthlyQueryHandler, IEnumerable<ConceptMonthlyOutput>>()
-               .AddAsyncQueryHandler<ConceptMonthlyByConceptQuery, ConceptMonthlyByConceptQueryHandler, IEnumerable<ConceptMonthlyByConceptOutput>>()
+               .AddAsyncQueryHandler<ConceptMonthlyQuery, ConceptMonthlyQueryHandler, IEnumerable<ConceptPeriodOutput>>()
+               .AddAsyncQueryHandler<ConceptAnnualQuery, ConceptAnnualQueryHandler, IEnumerable<ConceptPeriodOutput>>()
+               .AddAsyncQueryHandler<ConceptHistoricQuery, ConceptHistoricQueryHandler, IEnumerable<ConceptPeriodOutput>>()
+               .AddAsyncQueryHandler<ConceptSummaryByMonthQuery, ConceptSummaryByMonthHandler, IEnumerable<ConceptBalanceOutputByDate>>()
+               .AddAsyncQueryHandler<ConceptSummaryByYearQuery, ConceptSummaryByYearHandler, IEnumerable<ConceptBalanceOutputByMonth>>()
+               .AddAsyncQueryHandler<ConceptSummaryHistoricQuery, ConceptSummaryHistoricHandler, IEnumerable<ConceptBalanceOutputByYear>>()
                .AddAsyncCommandHandler<ConceptCreationCommand, ConceptCreationCommandHandler>()
                .AddAsyncCommandHandler<ConceptUpdateCommand, ConceptUpdateCommandHandler>();
 
