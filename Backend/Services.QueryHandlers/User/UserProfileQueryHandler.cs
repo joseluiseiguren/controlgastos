@@ -34,7 +34,7 @@ namespace Services.QueryHandlers.User
 
             return new UserProfileOutput()
             {
-                BornDate = user.BornDate.ToString("yyyyMMdd"),
+                BornDate = user.BornDate.ToString("yyyy/MM/dd"),
                 Currency = user.Currency,
                 Email = user.Email,
                 EntryDate = user.EntryDate,

@@ -45,6 +45,7 @@ export class UserprofileComponent implements OnInit, OnDestroy {
     this._subscriptions.add(this._userService.getProfile()
         .subscribe(
             data => {
+              debugger;
               this.profileForm.setValue({emailFormControl: data.email,
                                          nameFormControl: data.name,
                                          fechaNacimientoFormControl: data.bornDate,
