@@ -1,4 +1,4 @@
-﻿    using Cotecna.Domain.Core;
+﻿using Cotecna.Domain.Core;
 using Domain.Queries;
 using Domain.Queries.Outputs;
 using Repository.Interfaces;

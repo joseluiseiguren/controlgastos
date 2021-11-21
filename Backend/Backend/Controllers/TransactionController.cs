@@ -1,31 +1,44 @@
 ﻿using Backend.Attributes;
+using Backend.Dto;
 using Cotecna.Domain.Core;
 using Domain.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace Backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PeriodController : BaseController
+    public class TransactionController : BaseController
     {
         private readonly ILogger<PeriodController> _logger;
         private readonly IApplicationMediator _applicationMediator;
 
-        public PeriodController(ILogger<PeriodController> logger, IApplicationMediator applicationMediator)
+        public TransactionController(ILogger<PeriodController> logger, IApplicationMediator applicationMediator)
         {
             _logger = logger;
             _applicationMediator = applicationMediator;
         }
 
         [Authorize]
-        [HttpGet]
-        [Route("totalinout/{year}/{month}")]
-        public async Task<IActionResult> GetTotalInOutByMonth(int year, int month)
+        [HttpPost]
+        public async Task<IActionResult> CreateTransaction([FromBody] CreateTransactionDto createTransactionDto)
         {
-            var query = new TotalInOutMonthyQuery(this.UserId, month, year);
+            var command = createTransactionDto.ToCommand(this.UserId);
+
+            await _applicationMediator.DispatchAsync(command);
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("firstlast")]
+        public async Task<IActionResult> GetFirstLastTransaction()
+        {
+            var query = new TransactionFirstLastQuery(this.UserId);
 
             var result = await _applicationMediator.DispatchAsync(query);
 
@@ -34,22 +47,10 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("totalinout/{year}")]
-        public async Task<IActionResult> GetTotalInOutByYear(int year)
+        [Route("{date}")]
+        public async Task<IActionResult> GetFirstLastTransaction(DateTime date)
         {
-            var query = new TotalInOutAnnualQuery(this.UserId, year);
-
-            var result = await _applicationMediator.DispatchAsync(query);
-
-            return Ok(result);
-        }
-
-        [Authorize]
-        [HttpGet]
-        [Route("totalinout")]
-        public async Task<IActionResult> GetTotalInOutHistoric()
-        {
-            var query = new TotalInOutHistoricQuery(this.UserId);
+            var query = new TransactionsByDateQuery(this.UserId, date);
 
             var result = await _applicationMediator.DispatchAsync(query);
 

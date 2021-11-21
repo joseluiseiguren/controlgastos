@@ -2,10 +2,8 @@
 
 namespace Domain.Commands
 {
-    public class ConceptUpdateCommand : Command
+    public class ConceptUpdateCommand : CommandBase
     {
-        public string UserId { get; init; }
-
         public string ConceptId { get; init; }
 
         public string Description { get; init; }
@@ -13,8 +11,8 @@ namespace Domain.Commands
         public bool Credit { get; init; }
 
         public ConceptUpdateCommand(string userId, string conceptId, string description, bool credit)
+            : base(userId)
         {
-            this.UserId = userId;
             this.ConceptId = conceptId;
             this.Description = description;
             this.Credit = credit;

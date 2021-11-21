@@ -73,12 +73,12 @@ export class RegistracionComponent implements OnInit, OnDestroy {
     private createUser(): User {
       const user: User = {
         email: this.registerForm.value.emailFormControl,
-        fechanacimiento: this.registerForm.value.fechaNacimientoFormControl,
-        moneda: this.registerForm.value.monedaFormControl,
-        nombre: this.registerForm.value.nameFormControl,
-        fechaalta: null,
+        bornDate: this.registerForm.value.fechaNacimientoFormControl,
+        currency: this.registerForm.value.monedaFormControl,
+        name: this.registerForm.value.nameFormControl,
+        entryDate: null,
         id: null,
-        idestado: null,
+        statusId: null,
         password: this.registerForm.value.passwordFormControl
       };
 

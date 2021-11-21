@@ -8,7 +8,7 @@ namespace Domain.Queries.Outputs
 
         public string Name { get; set; }
 
-        public DateTime BornDate { get; set; }
+        public string BornDate { get; set; }
 
         public int StatusId { get; set; }
 

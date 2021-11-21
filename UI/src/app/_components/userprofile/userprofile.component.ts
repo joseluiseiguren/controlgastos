@@ -46,9 +46,9 @@ export class UserprofileComponent implements OnInit, OnDestroy {
         .subscribe(
             data => {
               this.profileForm.setValue({emailFormControl: data.email,
-                                         nameFormControl: data.nombre,
-                                         fechaNacimientoFormControl: data.fechanacimiento,
-                                         monedaFormControl: data.moneda});
+                                         nameFormControl: data.name,
+                                         fechaNacimientoFormControl: data.bornDate,
+                                         monedaFormControl: data.currency});
               this.loading = false;
             },
             error => {
@@ -65,7 +65,7 @@ export class UserprofileComponent implements OnInit, OnDestroy {
     this._subscriptions.add(this._userService.updateProfile(userProfile)
           .subscribe(
             data => {
-              this._userService.setUserName(userProfile.nombre);
+              this._userService.setUserName(userProfile.name);
               this._helperService.showSnackBarSuccess(this.snackBar, 'Modificacion Exitosa');
               this.loadingAceptar  = false;
               this.profileForm.markAsPristine();
@@ -80,12 +80,12 @@ export class UserprofileComponent implements OnInit, OnDestroy {
   private createUser(): User {
     const user: User = {
       email: this.profileForm.value.emailFormControl,
-      fechanacimiento: new Date(this.profileForm.value.fechaNacimientoFormControl),
-      moneda: this.profileForm.value.monedaFormControl,
-      nombre: this.profileForm.value.nameFormControl,
-      fechaalta: null,
+      bornDate: new Date(this.profileForm.value.fechaNacimientoFormControl),
+      currency: this.profileForm.value.monedaFormControl,
+      name: this.profileForm.value.nameFormControl,
+      entryDate: null,
       id: null,
-      idestado: null,
+      statusId: null,
       password: null
     };
 

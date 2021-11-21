@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { User } from '../models/user';
 import { UrlService } from './url.service';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FormGroup } from '@angular/forms';
 
@@ -22,7 +22,8 @@ export class UsersService {
     login(email: string, password: string, location: string ): Observable<boolean> {
         return this._http.post<any>(this._urlService.urlLogin(),
                 {email, password, location})
-                .pipe(map(user => {
+                .pipe(
+                  map(user => {
                     // login successful if there's a jwt token in the response
                     if (user && user.token) {
                         // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -33,34 +34,34 @@ export class UsersService {
                     }
 
                     return false;
-                }
-                ));
+                  })
+                );
     }
 
     register( usuario: User ): Observable<void> {
-        const fechanacimiento = usuario.fechanacimiento.getFullYear().toString() +
-                (usuario.fechanacimiento.getMonth() + 1).toString().padStart(2, '0') +
-                usuario.fechanacimiento.getDate().toString().padStart(2, '0');
+        const fechanacimiento = usuario.bornDate.getFullYear().toString() +
+                (usuario.bornDate.getMonth() + 1).toString().padStart(2, '0') +
+                usuario.bornDate.getDate().toString().padStart(2, '0');
 
         return this._http.post<any>(this._urlService.urlRegistracion(),
                 {email: usuario.email,
                  password: usuario.password,
-                 nombre: usuario.nombre,
+                 nombre: usuario.name,
                  fechanacimiento: fechanacimiento,
-                 moneda: usuario.moneda});
+                 moneda: usuario.currency});
     }
 
     updateProfile(usuario: User): Observable<void> {
-        const fechanacimiento = usuario.fechanacimiento.getFullYear().toString() +
-                (usuario.fechanacimiento.getMonth() + 1).toString().padStart(2, '0') +
-                usuario.fechanacimiento.getDate().toString().padStart(2, '0');
+        const fechanacimiento = usuario.bornDate.getFullYear().toString() +
+                (usuario.bornDate.getMonth() + 1).toString().padStart(2, '0') +
+                usuario.bornDate.getDate().toString().padStart(2, '0');
 
         return this._http.put<any>(this._urlService.urlUserUpdateProfile(),
                 {email: usuario.email,
                  password: usuario.password,
-                 nombre: usuario.nombre,
+                 nombre: usuario.name,
                  fechanacimiento: fechanacimiento,
-                 moneda: usuario.moneda});
+                 moneda: usuario.currency});
     }
 
     logout() {
@@ -96,9 +97,9 @@ export class UsersService {
       this.userName.next(userName);
     }
 
-    getUserId(): number {
+    getUserId(): string {
         const token = localStorage.getItem('alow');
-        let userId = 0;
+        let userId = '';
 
         if (token !== null) {
             userId = this.jwtHelper.decodeToken(token).id;
@@ -119,8 +120,29 @@ export class UsersService {
     }
 
     getProfile(): Observable<User> {
-        return this._http.get<User>(this._urlService.urlGetUserProfile(this.getUserId()))
-                        .pipe(tap(data => JSON.stringify(data)));
+      return this._http.get<User>(this._urlService.urlGetUserProfile())
+                        .pipe(
+                          map(res => {
+                            const user: User = {id: res.id,
+                                                statusId: res.statusId,
+                                                entryDate: new Date(res.entryDate),
+                                                name: res.name,
+                                                currency: res.currency,
+                                                bornDate: new Date(res.bornDate),
+                                                email: res.email,
+                                                password: ""};
+                            return user;
+                          })
+                        );
+    }
+
+    private replacer(key, value){
+      if (key == "bornDate") {
+        debugger;
+        return new Date(value);
+     }
+
+     return value;
     }
 
     getAvailablesCurrencies(): string[] {

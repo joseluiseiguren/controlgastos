@@ -25,7 +25,7 @@ namespace Services.QueryHandlers.Concept
             var dateFrom = DateTime.MinValue;
             var dateTo = DateTime.MaxValue;
 
-            var transactions = await _transactionRepository.GetTransactionsByFilterAsync(dateFrom.ToUniversalTime(), dateTo.ToUniversalTime(), query.ConceptId);
+            var transactions = await _transactionRepository.GetTransactionsByFilterAsync(dateFrom, dateTo, query.ConceptId);
             var transactionsGroupedByDate = transactions.GroupBy(x => x.TransactionDate.Year, x => x.Ammount).OrderBy(x => x.Key);
 
             foreach (var item in transactionsGroupedByDate)

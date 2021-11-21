@@ -1,10 +1,10 @@
 export interface User {
-    id: number;
+    id: string;
     email: string;
-    nombre: string;
-    fechanacimiento: Date;
-    fechaalta: Date;
-    idestado: number;
+    name: string;
+    bornDate: Date;
+    entryDate: Date;
+    statusId: number;
     password: string;
-    moneda: string;
+    currency: string;
 }

@@ -614,7 +614,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTUwMTcsImV4cCI6MTYzNzk5OTgxNywiaWF0IjoxNjM3Mzk1MDE3fQ.hKFJ9kFT_FSMX6v9vq_hWSDj7DrJDGQTkhRAuYA-rQc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2Mzc0ODE1OTAsImV4cCI6MTYzODA4NjM5MCwiaWF0IjoxNjM3NDgxNTkwfQ.itLnGXPJeizgYyTE6SV3AYVtT2m-ez8FgHBam4s-oho",
 									"type": "string"
 								}
 							]
@@ -633,6 +633,191 @@
 								"totalinout",
 								"2020",
 								"04"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total InOut Historic",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2Mzc0ODE1OTAsImV4cCI6MTYzODA4NjM5MCwiaWF0IjoxNjM3NDgxNTkwfQ.itLnGXPJeizgYyTE6SV3AYVtT2m-ez8FgHBam4s-oho",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/period/totalinout",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"period",
+								"totalinout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total InOut Annual",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2Mzc0ODE1OTAsImV4cCI6MTYzODA4NjM5MCwiaWF0IjoxNjM3NDgxNTkwfQ.itLnGXPJeizgYyTE6SV3AYVtT2m-ez8FgHBam4s-oho",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/period/totalinout/2020",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"period",
+								"totalinout",
+								"2020"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2Mzc0ODQ5NzAsImV4cCI6MTYzODA4OTc3MCwiaWF0IjoxNjM3NDg0OTcwfQ._i1NCULe4Rai8LQKYDicelngMSeRjiSOPs2ZafDtaVo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ConceptId\":\"5ad1cfefff20ea300c210165\",\n\t\"Ammount\": 2000,\n    \"TransactionDate\": \"2021-12-31\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44362/transaction",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"transaction"
+							]
+						},
+						"description": "X\t"
+					},
+					"response": []
+				},
+				{
+					"name": "First Last",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2Mzc0ODQ5NzAsImV4cCI6MTYzODA4OTc3MCwiaWF0IjoxNjM3NDg0OTcwfQ._i1NCULe4Rai8LQKYDicelngMSeRjiSOPs2ZafDtaVo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/transaction/firstlast",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"transaction",
+								"firstlast"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transactions by date",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2Mzc0ODQ5NzAsImV4cCI6MTYzODA4OTc3MCwiaWF0IjoxNjM3NDg0OTcwfQ._i1NCULe4Rai8LQKYDicelngMSeRjiSOPs2ZafDtaVo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44362/transaction/2021-12-31",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44362",
+							"path": [
+								"transaction",
+								"2021-12-31"
 							]
 						}
 					},

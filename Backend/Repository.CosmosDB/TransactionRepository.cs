@@ -80,6 +80,54 @@ namespace Repository.CosmosDB
             return result;
         }
 
+        public async Task<Transaction> GetTransactionByFilterAsync(DateTime transactionDate, string conceptId)
+        {
+            var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' AND c.TransactionDate = '{transactionDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ssK")}'";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerTransactions);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var currentResultSet = await queryResultSetIterator.ReadNextAsync();
+            var transactionFound = currentResultSet.FirstOrDefault();
+
+            return CreateTransactionObjetcFromDynamic(transactionFound);
+        }
+
+        public async Task<Transaction> GetFirstTransactionAsync(string userId)
+        {
+            var sqlQueryText = $"SELECT TOP 1 * FROM c WHERE c.UserId = '{userId}' order by c.TransactionDate ";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerTransactions);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var currentResultSet = await queryResultSetIterator.ReadNextAsync();
+            var transactionFound = currentResultSet.FirstOrDefault();
+
+            return CreateTransactionObjetcFromDynamic(transactionFound);
+        }
+
+        public async Task<Transaction> GetLastTransactionAsync(string userId)
+        {
+            var sqlQueryText = $"SELECT TOP 1 * FROM c WHERE c.UserId = '{userId}' order by c.TransactionDate desc";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerTransactions);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var currentResultSet = await queryResultSetIterator.ReadNextAsync();
+            var transactionFound = currentResultSet.FirstOrDefault();
+
+            return CreateTransactionObjetcFromDynamic(transactionFound);
+        }
+
         private Transaction CreateTransactionObjetcFromDynamic(dynamic transactionDB)
         {
             if (transactionDB == null)
@@ -87,12 +135,28 @@ namespace Repository.CosmosDB
                 return null;
             }
 
-            return new Transaction(id: Guid.NewGuid().ToString(),
-                                    transactionDate: DateTime.Parse(transactionDB.TransactionDate.ToString()),
-                                    userId: transactionDB.UserId.ToString(),
-                                    conceptId: transactionDB.ConceptId.ToString(),
-                                    entryDate: DateTime.Parse(transactionDB.EntryDate.ToString()),
-                                    ammount: Convert.ToDecimal(transactionDB.Ammount.ToString()));
+            return new Transaction(id: transactionDB.id.ToString(),
+                                   transactionDate: DateTime.Parse(transactionDB.TransactionDate.ToString()),
+                                   userId: transactionDB.UserId.ToString(),
+                                   conceptId: transactionDB.ConceptId.ToString(),
+                                   entryDate: DateTime.Parse(transactionDB.EntryDate.ToString()),
+                                   ammount: Convert.ToDecimal(transactionDB.Ammount.ToString()));
+        }
+
+        public async Task InsertTransactionAsync(Transaction transaction)
+        {
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerTransactions);
+
+            await container.CreateItemAsync<Transaction>(transaction);
+        }
+
+        public async Task UpdateTransactionAsync(Transaction transaction)
+        {
+            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var container = database.GetContainer(_containerTransactions);
+
+            await container.ReplaceItemAsync<Transaction>(transaction, transaction.id);
         }
     }
 }

@@ -4,18 +4,17 @@ import { Observable } from 'rxjs';
 import { IConceptoDiario } from '../models/concepto.diario';
 import { UrlService } from './url.service';
 import { tap } from 'rxjs/operators';
+import { DatePipe } from '@angular/common'
 
 @Injectable()
 export class DiarioService {
 
   constructor(private _http: HttpClient,
-              private _urlService: UrlService) { }
+              private _urlService: UrlService,
+              public datepipe: DatePipe) { }
 
   getConceptosImportes(fecha: Date): Observable<IConceptoDiario[]> {
-    const url = this._urlService.urlGetConceptosImportes(
-                                      fecha.getFullYear().toString() +
-                                      (fecha.getMonth() + 1).toString().padStart(2, '0') +
-                                      fecha.getDate().toString().padStart(2, '0'));
+    const url = this._urlService.urlGetConceptosImportes(this.datepipe.transform(fecha, 'yyyy-MM-dd'));
 
     return this._http.get<IConceptoDiario[]>(url)
                     .pipe(tap(data => JSON.stringify(data)));

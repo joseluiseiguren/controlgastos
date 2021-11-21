@@ -16,6 +16,6 @@ namespace Backend.Dto
         public string Moneda { get; set; }
 
         internal UserUpdateProfileCommand ToCommand(string userId)
-            => new(userId, Password, Email, Nombre, DateTime.ParseExact(Fechanacimiento, "yyyyMMdd", null).ToUniversalTime(), Moneda);
+            => new(userId, Password, Email, Nombre, DateTime.ParseExact(Fechanacimiento, "yyyyMMdd", null), Moneda);
     }
 }

@@ -95,7 +95,10 @@ export class LoginComponent implements OnInit, OnDestroy {
             },
             error => {
               let errorMessage: string;
-              if (error.status === 401) {
+              if (error.status === 400) {
+                errorMessage = error.error.message;
+              }
+              else if (error.status === 401) {
                 errorMessage = 'Acceso Denegado';
               } else {
                 errorMessage = 'Error inesperado: ';

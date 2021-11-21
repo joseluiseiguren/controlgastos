@@ -1,9 +1,9 @@
 export interface IConceptoDiario {
-    idconcepto: number;
-    descripcion: string;
-    credito: number;
-    fecha: Date;
-    importe: number;
-    tags: string[];
+  ConceptId: number;
+  Description: string;
+  Credit: number;
+  TransactionDate: Date;
+  Ammount: number;
+  tags: string[];
 }
 

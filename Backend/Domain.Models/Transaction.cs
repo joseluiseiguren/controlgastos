@@ -70,7 +70,7 @@ namespace Domain.Models
                 throw new BusinessException($"ConceptId is invalid: {conceptId}");
             }
 
-            this.UserId = conceptId;
+            this.ConceptId = conceptId;
         }
 
         public void UpdateAmmount(decimal ammount)

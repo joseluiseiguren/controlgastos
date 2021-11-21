@@ -177,7 +177,7 @@ export class DiarioComponent implements OnInit, OnDestroy {
   private convertToNumberArray(dataIn: IConceptoDiario[]): number[] {
     const importes: number[] = [];
     dataIn.forEach(function (value) {
-      importes.push(value.importe);
+      importes.push(value.Ammount);
     });
 
     return importes;

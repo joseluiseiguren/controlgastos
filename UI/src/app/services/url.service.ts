@@ -20,7 +20,7 @@ export class UrlService {
     }
 
     urlGetConceptosImportes(fecha: string): string {
-        return this._host + 'api/diario/' + fecha;
+        return this._host + 'transaction/' + fecha;
     }
 
     urlSetConceptoImporte(): string {
@@ -44,15 +44,15 @@ export class UrlService {
     }
 
     urlLogin(): string {
-        return this._host + 'api/usuarios/login';
+        return this._host + 'Account/login';
     }
 
     urlRegistracion(): string {
-        return this._host + 'api/usuarios/registracion';
+        return this._host + 'Account/signup';
     }
 
     urlUserUpdateProfile(): string {
-        return this._host + 'api/usuario';
+        return this._host + 'account';
     }
 
     urlGetSumaryAnual(fecha: string): string {
@@ -67,8 +67,8 @@ export class UrlService {
         return this._host + 'api/conceptos/' + idConcepto + '/movimientos/anual/' + anio.toString();
     }
 
-    urlGetUserProfile(idUsuario: number): string {
-        return this._host + 'api/usuarios/' + idUsuario.toString();
+    urlGetUserProfile(): string {
+        return this._host + 'account/';
     }
 
     urlGetSumaryHistorico(): string {

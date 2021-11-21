@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (localStorage.getItem('alow') !== null) {
-      const changedReq = req.clone({ headers: req.headers.set('x-access-token', localStorage.getItem('alow')) });
+      const changedReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('alow')) });
       return next.handle(changedReq).pipe(tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
           // do stuff
@@ -28,6 +28,10 @@ export class AuthInterceptor implements HttpInterceptor {
             // not logged in so redirect to login page
             this._userService.logout();
             this._router.navigate([UrlConstants.LOGIN]);
+          }
+          if (err.status === 400) {
+            // business error
+            console.log("xxx");
           }
         }
       }));
