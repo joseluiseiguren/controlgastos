@@ -13,7 +13,7 @@ namespace Domain.Models
 
         public string Name { get; private set; }
 
-        public DateTime BornDate { get; private set; }
+        public DateOnly BornDate { get; private set; }
 
         public int StatusId { get; private set; }
 
@@ -23,11 +23,16 @@ namespace Domain.Models
 
         public DateTime EntryDate { get; private set; }
 
+        public User()
+        {
+
+        }
+
         public User(string id, 
                     int invalidLoginAttempts, 
                     string email, 
-                    string name, 
-                    DateTime bornDate, 
+                    string name,
+                    DateOnly bornDate, 
                     int statusId, 
                     string currency, 
                     string password, 
@@ -104,9 +109,9 @@ namespace Domain.Models
             this.StatusId = statusId;
         }
 
-        public void UpdateBornDate(DateTime bornDate)
+        public void UpdateBornDate(DateOnly bornDate)
         {
-            if (bornDate == DateTime.MinValue || bornDate == DateTime.MaxValue)
+            if (bornDate == DateOnly.MinValue || bornDate == DateOnly.MaxValue)
             {
                 throw new BusinessException($"BornDate is invalid: {bornDate}");
             }

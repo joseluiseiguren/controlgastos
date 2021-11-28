@@ -16,7 +16,7 @@ namespace Backend.Dto
         public string Moneda { get; set; }
 
         internal UserSignupCommand ToCommand()
-            => new(Password, Email, Nombre, DateTime.ParseExact(Fechanacimiento, "yyyyMMdd", null), Moneda);
+            => new(Password, Email, Nombre, DateOnly.ParseExact(Fechanacimiento, "yyyyMMdd", null), Moneda);
 
     }
 }

@@ -10,11 +10,11 @@ namespace Domain.Commands
 
         public string Name { get; init; }
 
-        public DateTime BornDate { get; init; }
+        public DateOnly BornDate { get; init; }
 
         public string Currency { get; init; }
 
-        public UserUpdateProfileCommand(string userId, string password, string email, string name, DateTime bornDate, string currency)
+        public UserUpdateProfileCommand(string userId, string password, string email, string name, DateOnly bornDate, string currency)
             : base(userId)
         {
             this.Password = password;

@@ -11,11 +11,11 @@ namespace Domain.Commands
 
         public string Name { get; init; }
 
-        public DateTime BornDate { get; init; }
+        public DateOnly BornDate { get; init; }
 
         public string Currency { get; init; }
 
-        public UserSignupCommand(string password, string email, string name, DateTime bornDate, string currency)
+        public UserSignupCommand(string password, string email, string name, DateOnly bornDate, string currency)
         {
             this.Password = password;
             this.Email = email;

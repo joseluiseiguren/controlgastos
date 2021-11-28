@@ -72,7 +72,7 @@ namespace Repository.CosmosDB
                             invalidLoginAttempts: Convert.ToInt32(userDB.InvalidLoginAttempts),
                             email: userDB.Email.ToString(),
                             name: userDB.Name.ToString(),
-                            bornDate: DateTime.Parse(userDB.BornDate.ToString()),
+                            bornDate: new DateOnly(Convert.ToInt32(userDB.BornDate.Year), Convert.ToInt32(userDB.BornDate.Month), Convert.ToInt32(userDB.BornDate.Day)),
                             statusId: Convert.ToInt32(userDB.StatusId),
                             currency: userDB.Currency.ToString(),
                             password: userDB.Password.ToString(),
