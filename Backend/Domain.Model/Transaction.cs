@@ -6,7 +6,7 @@ namespace Domain.Model
 {
     public class Transaction : ModelBase
     {
-        public DateTime TransactionDate { get; private set; }
+        public DateOnly TransactionDate { get; private set; }
 
         public string UserId { get; private set; }
 
@@ -18,8 +18,13 @@ namespace Domain.Model
 
         public IEnumerable<string> Tags { get; private set; }
 
+        public Transaction()
+        {
+
+        }
+
         public Transaction(string id, 
-                            DateTime transactionDate, 
+                            DateOnly transactionDate, 
                             string userId,
                             string conceptId,
                             DateTime entryDate,
@@ -43,9 +48,9 @@ namespace Domain.Model
             this.EntryDate = entryDate;
         }
 
-        public void UpdateTransactionDate(DateTime transactionDate)
+        public void UpdateTransactionDate(DateOnly transactionDate)
         {
-            if (transactionDate == DateTime.MinValue || transactionDate == DateTime.MaxValue)
+            if (transactionDate == DateOnly.MinValue || transactionDate == DateOnly.MaxValue)
             {
                 throw new BusinessException($"TransactionDate is invalid: {transactionDate}");
             }

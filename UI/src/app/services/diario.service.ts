@@ -22,11 +22,11 @@ export class DiarioService {
 
   setConceptoImporte(fecha: Date, importe: number, idConcepto: number, tags: string[]): Observable<void> {
     return this._http.post<any>(this._urlService.urlSetConceptoImporte(),
-            {fecha: fecha.getFullYear().toString() +
+            {TransactionDate: fecha.getFullYear().toString() +
                     (fecha.getMonth() + 1).toString().padStart(2, '0') +
                     fecha.getDate().toString().padStart(2, '0'),
-              importe: importe,
-              idConcepto: idConcepto,
+              Ammount: importe,
+              ConceptId: idConcepto,
               movimientoTags: tags});
   }
 

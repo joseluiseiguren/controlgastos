@@ -25,7 +25,6 @@ namespace Domain.Model
 
         public User()
         {
-
         }
 
         public User(string id, 

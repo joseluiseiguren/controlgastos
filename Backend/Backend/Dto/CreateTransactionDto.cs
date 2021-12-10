@@ -9,9 +9,9 @@ namespace Backend.Dto
 
         public decimal Ammount { get; set; }
 
-        public DateTime TransactionDate { get; set; }
+        public string TransactionDate { get; set; }
 
         internal TransactionCreationCommand ToCommand(string userId)
-            => new(userId, ConceptId, Ammount, TransactionDate);
+            => new(userId, ConceptId, Ammount, DateOnly.ParseExact(TransactionDate, "yyyyMMdd", null));
     }
 }

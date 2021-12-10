@@ -29,7 +29,6 @@ export class DiarioEnterComponent implements OnInit, OnDestroy {
               @Inject(MAT_DIALOG_DATA) public data: {concepto: IConceptoDiario}) { }
 
   ngOnInit() {
-    console.log(this.data)
     this.form = this.fb.group({
       importeFormControl: [this.formating.FormatNumber(this.data.concepto.ammount, true, false), [Validators.required]],
       debitoCreditoControl: this.isCredito().toString() === 'true' ? '1' : '0'

@@ -9,9 +9,9 @@ namespace Domain.Commands
 
         public decimal Ammount { get; set; }
 
-        public DateTime TransactionDate { get; set; }
+        public DateOnly TransactionDate { get; set; }
 
-        public TransactionCreationCommand(string userId, string conceptId, decimal ammount, DateTime transactionDate)
+        public TransactionCreationCommand(string userId, string conceptId, decimal ammount, DateOnly transactionDate)
             : base(userId)
         {
             this.ConceptId = conceptId;

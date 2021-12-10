@@ -24,7 +24,7 @@ export class UrlService {
     }
 
     urlSetConceptoImporte(): string {
-        return this._host + 'api/diario';
+        return this._host + 'transaction';
     }
 
     urlGetPrimerConsumo(): string {

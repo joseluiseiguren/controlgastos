@@ -36,7 +36,7 @@ namespace Services.QueryHandlers.Concept
             return result;
         }
 
-        private string SetGrouping(DateTime transactionDate)
+        private string SetGrouping(DateOnly transactionDate)
         {
             return $"{transactionDate.Month.ToString().PadLeft(2, '0')}{transactionDate.Year.ToString()}";
         }

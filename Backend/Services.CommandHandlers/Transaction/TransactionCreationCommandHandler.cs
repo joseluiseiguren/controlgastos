@@ -2,6 +2,7 @@
 using Domain.Commands;
 using Repository.Interfaces;
 using Shared.Execptions;
+using Shared.Extensions;
 using System;
 using System.Threading.Tasks;
 using TransactionModel = Domain.Model.Transaction;
@@ -27,7 +28,7 @@ namespace Services.CommandHandlers.Transaction
                 throw new BusinessException("El conepto no pertenece al usuario");
             }
 
-            var transactionDB = await _transactionRepository.GetTransactionByFilterAsync(command.TransactionDate, command.ConceptId);
+            var transactionDB = await _transactionRepository.GetTransactionByFilterAsync(command.TransactionDate.ToDateTime(), command.ConceptId);
             if (transactionDB == null)
             {
                 var transaction = new TransactionModel(id: Guid.NewGuid().ToString(), 

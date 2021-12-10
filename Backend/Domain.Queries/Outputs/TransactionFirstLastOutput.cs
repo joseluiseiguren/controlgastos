@@ -4,8 +4,8 @@ namespace Domain.Queries.Outputs
 {
     public class TransactionFirstLastOutput
     {
-        public DateTime FirstTransaction { get; set; }
+        public DateOnly FirstTransaction { get; set; }
 
-        public DateTime LastTransaction { get; set; }
+        public DateOnly LastTransaction { get; set; }
     }
 }

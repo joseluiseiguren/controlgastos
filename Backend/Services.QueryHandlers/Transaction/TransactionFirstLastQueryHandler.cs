@@ -23,8 +23,8 @@ namespace Services.QueryHandlers.Transaction
             var firstTransaction = await _transactionRepository.GetFirstTransactionAsync(query.UserId);
             var lastTransaction = await _transactionRepository.GetLastTransactionAsync(query.UserId);
 
-            result.FirstTransaction = firstTransaction == null ? DateTime.MinValue : firstTransaction.TransactionDate;
-            result.LastTransaction = lastTransaction == null ? DateTime.MaxValue : lastTransaction.TransactionDate;
+            result.FirstTransaction = firstTransaction == null ? DateOnly.MinValue : firstTransaction.TransactionDate;
+            result.LastTransaction = lastTransaction == null ? DateOnly.MaxValue : lastTransaction.TransactionDate;
 
             return result;
         }
