@@ -1,7 +1,6 @@
-﻿using Domain.Models;
-using System;
+﻿using System;
 
-namespace Domain.Models
+namespace Domain.Model
 {
     public class Audit : ModelBase
     {

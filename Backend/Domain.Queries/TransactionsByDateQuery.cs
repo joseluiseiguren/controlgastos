@@ -6,9 +6,9 @@ namespace Domain.Queries
 {
     public class TransactionsByDateQuery : QueryBase<IReadOnlyList<TransactionByDateOutput>>
     {
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
 
-        public TransactionsByDateQuery(string userId, DateTime date)
+        public TransactionsByDateQuery(string userId, DateOnly date)
             : base(userId)
         {
             this.Date = date;

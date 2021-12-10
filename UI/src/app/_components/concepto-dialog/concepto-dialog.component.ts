@@ -26,7 +26,7 @@ export class ConceptoDialogComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.form = this.fb.group({
       conceptoFormControl: [this.data.concepto ? this.data.concepto.descripcion : '', Validators.required],
-      debitoCreditoControl: this.data.concepto !== undefined && this.data.concepto.suma === true ? '1' : '0'
+      debitoCreditoControl: this.data.concepto !== undefined && this.data.concepto.credito === true ? '1' : '0'
     });
   }
 
@@ -53,7 +53,7 @@ export class ConceptoDialogComponent implements OnInit, OnDestroy {
 
   private newConcepto(): void {
     this._subscriptions.add(this._conceptoService.insertConcepto(this.form.value.conceptoFormControl.toString(),
-                            this.form.value.debitoCreditoControl)
+                                                                 this.form.value.debitoCreditoControl === "0" ? false : true)
         .subscribe(
           () => {
             this._helperService.showSnackBarInformation(this.snackBar, 'Alta Exitosa');
@@ -67,8 +67,9 @@ export class ConceptoDialogComponent implements OnInit, OnDestroy {
   }
 
   private modifyConcepto(): void {
-    this._subscriptions.add(this._conceptoService.updateConcepto(this.data.concepto._id, this.form.value.conceptoFormControl.toString(),
-                            this.form.value.debitoCreditoControl)
+    this._subscriptions.add(this._conceptoService.updateConcepto(this.data.concepto.id,
+                                                                 this.form.value.conceptoFormControl.toString(),
+                                                                 this.form.value.debitoCreditoControl === "0" ? false : true)
         .subscribe(
           () => {
             this.loading = false;

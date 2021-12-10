@@ -23,7 +23,7 @@ namespace CosmosGettingStartedTutorial
         private CosmosClient cosmosClient;
 
         // The name of the database and container we will create
-        private string _databaseId = "controlgastos_v6";
+        private string _databaseId = "controlgastos_v9";
         private string _containerUsers = "users";
         private string _containerAudits = "audits";
         private string _containerConceptos = "concepts";
@@ -158,8 +158,9 @@ namespace CosmosGettingStartedTutorial
                 }
                 catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
                 {
+                    var userToIns = userToInsert.ToUserCosmos();
                     // Create an item in the container representing the Andersen family. Note we provide the value of the partition key for this item, which is "Andersen"
-                    ItemResponse<UserCosmos> userResponse = await userContainer.CreateItemAsync<UserCosmos>(userToInsert.ToUserCosmos(), new PartitionKey(userToInsert.Id));
+                    ItemResponse<UserCosmos> userResponse = await userContainer.CreateItemAsync<UserCosmos>(userToIns, new PartitionKey(userToInsert.Id));
 
                     // Note that after creating the item, we can access the body of the item with the Resource property off the ItemResponse. We can also access the RequestCharge property to see the amount of RUs consumed on this request.
                     Console.WriteLine("Created user in database with id: {0} Operation consumed {1} RUs.\n", userResponse.Resource.id, userResponse.RequestCharge);

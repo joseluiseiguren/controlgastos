@@ -10,7 +10,7 @@ namespace Domain.Queries.Outputs
 
         public decimal Ammount { get; set; }
 
-        public DateTime TransactionDate { get; set; }
+        public string TransactionDate { get; set; } //YYYY-MM-DD
 
         public bool Credit { get; set; }
     }

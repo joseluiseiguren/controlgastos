@@ -7,6 +7,11 @@ namespace CosmosGettingStartedTutorial
 {
     public class UserCosmos
     {
+        public UserCosmos()
+        {
+
+        }
+
         public string id { get; set; }
 
         public int InvalidLoginAttempts { get; set; }
@@ -15,7 +20,7 @@ namespace CosmosGettingStartedTutorial
 
         public string Name { get; set; }
 
-        public DateTime BornDate { get; set; }
+        public DateOnly BornDate { get; set; }
 
         public int StatusId { get; set; }
 

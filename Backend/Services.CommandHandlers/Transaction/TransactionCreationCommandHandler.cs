@@ -4,7 +4,7 @@ using Repository.Interfaces;
 using Shared.Execptions;
 using System;
 using System.Threading.Tasks;
-using TransactionModel = Domain.Models.Transaction;
+using TransactionModel = Domain.Model.Transaction;
 
 namespace Services.CommandHandlers.Transaction
 {

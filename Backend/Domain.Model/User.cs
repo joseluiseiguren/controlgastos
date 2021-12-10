@@ -3,7 +3,7 @@ using Shared.Execptions;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Models
+namespace Domain.Model
 {
     public class User : ModelBase
     {

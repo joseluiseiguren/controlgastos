@@ -5,7 +5,7 @@ using Shared.Enums;
 using Shared.Execptions;
 using Shared.Helpers;
 using System;
-using UserModel = Domain.Models.User;
+using UserModel = Domain.Model.User;
 using System.Threading.Tasks;
 
 namespace Services.CommandHandlers.User

@@ -48,9 +48,9 @@ namespace Backend.Controllers
         [Authorize]
         [HttpGet]
         [Route("{date}")]
-        public async Task<IActionResult> GetFirstLastTransaction(DateTime date)
+        public async Task<IActionResult> GetTransactions(string date)
         {
-            var query = new TransactionsByDateQuery(this.UserId, date);
+            var query = new TransactionsByDateQuery(this.UserId, DateOnly.ParseExact(date, "yyyy-MM-dd", null));
 
             var result = await _applicationMediator.DispatchAsync(query);
 

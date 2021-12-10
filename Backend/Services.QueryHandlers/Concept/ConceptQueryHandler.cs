@@ -5,7 +5,7 @@ using Repository.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ConceptModel = Domain.Models.Concept;
+using ConceptModel = Domain.Model.Concept;
 
 namespace Services.QueryHandlers.Concept
 {

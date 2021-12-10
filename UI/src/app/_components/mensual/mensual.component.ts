@@ -245,7 +245,7 @@ export class MensualComponent extends ComponentBase implements OnInit, OnDestroy
 
   private applyFilters() {
     if (this.filters !== undefined && this.filters.conceptos.length > 0) {
-      this.conceptosFiltered = this._conceptosTotales.filter(x => this.filters.conceptos.find(p => p._id === x.idConcepto) );
+      this.conceptosFiltered = this._conceptosTotales.filter(x => this.filters.conceptos.find(p => p.id === x.idConcepto) );
     } else {
       this.conceptosFiltered = this._conceptosTotales.filter(x => true);
     }

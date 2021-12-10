@@ -136,15 +136,6 @@ export class UsersService {
                         );
     }
 
-    private replacer(key, value){
-      if (key == "bornDate") {
-        debugger;
-        return new Date(value);
-     }
-
-     return value;
-    }
-
     getAvailablesCurrencies(): string[] {
         return ['$', 'U$D', '€'];
     }

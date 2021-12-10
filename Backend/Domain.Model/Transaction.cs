@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Shared.Execptions;
 
-namespace Domain.Models
+namespace Domain.Model
 {
     public class Transaction : ModelBase
     {

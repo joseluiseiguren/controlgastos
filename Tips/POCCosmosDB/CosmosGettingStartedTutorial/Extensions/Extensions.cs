@@ -8,11 +8,12 @@ namespace CosmosGettingStartedTutorial.Extensions
     {
         public static UserCosmos ToUserCosmos(this UserMongo userMongo)
         {
+            var dateBornDatetime = new DateTime(1970, 1, 1).AddMilliseconds(userMongo.FechaNacimiento);
             return new UserCosmos()
             {
                 Email = userMongo.Email,
                 EntryDate = new DateTime(1970, 1, 1).AddMilliseconds(userMongo.FechaAlta).ToUniversalTime(),
-                BornDate = new DateTime(1970, 1, 1).AddMilliseconds(userMongo.FechaNacimiento).Date,
+                BornDate = new DateOnly(dateBornDatetime.Year, dateBornDatetime.Month, dateBornDatetime.Day),
                 id = userMongo.Id,
                 StatusId = userMongo.IdEstado,
                 InvalidLoginAttempts = userMongo.IntentosFallidosLogin,
@@ -36,13 +37,15 @@ namespace CosmosGettingStartedTutorial.Extensions
 
         public static MovimientoCosmos ToMovimientoCosmos(this MovimientoMongo movimientoMongo)
         {
+            var transactionDate = new DateTime(1970, 1, 1).AddMilliseconds(movimientoMongo.Fecha);
+
             return new MovimientoCosmos()
             {
                 EntryDate = new DateTime(1970, 1, 1).AddMilliseconds(movimientoMongo.FechaAlta).ToUniversalTime(),
                 id = movimientoMongo.Id,
                 UserId = movimientoMongo.User,
                 ConceptId = movimientoMongo.Concepto,
-                TransactionDate = new DateTime(1970, 1, 1).AddMilliseconds(movimientoMongo.Fecha).ToUniversalTime(),
+                TransactionDate = new DateOnly(transactionDate.Year, transactionDate.Month, transactionDate.Day),
                 Ammount = movimientoMongo.Importe,
                 Tags = movimientoMongo.MovimTags
             };

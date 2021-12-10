@@ -6,7 +6,7 @@ namespace Repository.CosmosDB
     {
         protected readonly CosmosClient _cosmosClient;
 
-        protected const string _databaseId = "controlgastos_v7";
+        protected const string _databaseId = "controlgastos_v9";
         protected const string _containerUsers = "users";
         protected const string _containerAudits = "audits";
         protected const string _containerConcepts = "concepts";

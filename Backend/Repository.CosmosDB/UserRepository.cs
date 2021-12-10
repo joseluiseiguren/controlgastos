@@ -3,7 +3,7 @@ using Repository.Interfaces;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using User = Domain.Models.User;
+using User = Domain.Model.User;
 
 namespace Repository.CosmosDB
 {

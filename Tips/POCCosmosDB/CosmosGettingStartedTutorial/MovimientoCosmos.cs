@@ -9,7 +9,7 @@ namespace CosmosGettingStartedTutorial
     {
         public string id { get; set; }
 
-        public DateTime TransactionDate { get; set; }
+        public DateOnly TransactionDate { get; set; }
 
         public string UserId { get; set; }
 

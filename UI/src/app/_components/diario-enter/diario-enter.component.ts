@@ -29,8 +29,9 @@ export class DiarioEnterComponent implements OnInit, OnDestroy {
               @Inject(MAT_DIALOG_DATA) public data: {concepto: IConceptoDiario}) { }
 
   ngOnInit() {
+    console.log(this.data)
     this.form = this.fb.group({
-      importeFormControl: [this.formating.FormatNumber(this.data.concepto.Ammount, true, false), [Validators.required]],
+      importeFormControl: [this.formating.FormatNumber(this.data.concepto.ammount, true, false), [Validators.required]],
       debitoCreditoControl: this.isCredito().toString() === 'true' ? '1' : '0'
     });
     this.tags = this.data.concepto.tags;
@@ -49,16 +50,16 @@ export class DiarioEnterComponent implements OnInit, OnDestroy {
 
     const newImporte = parseFloat(this.form.value.importeFormControl.toString().replace(',', '.'));
     this._subscriptions.add(this._conceptosDiarioService.setConceptoImporte(
-        new Date(this.data.concepto.TransactionDate),
+        new Date(this.data.concepto.transactionDate),
         (this.form.value.debitoCreditoControl === '1') ? newImporte : newImporte * -1,
-        this.data.concepto.ConceptId,
+        this.data.concepto.conceptId,
         this.tags)
             .subscribe(
               () => {
-                this.data.concepto.Ammount = (this.form.value.debitoCreditoControl === '1' || this.form.value.importeFormControl === 0)
+                this.data.concepto.ammount = (this.form.value.debitoCreditoControl === '1' || this.form.value.importeFormControl === 0)
                                               ? newImporte
                                               : newImporte * -1;
-                this.data.concepto.Credit = this.form.value.debitoCreditoControl;
+                this.data.concepto.credit = this.form.value.debitoCreditoControl;
                 this.dialogRef.close(this.data.concepto);
               },
               error => {
@@ -70,10 +71,10 @@ export class DiarioEnterComponent implements OnInit, OnDestroy {
   }
 
   private isCredito(): boolean {
-    if (this.data.concepto.Ammount === 0) {
-      return this.data.concepto.Credit === 1 ? true : false;
+    if (this.data.concepto.ammount === 0) {
+      return this.data.concepto.credit === 1 ? true : false;
     } else {
-      if (this.data.concepto.Ammount > 0) {
+      if (this.data.concepto.ammount > 0) {
         return true;
       } else {
         return false;

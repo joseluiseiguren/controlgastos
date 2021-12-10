@@ -4,7 +4,7 @@ using Repository.Interfaces;
 using Shared.Execptions;
 using System;
 using System.Threading.Tasks;
-using ConceptModel = Domain.Models.Concept;
+using ConceptModel = Domain.Model.Concept;
 
 namespace Services.CommandHandlers.Concept
 {

@@ -1,5 +1,5 @@
 export interface IConcepto {
-    _id: string;
+    id: string;
     descripcion: string;
-    suma: boolean;
+    credito: boolean;
 }

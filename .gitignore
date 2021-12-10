@@ -49,3 +49,17 @@ Backend/.vs/
 /Backend/Services.QueryHandlers/bin/Debug/net5.0
 /Backend/Services.QueryHandlers/obj
 /Tips/POCCosmosDB/CosmosGettingStartedTutorial/bin/Debug/net5.0
+/Backend/Domain.Commands/bin/Debug/net6.0
+/Backend/Domain.Models/bin/Debug/net6.0
+/Backend/Domain.Queries/bin/Debug/net6.0
+/Backend/Infrastructure.Configuration/bin/Debug/net6.0
+/Backend/Repository.CosmosDB/bin/Debug/net6.0
+/Backend/Repository.Interfaces/bin/Debug/net6.0
+/Backend/Services.CommandHandlers/bin/Debug/net6.0
+/Backend/Services.QueryHandlers/bin/Debug/net6.0
+/Backend/Shared.Execptions/bin/Debug/net6.0
+/Tips/POCCosmosDB/CosmosGettingStartedTutorial/bin/Debug/net6.0
+/Backend/ConsoleApp1/bin/Debug/net6.0
+/Backend/ConsoleApp1/obj
+/Backend/Domain.Model/bin/Debug/net6.0
+/Backend/Domain.Model/obj

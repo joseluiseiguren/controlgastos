@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using Domain.Model;
 using Microsoft.Azure.Cosmos;
 using Repository.Interfaces;
 using System;

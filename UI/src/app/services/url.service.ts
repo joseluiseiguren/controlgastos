@@ -8,15 +8,15 @@ export class UrlService {
     constructor() { }
 
     urlGetConceptos(): string {
-        return this._host + 'api/usuarios/conceptos';
+        return this._host + 'concept';
     }
 
     urlInsertConcepto(): string {
-        return this._host + 'api/concepto';
+        return this._host + 'concept';
     }
 
     urlUpdateConcepto(): string {
-        return this._host + 'api/concepto';
+        return this._host + 'concept';
     }
 
     urlGetConceptosImportes(fecha: string): string {

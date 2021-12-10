@@ -31,7 +31,6 @@ export class AuthInterceptor implements HttpInterceptor {
           }
           if (err.status === 400) {
             // business error
-            console.log("xxx");
           }
         }
       }));

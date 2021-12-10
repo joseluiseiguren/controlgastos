@@ -2,6 +2,7 @@
 using Domain.Queries;
 using Domain.Queries.Outputs;
 using Repository.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace Services.QueryHandlers.Transaction
             var userConcepts = await _conceptRepository.GetConceptsByUser(query.UserId);
             foreach (var userConcept in userConcepts.OrderBy(x => x.Description))
             {
-                var dateFrom = query.Date;
+                var dateFrom = new DateTime(query.Date.Year, query.Date.Month, query.Date.Day, 0, 0, 0);
                 var dateTo = dateFrom.AddDays(1).AddSeconds(-1);
                 var transaction = await _transactionRepository.GetTransactionsByFilterAsync(dateFrom, dateTo, userConcept.id);
                 
@@ -34,7 +35,7 @@ namespace Services.QueryHandlers.Transaction
                 { 
                     Description = userConcept.Description,
                     ConceptId = userConcept.id,
-                    TransactionDate = query.Date,
+                    TransactionDate = query.Date.ToString("yyyy-MM-dd"),
                     Credit = userConcept.Credit,
                     Ammount = transaction.Count == 0 ? 0m : transaction.First().Ammount
                 });

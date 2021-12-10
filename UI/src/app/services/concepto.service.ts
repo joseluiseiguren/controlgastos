@@ -18,14 +18,14 @@ export class ConceptoService {
 
     insertConcepto(descripcion: string, credito: boolean): Observable<void> {
         return this._http.post<any>(this._urlService.urlInsertConcepto(),
-                {descripcion: descripcion,
-                 credito: credito});
+                {description: descripcion,
+                 credit: credito});
     }
 
     updateConcepto(idConcepto: string, descripcion: string, credito: boolean): Observable<void> {
         return this._http.put<any>(this._urlService.urlUpdateConcepto(),
-                {descripcion: descripcion,
-                 credito: credito,
-                 idconcepto: idConcepto});
+                {description: descripcion,
+                 credit: credito,
+                 conceptId: idConcepto});
     }
 }

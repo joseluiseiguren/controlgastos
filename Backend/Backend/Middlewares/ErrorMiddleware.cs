@@ -46,7 +46,7 @@ namespace Backend.Middlewares
 
             _logger.LogCritical(ex, ex.Message);
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            context.Response.Headers.Add("Content-Type", "application/json; charset=utf-8");
+            //context.Response.Headers.Add("Content-Type", "application/json; charset=utf-8");
             return context.Response.WriteAsync(JsonConvert.SerializeObject(new { ErrorTraceId = System.Diagnostics.Activity.Current.RootId.ToString() }));
         }
     }

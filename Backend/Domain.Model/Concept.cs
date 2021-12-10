@@ -1,7 +1,7 @@
 ﻿using Shared.Execptions;
 using System;
 
-namespace Domain.Models
+namespace Domain.Model
 {
     public class Concept : ModelBase
     {

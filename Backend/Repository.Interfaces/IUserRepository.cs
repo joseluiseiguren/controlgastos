@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using Domain.Model;
 using System.Threading.Tasks;
 
 namespace Repository.Interfaces

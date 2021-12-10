@@ -2,10 +2,7 @@
 using Domain.Queries;
 using Domain.Queries.Outputs;
 using Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UserModel = Domain.Models.User;
+using UserModel = Domain.Model.User;
 using System.Threading.Tasks;
 
 namespace Services.QueryHandlers.User
