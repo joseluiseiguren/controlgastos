@@ -28,7 +28,7 @@ namespace Services.CommandHandlers.Transaction
                 throw new BusinessException("El conepto no pertenece al usuario");
             }
 
-            var transactionDB = await _transactionRepository.GetTransactionByFilterAsync(command.TransactionDate.ToDateTime(), command.ConceptId);
+            var transactionDB = await _transactionRepository.GetTransactionByFilterAsync(command.TransactionDate, command.ConceptId);
             if (transactionDB == null)
             {
                 var transaction = new TransactionModel(id: Guid.NewGuid().ToString(), 

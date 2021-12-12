@@ -23,13 +23,13 @@ namespace Services.QueryHandlers.Concept
         {
             var result = new List<ConceptPeriodOutput>();
 
-            var dateFrom = DateTime.ParseExact(query.Year + "0101", "yyyyMMdd", null);
-            var dateTo = dateFrom.AddMonths(12).AddSeconds(-1);
+            var dateFrom = DateOnly.ParseExact(query.Year + "0101", "yyyyMMdd", null);
+            var dateTo = dateFrom.AddMonths(12).AddDays(-1);
 
             var userConcepts = await _conceptRepository.GetConceptsByUser(query.UserId);
             foreach (var userConcept in userConcepts)
             {
-                var totalAmmount = await _transactionRepository.GetTotalAmmountByFilterAsync(dateFrom.ToUniversalTime(), dateTo.ToUniversalTime(), userConcept.id);
+                var totalAmmount = await _transactionRepository.GetTotalAmmountByFilterAsync(dateFrom, dateTo, userConcept.id);
                 result.Add(new ConceptPeriodOutput() { ConceptId = userConcept.id, Description = userConcept.Description, Balance = Math.Round(totalAmmount, 2) });
             }
 

@@ -27,9 +27,7 @@ namespace Services.QueryHandlers.Transaction
             var userConcepts = await _conceptRepository.GetConceptsByUser(query.UserId);
             foreach (var userConcept in userConcepts.OrderBy(x => x.Description))
             {
-                var dateFrom = new DateTime(query.Date.Year, query.Date.Month, query.Date.Day, 0, 0, 0);
-                var dateTo = dateFrom.AddDays(1).AddSeconds(-1);
-                var transaction = await _transactionRepository.GetTransactionsByFilterAsync(dateFrom, dateTo, userConcept.id);
+                var transaction = await _transactionRepository.GetTransactionsByFilterAsync(query.Date, query.Date, userConcept.id);
                 
                 result.Add(new TransactionByDateOutput() 
                 { 

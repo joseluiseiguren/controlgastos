@@ -22,10 +22,10 @@ namespace Services.QueryHandlers.Concept
         {
             var result = new List<ConceptBalanceOutputByMonth>();
 
-            var dateFrom = DateTime.ParseExact(query.Year + "0101", "yyyyMMdd", null);
-            var dateTo = dateFrom.AddMonths(12).AddSeconds(-1);
+            var dateFrom = DateOnly.ParseExact(query.Year + "0101", "yyyyMMdd", null);
+            var dateTo = dateFrom.AddMonths(12).AddDays(-1);
 
-            var transactions = await _transactionRepository.GetTransactionsByFilterAsync(dateFrom.ToUniversalTime(), dateTo.ToUniversalTime(), query.ConceptId);
+            var transactions = await _transactionRepository.GetTransactionsByFilterAsync(dateFrom, dateTo, query.ConceptId);
             var transactionsGroupedByDate = transactions.GroupBy(x => SetGrouping(x.TransactionDate), x => x.Ammount).OrderBy(x => x.Key);
 
             foreach (var item in transactionsGroupedByDate)

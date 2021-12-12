@@ -14,9 +14,15 @@ namespace Repository.CosmosDB
             : base(connectionString)
         { }
 
-        public async Task<decimal> GetTotalAmmountByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId)
+        public async Task<decimal> GetTotalAmmountByFilterAsync(DateOnly dateFrom, DateOnly dateTo, string conceptId)
         {
-            var sqlQueryText = $"SELECT SUM(c.Ammount) as Total FROM c WHERE c.ConceptId = '{conceptId}' AND c.TransactionDate >= '{dateFrom.ToString("o")}' AND c.TransactionDate <= '{dateTo.ToString("o")}'";
+            var sqlQueryText = $"SELECT SUM(c.Ammount) as Total FROM c WHERE c.ConceptId = '{conceptId}' " +
+                $"AND c.TransactionDate.Year >= {dateFrom.Year} " +
+                $"AND c.TransactionDate.Month >= {dateFrom.Month} " +
+                $"AND c.TransactionDate.Day >= {dateFrom.Day} " +
+                $"AND c.TransactionDate.Year <= {dateTo.Year} " +
+                $"AND c.TransactionDate.Month <= {dateTo.Month} " +
+                $"AND c.TransactionDate.Day <= {dateTo.Day} ";
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
@@ -30,9 +36,16 @@ namespace Repository.CosmosDB
             return Convert.ToDecimal(totalAmmount.Total.ToString());
         }
 
-        public async Task<decimal> GetTotalAmmountByUserAsync(DateTime dateFrom, DateTime dateTo, string userId, bool? income)
+        public async Task<decimal> GetTotalAmmountByUserAsync(DateOnly dateFrom, DateOnly dateTo, string userId, bool? income)
         {
-            var sqlQueryText = $"SELECT SUM(c.Ammount) as Total FROM c WHERE c.UserId = '{userId}' AND c.TransactionDate >= '{dateFrom.ToString("o")}' AND c.TransactionDate <= '{dateTo.ToString("o")}'";
+            var sqlQueryText = $"SELECT SUM(c.Ammount) as Total FROM c WHERE c.UserId = '{userId}' " +
+                $"AND c.TransactionDate.Year >= {dateFrom.Year} " +
+                $"AND c.TransactionDate.Month >= {dateFrom.Month} " +
+                $"AND c.TransactionDate.Day >= {dateFrom.Day} " +
+                $"AND c.TransactionDate.Year <= {dateTo.Year} " +
+                $"AND c.TransactionDate.Month <= {dateTo.Month} " +
+                $"AND c.TransactionDate.Day <= {dateTo.Day} ";
+
             if (income.HasValue)
             {
                 if (income.Value)
@@ -57,9 +70,15 @@ namespace Repository.CosmosDB
             return Convert.ToDecimal(totalAmmount.Total.ToString());
         }
 
-        public async Task<IReadOnlyList<Transaction>> GetTransactionsByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId)
+        public async Task<IReadOnlyList<Transaction>> GetTransactionsByFilterAsync(DateOnly dateFrom, DateOnly dateTo, string conceptId)
         {
-            var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' AND c.TransactionDate >= '{dateFrom.ToString("o")}' AND c.TransactionDate <= '{dateTo.ToString("o")}'";
+            var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' " +
+                $"AND c.TransactionDate.Year >= {dateFrom.Year} " +
+                $"AND c.TransactionDate.Month >= {dateFrom.Month} " +
+                $"AND c.TransactionDate.Day >= {dateFrom.Day} " +
+                $"AND c.TransactionDate.Year <= {dateTo.Year} " +
+                $"AND c.TransactionDate.Month <= {dateTo.Month} " +
+                $"AND c.TransactionDate.Day <= {dateTo.Day} ";
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
@@ -80,9 +99,12 @@ namespace Repository.CosmosDB
             return result;
         }
 
-        public async Task<Transaction> GetTransactionByFilterAsync(DateTime transactionDate, string conceptId)
+        public async Task<Transaction> GetTransactionByFilterAsync(DateOnly transactionDate, string conceptId)
         {
-            var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' AND c.TransactionDate = '{transactionDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ssK")}'";
+            var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' " +
+                $"AND c.TransactionDate.Year = {transactionDate.Year} " +
+                $"AND c.TransactionDate.Month = {transactionDate.Month} " +
+                $"AND c.TransactionDate.Day = {transactionDate.Day} ";
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
@@ -136,7 +158,7 @@ namespace Repository.CosmosDB
             }
 
             return new Transaction(id: transactionDB.id.ToString(),
-                                   transactionDate: DateTime.Parse(transactionDB.TransactionDate.ToString()),
+                                   transactionDate: new DateOnly(Convert.ToInt32(transactionDB.TransactionDate.Year), Convert.ToInt32(transactionDB.TransactionDate.Month), Convert.ToInt32(transactionDB.TransactionDate.Day)),
                                    userId: transactionDB.UserId.ToString(),
                                    conceptId: transactionDB.ConceptId.ToString(),
                                    entryDate: DateTime.Parse(transactionDB.EntryDate.ToString()),

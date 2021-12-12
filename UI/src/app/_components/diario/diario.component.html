@@ -39,7 +39,7 @@
           <th mat-header-cell *matHeaderCellDef>Importe</th>
           <td mat-cell
               class="importe"
-              [class.importeNegativo]="element.importe < 0 || element.credito === 0"
+              [class.importeNegativo]="element.ammount < 0 || element.credit === 0"
               *matCellDef="let element">
               {{element.ammount | currency: this._userService.userCurrency}}
             </td>

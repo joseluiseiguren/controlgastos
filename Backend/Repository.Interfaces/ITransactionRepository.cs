@@ -7,13 +7,13 @@ namespace Repository.Interfaces
 {
     public interface ITransactionRepository
     {
-        Task<decimal> GetTotalAmmountByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId);
+        Task<decimal> GetTotalAmmountByFilterAsync(DateOnly dateFrom, DateOnly dateTo, string conceptId);
 
-        Task<decimal> GetTotalAmmountByUserAsync(DateTime dateFrom, DateTime dateTo, string userId, bool? income);
+        Task<decimal> GetTotalAmmountByUserAsync(DateOnly dateFrom, DateOnly dateTo, string userId, bool? income);
 
-        Task<IReadOnlyList<Transaction>> GetTransactionsByFilterAsync(DateTime dateFrom, DateTime dateTo, string conceptId);
+        Task<IReadOnlyList<Transaction>> GetTransactionsByFilterAsync(DateOnly dateFrom, DateOnly dateTo, string conceptId);
         
-        Task<Transaction> GetTransactionByFilterAsync(DateTime transactionDate, string conceptId);
+        Task<Transaction> GetTransactionByFilterAsync(DateOnly transactionDate, string conceptId);
 
         Task InsertTransactionAsync(Transaction transaction);
 

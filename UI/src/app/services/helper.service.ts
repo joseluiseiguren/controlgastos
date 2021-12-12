@@ -28,7 +28,7 @@ export class HelperService {
               break;
 
             case 500: /* internal server error */
-              message = 'Error Inesperado: ' + error.error.errorId;
+              message = 'Error Inesperado: ' + error.error.ErrorTraceId;
               break;
           }
 
@@ -66,7 +66,7 @@ export class HelperService {
     showSnackBarError(snackBar: MatSnackBar, errorMessage: string): void {
       snackBar.open(errorMessage,
                     '',
-                    { duration: 2000, panelClass: ['error-snackbar'], direction: 'ltr', verticalPosition: 'bottom' });
+                    { duration: 5000, panelClass: ['error-snackbar'], direction: 'ltr', verticalPosition: 'bottom' });
     }
 
     showSnackBarInformation(snackBar: MatSnackBar, message: string): void {

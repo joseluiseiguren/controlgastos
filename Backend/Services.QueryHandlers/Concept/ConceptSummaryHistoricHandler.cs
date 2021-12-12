@@ -22,8 +22,8 @@ namespace Services.QueryHandlers.Concept
         {
             var result = new List<ConceptBalanceOutputByYear>();
 
-            var dateFrom = DateTime.MinValue;
-            var dateTo = DateTime.MaxValue;
+            var dateFrom = DateOnly.MinValue;
+            var dateTo = DateOnly.MaxValue;
 
             var transactions = await _transactionRepository.GetTransactionsByFilterAsync(dateFrom, dateTo, query.ConceptId);
             var transactionsGroupedByDate = transactions.GroupBy(x => x.TransactionDate.Year, x => x.Ammount).OrderBy(x => x.Key);

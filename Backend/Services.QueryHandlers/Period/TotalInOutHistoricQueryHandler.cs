@@ -20,8 +20,8 @@ namespace Services.QueryHandlers.Period
         {
             var result = new TotalInOutOutput();
 
-            var dateFrom = DateTime.MinValue;
-            var dateTo = DateTime.MaxValue;
+            var dateFrom = DateOnly.MinValue;
+            var dateTo = DateOnly.MaxValue;
 
             result.In = Math.Round(await _transactionRepository.GetTotalAmmountByUserAsync(dateFrom, dateTo, query.UserId, true), 2);
             result.Out = Math.Round(await _transactionRepository.GetTotalAmmountByUserAsync(dateFrom, dateTo, query.UserId, false), 2);

@@ -23,8 +23,8 @@ namespace Services.QueryHandlers.Concept
         {
             var result = new List<ConceptPeriodOutput>();
 
-            var dateFrom = DateTime.MinValue;
-            var dateTo = DateTime.MaxValue;
+            var dateFrom = DateOnly.MinValue;
+            var dateTo = DateOnly.MaxValue;
 
             var userConcepts = await _conceptRepository.GetConceptsByUser(query.UserId);
             foreach (var userConcept in userConcepts)
