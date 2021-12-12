@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Domain.Queries.Outputs
+﻿namespace Domain.Queries.Outputs
 {
     public class ConceptBalanceOutputByDate
     {
-        public DateOnly Date { get; set; }
+        public string Date { get; set; }  //YYYY-MM-DD
 
         public decimal Balance { get; set; }
     }

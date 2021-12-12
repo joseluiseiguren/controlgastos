@@ -30,7 +30,7 @@ namespace Services.QueryHandlers.Concept
 
             foreach (var item in transactionsGroupedByDate)
             {
-                result.Add(new ConceptBalanceOutputByDate() { Date = item.Key, Balance = item.Sum() });
+                result.Add(new ConceptBalanceOutputByDate() { Date = item.Key.ToString("yyyy-MM-dd"), Balance = item.Sum() });
             }
 
             return result;

@@ -31,13 +31,13 @@
 
   <div class="tableContent" id="mainTable"  *ngIf="!loading">
     <mat-accordion class="conceptos-table">
-      <mat-expansion-panel *ngFor="let ct of conceptosFiltered" [expanded]="!loading && ct.descripcion === getOpenItem()" (opened)="loadMonthDetails(ct)">
+      <mat-expansion-panel *ngFor="let ct of conceptosFiltered" [expanded]="!loading && ct.description === getOpenItem()" (opened)="loadMonthDetails(ct)">
           <mat-expansion-panel-header>
-            <mat-panel-title id="{{'item' + ct.descripcion}}">
-              {{ct.descripcion}}
+            <mat-panel-title id="{{'item' + ct.description}}">
+              {{ct.description}}
             </mat-panel-title>
-            <mat-panel-description [class.importeNegativo]="ct.saldo < 0">
-              {{ct.saldo | currency:this._userService.userCurrency}}
+            <mat-panel-description [class.importeNegativo]="ct.balance < 0">
+              {{ct.balance | currency:this._userService.userCurrency}}
             </mat-panel-description>
           </mat-expansion-panel-header>
 
@@ -45,8 +45,8 @@
           <mat-list *ngIf="!loadingDetail">
             <mat-list-item *ngFor="let detail of itemDetail">
               <div matLine>
-                <p class="itemDescription">{{detail.fecha | date:'mediumDate'}}</p>
-                <p class="itemAmount" [class.importeNegativo]="detail.importe < 0">{{detail.importe | currency:this._userService.userCurrency}}</p>
+                <p class="itemDescription">{{detail.date | date:'mediumDate'}}</p>
+                <p class="itemAmount" [class.importeNegativo]="detail.balance < 0">{{detail.balance | currency:this._userService.userCurrency}}</p>
                 </div>
             </mat-list-item>
           </mat-list>

@@ -103,6 +103,7 @@ export class MensualComponent extends ComponentBase implements OnInit, OnDestroy
     this._subscriptions.add(this._diarioService.getConceptosTotalMes(fecha)
         .subscribe(
             data => {
+              console.log(data);
               this._conceptosTotales = data;
               this.applyFilters();
               this.saldoActual = this.getIngresos() - this.getEgresos();
@@ -192,13 +193,13 @@ export class MensualComponent extends ComponentBase implements OnInit, OnDestroy
     this.loadingDetail = true;
     this.itemDetail = undefined;
     const fecha = this.getMonthStringFromUrl(true);
-    this._subscriptions.add(this._diarioService.getConceptosMovimMes(row.idConcepto, fecha)
+    this._subscriptions.add(this._diarioService.getConceptosMovimMes(row.conceptId, fecha)
         .subscribe(
             data => {
               this.itemDetail = data;
               this.loadingDetail = false;
               const activeRouteMonth = this.getMonthStringFromUrl(false);
-              this.router.navigate([UrlConstants.DASHBOARD, UrlConstants.MENSUAL, activeRouteMonth, row.descripcion],
+              this.router.navigate([UrlConstants.DASHBOARD, UrlConstants.MENSUAL, activeRouteMonth, row.description],
                                     {replaceUrl: false});
             },
             error => {

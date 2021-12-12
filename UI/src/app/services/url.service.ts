@@ -32,11 +32,11 @@ export class UrlService {
     }
 
     urlGetConceptosTotalMes(fecha: string): string {
-        return this._host + 'api/conceptos/mensual/' + fecha + '/sumary';
+        return this._host + 'concept/monthly/' + fecha + '/summary';
     }
 
     urlGetConceptosMovimMes(idConcepto: string, fecha: string): string {
-        return this._host + 'api/conceptos/' + idConcepto + '/movimientos/mensual/' + fecha;
+        return this._host + 'concept/' + idConcepto + '/monthly/' + fecha + '/summary';
     }
 
     urlGetSumaryMensual(fecha: string): string {
