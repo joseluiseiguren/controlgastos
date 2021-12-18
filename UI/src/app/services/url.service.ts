@@ -28,7 +28,7 @@ export class UrlService {
     }
 
     urlGetPrimerConsumo(): string {
-        return this._host + 'api/diario/first';
+        return this._host + 'transaction/firstlast';
     }
 
     urlGetConceptosTotalMes(fecha: string): string {
@@ -39,8 +39,8 @@ export class UrlService {
         return this._host + 'concept/' + idConcepto + '/monthly/' + fecha + '/summary';
     }
 
-    urlGetSumaryMensual(fecha: string): string {
-        return this._host + 'api/mensual/' + fecha + '/sumary';
+    urlGetSumaryMensual(year: number, month: number): string {
+        return this._host + 'period/totalinout/' + year + '/' + month ;
     }
 
     urlLogin(): string {
@@ -56,15 +56,15 @@ export class UrlService {
     }
 
     urlGetSumaryAnual(fecha: string): string {
-        return this._host + 'api/anual/' + fecha + '/sumary';
+        return this._host + 'period/totalinout/' + fecha.toString();
     }
 
     urlGetConceptosTotalAnio(anio: number): string {
-        return this._host + 'api/conceptos/anual/' + anio.toString() + '/sumary';
+        return this._host + 'concept/annual/' + anio.toString() + '/summary';
     }
 
     urlGetConceptosMovimAnio(idConcepto: string, anio: number): string {
-        return this._host + 'api/conceptos/' + idConcepto + '/movimientos/anual/' + anio.toString();
+        return this._host + 'concept/' + idConcepto + '/annual/' + anio.toString() + '/summary';
     }
 
     urlGetUserProfile(): string {

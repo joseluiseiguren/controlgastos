@@ -103,7 +103,6 @@ export class MensualComponent extends ComponentBase implements OnInit, OnDestroy
     this._subscriptions.add(this._diarioService.getConceptosTotalMes(fecha)
         .subscribe(
             data => {
-              console.log(data);
               this._conceptosTotales = data;
               this.applyFilters();
               this.saldoActual = this.getIngresos() - this.getEgresos();
@@ -151,11 +150,12 @@ export class MensualComponent extends ComponentBase implements OnInit, OnDestroy
     saldos.push(saldoItemMensual);
 
     this._subscriptions.add(this._sumaryAnioService.getSumary(this.getDateFromUrl()).subscribe((anual) => {
+      console.log(anual)
       const saldoItemAnual: ISaldoItem = {
         title: 'Año ' + this._datePipe.transform(this.getDateFromUrl(), 'yyyy'),
         icon: 'airplay',
-        ingresos: anual.ingresos,
-        egresos: anual.egresos,
+        ingresos: anual.in,
+        egresos: anual.out,
         concept: 'anual',
         date: this.getDateFromUrl()
       };
@@ -216,7 +216,7 @@ export class MensualComponent extends ComponentBase implements OnInit, OnDestroy
   private convertToNumberArray(dataIn: any[]): number[] {
     const importes: number[] = [];
     dataIn.forEach(function (value) {
-      importes.push(value.saldo);
+      importes.push(value.balance);
     });
 
     return importes;

@@ -1,4 +1,4 @@
 export interface SumaryAnio {
-    ingresos: number;
-    egresos: number;
+    in: number;
+    out: number;
 }

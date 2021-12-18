@@ -120,7 +120,7 @@ namespace Repository.CosmosDB
 
         public async Task<Transaction> GetFirstTransactionAsync(string userId)
         {
-            var sqlQueryText = $"SELECT TOP 1 * FROM c WHERE c.UserId = '{userId}' order by c.TransactionDate ";
+            var sqlQueryText = $"SELECT TOP 1 * FROM c WHERE c.UserId = '{userId}' order by c.TransactionDate.Year, c.TransactionDate.Month, c.TransactionDate.Day ";
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
@@ -136,7 +136,7 @@ namespace Repository.CosmosDB
 
         public async Task<Transaction> GetLastTransactionAsync(string userId)
         {
-            var sqlQueryText = $"SELECT TOP 1 * FROM c WHERE c.UserId = '{userId}' order by c.TransactionDate desc";
+            var sqlQueryText = $"SELECT TOP 1 * FROM c WHERE c.UserId = '{userId}' order by c.TransactionDate.Year desc, c.TransactionDate.Month desc, c.TransactionDate.Day desc";
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 

@@ -1,4 +1,4 @@
 export interface SumaryMonth {
-    ingresos: number;
-    egresos: number;
+    in: number;
+    out: number;
 }

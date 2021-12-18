@@ -12,8 +12,8 @@ export class SumaryMonthService {
               private _urlService: UrlService) { }
 
   getSumary(fecha: Date): Observable<SumaryMonth> {
-    const year = fecha.getFullYear().toString();
-    return this._http.get<SumaryMonth>(this._urlService.urlGetSumaryMensual(year + (fecha.getMonth() + 1).toString().padStart(2, '0')))
+    const year = fecha.getFullYear();
+    return this._http.get<SumaryMonth>(this._urlService.urlGetSumaryMensual(year, fecha.getMonth() + 1))
                     .pipe(tap(data => JSON.stringify(data)));
   }
 }

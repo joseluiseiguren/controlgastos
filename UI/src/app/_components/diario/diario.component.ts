@@ -128,8 +128,8 @@ export class DiarioComponent implements OnInit, OnDestroy {
             title: '' + this._helperService.toCamelCase(this.datePipe.transform(new Date(this.currentDate.value),
                    'LLLL yyyy')),
             icon: 'calendar_today',
-            ingresos: mensual.ingresos,
-            egresos: mensual.egresos,
+            ingresos: mensual.in,
+            egresos: mensual.out,
             concept: 'mensual',
             date: new Date(this.currentDate.value)
           };
@@ -139,8 +139,8 @@ export class DiarioComponent implements OnInit, OnDestroy {
           const saldoItemAnual: ISaldoItem = {
             title: 'Año ' + this.datePipe.transform(new Date(this.currentDate.value), 'yyyy'),
             icon: 'airplay',
-            ingresos: anual.ingresos,
-            egresos: anual.egresos,
+            ingresos: anual.in,
+            egresos: anual.out,
             concept: 'mensual',
             date: new Date(this.currentDate.value)
           };

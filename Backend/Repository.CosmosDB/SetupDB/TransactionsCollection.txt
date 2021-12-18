@@ -1,0 +1,44 @@
+﻿{
+    "indexingMode": "consistent",
+    "automatic": true,
+    "includedPaths": [
+        {
+            "path": "/*"
+        }
+    ],
+    "excludedPaths": [
+        {
+            "path": "/\"_etag\"/?"
+        }
+    ],
+    "compositeIndexes": [
+        [
+            {
+                "path": "/TransactionDate/Year",
+                "order": "ascending"
+            },
+            {
+                "path": "/TransactionDate/Month",
+                "order": "ascending"
+            },
+            {
+                "path": "/TransactionDate/Day",
+                "order": "ascending"
+            }
+        ],
+        [
+            {
+                "path": "/TransactionDate/Year",
+                "order": "descending"
+            },
+            {
+                "path": "/TransactionDate/Month",
+                "order": "descending"
+            },
+            {
+                "path": "/TransactionDate/Day",
+                "order": "descending"
+            }
+        ]
+    ]
+}

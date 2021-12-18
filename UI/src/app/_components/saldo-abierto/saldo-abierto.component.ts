@@ -13,7 +13,7 @@ export class SaldoAbiertoComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SaldoAbiertoComponent>,
               @Inject(MAT_DIALOG_DATA) public data: {saldos: ISaldoItem[]}) { }
 
-  ngOnInit() { }
+  ngOnInit() {  }
 
   onNoClick(): void {
     this.dialogRef.close();

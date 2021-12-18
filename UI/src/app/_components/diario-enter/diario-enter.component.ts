@@ -70,7 +70,6 @@ export class DiarioEnterComponent implements OnInit, OnDestroy {
   }
 
   private isCredito(): boolean {
-    console.log(this.data.concepto);
     if (this.data.concepto.ammount === 0) {
       return this.data.concepto.credit;
     } else {

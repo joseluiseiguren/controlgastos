@@ -58,14 +58,13 @@ export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
     this._subscriptions.add(this._diarioService.getPrimerConsumo()
       .subscribe(
         data => {
-          const anioPrimerConsumo = Number(data.fechaMin.substring(0, 4));
-          const anioUltimoConsumo = Number(data.fechaMax.substring(0, 4));
+          const anioPrimerConsumo = Number(data.firstTransaction.substring(0, 4));
+          const anioUltimoConsumo = Number(data.lastTransaction.substring(0, 4));
 
           for (let _i = anioUltimoConsumo; _i >= anioPrimerConsumo; _i--) {
             this.anios.push(_i);
           }
           this.getData();
-          this.loading = false;
         },
         error => {
           this.loading = false;
@@ -94,15 +93,15 @@ export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
   loadYearDetails(row: any): void {
     this.loadingDetail = true;
 
-    this.openItem = row.descripcion;
+    this.openItem = row.description;
     this.itemDetail = undefined;
-    this._subscriptions.add(this._diarioService.getConceptosMovimAnio(row.idConcepto, this.anioSelected)
+    this._subscriptions.add(this._diarioService.getConceptosMovimAnio(row.conceptId, this.anioSelected)
       .subscribe(
           data => {
             this.itemDetail = data;
 
             this.itemDetail.forEach((element) => {
-              const fecha = this._helperService.convertStringMMYYYYToDate(element.mes);
+              const fecha = this._helperService.convertStringMMYYYYToDate(element.month);
               element.MonthFormatted = this._helperService.toCamelCase(this._datePipe.transform(fecha, 'LLLL yyyy'));
             });
 
@@ -154,7 +153,7 @@ export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
     if (dataIn !== undefined){
       const importes: number[] = [];
       dataIn.forEach(function (value) {
-        importes.push(value.saldo);
+        importes.push(value.balance);
       });
 
       return importes;
@@ -180,8 +179,9 @@ export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
         .subscribe(
             data => {
               this.conceptosTotales = data;
-              this.loading = false;
               this.saldoAnual = this.getIngresos() - this.getEgresos();
+
+              this.loading = false;
 
               this.openItem = this.getOpenItem();
               this.scrollToItem(this.openItem);
