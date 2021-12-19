@@ -22,7 +22,7 @@ namespace Services.QueryHandlers.Concept
         {
             var concepts = await _conceptRepository.GetConceptsByUser(query.UserId);
 
-            return concepts.Select(x => Map(x)).ToList();
+            return concepts.Select(x => Map(x)).OrderBy(x => x.Description).ToList();
         }
 
         private ConceptOutput Map(ConceptModel concept)
