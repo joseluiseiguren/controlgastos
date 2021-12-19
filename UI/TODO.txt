@@ -31,3 +31,8 @@
 - cuando hay error generico, el desplegable del usuario queda por atras
 - Conceptos que no sumen ni resten: y que puedan ser cargados en multiples monedas
 - Github CD/CI
+
+- Login remove key sensitive
+- Update version
+- Update to angular 13
+
