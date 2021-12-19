@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SumaryHistorico } from '../models/sumaryhistorico';
+import { SumaryHistorico } from './../models/sumaryHistorico';
 import { UrlService } from './url.service';
 import { tap } from 'rxjs/operators';
 

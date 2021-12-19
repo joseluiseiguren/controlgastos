@@ -1,7 +1,7 @@
+import { SumaryMonth } from './../models/sumaryMonth';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SumaryMonth } from '../models/sumarymonth';
 import { UrlService } from './url.service';
 import { tap } from 'rxjs/operators';
 
