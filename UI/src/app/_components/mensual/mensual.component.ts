@@ -1,3 +1,4 @@
+import { ComponentBase } from './../../services/componentBase';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { HelperService } from '../../services/helper.service';
@@ -15,7 +16,6 @@ import { CalculationService } from '../../sharedServices/calculationService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UrlConstants } from '../../constants/url.constants';
 import { FormControl } from '@angular/forms';
-import { ComponentBase } from 'src/app/services/ComponentBase';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { IMensualFilter } from 'src/app/models/mensual.filter';
 import { Location } from '@angular/common';

@@ -1,4 +1,4 @@
-import { ComponentBase } from 'src/app/services/ComponentBase';
+import { ComponentBase } from './../../services/componentBase';
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { Router, NavigationEnd } from '@angular/router';
