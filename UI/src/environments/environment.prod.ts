@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://controlgastos.eu-4.evennode.com/',
-  
+  apiUrl: 'https://controlgastosbackend.azurewebsites.net/',
+
 };
