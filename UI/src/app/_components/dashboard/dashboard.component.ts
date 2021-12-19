@@ -1,9 +1,9 @@
+import { ComponentBase } from 'src/app/services/ComponentBase';
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AboutComponent } from '../about/about.component';
-import { ComponentBase } from '../../services/ComponentBase';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { filter } from 'rxjs/operators';
 import { UrlConstants } from '../../constants/url.constants';
