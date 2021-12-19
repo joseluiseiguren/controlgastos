@@ -23,7 +23,7 @@ namespace CosmosGettingStartedTutorial
         private CosmosClient cosmosClient;
 
         // The name of the database and container we will create
-        private string _databaseId = "controlgastos_v9";
+        private string _databaseId = "controlgastos_v12";
         private string _containerUsers = "users";
         private string _containerAudits = "audits";
         private string _containerConceptos = "concepts";
@@ -237,7 +237,7 @@ namespace CosmosGettingStartedTutorial
         private IEnumerable<UserMongo> GetUsersFromInitialData()
         {
             var result = new List<UserMongo>();
-            using (StreamReader sw = new StreamReader("InitialData/users.txt"))
+            using (StreamReader sw = new StreamReader("InitialData/users.json"))
             {
                 var line = string.Empty;
                 while((line = sw.ReadLine()) != null)
@@ -253,7 +253,7 @@ namespace CosmosGettingStartedTutorial
         private IEnumerable<ConceptoMongo> GetConceptosFromInitialData()
         {
             var result = new List<ConceptoMongo>();
-            using (StreamReader sw = new StreamReader("InitialData/conceptos.txt"))
+            using (StreamReader sw = new StreamReader("InitialData/conceptos.json"))
             {
                 var line = string.Empty;
                 while ((line = sw.ReadLine()) != null)
@@ -269,7 +269,7 @@ namespace CosmosGettingStartedTutorial
         private IEnumerable<MovimientoMongo> GetMovimientosFromInitialData()
         {
             var result = new List<MovimientoMongo>();
-            using (StreamReader sw = new StreamReader("InitialData/movimientos.txt"))
+            using (StreamReader sw = new StreamReader("InitialData/transactions.json"))
             {
                 var line = string.Empty;
                 while ((line = sw.ReadLine()) != null)

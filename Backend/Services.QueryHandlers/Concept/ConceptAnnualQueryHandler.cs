@@ -4,6 +4,7 @@ using Domain.Queries.Outputs;
 using Repository.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Services.QueryHandlers.Concept
@@ -27,7 +28,7 @@ namespace Services.QueryHandlers.Concept
             var dateTo = dateFrom.AddMonths(12).AddDays(-1);
 
             var userConcepts = await _conceptRepository.GetConceptsByUser(query.UserId);
-            foreach (var userConcept in userConcepts)
+            foreach (var userConcept in userConcepts.OrderBy(x => x.Description))
             {
                 var totalAmmount = await _transactionRepository.GetTotalAmmountByFilterAsync(dateFrom, dateTo, userConcept.id);
                 result.Add(new ConceptPeriodOutput() { ConceptId = userConcept.id, Description = userConcept.Description, Balance = Math.Round(totalAmmount, 2) });

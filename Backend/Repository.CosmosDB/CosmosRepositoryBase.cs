@@ -6,15 +6,24 @@ namespace Repository.CosmosDB
     {
         protected readonly CosmosClient _cosmosClient;
 
-        protected const string _databaseId = "controlgastos_v9";
+        private readonly string _databaseId;
         protected const string _containerUsers = "users";
         protected const string _containerAudits = "audits";
         protected const string _containerConcepts = "concepts";
         protected const string _containerTransactions = "transactions";
 
-        public CosmosRepositoryBase(string connectionString)
+        public CosmosRepositoryBase(string connectionString, string databaseId)
         {
             _cosmosClient = new CosmosClient(connectionString);
+            _databaseId = databaseId;
+        }
+
+        protected string DatabaseId
+        { 
+            get 
+            {
+                return _databaseId; 
+            } 
         }
     }
 }

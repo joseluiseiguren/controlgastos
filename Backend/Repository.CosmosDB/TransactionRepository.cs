@@ -10,8 +10,8 @@ namespace Repository.CosmosDB
 {
     public class TransactionRepository : CosmosRepositoryBase, ITransactionRepository
     {
-        public TransactionRepository(string connectionString)
-            : base(connectionString)
+        public TransactionRepository(string connectionString, string databaseId)
+            : base(connectionString, databaseId)
         { }
 
         public async Task<decimal> GetTotalAmmountByFilterAsync(DateOnly dateFrom, DateOnly dateTo, string conceptId)
@@ -26,7 +26,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerTransactions);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -60,7 +60,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerTransactions);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -82,7 +82,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerTransactions);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -108,7 +108,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerTransactions);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -124,7 +124,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerTransactions);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -140,7 +140,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerTransactions);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -167,7 +167,7 @@ namespace Repository.CosmosDB
 
         public async Task InsertTransactionAsync(Transaction transaction)
         {
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerTransactions);
 
             await container.CreateItemAsync<Transaction>(transaction);
@@ -175,7 +175,7 @@ namespace Repository.CosmosDB
 
         public async Task UpdateTransactionAsync(Transaction transaction)
         {
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerTransactions);
 
             await container.ReplaceItemAsync<Transaction>(transaction, transaction.id);

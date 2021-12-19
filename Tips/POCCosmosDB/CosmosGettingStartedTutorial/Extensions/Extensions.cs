@@ -8,7 +8,7 @@ namespace CosmosGettingStartedTutorial.Extensions
     {
         public static UserCosmos ToUserCosmos(this UserMongo userMongo)
         {
-            var dateBornDatetime = new DateTime(1970, 1, 1).AddMilliseconds(userMongo.FechaNacimiento);
+            var dateBornDatetime = new DateTime(1970, 1, 1).AddMilliseconds(userMongo.FechaNacimiento).ToLocalTime();
             return new UserCosmos()
             {
                 Email = userMongo.Email,
@@ -37,7 +37,7 @@ namespace CosmosGettingStartedTutorial.Extensions
 
         public static MovimientoCosmos ToMovimientoCosmos(this MovimientoMongo movimientoMongo)
         {
-            var transactionDate = new DateTime(1970, 1, 1).AddMilliseconds(movimientoMongo.Fecha);
+            var transactionDate = new DateTime(1970, 1, 1).AddMilliseconds(movimientoMongo.Fecha).ToLocalTime();
 
             return new MovimientoCosmos()
             {

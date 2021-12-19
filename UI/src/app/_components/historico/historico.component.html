@@ -14,10 +14,10 @@
       <mat-expansion-panel *ngFor="let ct of conceptosTotales" (opened)="loadHistoricDetails(ct)">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ct.descripcion}}
+            {{ct.description}}
           </mat-panel-title>
-          <mat-panel-description [class.importeNegativo]="ct.saldo < 0">
-            {{ct.saldo | currency:this._userService.userCurrency}}
+          <mat-panel-description [class.importeNegativo]="ct.balance < 0">
+            {{ct.balance | currency:this._userService.userCurrency}}
           </mat-panel-description>
         </mat-expansion-panel-header>
 
@@ -25,8 +25,8 @@
         <mat-list *ngIf="!loadingDetail">
           <mat-list-item *ngFor="let detail of itemDetail">
             <div matLine>
-              <p class="itemDescription">{{detail.anio}}</p>
-              <p class="itemAmount" [class.importeNegativo]="detail.importe < 0">{{detail.importe | currency:this._userService.userCurrency}}</p>
+              <p class="itemDescription">{{detail.year}}</p>
+              <p class="itemAmount" [class.importeNegativo]="detail.balance < 0">{{detail.balance | currency:this._userService.userCurrency}}</p>
               </div>
           </mat-list-item>
         </mat-list>

@@ -6,11 +6,11 @@ namespace Infrastructure.Configuration
 {
     public static class InfrastructureConfiguration
     {
-        public static void ConfigureRepository(this IServiceCollection serviceCollection, string coreConnectionString)
+        public static void ConfigureRepository(this IServiceCollection serviceCollection, string coreConnectionString, string databaseId)
         {
-            serviceCollection.AddTransient<IUserRepository>(x => new UserRepository(coreConnectionString));
-            serviceCollection.AddTransient<IConceptRepository>(x => new ConceptRepository(coreConnectionString));
-            serviceCollection.AddTransient<ITransactionRepository>(x => new TransactionRepository(coreConnectionString));
+            serviceCollection.AddTransient<IUserRepository>(x => new UserRepository(coreConnectionString, databaseId));
+            serviceCollection.AddTransient<IConceptRepository>(x => new ConceptRepository(coreConnectionString, databaseId));
+            serviceCollection.AddTransient<ITransactionRepository>(x => new TransactionRepository(coreConnectionString, databaseId));
         }
     }
 }

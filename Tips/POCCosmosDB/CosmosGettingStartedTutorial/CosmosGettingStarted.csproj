@@ -10,13 +10,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="InitialData\conceptos.txt">
+    <None Update="InitialData\conceptos.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="InitialData\movimientos.txt">
+    <None Update="InitialData\transactions.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="InitialData\users.txt">
+    <None Update="InitialData\users.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

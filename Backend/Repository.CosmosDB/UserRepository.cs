@@ -9,8 +9,8 @@ namespace Repository.CosmosDB
 {
     public class UserRepository : CosmosRepositoryBase, IUserRepository
     {
-        public UserRepository(string connectionString)
-            : base(connectionString)
+        public UserRepository(string connectionString, string databaseId)
+            : base(connectionString, databaseId)
         { }
 
         public async Task<User> GetUserByEmailAsync(string email)
@@ -19,7 +19,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerUsers);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -35,7 +35,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerUsers);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -47,7 +47,7 @@ namespace Repository.CosmosDB
 
         public async Task UpdateUserAsync(User user)
         {
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerUsers);
             
             await container.ReplaceItemAsync<User>(user, user.id);
@@ -55,7 +55,7 @@ namespace Repository.CosmosDB
 
         public async Task InsertUserAsync(User user)
         {
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerUsers);
 
             await container.CreateItemAsync<User>(user);

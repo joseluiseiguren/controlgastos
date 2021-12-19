@@ -76,10 +76,10 @@ export class UrlService {
     }
 
     urlGetConceptosTotalHistorico(): string {
-        return this._host + 'api/conceptos/historico/sumary';
+        return this._host + 'concept/historic/summary';
     }
 
     urlGetConceptosMovimHistorico(idConcepto: string): string {
-        return this._host + 'api/conceptos/' + idConcepto + '/movimientos/historico';
+        return this._host + 'concept/' + idConcepto + '/historic/summary';
     }
 }

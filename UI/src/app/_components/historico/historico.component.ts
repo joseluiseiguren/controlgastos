@@ -65,7 +65,7 @@ export class HistoricoComponent implements OnInit, OnDestroy {
     if (dataIn !== undefined) {
       const importes: number[] = [];
       dataIn.forEach(function (value) {
-        importes.push(value.saldo);
+        importes.push(value.balance);
       });
 
       return importes;
@@ -75,7 +75,7 @@ export class HistoricoComponent implements OnInit, OnDestroy {
   loadHistoricDetails(row: any): void {
     this.loadingDetail = true;
     this.itemDetail = undefined;
-    this._subscriptions.add(this._diarioService.getConceptosMovimHistorico(row.idConcepto)
+    this._subscriptions.add(this._diarioService.getConceptosMovimHistorico(row.conceptId)
         .subscribe(
             data => {
               this.itemDetail = data;

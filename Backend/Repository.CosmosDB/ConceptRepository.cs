@@ -10,8 +10,8 @@ namespace Repository.CosmosDB
 {
     public class ConceptRepository : CosmosRepositoryBase, IConceptRepository
     {
-        public ConceptRepository(string connectionString)
-            : base(connectionString)
+        public ConceptRepository(string connectionString, string databaseId)
+            : base(connectionString, databaseId)
         { }
 
         public async Task<IReadOnlyList<Concept>> GetConceptsByUser(string userId, bool? creditType = null)
@@ -24,7 +24,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerConcepts);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -47,7 +47,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerConcepts);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -63,7 +63,7 @@ namespace Repository.CosmosDB
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerConcepts);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
@@ -75,7 +75,7 @@ namespace Repository.CosmosDB
 
         public async Task InsertConceptAsync(Concept concept)
         {
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerConcepts);
 
             await container.CreateItemAsync<Concept>(concept);
@@ -83,7 +83,7 @@ namespace Repository.CosmosDB
 
         public async Task UpdateConceptAsync(Concept concept)
         {
-            var database = this._cosmosClient.GetDatabase(_databaseId);
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
             var container = database.GetContainer(_containerConcepts);
 
             await container.ReplaceItemAsync<Concept>(concept, concept.id);
