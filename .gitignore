@@ -63,3 +63,12 @@ Backend/.vs/
 /Backend/ConsoleApp1/obj
 /Backend/Domain.Model/bin/Debug/net6.0
 /Backend/Domain.Model/obj
+/Backend/Domain.Commands/bin/Release/net6.0
+/Backend/Domain.Model/bin/Release/net6.0
+/Backend/Domain.Queries/bin/Release/net6.0
+/Backend/Infrastructure.Configuration/bin/Release/net6.0
+/Backend/Repository.CosmosDB/bin/Release/net6.0
+/Backend/Repository.Interfaces/bin/Release/net6.0
+/Backend/Services.CommandHandlers/bin/Release/net6.0
+/Backend/Services.QueryHandlers/bin/Release/net6.0
+/Backend/Shared.Execptions/bin/Release/net6.0
