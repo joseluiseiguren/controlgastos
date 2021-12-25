@@ -6,15 +6,12 @@ import { UsersService } from '../../services/users.service';
   templateUrl: './saldo.component.html',
   styleUrls: ['./saldo.component.css']
 })
-export class SaldoComponent implements OnInit {
+export class SaldoComponent {
   @Input() titulo: string;
   @Input() saldo: number;
   @Output() saldoClicked = new EventEmitter();
 
   constructor(public _userService: UsersService) { }
-
-  ngOnInit() {
-  }
 
   onClick() {
     this.saldoClicked.emit();

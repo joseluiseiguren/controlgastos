@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatChipInputEvent } from '@angular/material';
 import { IConceptoDiario } from '../../models/concepto.diario';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { FormatingService } from '../../sharedServices/formatingService';
@@ -7,6 +6,9 @@ import { DiarioService } from '../../services/diario.service';
 import { HelperService } from '../../services/helper.service';
 import { Subscription } from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-diario-enter',

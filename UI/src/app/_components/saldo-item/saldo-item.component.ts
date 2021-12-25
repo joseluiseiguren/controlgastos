@@ -7,15 +7,12 @@ import { UsersService } from '../../services/users.service';
   templateUrl: './saldo-item.component.html',
   styleUrls: ['./saldo-item.component.css']
 })
-export class SaldoItemComponent implements OnInit {
+export class SaldoItemComponent {
 
   @Input() items: ISaldoItem[];
   @Output() itemClicked = new EventEmitter();
 
   constructor(public _userService: UsersService) { }
-
-  ngOnInit() {
-  }
 
   onGoDetails (item: ISaldoItem) {
     this.itemClicked.emit(item);

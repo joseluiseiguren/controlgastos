@@ -2,7 +2,7 @@ import { ComponentBase } from './../../services/componentBase';
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AboutComponent } from '../about/about.component';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { filter } from 'rxjs/operators';

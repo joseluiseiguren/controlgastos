@@ -72,3 +72,4 @@ Backend/.vs/
 /Backend/Services.CommandHandlers/bin/Release/net6.0
 /Backend/Services.QueryHandlers/bin/Release/net6.0
 /Backend/Shared.Execptions/bin/Release/net6.0
+/UI/.angular/cache
