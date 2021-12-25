@@ -4,9 +4,10 @@ import { UsersService } from '../../services/users.service';
 import { HelperService } from '../../services/helper.service';
 import { CalculationService } from '../../sharedServices/calculationService';
 import { Subscription } from 'rxjs';
-import { MatSnackBar, MatDialog } from '@angular/material';
 import { ISaldoItem } from '../../models/saldoItem';
 import { SaldoAbiertoComponent } from '../saldo-abierto/saldo-abierto.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-historico',

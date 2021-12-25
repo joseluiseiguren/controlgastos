@@ -1,6 +1,7 @@
 import { formatNumber } from '@angular/common';
-import { LOCALE_ID, Inject } from '@angular/core';
+import { LOCALE_ID, Inject, Injectable } from '@angular/core';
 
+@Injectable()
 export class FormatingService {
 
   constructor(@Inject(LOCALE_ID) private locale: string) { }

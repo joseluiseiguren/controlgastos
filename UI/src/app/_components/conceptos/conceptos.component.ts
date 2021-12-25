@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConceptoService } from '../../services/concepto.service';
 import { IConcepto } from '../../models/concepto';
 import { HelperService } from '../../services/helper.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConceptoDialogComponent } from '../concepto-dialog/concepto-dialog.component';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-conceptos',

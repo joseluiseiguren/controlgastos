@@ -2,14 +2,15 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewChecked } fro
 import { UsersService } from '../../services/users.service';
 import { HelperService } from '../../services/helper.service';
 import { DiarioService } from '../../services/diario.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
-import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { ISaldoItem } from '../../models/saldoItem';
 import { DatePipe } from '@angular/common';
 import { SaldoAbiertoComponent } from '../saldo-abierto/saldo-abierto.component';
 import { CalculationService } from '../../sharedServices/calculationService';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UrlConstants } from '../../constants/url.constants';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-anual',
@@ -53,25 +54,27 @@ export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
     this._subscriptions.unsubscribe();
   }
 
-  getPrimerConsumo(): void {
+  async getPrimerConsumo(): Promise<void> {
     this.loading = true;
-    this._subscriptions.add(this._diarioService.getPrimerConsumo()
-      .subscribe(
-        data => {
-          const anioPrimerConsumo = Number(data.firstTransaction.substring(0, 4));
-          const anioUltimoConsumo = Number(data.lastTransaction.substring(0, 4));
 
-          for (let _i = anioUltimoConsumo; _i >= anioPrimerConsumo; _i--) {
-            this.anios.push(_i);
-          }
-          this.getData();
-        },
-        error => {
-          this.loading = false;
-          this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-        }
-      )
-    );
+    const source$ = await this._diarioService.getPrimerConsumo();
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      const anioPrimerConsumo = Number(data.firstTransaction.substring(0, 4));
+      const anioUltimoConsumo = Number(data.lastTransaction.substring(0, 4));
+
+      for (let _i = anioUltimoConsumo; _i >= anioPrimerConsumo; _i--) {
+        this.anios.push(_i);
+      }
+
+      this.getData();
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
   showOpenSaldo(): void {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ISaldoItem } from '../../models/saldoItem';
 
 @Component({
@@ -7,13 +7,11 @@ import { ISaldoItem } from '../../models/saldoItem';
   templateUrl: './saldo-abierto.component.html',
   styleUrls: ['./saldo-abierto.component.css']
 })
-export class SaldoAbiertoComponent implements OnInit {
+export class SaldoAbiertoComponent {
   @Output() itemPushed = new EventEmitter();
 
   constructor(public dialogRef: MatDialogRef<SaldoAbiertoComponent>,
               @Inject(MAT_DIALOG_DATA) public data: {saldos: ISaldoItem[]}) { }
-
-  ngOnInit() {  }
 
   onNoClick(): void {
     this.dialogRef.close();

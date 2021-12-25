@@ -1,11 +1,13 @@
-import { UrlConstants } from 'src/app/constants/url.constants';
+import { UrlConstants } from './../../constants/url.constants';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from '../../models/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { HelperService } from '../../services/helper.service';
 import { Router } from '@angular/router';
-import { MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { Subscription } from 'rxjs';
 
@@ -40,6 +42,7 @@ export class RegistracionComponent implements OnInit, OnDestroy {
         passwordRepeatFormControl: [''],
         monedaFormControl: ['', [Validators.required]]
       }, {validator: this.usersService.checkPasswords });
+
       this.monedas = this.usersService.getAvailablesCurrencies();
     }
 

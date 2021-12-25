@@ -1,15 +1,15 @@
+import { IMensualFilter } from './../../models/mensual.filter';
 import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FilterPopupComponent } from '../filter-popup/filter-popup.component';
 import { Subscription } from 'rxjs';
-import { IMensualFilter } from 'src/app/models/mensual.filter';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css']
 })
-export class FilterComponent implements OnInit, OnDestroy {
+export class FilterComponent implements OnDestroy {
 
   totalFilters = 0;
   @Output() filtersChanged = new EventEmitter<IMensualFilter>();
@@ -17,9 +17,6 @@ export class FilterComponent implements OnInit, OnDestroy {
   private _subscriptions = new Subscription();
 
   constructor(private filterPopup: MatDialog) { }
-
-  ngOnInit() {
-  }
 
   ngOnDestroy() {
     this._subscriptions.unsubscribe();

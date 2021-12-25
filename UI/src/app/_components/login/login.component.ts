@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { IpService } from '../../services/ip.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
-import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { UrlConstants } from '../../constants/url.constants';
 import { DatePipe } from '@angular/common';
 
@@ -78,40 +78,18 @@ export class LoginComponent implements OnInit, OnDestroy {
       this._subscriptions.unsubscribe();
     }
 
-    login() {
+    async login() {
       this.loading = true;
 
-      this._subscriptions.add(this.usersService.login(this.loginForm.value.emailFormControl, this.loginForm.value.pwdFormControl,
-                              JSON.stringify(this.location))
-        .subscribe(
-            data => {
-              if (data === true) {
-                this.loading = false;
-                this.ingresarApp();
-              } else {
-                this._helperService.showSnackBarError(this.snackBar, 'Acceso Denegado');
-                this.loading = false;
-              }
-            },
-            error => {
-              let errorMessage: string;
-              if (error.status === 400) {
-                errorMessage = error.error.message;
-              }
-              else if (error.status === 401) {
-                errorMessage = 'Acceso Denegado';
-              } else {
-                errorMessage = 'Error inesperado: ';
-                if (error.error.errorId !== undefined) {
-                  errorMessage += error.error.errorId;
-                }
-              }
-
-              this.loading = false;
-              this._helperService.showSnackBarError(this.snackBar, errorMessage);
-
-            })
-      );
+      const source$ = this.usersService.login(this.loginForm.value.emailFormControl, this.loginForm.value.pwdFormControl, JSON.stringify(this.location));
+      const data = await firstValueFrom(source$);
+      if (data === true) {
+        this.loading = false;
+        this.ingresarApp();
+      } else {
+        this._helperService.showSnackBarError(this.snackBar, 'Acceso Denegado');
+        this.loading = false;
+      }
     }
 
     private ingresarApp () {

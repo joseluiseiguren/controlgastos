@@ -31,7 +31,7 @@ namespace Backend.Controllers
 
             var result = await _applicationMediator.DispatchAsync(query);
 
-            return Ok(result.Select(x => Map(x)));
+            return Ok(result.Select(x => Map(x)).OrderBy(x => x.Descripcion));
         }
 
         [Authorize]

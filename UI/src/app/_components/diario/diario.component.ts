@@ -3,7 +3,6 @@ import { DiarioService } from '../../services/diario.service';
 import { IConceptoDiario } from '../../models/concepto.diario';
 import { UsersService } from '../../services/users.service';
 import { HelperService } from '../../services/helper.service';
-import { MatDialog, MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 import { DiarioEnterComponent } from '../diario-enter/diario-enter.component';
 import { FormControl } from '@angular/forms';
 import { SaldoAbiertoComponent } from '../saldo-abierto/saldo-abierto.component';
@@ -16,6 +15,9 @@ import { CalculationService } from '../../sharedServices/calculationService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UrlConstants } from '../../constants/url.constants';
 import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-diario',

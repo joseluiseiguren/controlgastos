@@ -1,10 +1,9 @@
-import { UrlConstants } from 'src/app/constants/url.constants';
+import { UrlConstants } from './../constants/url.constants';
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UsersService } from '../services/users.service';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/internal/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

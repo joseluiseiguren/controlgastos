@@ -4,7 +4,7 @@ import { SharedModule } from './_modules/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { MatToolbarModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { SumaryMonthService } from './services/sumary-month.service';
 import { SumaryAnioService } from './services/sumary-anio.service';
@@ -24,7 +24,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/AuthInterceptor';
 import { LOCALE_ID } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy, CurrencyPipe, registerLocaleData, DatePipe } from '@angular/common';
-import { UrlConstants } from './constants/url.constants';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './_components/login/login.component';
@@ -32,6 +31,7 @@ import { AboutComponent } from './_components/about/about.component';
 
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
+import { UrlConstants } from './constants/url.constants';
 registerLocaleData(localeEs, localeEs);
 registerLocaleData(localeEn, localeEn);
 

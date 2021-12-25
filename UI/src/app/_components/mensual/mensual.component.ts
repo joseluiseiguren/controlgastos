@@ -1,3 +1,4 @@
+import { IMensualFilter } from './../../models/mensual.filter';
 import { ComponentBase } from './../../services/componentBase';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { UsersService } from '../../services/users.service';
@@ -5,7 +6,6 @@ import { HelperService } from '../../services/helper.service';
 import { DatePipe } from '@angular/common';
 import { DiarioService } from '../../services/diario.service';
 import { Subscription } from 'rxjs';
-import { MatSnackBar, MatDialog, MatDatepicker } from '@angular/material';
 import { ISaldoItem } from '../../models/saldoItem';
 import { SumaryAnioService } from '../../services/sumary-anio.service';
 import { SaldoAbiertoComponent } from '../saldo-abierto/saldo-abierto.component';
@@ -17,8 +17,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UrlConstants } from '../../constants/url.constants';
 import { FormControl } from '@angular/forms';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { IMensualFilter } from 'src/app/models/mensual.filter';
 import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 export const MY_FORMATS = {
   parse: {
@@ -150,7 +152,6 @@ export class MensualComponent extends ComponentBase implements OnInit, OnDestroy
     saldos.push(saldoItemMensual);
 
     this._subscriptions.add(this._sumaryAnioService.getSumary(this.getDateFromUrl()).subscribe((anual) => {
-      console.log(anual)
       const saldoItemAnual: ISaldoItem = {
         title: 'Año ' + this._datePipe.transform(this.getDateFromUrl(), 'yyyy'),
         icon: 'airplay',
@@ -182,7 +183,7 @@ export class MensualComponent extends ComponentBase implements OnInit, OnDestroy
   }
 
   chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>): void {
-    const newMonth = this._datePipe.transform(normalizedMonth, 'yyyy-MM');
+    const newMonth = this._datePipe.transform(normalizedMonth.toDate(), 'yyyy-MM');
 
     const activeRouteOpen = this.getOpenItem();
     this.router.navigate([UrlConstants.DASHBOARD, UrlConstants.MENSUAL, newMonth, activeRouteOpen]);
