@@ -49,11 +49,8 @@ export class DiarioEnterComponent implements OnInit, OnDestroy {
   onSave(): void {
     this.loading = true;
 
-    //todo: remove
     const dateSplitted = this.data.concepto.transactionDate.split('-');
     const trasactionDate = new Date(parseInt(dateSplitted[0]), parseInt(dateSplitted[1])-1, parseInt(dateSplitted[2]));
-    alert(this.data.concepto.transactionDate);
-    alert(trasactionDate);
 
     const newImporte = parseFloat(this.form.value.importeFormControl.toString().replace(',', '.'));
     this._subscriptions.add(this._conceptosDiarioService.setConceptoImporte(
