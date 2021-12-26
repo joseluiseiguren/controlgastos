@@ -32,9 +32,11 @@
 - Github CD/CI (backend)
 
 - Login remove key sensitive
-- Update version
-- Update to angular 13
+	- Update to angular 13
 - Forgot password
 - Enviar email al finallizar mes con summary
+- Mensual: remove items with ammount 0
+- Replace deprecated subscribe
+
 
 
