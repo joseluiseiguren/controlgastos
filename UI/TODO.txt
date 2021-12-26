@@ -31,12 +31,12 @@
 - Conceptos que no sumen ni resten: y que puedan ser cargados en multiples monedas
 - Github CD/CI (backend)
 
-- Login remove key sensitive
+- Login remove key sensitive in email
 	- Update to angular 13
 - Forgot password
 - Enviar email al finallizar mes con summary
-- Mensual: remove items with ammount 0
+	- Mensual: remove items with ammount 0
 - Replace deprecated subscribe
-
+- There are deprecated warnings when running npm install
 
 
