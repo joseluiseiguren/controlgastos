@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DiarioService } from '../../services/diario.service';
 import { UsersService } from '../../services/users.service';
 import { HelperService } from '../../services/helper.service';
 import { CalculationService } from '../../sharedServices/calculationService';
-import { Subscription } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { ISaldoItem } from '../../models/saldoItem';
 import { SaldoAbiertoComponent } from '../saldo-abierto/saldo-abierto.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,13 +14,12 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './historico.component.html',
   styleUrls: ['./historico.component.css']
 })
-export class HistoricoComponent implements OnInit, OnDestroy {
+export class HistoricoComponent implements OnInit {
   conceptosTotales: any[];
   itemDetail: any[];
   loading = false;
   loadingDetail = false;
   saldoActual = 0;
-  private _subscriptions = new Subscription();
 
   constructor(private _diarioService: DiarioService,
               public _userService: UsersService,
@@ -34,10 +33,6 @@ export class HistoricoComponent implements OnInit, OnDestroy {
     this.getData();
   }
 
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
-  }
-
   private getIngresos(): number {
     return this.calculationService.getIngresos(this.convertToNumberArray(this.conceptosTotales));
   }
@@ -46,20 +41,22 @@ export class HistoricoComponent implements OnInit, OnDestroy {
     return this.calculationService.getEgresos(this.convertToNumberArray(this.conceptosTotales));
   }
 
-  getData(): void {
+  async getData(): Promise<void> {
     this.loading = true;
-    this._subscriptions.add(this._diarioService.getConceptosTotalHistorico()
-        .subscribe(
-            data => {
-              this.conceptosTotales = data;
-              this.saldoActual = this.getIngresos() - this.getEgresos();
-              this.loading = false;
-            },
-            error => {
-              this.loading = false;
-              this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-            })
-    );
+
+    const source$ = this._diarioService.getConceptosTotalHistorico();
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.conceptosTotales = data;
+      this.saldoActual = this.getIngresos() - this.getEgresos();
+      this.loading = false;
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
   private convertToNumberArray(dataIn: any[]): number[] {
@@ -73,20 +70,22 @@ export class HistoricoComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadHistoricDetails(row: any): void {
+  async loadHistoricDetails(row: any): Promise<void> {
     this.loadingDetail = true;
     this.itemDetail = undefined;
-    this._subscriptions.add(this._diarioService.getConceptosMovimHistorico(row.conceptId)
-        .subscribe(
-            data => {
-              this.itemDetail = data;
-              this.loadingDetail = false;
-            },
-            error => {
-              this.loadingDetail = false;
-              this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-            })
-    );
+
+    const source$ = this._diarioService.getConceptosMovimHistorico(row.conceptId);
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.itemDetail = data;
+      this.loadingDetail = false;
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
   showOpenSaldo() {

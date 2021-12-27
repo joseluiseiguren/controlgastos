@@ -16,7 +16,6 @@
 - preguntar antes de hacer el logout
 - en apple hay pantallas que no funcionan
 - pantalla conceptos: table header mas grande
-- password change
 - repasar uno por uno los manejos de errores
 - exportacion a excel
 - hay modelos que se comparten entre webapi y frontend, por ejemplo el de usuarios -> unirlos
@@ -29,8 +28,7 @@
 - probar en distintos browser
 - cuando hay error generico, el desplegable del usuario queda por atras
 - Conceptos que no sumen ni resten: y que puedan ser cargados en multiples monedas
-- Github CD/CI (backend)
-
+	- Github CD/CI (backend)
 - Login remove key sensitive in email
 	- Update to angular 13
 - Forgot password

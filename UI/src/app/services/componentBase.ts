@@ -12,7 +12,7 @@ export class ComponentBase implements OnDestroy {
                 media: MediaMatcher) {
         this.mobileQuery = media.matchMedia('(max-width: 600px)');
         this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-        this.mobileQuery.addListener(this._mobileQueryListener);
+        this.mobileQuery.addEventListener('change', this._mobileQueryListener);
     }
 
     private _mobileQueryListener: () => void;
@@ -22,7 +22,7 @@ export class ComponentBase implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.mobileQuery.removeListener(this._mobileQueryListener);
+        this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
         if (this.subscription){
             this.subscription.unsubscribe();
         }

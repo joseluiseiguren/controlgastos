@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { HelperService } from '../../services/helper.service';
 import { DiarioService } from '../../services/diario.service';
 import { MatDialog } from '@angular/material/dialog';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { ISaldoItem } from '../../models/saldoItem';
 import { DatePipe } from '@angular/common';
 import { SaldoAbiertoComponent } from '../saldo-abierto/saldo-abierto.component';
@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './anual.component.html',
   styleUrls: ['./anual.component.css']
 })
-export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class AnualComponent implements OnInit, AfterViewChecked {
   anios = new Array<number>();
   anioSelected: number;
   loading = false;
@@ -26,8 +26,6 @@ export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
   itemDetail: any[];
   saldoAnual = 0;
   openItem: string;
-
-  private _subscriptions = new Subscription();
 
   constructor(private _datePipe: DatePipe,
               private _diarioService: DiarioService,
@@ -48,10 +46,6 @@ export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.changeDetector.detectChanges();
-  }
-
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
   }
 
   async getPrimerConsumo(): Promise<void> {
@@ -93,31 +87,31 @@ export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.saldoAbierto.open(SaldoAbiertoComponent, { width: '500px', data: {saldos} });
   }
 
-  loadYearDetails(row: any): void {
+  async loadYearDetails(row: any): Promise<void> {
     this.loadingDetail = true;
 
     this.openItem = row.description;
     this.itemDetail = undefined;
-    this._subscriptions.add(this._diarioService.getConceptosMovimAnio(row.conceptId, this.anioSelected)
-      .subscribe(
-          data => {
-            this.itemDetail = data;
 
-            this.itemDetail.forEach((element) => {
-              const fecha = this._helperService.convertStringMMYYYYToDate(element.month);
-              element.MonthFormatted = this._helperService.toCamelCase(this._datePipe.transform(fecha, 'LLLL yyyy'));
-            });
+    const source$ = this._diarioService.getConceptosMovimAnio(row.conceptId, this.anioSelected)
 
-            this.loadingDetail = false;
-            this.router.navigate([UrlConstants.DASHBOARD, UrlConstants.ANUAL, this.anioSelected, this.openItem],
-                                  {replaceUrl: false});
-          },
-          error => {
-            this.loadingDetail = false;
-            this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-          }
-      )
-    );
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.itemDetail = data;
+
+      this.itemDetail.forEach((element) => {
+        const fecha = this._helperService.convertStringMMYYYYToDate(element.month);
+        element.MonthFormatted = this._helperService.toCamelCase(this._datePipe.transform(fecha, 'LLLL yyyy'));
+      });
+
+      this.loadingDetail = false;
+      this.router.navigate([UrlConstants.DASHBOARD, UrlConstants.ANUAL, this.anioSelected, this.openItem],
+                            {replaceUrl: false});
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
   onChangeYear(): void {
@@ -176,25 +170,26 @@ export class AnualComponent implements OnInit, OnDestroy, AfterViewChecked {
     return this.calculationService.getEgresos(this.convertToNumberArray(this.conceptosTotales));
   }
 
-  private getData(): void {
+  private async getData(): Promise<void> {
     this.loading = true;
-    this._subscriptions.add(this._diarioService.getConceptosTotalAnio(this.anioSelected)
-        .subscribe(
-            data => {
-              this.conceptosTotales = data;
-              this.saldoAnual = this.getIngresos() - this.getEgresos();
 
-              this.loading = false;
+    const source$ = this._diarioService.getConceptosTotalAnio(this.anioSelected);
 
-              this.openItem = this.getOpenItem();
-              this.scrollToItem(this.openItem);
-            },
-            error => {
-              this.loading = false;
-              this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-            }
-          )
-    );
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.conceptosTotales = data;
+      this.saldoAnual = this.getIngresos() - this.getEgresos();
+
+      this.loading = false;
+
+      this.openItem = this.getOpenItem();
+      this.scrollToItem(this.openItem);
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
   private convertMMYYYYToYYYYMM(fecha: string): string {

@@ -1,22 +1,21 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { HelperService } from '../../services/helper.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../../models/user';
-import { Subscription } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-userprofile',
   templateUrl: './userprofile.component.html',
   styleUrls: ['./userprofile.component.css']
 })
-export class UserprofileComponent implements OnInit, OnDestroy {
+export class UserprofileComponent implements OnInit {
   loading = false;
   loadingAceptar = false;
   profileForm: FormGroup;
   monedas: string[];
-  private _subscriptions = new Subscription();
 
   constructor(private _userService: UsersService,
               private formBuilder: FormBuilder,
@@ -35,46 +34,45 @@ export class UserprofileComponent implements OnInit, OnDestroy {
     this.getData();
   }
 
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
-  }
-
-  getData(): void {
+  async getData(): Promise<void> {
     this.loading = true;
 
-    this._subscriptions.add(this._userService.getProfile()
-        .subscribe(
-            data => {
-              this.profileForm.setValue({emailFormControl: data.email,
-                                         nameFormControl: data.name,
-                                         fechaNacimientoFormControl: data.bornDate,
-                                         monedaFormControl: data.currency});
-              this.loading = false;
-            },
-            error => {
-              this.loading = false;
-              this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-            })
-    );
+    const source$ = this._userService.getProfile();
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.profileForm.setValue({emailFormControl: data.email,
+              nameFormControl: data.name,
+              fechaNacimientoFormControl: data.bornDate,
+              monedaFormControl: data.currency});
+      this.loading = false;
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
-  changeProfile(): void {
+  async changeProfile(): Promise<void> {
     this.loadingAceptar  = true;
 
     const userProfile = this.createUser();
-    this._subscriptions.add(this._userService.updateProfile(userProfile)
-          .subscribe(
-            data => {
-              this._userService.setUserName(userProfile.name);
-              this._helperService.showSnackBarSuccess(this.snackBar, 'Modificacion Exitosa');
-              this.loadingAceptar  = false;
-              this.profileForm.markAsPristine();
-            },
-            error => {
-              this.loadingAceptar  = false;
-              this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-            })
-    );
+
+    const source$ = this._userService.updateProfile(userProfile);
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this._userService.setUserName(userProfile.name);
+      this._helperService.showSnackBarSuccess(this.snackBar, 'Modificacion Exitosa');
+      this.loadingAceptar  = false;
+      this.profileForm.markAsPristine();
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
   private createUser(): User {
