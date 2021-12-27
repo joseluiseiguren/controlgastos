@@ -1,22 +1,21 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConceptoService } from '../../services/concepto.service';
 import { IConcepto } from '../../models/concepto';
 import { HelperService } from '../../services/helper.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConceptoDialogComponent } from '../concepto-dialog/concepto-dialog.component';
-import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-conceptos',
   templateUrl: './conceptos.component.html',
   styleUrls: ['./conceptos.component.css']
 })
-export class ConceptosComponent implements OnInit, OnDestroy {
+export class ConceptosComponent implements OnInit {
   displayedColumns: string[] = ['concepto', 'tipo'];
   loading = false;
   conceptos: IConcepto[] = [];
-  private _subscriptions = new Subscription();
 
   constructor(private _conceptoService: ConceptoService,
               private _helperService: HelperService,
@@ -27,35 +26,33 @@ export class ConceptosComponent implements OnInit, OnDestroy {
     this.getConceptos();
   }
 
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
-  }
-
-  getConceptos() {
+  async getConceptos(): Promise<void> {
     this.loading = true;
-    this._subscriptions.add(this._conceptoService.getConceptos()
-        .subscribe(
-            data => {
-              this.conceptos = data;
-              this.loading = false;
-            },
-            error => {
-              this.loading = false;
-              this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-            })
-    );
+
+    const source$ = this._conceptoService.getConceptos();
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.conceptos = data;
+      this.loading = false;
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
+
   }
 
-  openConceptoDialog(concepto: IConcepto){
+  openConceptoDialog(concepto: IConcepto) : void {
     const dialogRef = this.conceptoDialog.open(ConceptoDialogComponent, { data: {concepto} });
 
-    this._subscriptions.add(dialogRef.afterClosed()
+    dialogRef.afterClosed()
       .subscribe(result => {
         if (result !== undefined) {
           this.getConceptos();
         }
-      })
-    );
+      });
   }
 
 }

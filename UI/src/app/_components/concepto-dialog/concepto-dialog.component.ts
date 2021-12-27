@@ -1,21 +1,20 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { IConcepto } from '../../models/concepto';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConceptoService } from '../../services/concepto.service';
 import { HelperService } from '../../services/helper.service';
-import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-concepto-dialog',
   templateUrl: './concepto-dialog.component.html',
   styleUrls: ['./concepto-dialog.component.css']
 })
-export class ConceptoDialogComponent implements OnInit, OnDestroy {
+export class ConceptoDialogComponent implements OnInit {
   form: FormGroup;
   loading = false;
-  private _subscriptions = new Subscription();
 
   constructor(private fb: FormBuilder,
               private snackBar: MatSnackBar,
@@ -29,10 +28,6 @@ export class ConceptoDialogComponent implements OnInit, OnDestroy {
       conceptoFormControl: [this.data.concepto ? this.data.concepto.descripcion : '', Validators.required],
       debitoCreditoControl: this.data.concepto !== undefined && this.data.concepto.credito === true ? '1' : '0'
     });
-  }
-
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
   }
 
   onCancel(): void {
@@ -52,35 +47,40 @@ export class ConceptoDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  private newConcepto(): void {
-    this._subscriptions.add(this._conceptoService.insertConcepto(this.form.value.conceptoFormControl.toString(),
-                                                                 this.form.value.debitoCreditoControl === "0" ? false : true)
-        .subscribe(
-          () => {
-            this._helperService.showSnackBarInformation(this.snackBar, 'Alta Exitosa');
-            this.dialogRef.close(true);
-          },
-          error => {
-            this.loading = false;
-            this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-        })
-    );
+  private async newConcepto(): Promise<void> {
+
+    const source$ = this._conceptoService.insertConcepto(this.form.value.conceptoFormControl.toString(),
+                                                         this.form.value.debitoCreditoControl === "0" ? false : true);
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this._helperService.showSnackBarInformation(this.snackBar, 'Alta Exitosa');
+      this.dialogRef.close(true);
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
-  private modifyConcepto(): void {
-    this._subscriptions.add(this._conceptoService.updateConcepto(this.data.concepto.id,
-                                                                 this.form.value.conceptoFormControl.toString(),
-                                                                 this.form.value.debitoCreditoControl === "0" ? false : true)
-        .subscribe(
-          () => {
-            this.loading = false;
-            this._helperService.showSnackBarInformation(this.snackBar, 'Modificación Exitosa');
-            this.dialogRef.close(true);
-          },
-          error => {
-            this.loading = false;
-            this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-        })
-    );
+  private async modifyConcepto(): Promise<void> {
+
+    const source$ = this._conceptoService.updateConcepto(this.data.concepto.id,
+                                                          this.form.value.conceptoFormControl.toString(),
+                                                          this.form.value.debitoCreditoControl === "0" ? false : true);
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.loading = false;
+      this._helperService.showSnackBarInformation(this.snackBar, 'Modificación Exitosa');
+      this.dialogRef.close(true);
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
+
   }
 }

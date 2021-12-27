@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { SumaryMonth } from './../../models/sumaryMonth';
+import { Component, OnInit } from '@angular/core';
 import { DiarioService } from '../../services/diario.service';
 import { IConceptoDiario } from '../../models/concepto.diario';
 import { UsersService } from '../../services/users.service';
@@ -10,7 +11,7 @@ import { ISaldoItem } from '../../models/saldoItem';
 import { DatePipe } from '@angular/common';
 import { SumaryMonthService } from '../../services/sumary-month.service';
 import { SumaryAnioService } from '../../services/sumary-anio.service';
-import { forkJoin, Subscription } from 'rxjs';
+import { combineLatest, firstValueFrom, map } from 'rxjs';
 import { CalculationService } from '../../sharedServices/calculationService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UrlConstants } from '../../constants/url.constants';
@@ -18,21 +19,20 @@ import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { SumaryAnio } from '../../models/sumaryAnio';
 
 @Component({
   selector: 'app-diario',
   templateUrl: './diario.component.html',
   styleUrls: ['./diario.component.css']
 })
-export class DiarioComponent implements OnInit, OnDestroy {
+export class DiarioComponent implements OnInit {
   conceptos: IConceptoDiario[];
   loading: Boolean = false;
   loadingPopup: Boolean = false;
   displayedColumns: string[] = ['descripcion', 'importe'];
   currentDate: FormControl;
   saldoDiario = 0;
-
-  private _subscriptions = new Subscription();
 
   constructor(private _conceptosDiarioService: DiarioService,
               public _userService: UsersService,
@@ -49,19 +49,14 @@ export class DiarioComponent implements OnInit, OnDestroy {
               public saldoAbierto: MatDialog) {}
 
   ngOnInit() {
-    this._subscriptions.add(this.activeRoute.params
+    this.activeRoute.params
       .subscribe(routeParams => {
         const controlDate = this.getDateFromUrl();
         controlDate.setMonth(controlDate.getMonth() - 1);
         this.currentDate = new FormControl(controlDate);
 
         this.getData();
-      })
-    );
-  }
-
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
+      });
   }
 
   changeDate(type: string, event: MatDatepickerInputEvent<Date>): void {
@@ -69,33 +64,31 @@ export class DiarioComponent implements OnInit, OnDestroy {
     this.router.navigate([UrlConstants.DASHBOARD, UrlConstants.DIARIO, newDate]);
   }
 
-  getData(): void {
+  async getData(): Promise<void> {
     this.loading = true;
 
-    this._subscriptions.add(this._conceptosDiarioService.getConceptosImportes(this.currentDate.value)
-        .subscribe(
-            data => {
-              this.conceptos = data;
-              this.saldoDiario = this.getIngresos() - this.getEgresos();
-              this.loading = false;
-            },
-            error => {
-              this.loading = false;
-              this.snackBar.open(this._helperService.getErrorMessage(error),
-                                 '',
-                                 { duration: 2000, panelClass: ['error-snackbar'], direction: 'ltr', verticalPosition: 'bottom' });
-            })
-    );
+    const source$ = this._conceptosDiarioService.getConceptosImportes(this.currentDate.value);
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.conceptos = data;
+      this.saldoDiario = this.getIngresos() - this.getEgresos();
+      this.loading = false;
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
   openConcepto(concepto: IConceptoDiario): void {
     const dialogRef = this.enterDiario.open(DiarioEnterComponent, { data: {concepto}, width: '300px', });
 
-    this._subscriptions.add(dialogRef.afterClosed()
+    dialogRef.afterClosed()
       .subscribe(result => {
         this.saldoDiario = this.getIngresos() - this.getEgresos();
-      })
-    );
+      });
   }
 
   private getIngresos(): number {
@@ -122,58 +115,72 @@ export class DiarioComponent implements OnInit, OnDestroy {
 
     saldos.push(saldoItemDiario);
 
-    this._subscriptions.add(forkJoin(this._sumaryMonthService.getSumary(this.currentDate.value),
-                                              this._sumaryAnioService.getSumary(this.currentDate.value))
-        .subscribe(([mensual, anual]) => {
+    const source1$ = this._sumaryMonthService.getSumary(this.currentDate.value);
+    const source2$ = this._sumaryAnioService.getSumary(this.currentDate.value);
 
-          const saldoItemMensual: ISaldoItem = {
-            title: '' + this._helperService.toCamelCase(this.datePipe.transform(new Date(this.currentDate.value),
-                   'LLLL yyyy')),
-            icon: 'calendar_today',
-            ingresos: mensual.in,
-            egresos: mensual.out,
-            concept: 'mensual',
-            date: new Date(this.currentDate.value)
-          };
-          saldos.push(saldoItemMensual);
+    try {
 
+      combineLatest({
+        mensual: source1$,
+        anual: source2$
+      })
+      .pipe(
+        map(response => {
+          const mensual = <SumaryMonth>response.mensual;
+          const anual = <SumaryAnio>response.anual;
+          const result: any = {};
 
-          const saldoItemAnual: ISaldoItem = {
-            title: 'Año ' + this.datePipe.transform(new Date(this.currentDate.value), 'yyyy'),
-            icon: 'airplay',
-            ingresos: anual.in,
-            egresos: anual.out,
-            concept: 'mensual',
-            date: new Date(this.currentDate.value)
-          };
-          saldos.push(saldoItemAnual);
+          result.mensual = mensual;
+          result.anual = anual;
 
-          this.loadingPopup = false;
-          const dialogRef = this.saldoAbierto.open(SaldoAbiertoComponent, { width: '500px', data: {saldos} });
-
-          this._subscriptions.add(dialogRef.componentInstance.itemPushed
-            .subscribe((item: ISaldoItem) => {
-              if (item.concept === UrlConstants.DIARIO) {
-                return;
-              }
-
-              dialogRef.close();
-
-              if (item.concept === UrlConstants.ANUAL) {
-                this.router.navigate([UrlConstants.DASHBOARD, item.concept, item.date.getFullYear(), 'none']);
-              } else {
-                this.router.navigate([UrlConstants.DASHBOARD, item.concept, item.date.toISOString(), 'none']);
-              }
-            })
-          );
-        },
-        error => {
-          this.loadingPopup = false;
-          this.snackBar.open(this._helperService.getErrorMessage(error),
-                             '',
-                             { duration: 2000, panelClass: ['error-snackbar'], direction: 'ltr', verticalPosition: 'bottom' });
+          return result;
         })
-    );
+      )
+      .subscribe((data) => {
+
+        const saldoItemMensual: ISaldoItem = {
+          title: '' + this._helperService.toCamelCase(this.datePipe.transform(new Date(this.currentDate.value),
+                 'LLLL yyyy')),
+          icon: 'calendar_today',
+          ingresos: data.mensual.in,
+          egresos: data.mensual.out,
+          concept: 'mensual',
+          date: new Date(this.currentDate.value)
+        };
+        saldos.push(saldoItemMensual);
+
+        const saldoItemAnual: ISaldoItem = {
+          title: 'Año ' + this.datePipe.transform(new Date(this.currentDate.value), 'yyyy'),
+          icon: 'airplay',
+          ingresos: data.anual.in,
+          egresos: data.anual.out,
+          concept: 'mensual',
+          date: new Date(this.currentDate.value)
+        };
+        saldos.push(saldoItemAnual);
+
+        this.loadingPopup = false;
+        const dialogRef = this.saldoAbierto.open(SaldoAbiertoComponent, { width: '500px', data: {saldos} });
+
+        dialogRef.componentInstance.itemPushed
+          .subscribe((item: ISaldoItem) => {
+            if (item.concept === UrlConstants.DIARIO) {
+              return;
+            }
+
+            dialogRef.close();
+
+            if (item.concept === UrlConstants.ANUAL) {
+              this.router.navigate([UrlConstants.DASHBOARD, item.concept, item.date.getFullYear(), 'none']);
+            } else {
+              this.router.navigate([UrlConstants.DASHBOARD, item.concept, item.date.toISOString(), 'none']);
+            }
+          });
+      });
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
   private convertToNumberArray(dataIn: IConceptoDiario[]): number[] {

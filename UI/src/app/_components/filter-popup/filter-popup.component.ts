@@ -3,7 +3,7 @@ import { ConceptoService } from './../../services/concepto.service';
 import { IMensualFilter } from './../../models/mensual.filter';
 import { IConcepto } from './../../models/concepto';
 import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,7 +21,6 @@ export class FilterPopupComponent implements OnInit {
   private _allConceptos: IConcepto[] = [];
   public allConceptos: IConcepto[] = [];
   public allConceptosFiltered: IMensualFilter;
-  private _subscriptions = new Subscription();
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   filterInput: string;
 
@@ -40,20 +39,23 @@ export class FilterPopupComponent implements OnInit {
     this.getConceptos();
   }
 
-  getConceptos() {
+  async getConceptos() : Promise<void>{
     this.loading = true;
-    this._subscriptions.add(this._conceptoService.getConceptos()
-        .subscribe(
-            data => {
-              this._allConceptos = data;
-              this.allConceptos = data;
-              this.loading = false;
-            },
-            error => {
-              this.loading = false;
-              this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-            })
-    );
+
+    const source$ = this._conceptoService.getConceptos();
+
+    try {
+
+      const data = await firstValueFrom(source$);
+
+      this._allConceptos = data;
+      this.allConceptos = data;
+      this.loading = false;
+
+    } catch (error) {
+      this.loading = false;
+      this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+    }
   }
 
   onChangeConcepto(event: string) {

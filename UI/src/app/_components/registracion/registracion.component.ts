@@ -1,5 +1,5 @@
 import { UrlConstants } from './../../constants/url.constants';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
@@ -9,21 +9,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
-import { Subscription } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-registracion',
   templateUrl: './registracion.component.html',
   styleUrls: ['./registracion.component.css']
 })
-export class RegistracionComponent implements OnInit, OnDestroy {
+export class RegistracionComponent implements OnInit {
   registerForm: FormGroup;
   startDate = new Date((new Date()).getFullYear() - 20, 0, 1);
   monedas: string[];
   loading = false;
   loginUrl = UrlConstants.LOGIN;
   dialogRef: MatDialogRef<WelcomeComponent>;
-  private _subscriptions = new Subscription();
 
   constructor(private formBuilder: FormBuilder,
               private usersService: UsersService,
@@ -46,31 +45,28 @@ export class RegistracionComponent implements OnInit, OnDestroy {
       this.monedas = this.usersService.getAvailablesCurrencies();
     }
 
-    ngOnDestroy(): void {
-      this._subscriptions.unsubscribe();
-    }
-
-    register(): void {
+    async register(): Promise<void> {
       this.loading  = true;
       const user = this.createUser();
 
-      this._subscriptions.add(this.usersService.register(user)
-          .subscribe(
-            data => {
-              this.loading  = false;
-              this.dialogRef = this.welcomeDialog.open(WelcomeComponent, { data: {user} });
+      const source$ = this.usersService.register(user);
 
-              this._subscriptions.add(this.dialogRef.afterClosed()
-                .subscribe(() => {
-                  this.router.navigate([UrlConstants.LOGIN]);
-                })
-              );
-            },
-            error => {
-              this.loading  = false;
-              this._helperService.showSnackBarError(this.snackBar, this.helperService.getErrorMessage(error));
-            })
-      );
+      try {
+        const data = await firstValueFrom(source$);
+
+        this.loading  = false;
+        this.dialogRef = this.welcomeDialog.open(WelcomeComponent, { data: {user} });
+
+        this.dialogRef.afterClosed()
+          .subscribe(() => {
+            this.router.navigate([UrlConstants.LOGIN]);
+          });
+
+      } catch (error) {
+        this.loading = false;
+        this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
+      }
+
     }
 
     private createUser(): User {
