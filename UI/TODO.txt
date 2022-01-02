@@ -4,7 +4,6 @@
   - Subscriptions: add subscription and destroy
   - Use interfaces
 - Improve lists management
-- Migrate angular 9
   - Use string for url routes, instead of dates (diario, mensual)
 - Login with google or facebook
 
@@ -36,5 +35,6 @@
 	- Mensual: remove items with ammount 0
 - Replace deprecated subscribe
 - There are deprecated warnings when running npm install
+- Create APK app
 
 

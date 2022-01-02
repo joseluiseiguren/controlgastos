@@ -9,6 +9,7 @@ import { filter } from 'rxjs/operators';
 import { UrlConstants } from '../../constants/url.constants';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +26,7 @@ export class DashboardComponent extends ComponentBase implements OnInit, OnDestr
               private _datePipe: DatePipe,
               private changeDetectorRef: ChangeDetectorRef,
               private media: MediaMatcher,
+              public translate: TranslateService,
               public aboutDialog: MatDialog) {
     super(changeDetectorRef, media);
 
