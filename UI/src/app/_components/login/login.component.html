@@ -1,29 +1,39 @@
 <div class="loginContainer">
   <div class="login">
-    <p>
-      <mat-card-title>MoneyGuard</mat-card-title>
-    </p>
+    <div id="titleContainer">
+      <div id ="divTitle">
+        <p>
+          <mat-card-title>MoneyGuard</mat-card-title>
+        </p>
+      </div>
+      <div id="divLang">
+        <mat-select [(value)]="this.translate.defaultLang" (selectionChange)="selectLang($event)">
+          <mat-option *ngFor="let lang of this.translate.langs" [value]="lang">{{lang}}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+
     <form [formGroup]="loginForm" class="full-width-form" (ngSubmit)="login()" novalidate>
       <div>
         <mat-form-field appearance="outline" class="formfield-full-width" >
-          <mat-label>E-Mail</mat-label>
-          <input matInput placeholder="E-Mail" formControlName="emailFormControl">
+          <mat-label>{{'login.email' | translate }}</mat-label>
+          <input matInput placeholder="{{'login.email' | translate }}" formControlName="emailFormControl">
           <mat-icon matSuffix>face</mat-icon>
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="outline" class="formfield-full-width">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" placeholder="Password" formControlName="pwdFormControl">
+          <mat-label>{{'login.password' | translate }}</mat-label>
+          <input matInput type=password placeholder="{{'login.password' | translate }}" formControlName="pwdFormControl">
           <mat-icon matSuffix>vpn_key</mat-icon>
         </mat-form-field>
       </div>
       <div class="buttons-section">
         <div class="register-container">
-          <a mat-button color="register" [routerLink]="registerUrl">Registrarse</a>
+          <a mat-button color="register" [routerLink]="registerUrl">{{'login.register' | translate }}</a>
         </div>
         <div class="login-button-container">
-          <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid || loading">Login
+          <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid || loading">{{'login.login' | translate }}
             <mat-icon>directions_run</mat-icon>
           </button>
           <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>

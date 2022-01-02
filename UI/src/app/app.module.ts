@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from './_modules/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { SumaryMonthService } from './services/sumary-month.service';
@@ -28,6 +28,9 @@ import { HashLocationStrategy, LocationStrategy, CurrencyPipe, registerLocaleDat
 import { AppComponent } from './app.component';
 import { LoginComponent } from './_components/login/login.component';
 import { AboutComponent } from './_components/about/about.component';
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
@@ -80,6 +83,13 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+         provide: TranslateLoader,
+         useFactory: httpTranslateLoader,
+         deps: [HttpClient]
+         }
+      }),
     MatToolbarModule,
     SharedModule,
     BrowserAnimationsModule,
@@ -117,3 +127,8 @@ const routes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

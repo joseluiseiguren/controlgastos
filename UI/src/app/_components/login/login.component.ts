@@ -2,12 +2,12 @@ import { HelperService } from './../../services/helper.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
-import { IpService } from '../../services/ip.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { firstValueFrom } from 'rxjs';
 import { UrlConstants } from '../../constants/url.constants';
 import { DatePipe } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
                 private _datePipe: DatePipe,
                 private _helperService: HelperService,
                 public snackBar: MatSnackBar,
-                private _ipService: IpService) {
+                public translate: TranslateService) {
+
       if (this.usersService.isSessionExpired() === false) {
         this.ingresarApp();
       }
@@ -46,6 +47,8 @@ export class LoginComponent implements OnInit {
         pwdFormControl: ['', [Validators.required]]
       });
 
+      /*
+      //To get IP information
       const source$ = this._ipService.getClientIp();
 
       try {
@@ -73,6 +76,7 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
       }
+      */
 
     }
 
@@ -80,14 +84,25 @@ export class LoginComponent implements OnInit {
       this.loading = true;
 
       const source$ = this.usersService.login(this.loginForm.value.emailFormControl, this.loginForm.value.pwdFormControl, JSON.stringify(this.location));
-      const data = await firstValueFrom(source$);
-      if (data === true) {
+
+      try {
+        const data = await firstValueFrom(source$);
+        if (data === true) {
+          this.loading = false;
+          this.ingresarApp();
+        } else {
+          this._helperService.showSnackBarError(this.snackBar, this.translate.instant('login.accessDenied'));
+          this.loading = false;
+        }
+
+      } catch (error) {
         this.loading = false;
-        this.ingresarApp();
-      } else {
-        this._helperService.showSnackBarError(this.snackBar, 'Acceso Denegado');
-        this.loading = false;
+        this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
       }
+    }
+
+    public selectLang(lang) : void {
+      this.translate.use(lang.value);
     }
 
     private ingresarApp () {

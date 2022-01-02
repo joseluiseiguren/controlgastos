@@ -21,6 +21,7 @@ import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { TranslateService } from '@ngx-translate/core';
 
 export const MY_FORMATS = {
   parse: {
@@ -73,6 +74,7 @@ export class MensualComponent extends ComponentBase implements OnInit {
               private router: Router,
               private changeDetector: ChangeDetectorRef,
               private calculationService: CalculationService,
+              public translate: TranslateService,
               private _helperService: HelperService) {
     super(changeDetectorRef, media);
   }

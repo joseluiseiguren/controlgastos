@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import 'hammerjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,9 @@ import 'hammerjs';
 export class AppComponent {
   pageTitle = 'app';
 
-  constructor() { }
+  constructor(translate: TranslateService) {
+    translate.addLangs(['en', 'es', 'fr']);
+    translate.setDefaultLang('en');
+    translate.use('en');
+  }
 }

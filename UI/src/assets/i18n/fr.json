@@ -1,0 +1,13 @@
+{
+  "login": {
+      "login": "Connexion",
+      "password": "Mot de passe",
+      "email": "E-Mail",
+      "register": "S'inscrire",
+      "accessDenied": "Accès refusé"
+  },
+  "about": {
+    "close": "Fermer",
+    "version": "Version {{version}}"
+  }
+}

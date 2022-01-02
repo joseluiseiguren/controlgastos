@@ -1,0 +1,13 @@
+{
+  "login": {
+      "login": "Login",
+      "password": "Password",
+      "email": "E-Mail",
+      "register": "Register",
+      "accessDenied": "Access Denied"
+  },
+  "about": {
+    "close": "Close",
+    "version": "Version {{version}}"
+  }
+}

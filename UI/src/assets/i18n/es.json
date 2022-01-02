@@ -1,0 +1,13 @@
+{
+  "login": {
+      "login": "Ingresar",
+      "password": "Contraseña",
+      "email": "E-Mail",
+      "register": "Registrarse",
+      "accessDenied": "Acceso Denegado"
+  },
+  "about": {
+    "close": "Cerrar",
+    "version": "Versión {{version}}"
+  }
+}
