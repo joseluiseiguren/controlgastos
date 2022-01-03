@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AnualComponent } from 'src/app/_components/anual/anual.component';
+import { AnualComponent } from './../../_components/anual/anual.component';
 
 const routes: Routes = [
   { path: ':anio/:open', component: AnualComponent }

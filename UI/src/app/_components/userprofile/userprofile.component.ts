@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../../models/user';
 import { firstValueFrom } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-userprofile',
@@ -20,6 +21,7 @@ export class UserprofileComponent implements OnInit {
   constructor(private _userService: UsersService,
               private formBuilder: FormBuilder,
               private _helperService: HelperService,
+              public translate: TranslateService,
               public snackBar: MatSnackBar) {  }
 
   ngOnInit() {
@@ -65,7 +67,7 @@ export class UserprofileComponent implements OnInit {
       const data = await firstValueFrom(source$);
 
       this._userService.setUserName(userProfile.name);
-      this._helperService.showSnackBarSuccess(this.snackBar, 'Modificacion Exitosa');
+      this._helperService.showSnackBarSuccess(this.snackBar, this.translate.instant('message.successfulOperation'));
       this.loadingAceptar  = false;
       this.profileForm.markAsPristine();
 

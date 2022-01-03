@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { firstValueFrom } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-diario-enter',
@@ -26,6 +27,7 @@ export class DiarioEnterComponent implements OnInit {
               private _conceptosDiarioService: DiarioService,
               public snackBar: MatSnackBar,
               private _helperService: HelperService,
+              public translate: TranslateService,
               public dialogRef: MatDialogRef<DiarioEnterComponent>,
               @Inject(MAT_DIALOG_DATA) public data: {concepto: IConceptoDiario}) { }
 

@@ -12,7 +12,7 @@
                     type="number"
                     (focus)="$event.target.select()"
                     class="importe"
-                    placeholder="Importe"
+                    placeholder="{{'dailyScreen.amount' | translate }}"
                     formControlName="importeFormControl"
                     appTwoDigitDecimaNumber
                     autocomplete="off">
@@ -20,8 +20,8 @@
       </div>
       <div>
         <mat-radio-group formControlName="debitoCreditoControl">
-            <mat-radio-button class="debito" value="0">Débito</mat-radio-button>
-            <mat-radio-button class="credito" value="1">Crédito</mat-radio-button>
+            <mat-radio-button class="debito" value="0">{{'concept.debit' | translate }}</mat-radio-button>
+            <mat-radio-button class="credito" value="1">{{'concept.credit' | translate }}</mat-radio-button>
         </mat-radio-group>
       </div>
       <mat-form-field class="tags-chip-list">
@@ -32,7 +32,7 @@
             {{tag}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
-          <input placeholder="Movimiento Tags"
+          <input placeholder="{{'dailyScreen.tags' | translate }}"
                   [matChipInputFor]="chipList"
                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                   (matChipInputTokenEnd)="addTag($event)">
@@ -42,10 +42,10 @@
       <div class="buttons-section">
           <mat-card-actions>
               <div class="cancel-button">
-                  <button  mat-raised-button type="button" (click)="onCancel()">Cancelar</button>
+                  <button  mat-raised-button type="button" (click)="onCancel()">{{'button.cancel' | translate }}</button>
               </div>
               <div class="save-button">
-                  <button mat-raised-button type="submit" [disabled]="!(form.valid) || loading" color="primary">Aceptar</button>
+                  <button mat-raised-button type="submit" [disabled]="!(form.valid) || loading" color="primary">{{'button.ok' | translate }}</button>
               </div>
           </mat-card-actions>
       </div>

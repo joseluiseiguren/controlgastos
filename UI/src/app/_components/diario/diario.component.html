@@ -13,7 +13,7 @@
         <input matInput
               readonly
               [matDatepicker]="picker"
-              placeholder="Fecha Consumos"
+              placeholder="{{'dailyScreen.date' | translate }}"
               [formControl]="currentDate"
               (click)="picker.open()"
               (dateChange)="changeDate('change', $event)">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="column saldos">
-      <app-saldo [titulo]="'Saldo Diario'" [saldo]="saldoDiario" (saldoClicked)="showOpenSaldo()"></app-saldo>
+      <app-saldo [titulo]="this.dailyBalanceTitle" [saldo]="saldoDiario" (saldoClicked)="showOpenSaldo()"></app-saldo>
     </div>
   </div>
 

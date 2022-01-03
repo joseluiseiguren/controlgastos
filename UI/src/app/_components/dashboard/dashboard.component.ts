@@ -32,7 +32,7 @@ export class DashboardComponent extends ComponentBase implements OnInit, OnDestr
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd))
-        .subscribe((event: NavigationEnd) => {
+        .subscribe((event: any) => {
           this.actualPageTitle = this.getPageTitle(event.url);
       });
   }
@@ -91,27 +91,27 @@ export class DashboardComponent extends ComponentBase implements OnInit, OnDestr
     const prefix = '/' + UrlConstants.DASHBOARD + '/';
 
     if (url.startsWith(prefix + UrlConstants.DIARIO)) {
-      return ' - Diario';
+      return ' - ' + this.translate.instant('menu.daily');
     }
 
     if (url.startsWith(prefix + UrlConstants.MENSUAL)) {
-      return ' - Mensual';
+      return ' - ' + this.translate.instant('menu.monthly');
     }
 
     if (url.startsWith(prefix + UrlConstants.ANUAL)) {
-      return ' - Anual';
+      return ' - ' + this.translate.instant('menu.annual');
     }
 
     if (url.startsWith(prefix + UrlConstants.HISTORICO)) {
-      return ' - Histórico';
+      return ' - ' + this.translate.instant('menu.historic');
     }
 
     if (url.startsWith(prefix + UrlConstants.CONCEPTOS)) {
-      return ' - Conceptos';
+      return ' - ' + this.translate.instant('menu.concepts');
     }
 
-    if (url.startsWith(prefix + UrlConstants.USERPROFILE)) {
-      return ' - Perfil';
+    if (url.startsWith(prefix + UrlConstants.USERS + '/' + UrlConstants.USERPROFILE)) {
+      return ' - ' + this.translate.instant('menu.profile');
     }
 
     return '';

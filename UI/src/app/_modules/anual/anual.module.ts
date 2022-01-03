@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AnualRoutingModule } from './anual-routing.module';
-import { AnualComponent } from 'src/app/_components/anual/anual.component';
+import { AnualComponent } from './../../_components/anual/anual.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AnualComponent } from 'src/app/_components/anual/anual.component';
   imports: [
     CommonModule,
     SharedModule,
-    AnualRoutingModule
+    AnualRoutingModule,
+    TranslateModule
   ]
 })
 export class AnualModule { }

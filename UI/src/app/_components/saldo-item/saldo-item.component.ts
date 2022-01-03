@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ISaldoItem } from '../../models/saldoItem';
 import { UsersService } from '../../services/users.service';
 
@@ -12,7 +13,7 @@ export class SaldoItemComponent {
   @Input() items: ISaldoItem[];
   @Output() itemClicked = new EventEmitter();
 
-  constructor(public _userService: UsersService) { }
+  constructor(public _userService: UsersService, public translate: TranslateService) { }
 
   onGoDetails (item: ISaldoItem) {
     this.itemClicked.emit(item);

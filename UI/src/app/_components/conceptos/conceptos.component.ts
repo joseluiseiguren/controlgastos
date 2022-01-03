@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConceptoDialogComponent } from '../concepto-dialog/concepto-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-conceptos',
@@ -17,9 +18,18 @@ export class ConceptosComponent implements OnInit {
   loading = false;
   conceptos: IConcepto[] = [];
 
+  get debitTitle(): string {
+    return this.translate.instant("concept.debit");
+  }
+
+  get creditTitle(): string {
+    return this.translate.instant("concept.credit");
+  }
+
   constructor(private _conceptoService: ConceptoService,
               private _helperService: HelperService,
               public conceptoDialog: MatDialog,
+              public translate: TranslateService,
               public snackBar: MatSnackBar) { }
 
   ngOnInit() {

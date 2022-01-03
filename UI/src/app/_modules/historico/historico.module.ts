@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { HistoricoRoutingModule } from './historico-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     HistoricoRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ]
 })
 export class HistoricoModule { }

@@ -61,6 +61,14 @@ export class MensualComponent extends ComponentBase implements OnInit {
   private previousMonth = '';
   private filters: IMensualFilter;
 
+  get monthlyBalanceTitleMobile(): string {
+    return this.translate.instant('monthly.balanceMobile');
+  }
+
+  get monthlyBalanceTitle(): string {
+    return this.translate.instant('monthly.balance');
+  }
+
   constructor(changeDetectorRef: ChangeDetectorRef,
               private location: Location,
               private media: MediaMatcher,
@@ -155,7 +163,7 @@ export class MensualComponent extends ComponentBase implements OnInit {
       const anual = await firstValueFrom(source$);
 
       const saldoItemAnual: ISaldoItem = {
-        title: 'Año ' + this._datePipe.transform(this.getDateFromUrl(), 'yyyy'),
+        title: this.translate.instant('monthly.year') + ' ' + this._datePipe.transform(this.getDateFromUrl(), 'yyyy'),
         icon: 'airplay',
         ingresos: anual.in,
         egresos: anual.out,
