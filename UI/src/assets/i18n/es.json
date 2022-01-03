@@ -40,7 +40,9 @@
     "annual": "Anual",
     "historic": "Histórico",
     "concepts": "Conceptos",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "logout": "Salir",
+    "about": "Acerca de"
   },
   "dailyScreen": {
     "date": "Fecha",
