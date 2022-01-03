@@ -9,37 +9,37 @@
   <mat-sidenav-container class="main-sidenav-container"
        [style.marginTop.px]="isMobile() ? 56 : 0">
           <mat-sidenav #snav [fixedInViewport]="isMobile()" fixedTopGap="56" (click)="snav.toggle()">
-          <mat-nav-list>            
+          <mat-nav-list>
               <a mat-list-item (click)='routeDiario()'>
-                <mat-icon>today</mat-icon>Diario
+                <mat-icon>today</mat-icon>{{'menu.daily' | translate }}
               </a>
               <a mat-list-item (click)="routeMensual()">
-                <mat-icon>calendar_today</mat-icon>Mensual
+                <mat-icon>calendar_today</mat-icon>{{'menu.monthly' | translate }}
               </a>
               <a mat-list-item (click)="routeAnual()">
-                <mat-icon>airplay</mat-icon>Anual
+                <mat-icon>airplay</mat-icon>{{'menu.annual' | translate }}
               </a>
               <a mat-list-item (click)="routeHistorico()">
-                <mat-icon>blur_linear</mat-icon>Historico
+                <mat-icon>blur_linear</mat-icon>{{'menu.historic' | translate }}
               </a>
               <a mat-list-item (click)="routeConceptos()">
-                <mat-icon>add_chart</mat-icon>Conceptos
+                <mat-icon>add_chart</mat-icon>{{'menu.concepts' | translate }}
               </a>
               <mat-divider></mat-divider>
               <a mat-list-item (click)="routeUserProfile()">
-                <mat-icon>person_outline</mat-icon>Perfil
-              </a>              
+                <mat-icon>person_outline</mat-icon>{{'menu.profile' | translate }}
+              </a>
               <a mat-list-item (click)="logout()">
-                <mat-icon>exit_to_app</mat-icon>LogOut
+                <mat-icon>exit_to_app</mat-icon>{{'menu.logout' | translate }}
               </a>
               <mat-divider></mat-divider>
               <a mat-list-item (click)="about()">
-                <mat-icon>content_paste</mat-icon>Acerca De
-              </a>              
+                <mat-icon>content_paste</mat-icon>{{'menu.about' | translate }}
+              </a>
           </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-          <router-outlet></router-outlet>        
+          <router-outlet></router-outlet>
       </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
