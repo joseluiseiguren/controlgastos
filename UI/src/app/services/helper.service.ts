@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class HelperService {
 
-    constructor() { }
+    constructor(private translate: TranslateService) { }
 
     getErrorMessage(error: any): string {
         let message = '';
@@ -16,7 +17,7 @@ export class HelperService {
 
         switch (error.status) {
             case 0:
-              message = 'No se pudo conectar al servidor, intentar nuevamente';
+              message = this.translate.instant("http.cantConnectWithServer");
               break;
 
             case 400: /* bad request */
@@ -24,11 +25,11 @@ export class HelperService {
               break;
 
             case 401: /* Unathorized */
-              message = 'Session Expirada';
+              message = this.translate.instant("http.sessionExpired");
               break;
 
             case 500: /* internal server error */
-              message = 'Error Inesperado: ' + error.error.ErrorTraceId;
+              message = this.translate.instant("http.unexpectedError", {error: error.error.ErrorTraceId});
               break;
           }
 

@@ -7,13 +7,15 @@ import { DiarioEnterComponent } from '../../_components/diario-enter/diario-ente
 
 import { DiarioRoutingModule } from './diario-routing.module';
 import { SharedModule } from './../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ DiarioComponent, DiarioEnterComponent, TwoDigitDecimaNumberDirective ],
   imports: [
     CommonModule,
     DiarioRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ],
   entryComponents: [ DiarioEnterComponent ],
 })

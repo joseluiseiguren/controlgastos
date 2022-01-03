@@ -9,6 +9,7 @@ import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/m
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-filter-popup',
@@ -30,6 +31,7 @@ export class FilterPopupComponent implements OnInit {
   constructor(private _conceptoService: ConceptoService,
               private _helperService: HelperService,
               public snackBar: MatSnackBar,
+              public translate: TranslateService,
               public dialogRef: MatDialogRef<FilterPopupComponent>,
               @Inject(MAT_DIALOG_DATA) allFilters: IMensualFilter) {
     this.allConceptosFiltered = allFilters;

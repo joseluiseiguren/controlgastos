@@ -8,6 +8,7 @@ import { ISaldoItem } from '../../models/saldoItem';
 import { SaldoAbiertoComponent } from '../saldo-abierto/saldo-abierto.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-historico',
@@ -21,11 +22,16 @@ export class HistoricoComponent implements OnInit {
   loadingDetail = false;
   saldoActual = 0;
 
+  get historicalBalanceTitle(): string {
+    return this.translate.instant('historical.balance');
+  }
+
   constructor(private _diarioService: DiarioService,
               public _userService: UsersService,
               private calculationService: CalculationService,
               public snackBar: MatSnackBar,
               public saldoAbierto: MatDialog,
+              public translate: TranslateService,
               private _helperService: HelperService) {
   }
 
@@ -92,7 +98,7 @@ export class HistoricoComponent implements OnInit {
     const saldos: ISaldoItem[] = [];
 
     const saldoItemHistorico: ISaldoItem = {
-      title: 'Historico',
+      title: this.translate.instant('historical.historical'),
       icon: 'blur_linear',
       ingresos: this.getIngresos(),
       egresos: this.getEgresos(),

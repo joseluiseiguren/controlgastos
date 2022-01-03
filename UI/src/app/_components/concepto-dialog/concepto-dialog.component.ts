@@ -6,6 +6,7 @@ import { HelperService } from '../../services/helper.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-concepto-dialog',
@@ -16,10 +17,19 @@ export class ConceptoDialogComponent implements OnInit {
   form: FormGroup;
   loading = false;
 
+  get newConceptTitle(): string{
+    return this.translate.instant('concept.newConcept');
+  }
+
+  get editConceptTitle(): string{
+    return this.translate.instant('concept.editConcept');
+  }
+
   constructor(private fb: FormBuilder,
               private snackBar: MatSnackBar,
               private _conceptoService: ConceptoService,
               private _helperService: HelperService,
+              public translate: TranslateService,
               public dialogRef: MatDialogRef<ConceptoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: {concepto: IConcepto}) { }
 
@@ -55,7 +65,7 @@ export class ConceptoDialogComponent implements OnInit {
     try {
       const data = await firstValueFrom(source$);
 
-      this._helperService.showSnackBarInformation(this.snackBar, 'Alta Exitosa');
+      this._helperService.showSnackBarInformation(this.snackBar, this.translate.instant('message.successfulOperation'));
       this.dialogRef.close(true);
 
     } catch (error) {
@@ -74,7 +84,7 @@ export class ConceptoDialogComponent implements OnInit {
       const data = await firstValueFrom(source$);
 
       this.loading = false;
-      this._helperService.showSnackBarInformation(this.snackBar, 'Modificación Exitosa');
+      this._helperService.showSnackBarInformation(this.snackBar, this.translate.instant('message.successfulOperation'));
       this.dialogRef.close(true);
 
     } catch (error) {

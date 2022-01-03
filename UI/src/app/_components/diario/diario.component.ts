@@ -20,6 +20,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { SumaryAnio } from '../../models/sumaryAnio';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-diario',
@@ -34,6 +35,10 @@ export class DiarioComponent implements OnInit {
   currentDate: FormControl;
   saldoDiario = 0;
 
+  get dailyBalanceTitle() : string {
+    return this.translate.instant('dailyScreen.dailyBalance');
+  }
+
   constructor(private _conceptosDiarioService: DiarioService,
               public _userService: UsersService,
               private _helperService: HelperService,
@@ -46,6 +51,7 @@ export class DiarioComponent implements OnInit {
               private router: Router,
               private location: Location,
               public enterDiario: MatDialog,
+              public translate: TranslateService,
               public saldoAbierto: MatDialog) {}
 
   ngOnInit() {
@@ -150,7 +156,7 @@ export class DiarioComponent implements OnInit {
         saldos.push(saldoItemMensual);
 
         const saldoItemAnual: ISaldoItem = {
-          title: 'Año ' + this.datePipe.transform(new Date(this.currentDate.value), 'yyyy'),
+          title: this.translate.instant('dailyScreen.year') + ' ' + this.datePipe.transform(new Date(this.currentDate.value), 'yyyy'),
           icon: 'airplay',
           ingresos: data.anual.in,
           egresos: data.anual.out,

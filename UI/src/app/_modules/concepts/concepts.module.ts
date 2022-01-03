@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from './../shared/shared.module';
 
 import { ConceptsRoutingModule } from './concepts-routing.module';
-import { ConceptosComponent } from 'src/app/_components/conceptos/conceptos.component';
-import { ConceptoDialogComponent } from 'src/app/_components/concepto-dialog/concepto-dialog.component';
+import { ConceptosComponent } from './../../_components/conceptos/conceptos.component';
+import { ConceptoDialogComponent } from './../../_components/concepto-dialog/concepto-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ConceptoDialogComponent } from 'src/app/_components/concepto-dialog/con
   imports: [
     CommonModule,
     SharedModule,
-    ConceptsRoutingModule
+    ConceptsRoutingModule,
+    TranslateModule
   ],
   entryComponents: [ ConceptoDialogComponent ],
 })

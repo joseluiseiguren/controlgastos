@@ -11,6 +11,7 @@ import { CalculationService } from '../../sharedServices/calculationService';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UrlConstants } from '../../constants/url.constants';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-anual',
@@ -27,6 +28,10 @@ export class AnualComponent implements OnInit, AfterViewChecked {
   saldoAnual = 0;
   openItem: string;
 
+  get saldoTitle() : string {
+    return this.translate.instant('yearScreen.yearBalance');
+  }
+
   constructor(private _datePipe: DatePipe,
               private _diarioService: DiarioService,
               public _userService: UsersService,
@@ -36,6 +41,7 @@ export class AnualComponent implements OnInit, AfterViewChecked {
               private router: Router,
               private changeDetector: ChangeDetectorRef,
               private activeRoute: ActivatedRoute,
+              public translate: TranslateService,
               private _helperService: HelperService) {
     this.anioSelected = this.getYearFromUrl();
   }

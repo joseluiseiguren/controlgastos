@@ -3,6 +3,7 @@ import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angu
 import { FilterPopupComponent } from '../filter-popup/filter-popup.component';
 import { Subscription } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-filter',
@@ -16,7 +17,7 @@ export class FilterComponent implements OnDestroy {
   filters: IMensualFilter = {conceptos: [], tags: []};
   private _subscriptions = new Subscription();
 
-  constructor(private filterPopup: MatDialog) { }
+  constructor(private filterPopup: MatDialog, public translate: TranslateService) { }
 
   ngOnDestroy() {
     this._subscriptions.unsubscribe();

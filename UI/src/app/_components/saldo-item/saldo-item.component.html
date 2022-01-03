@@ -7,19 +7,19 @@
     </mat-card-header>
     <mat-list>
         <mat-list-item>
-            <div class="itemTitle">Ingresos</div>
+            <div class="itemTitle">{{'balance.income' | translate }}</div>
             <div class="itemValue">{{item.ingresos | currency:this._userService.userCurrency}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-            <div class="itemTitle">Egresos</div>
+            <div class="itemTitle">{{'balance.outcome' | translate }}</div>
             <div class="itemValue">{{item.egresos | currency:this._userService.userCurrency}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item
             [class.importeNegativo]="(item.ingresos - item.egresos) < 0"
             [class.importePositivo]="(item.ingresos - item.egresos) >= 0">
-            <div class="itemTitle">Saldo</div>
+            <div class="itemTitle">{{'balance.balance' | translate }}</div>
             <div class="itemValue">
                 {{(item.ingresos - item.egresos) | currency:this._userService.userCurrency}}
             </div>
