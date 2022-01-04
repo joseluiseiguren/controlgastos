@@ -6,6 +6,7 @@ import { UrlService } from './url.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class UsersService {
@@ -15,13 +16,14 @@ export class UsersService {
     public userName = new BehaviorSubject<string>('');
 
     constructor(private _http: HttpClient,
+                private translate: TranslateService,
                 private _urlService: UrlService) {
       this.setUserName(this.getUserNameFromToken());
     }
 
-    login(email: string, password: string, location: string ): Observable<boolean> {
+    login(email: string, password: string, language: string ): Observable<boolean> {
         return this._http.post<any>(this._urlService.urlLogin(),
-                {email, password, location})
+                {email, password, language})
                 .pipe(
                   map(user => {
                     // login successful if there's a jwt token in the response
@@ -30,6 +32,7 @@ export class UsersService {
                         localStorage.setItem('alow', user.token);
                         this.userCurrency = this.getMoneda();
                         this.setUserName(this.getUserNameFromToken());
+                        this.setLang(this.getUserLanguageFromToken());
                         return true;
                     }
 
@@ -46,9 +49,10 @@ export class UsersService {
         return this._http.post<any>(this._urlService.urlRegistracion(),
                 {email: usuario.email,
                  password: usuario.password,
-                 nombre: usuario.name,
-                 fechanacimiento: fechanacimiento,
-                 moneda: usuario.currency});
+                 name: usuario.name,
+                 bornDate: fechanacimiento,
+                 currency: usuario.currency,
+                 language: usuario.language});
     }
 
     updateProfile(usuario: User): Observable<void> {
@@ -59,9 +63,10 @@ export class UsersService {
         return this._http.put<any>(this._urlService.urlUserUpdateProfile(),
                 {email: usuario.email,
                  password: usuario.password,
-                 nombre: usuario.name,
-                 fechanacimiento: fechanacimiento,
-                 moneda: usuario.currency});
+                 name: usuario.name,
+                 bornDate: fechanacimiento,
+                 currency: usuario.currency,
+                 language: usuario.language});
     }
 
     logout() {
@@ -92,6 +97,21 @@ export class UsersService {
 
         return userName;
     }
+
+    private setLang(lang: string) : void {
+      this.translate.use(lang);
+    }
+
+    private getUserLanguageFromToken(): string {
+      const token = localStorage.getItem('alow');
+      let userLang = '';
+
+      if (token !== null) {
+          userLang = this.jwtHelper.decodeToken(token).lang;
+      }
+
+      return userLang;
+  }
 
     setUserName(userName: string): void {
       this.userName.next(userName);
@@ -127,6 +147,7 @@ export class UsersService {
                                                 statusId: res.statusId,
                                                 entryDate: new Date(res.entryDate),
                                                 name: res.name,
+                                                language: res.language,
                                                 currency: res.currency,
                                                 bornDate: new Date(res.bornDate),
                                                 email: res.email,

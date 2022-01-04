@@ -8,7 +8,9 @@ namespace Backend.Dto
 
         public string Password { get; set; }
 
+        public string Language { get; set; }
+
         internal UserLoginCommand ToCommand()
-            => new(Email, Password);
+            => new(Email, Password, Language);
     }
 }

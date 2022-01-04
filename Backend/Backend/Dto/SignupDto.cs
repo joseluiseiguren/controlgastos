@@ -9,14 +9,16 @@ namespace Backend.Dto
         
         public string Email { get; set; }
 
-        public string Nombre { get; set; }
+        public string Name { get; set; }
 
-        public string Fechanacimiento { get; set; }
+        public string BornDate { get; set; }
 
-        public string Moneda { get; set; }
+        public string Currency { get; set; }
+
+        public string Language { get; set; }
 
         internal UserSignupCommand ToCommand()
-            => new(Password, Email, Nombre, DateOnly.ParseExact(Fechanacimiento, "yyyyMMdd", null), Moneda);
+            => new(Password, Email, Name, DateOnly.ParseExact(BornDate, "yyyyMMdd", null), Currency, Language);
 
     }
 }

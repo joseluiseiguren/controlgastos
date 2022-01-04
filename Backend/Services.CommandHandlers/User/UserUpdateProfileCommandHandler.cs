@@ -34,6 +34,7 @@ namespace Services.CommandHandlers.User
             userFoundById.UpdateCurrecny(command.Currency);
             userFoundById.UpdateEmail(command.Email);
             userFoundById.UpdateName(command.Name);
+            userFoundById.UpdateLanguage(command.Language);
 
             await _userRepository.UpdateUserAsync(userFoundById);
         }

@@ -8,10 +8,13 @@ namespace Domain.Commands
 
         public string Password { get; init; }
 
-        public UserLoginCommand(string email, string password)
+        public string Language { get; set; }
+
+        public UserLoginCommand(string email, string password, string language)
         {
             this.Email = email;
             this.Password = password;
+            this.Language = language;
         }
     }
 }

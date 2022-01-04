@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
     async login() {
       this.loading = true;
 
-      const source$ = this.usersService.login(this.loginForm.value.emailFormControl, this.loginForm.value.pwdFormControl, JSON.stringify(this.location));
+      const source$ = this.usersService.login(this.loginForm.value.emailFormControl, this.loginForm.value.pwdFormControl, this.translate.currentLang);
 
       try {
         const data = await firstValueFrom(source$);

@@ -41,7 +41,8 @@ export class RegistracionComponent implements OnInit {
         nameFormControl: ['', [Validators.required]],
         passwordFormControl: ['', [Validators.required]],
         passwordRepeatFormControl: [''],
-        monedaFormControl: ['', [Validators.required]]
+        monedaFormControl: ['', [Validators.required]],
+        languageFormControl: ['', [Validators.required]]
       }, {validator: this.usersService.checkPasswords });
 
       this.monedas = this.usersService.getAvailablesCurrencies();
@@ -71,11 +72,16 @@ export class RegistracionComponent implements OnInit {
 
     }
 
+    public selectLang(lang) : void {
+      this.translate.use(lang.value);
+    }
+
     private createUser(): User {
       const user: User = {
         email: this.registerForm.value.emailFormControl,
         bornDate: this.registerForm.value.fechaNacimientoFormControl,
         currency: this.registerForm.value.monedaFormControl,
+        language: this.registerForm.value.languageFormControl,
         name: this.registerForm.value.nameFormControl,
         entryDate: null,
         id: null,

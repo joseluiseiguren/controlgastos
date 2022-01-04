@@ -76,6 +76,7 @@ namespace Repository.CosmosDB
                             statusId: Convert.ToInt32(userDB.StatusId),
                             currency: userDB.Currency.ToString(),
                             password: userDB.Password.ToString(),
+                            language:  userDB.Language?.ToString() ?? "en",
                             entryDate: DateTime.Parse(userDB.EntryDate.ToString()));
         }
     }
