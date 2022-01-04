@@ -7,6 +7,7 @@ using Shared.Helpers;
 using System;
 using UserModel = Domain.Model.User;
 using System.Threading.Tasks;
+using Services.CommandHandlers.Helper;
 
 namespace Services.CommandHandlers.User
 {
@@ -24,7 +25,7 @@ namespace Services.CommandHandlers.User
             var existingUser = await _userRepository.GetUserByEmailAsync(command.Email);
             if (existingUser != null)
             {
-                throw new BusinessException("Ya existe un usuario con el mismo email");
+                throw new BusinessException(ResourceHelper.GetString("USER_EXISTS", command.Language));
             }
 
             var user = new UserModel(id: Guid.NewGuid().ToString(),
@@ -35,7 +36,8 @@ namespace Services.CommandHandlers.User
                                         statusId: (int)UserStatus.OK,
                                         currency: command.Currency,
                                         password: PasswordHelper.HashPassword(command.Password),
-                                        entryDate: DateTime.UtcNow);
+                                        entryDate: DateTime.UtcNow,
+                                        language: command.Language);
 
             await _userRepository.InsertUserAsync(user);
         }

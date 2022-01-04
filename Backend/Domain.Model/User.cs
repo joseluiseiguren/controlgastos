@@ -23,6 +23,8 @@ namespace Domain.Model
 
         public DateTime EntryDate { get; private set; }
 
+        public string Language { get; private set; }
+
         public User()
         {
         }
@@ -35,7 +37,8 @@ namespace Domain.Model
                     int statusId, 
                     string currency, 
                     string password, 
-                    DateTime entryDate)
+                    DateTime entryDate,
+                    string language)
         {
             UpdateId(id);
             UpdateInvalidLoginAttempts(invalidLoginAttempts);
@@ -46,6 +49,7 @@ namespace Domain.Model
             UpdateCurrecny(currency);
             UpdateEntryDate(entryDate);
             UpdatePassword(password);
+            UpdateLanguage(language);
         }
 
         public void UpdateInvalidLoginAttempts(int invalidLoginAttempts)
@@ -56,6 +60,16 @@ namespace Domain.Model
             }
 
             this.InvalidLoginAttempts = invalidLoginAttempts;
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            if (string.IsNullOrEmpty(language) || language.Length != 2)
+            {
+                throw new BusinessException($"Language is invalid: {language}");
+            }
+
+            this.Language = language;
         }
 
         public void UpdateEmail(string email)

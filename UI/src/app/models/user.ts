@@ -7,4 +7,5 @@ export interface User {
     statusId: number;
     password: string;
     currency: string;
+    language: string;
 }

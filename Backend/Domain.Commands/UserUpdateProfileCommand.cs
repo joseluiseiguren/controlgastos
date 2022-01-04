@@ -14,7 +14,9 @@ namespace Domain.Commands
 
         public string Currency { get; init; }
 
-        public UserUpdateProfileCommand(string userId, string password, string email, string name, DateOnly bornDate, string currency)
+        public string Language { get; init; }
+
+        public UserUpdateProfileCommand(string userId, string password, string email, string name, DateOnly bornDate, string currency, string language)
             : base(userId)
         {
             this.Password = password;
@@ -22,6 +24,7 @@ namespace Domain.Commands
             this.Name = name;
             this.BornDate = bornDate;
             this.Currency = currency;
+            this.Language = language;
         }
     }
 }

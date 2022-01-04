@@ -75,7 +75,8 @@
     "password": "Mot de passe",
     "repeatPassword": "Répéter le mot de passe",
     "goToLogin": "Aller à la connexion",
-    "signup": "Inscrivez-vous"
+    "signup": "Inscrivez-vous",
+    "language": "Langue"
   },
   "balance": {
     "income": "Revenu",

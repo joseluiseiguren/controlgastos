@@ -15,13 +15,16 @@ namespace Domain.Commands
 
         public string Currency { get; init; }
 
-        public UserSignupCommand(string password, string email, string name, DateOnly bornDate, string currency)
+        public string Language { get; set; }
+
+        public UserSignupCommand(string password, string email, string name, DateOnly bornDate, string currency, string language)
         {
             this.Password = password;
             this.Email = email;
             this.Name = name;
             this.BornDate = bornDate;
             this.Currency = currency;
+            this.Language = language;
         }
     }
 }

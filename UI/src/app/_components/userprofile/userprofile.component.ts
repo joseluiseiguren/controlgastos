@@ -31,7 +31,8 @@ export class UserprofileComponent implements OnInit {
       emailFormControl: ['', [Validators.required, Validators.email]],
       fechaNacimientoFormControl: ['', [Validators.required]],
       nameFormControl: ['', [Validators.required]],
-      monedaFormControl: ['', [Validators.required]]
+      monedaFormControl: ['', [Validators.required]],
+      languageFormControl: ['', [Validators.required]]
     });
     this.getData();
   }
@@ -47,7 +48,8 @@ export class UserprofileComponent implements OnInit {
       this.profileForm.setValue({emailFormControl: data.email,
               nameFormControl: data.name,
               fechaNacimientoFormControl: data.bornDate,
-              monedaFormControl: data.currency});
+              monedaFormControl: data.currency,
+              languageFormControl: data.language});
       this.loading = false;
 
     } catch (error) {
@@ -77,11 +79,16 @@ export class UserprofileComponent implements OnInit {
     }
   }
 
+  public selectLang(lang) : void {
+    this.translate.use(lang.value);
+  }
+
   private createUser(): User {
     const user: User = {
       email: this.profileForm.value.emailFormControl,
       bornDate: new Date(this.profileForm.value.fechaNacimientoFormControl),
       currency: this.profileForm.value.monedaFormControl,
+      language: this.profileForm.value.languageFormControl,
       name: this.profileForm.value.nameFormControl,
       entryDate: null,
       id: null,

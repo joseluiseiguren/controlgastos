@@ -75,7 +75,8 @@
     "password": "Password",
     "repeatPassword": "Repeat Password",
     "goToLogin": "Go To Login",
-    "signup": "Signup"
+    "signup": "Signup",
+    "language": "Language"
   },
   "balance": {
     "income": "Income",

@@ -14,6 +14,8 @@ namespace Domain.Queries.Outputs
 
         public string Currency { get; set; }
 
+        public string Language { get; set; }
+
         public DateTime EntryDate { get; set; }
     }
 }

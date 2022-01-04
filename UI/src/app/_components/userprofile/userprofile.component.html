@@ -25,7 +25,6 @@
                 <input matInput
                         readonly
                         [matDatepicker]="picker"
-                        placeholder="xxx"
                         formControlName="fechaNacimientoFormControl"
                         (click)="picker.open()">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -35,10 +34,18 @@
         <div>
             <mat-form-field appearance="outline" class="formfield-full-width" >
                 <mat-label>{{'signup.currency' | translate }}</mat-label>
-                <mat-select formControlName="monedaFormControl">
+                <mat-select formControlName="monedaFormControl" >
                     <mat-option *ngFor="let moneda of monedas" [value]="moneda">{{moneda}}</mat-option>
                 </mat-select>
             </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="formfield-full-width" >
+              <mat-label>{{'signup.language' | translate }}</mat-label>
+              <mat-select formControlName="languageFormControl" (selectionChange)="selectLang($event)"  >
+                <mat-option *ngFor="let lang of this.translate.langs" [value]="lang">{{lang}}</mat-option>
+              </mat-select>
+          </mat-form-field>
         </div>
         <div class="buttons-section">
             <div class="register-button-container">

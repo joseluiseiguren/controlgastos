@@ -33,6 +33,7 @@ namespace Services.QueryHandlers.User
             {
                 BornDate = user.BornDate.ToString("yyyy/MM/dd"),
                 Currency = user.Currency,
+                Language = user.Language,
                 Email = user.Email,
                 EntryDate = user.EntryDate,
                 Name = user.Name,
