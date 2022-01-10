@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.moneyguard.mobile" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MoneyGuard</name>
+    <description>MoneyGuard App</description>
+    <author email="joseluiseiguren@gmail.com" href="https://github.com/joseluiseiguren">
+        Jose Luis Eiguren
+    </author>
+    <content src="index.html" />
+    <icon src="./assets/icons/icon-128x128.png" width="57" height="57" density="mdpi" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+</widget>

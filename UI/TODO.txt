@@ -11,7 +11,7 @@
 - url con caracteres especiales, pincha. Por ejemplo con caracter: (
 - poder buscar en las tablas
 - en pc dejar el menu siempre visible
-- traducciones I18N
+	- traducciones I18N
 - preguntar antes de hacer el logout
 - en apple hay pantallas que no funcionan
 - pantalla conceptos: table header mas grande

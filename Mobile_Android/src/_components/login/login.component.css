@@ -1,0 +1,74 @@
+.loginContainer {
+    padding-top: 25px;
+    text-align: center;
+  }
+
+  div.login {
+    width: 500px;
+    padding: 10px 10px 0px 10px;
+    border: 1px solid #BFBFBF;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    display: inline-block;
+  }
+
+  .full-width-form {
+    width: 100%;
+  }
+
+  .formfield-full-width {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .mat-register {
+    color: rgb(45, 155, 206);
+  }
+
+  .register-container{
+    float: left;
+    text-align: left;
+  }
+
+  .login-button-container{
+    float: right;
+    text-align: center;
+  }
+
+  .buttons-section{
+    padding-top: 10px;
+    padding-bottom: 50px;
+  }
+
+  .mat-spinner {
+    float:left;
+    margin: 5px 10px 0px 0px;
+  }
+
+ #titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #divTitle {
+      align-self: center;
+      width: 100%;
+  }
+  #divLang {
+      width:5rem;
+      margin-left: 1rem;
+      align-self: center;
+      margin-left: auto;
+  }
+
+
+
+
+@media only screen and (max-width: 600px) {
+    div.login {
+        width: 90%;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        box-shadow: none;
+    }
+}

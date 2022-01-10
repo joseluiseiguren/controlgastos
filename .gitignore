@@ -73,3 +73,6 @@ Backend/.vs/
 /Backend/Services.QueryHandlers/bin/Release/net6.0
 /Backend/Shared.Execptions/bin/Release/net6.0
 /UI/.angular/cache
+/Mobile_Android/.vscode
+/Mobile_Android/src/node_modules
+/Mobile_Android/src/www
