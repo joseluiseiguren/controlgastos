@@ -1,0 +1,7 @@
+<div class="saldos">
+  <p onMouseOver="this.style.cursor='pointer'"
+      [class.saldoNegativo]="saldo < 0"
+      (click)="onClick()">
+    {{titulo}}: {{saldo | currency:this._userService.userCurrency}}
+  </p>
+</div>

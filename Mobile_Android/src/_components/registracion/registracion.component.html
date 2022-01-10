@@ -1,0 +1,72 @@
+<div class="registerContainer">
+    <div class="register">
+      <p>
+        <mat-card-title>{{'signup.signup' | translate }}</mat-card-title>
+      </p>
+      <form [formGroup]="registerForm" class="full-width-form" (ngSubmit)="register()" novalidate>
+        <div>
+            <mat-form-field appearance="outline" class="formfield-full-width" >
+                <mat-label>{{'signup.name' | translate }}</mat-label>
+                <input matInput placeholder="{{'signup.name' | translate }}" formControlName="nameFormControl">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="formfield-full-width" >
+                <mat-label>{{'signup.email' | translate }}</mat-label>
+                <input matInput placeholder="{{'signup.email' | translate }}" formControlName="emailFormControl">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="formfield-full-width">
+                <input matInput
+                        readonly
+                        [matDatepicker]="picker"
+                        placeholder="{{'signup.bornDate' | translate }}"
+                        formControlName="fechaNacimientoFormControl"
+                        (click)="picker.open()">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker [startAt]="startDate" startView="multi-year" #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="formfield-full-width" >
+                <mat-label>{{'signup.currency' | translate }}</mat-label>
+                <mat-select formControlName="monedaFormControl">
+                    <mat-option *ngFor="let moneda of monedas" [value]="moneda">{{moneda}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="formfield-full-width">
+              <mat-label>{{'signup.language' | translate }}</mat-label>
+              <mat-select formControlName="languageFormControl" (selectionChange)="selectLang($event)">
+                  <mat-option *ngFor="let lang of this.translate.langs" [value]="lang">{{lang}}</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="formfield-full-width" >
+                <mat-label>{{'signup.password' | translate }}</mat-label>
+                <input matInput type="password" placeholder="{{'signup.password' | translate }}" formControlName="passwordFormControl">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="formfield-full-width" >
+                <mat-label>{{'signup.repeatPassword' | translate }}</mat-label>
+                <input matInput type="password" placeholder="{{'signup.repeatPassword' | translate }}" formControlName="passwordRepeatFormControl">
+            </mat-form-field>
+        </div>
+        <div class="buttons-section">
+            <div class="login-container">
+                <a mat-button color="login" [routerLink]="loginUrl">{{'signup.goToLogin' | translate }}</a>
+            </div>
+            <div class="register-button-container">
+                <button mat-raised-button type="submit" color="primary" [disabled]="!registerForm.valid || loading">{{'button.ok' | translate }}
+                <mat-icon>how_to_reg</mat-icon>
+                </button>
+                <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
