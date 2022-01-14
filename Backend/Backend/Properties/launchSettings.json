@@ -3,6 +3,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://192.168.0.12:8089/backend",
+      "sslPort": 4433
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:41799",
       "sslPort": 44362
@@ -23,6 +27,15 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Backend.iis": {
+      "commandName": "IIS",
+      "ancmHostingModel": "OutOfProcess",
+      "launchUrl": "swagger",
+      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
