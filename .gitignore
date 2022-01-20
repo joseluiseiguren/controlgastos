@@ -77,3 +77,4 @@ Backend/.vs/
 /Mobile_Android/src/node_modules
 /Mobile_Android/src/www
 /Mobile_Android/src/platforms/android/app/release
+/Mobile_Android/src/platforms/android/app/src/*

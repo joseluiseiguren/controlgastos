@@ -36,7 +36,7 @@ export class ConceptoDialogComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       conceptoFormControl: [this.data.concepto ? this.data.concepto.descripcion : '', Validators.required],
-      debitoCreditoControl: this.data.concepto !== undefined && this.data.concepto.credito === true ? '1' : '0'
+      debitoCreditoControl: this.data.concepto !== null && this.data.concepto.credito === true ? '1' : '0'
     });
   }
 
