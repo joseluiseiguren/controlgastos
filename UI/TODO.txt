@@ -36,5 +36,8 @@
 - Replace deprecated subscribe
 - There are deprecated warnings when running npm install
 - Create APK app
+- Loading animation when app is starting
+- Logo in login
+- Flags in language selection
 
 
