@@ -4,11 +4,13 @@
   }
 
   div.login {
-    width: 500px;
+    width: 90%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-shadow: none;
     padding: 10px 10px 0px 10px;
-    border: 1px solid #BFBFBF;
-    box-shadow: 10px 10px 5px #aaaaaa;
     display: inline-block;
+    border: 1px solid #BFBFBF;
   }
 
   .full-width-form {
@@ -62,13 +64,14 @@
   }
 
 
+  .mat-select-panel mat-option.mat-option:not(:first-child) {
+    height: unset;
+  }
+  .mat-select-panel {
+    margin-top: 2em !important;
+  }
+  .mat-option-text.mat-option-text {
+    white-space: normal;
+  }
 
 
-@media only screen and (max-width: 600px) {
-    div.login {
-        width: 90%;
-        margin-top: 5px;
-        margin-bottom: 10px;
-        box-shadow: none;
-    }
-}

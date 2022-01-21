@@ -29,6 +29,7 @@ import { ConceptoService } from 'src/services/concepto.service';
 import { IpService } from 'src/services/ip.service';
 import { FormatingService } from 'src/sharedServices/formatingService';
 import { CalculationService } from 'src/sharedServices/calculationService';
+import { LangService } from 'src/sharedServices/langService';
 
 const routes: Routes = [
 
@@ -99,6 +100,7 @@ const routes: Routes = [
     HelperService,
     FormatingService,
     CalculationService,
+    LangService,
     UrlService,
     CurrencyPipe,
     DatePipe,

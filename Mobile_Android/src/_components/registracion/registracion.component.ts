@@ -11,6 +11,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { firstValueFrom } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { LangService } from 'src/sharedServices/langService';
 
 @Component({
   selector: 'app-registracion',
@@ -31,6 +32,7 @@ export class RegistracionComponent implements OnInit {
               private helperService: HelperService,
               private router: Router,
               public welcomeDialog: MatDialog,
+              public langService: LangService,
               public translate: TranslateService,
               public snackBar: MatSnackBar) { }
 
@@ -73,7 +75,6 @@ export class RegistracionComponent implements OnInit {
     }
 
     public selectLang(lang) : void {
-      console.log(this.translate);
       this.translate.use(lang.value);
     }
 

@@ -13,7 +13,7 @@ export const environment = {
 //Backend: IIS Express
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44362 /'
+  apiUrl: 'http://localhost:5000/'
 };
 /*
  * For easier debugging in development mode, you can import the following file
