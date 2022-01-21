@@ -62,13 +62,14 @@
   }
 
 
+  .mat-select-panel mat-option.mat-option:not(:first-child) {
+    height: unset;
+  }
+  .mat-select-panel {
+    margin-top: 2em !important;
+  }
+  .mat-option-text.mat-option-text {
+    white-space: normal;
+  }
 
 
-@media only screen and (max-width: 600px) {
-    div.login {
-        width: 90%;
-        margin-top: 5px;
-        margin-bottom: 10px;
-        box-shadow: none;
-    }
-}

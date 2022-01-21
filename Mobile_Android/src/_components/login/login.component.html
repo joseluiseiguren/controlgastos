@@ -1,6 +1,9 @@
 <div class="loginContainer">
   <div class="login">
     <div id="titleContainer">
+      <div>
+        <img src="./../../assets/icons/icon-52x52.png" alt="">
+      </div>
       <div id ="divTitle">
         <p>
           <mat-card-title>MoneyGuard</mat-card-title>
@@ -8,7 +11,12 @@
       </div>
       <div id="divLang">
         <mat-select [(value)]="this.currentLang" (selectionChange)="selectLang($event)">
-          <mat-option *ngFor="let lang of this.translate.langs" [value]="lang">{{lang}}</mat-option>
+          <mat-select-trigger>
+            <img src="{{this.langService.getLangImage(this.translate.currentLang)}}" width="25" height="25" alt="">
+          </mat-select-trigger>
+          <mat-option *ngFor="let lang of this.langService.langsLocal" [value]="lang.value">
+            <img src="{{lang.image}}" width="25" height="25" alt="">
+          </mat-option>
         </mat-select>
       </div>
     </div>
@@ -24,8 +32,8 @@
       <div>
         <mat-form-field appearance="outline" class="formfield-full-width">
           <mat-label>{{'login.password' | translate }}</mat-label>
-          <input matInput type=password placeholder="{{'login.password' | translate }}" formControlName="pwdFormControl">
-          <mat-icon matSuffix>vpn_key</mat-icon>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="{{'login.password' | translate }}" formControlName="pwdFormControl">
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
       </div>
       <div class="buttons-section">
@@ -42,3 +50,5 @@
     </form>
   </div>
 </div>
+
+

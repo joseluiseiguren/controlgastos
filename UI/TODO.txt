@@ -35,9 +35,15 @@
 	- Mensual: remove items with ammount 0
 - Replace deprecated subscribe
 - There are deprecated warnings when running npm install
-- Create APK app
-- Loading animation when app is starting
-- Logo in login
+	- Create APK app
+	- Loading animation when app is starting
+	- Logo in login
+	- Show password icon
 - Flags in language selection
+- Reutilize code for mobile and web projects
+- Web project: if mobile browser is detected, force to download apk
+- Use npm ci instead of npm i
+
+
 
 

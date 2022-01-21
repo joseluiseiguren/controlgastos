@@ -8,6 +8,7 @@ import { firstValueFrom } from 'rxjs';
 import { UrlConstants } from '../../constants/url.constants';
 import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { LangService } from 'src/sharedServices/langService';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,8 @@ export class LoginComponent implements OnInit {
     location: any = {};
     loginForm: FormGroup;
     currentLang = this.translate.currentLang;
+    hidePassword = true;
+
     public registerUrl = '/' + UrlConstants.USERS + '/' + UrlConstants.REGISTRACION;
 
     constructor(private router: Router,
@@ -27,6 +30,7 @@ export class LoginComponent implements OnInit {
                 private _datePipe: DatePipe,
                 private _helperService: HelperService,
                 public snackBar: MatSnackBar,
+                public langService: LangService,
                 public translate: TranslateService) {
 
       if (this.usersService.isSessionExpired() === false) {
