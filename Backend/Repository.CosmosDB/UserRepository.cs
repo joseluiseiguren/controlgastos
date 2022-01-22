@@ -15,7 +15,7 @@ namespace Repository.CosmosDB
 
         public async Task<User> GetUserByEmailAsync(string email)
         {
-            var sqlQueryText = $"SELECT * FROM c WHERE c.Email = '{email}'";
+            var sqlQueryText = $"SELECT * FROM c WHERE lower(c.Email) = '{email.ToLower()}'";
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
