@@ -28,7 +28,7 @@
 - cuando hay error generico, el desplegable del usuario queda por atras
 - Conceptos que no sumen ni resten: y que puedan ser cargados en multiples monedas
 	- Github CD/CI (backend)
-- Login remove key sensitive in email
+	- Login remove key sensitive in email
 	- Update to angular 13
 - Forgot password
 - Enviar email al finallizar mes con summary
@@ -39,10 +39,14 @@
 	- Loading animation when app is starting
 	- Logo in login
 	- Show password icon
-- Flags in language selection
+	- Flags in language selection
 - Reutilize code for mobile and web projects
 - Web project: if mobile browser is detected, force to download apk
 - Use npm ci instead of npm i
+	- Registration: set default language
+- Create npm control for password (use it in login & registration)
+
+
 
 
 

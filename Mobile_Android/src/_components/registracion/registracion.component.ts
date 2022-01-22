@@ -44,7 +44,7 @@ export class RegistracionComponent implements OnInit {
         passwordFormControl: ['', [Validators.required]],
         passwordRepeatFormControl: [''],
         monedaFormControl: ['', [Validators.required]],
-        languageFormControl: ['', [Validators.required]]
+        languageFormControl: [this.translate.currentLang, [Validators.required]]
       }, {validator: this.usersService.checkPasswords });
 
       this.monedas = this.usersService.getAvailablesCurrencies();
