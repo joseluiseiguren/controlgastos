@@ -45,16 +45,10 @@
           </mat-form-field>
         </div>
         <div>
-            <mat-form-field appearance="outline" class="formfield-full-width" >
-                <mat-label>{{'signup.password' | translate }}</mat-label>
-                <input matInput type="password" placeholder="{{'signup.password' | translate }}" formControlName="passwordFormControl">
-            </mat-form-field>
+          <lib-jle-pwd placeholder="{{'signup.password' | translate }}" label="{{'signup.password' | translate }}" formControlName="passwordFormControl"></lib-jle-pwd>
         </div>
         <div>
-            <mat-form-field appearance="outline" class="formfield-full-width" >
-                <mat-label>{{'signup.repeatPassword' | translate }}</mat-label>
-                <input matInput type="password" placeholder="{{'signup.repeatPassword' | translate }}" formControlName="passwordRepeatFormControl">
-            </mat-form-field>
+          <lib-jle-pwd placeholder="{{'signup.repeatPassword' | translate }}" label="{{'signup.repeatPassword' | translate }}" formControlName="passwordRepeatFormControl"></lib-jle-pwd>
         </div>
         <div class="buttons-section">
             <div class="login-container">

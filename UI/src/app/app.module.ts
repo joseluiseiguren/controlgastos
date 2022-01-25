@@ -35,6 +35,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import { UrlConstants } from './constants/url.constants';
+import { LibJlePwdModule } from 'lib-jle-pwd';
 registerLocaleData(localeEs, localeEs);
 registerLocaleData(localeEn, localeEn);
 
@@ -92,6 +93,7 @@ const routes: Routes = [
       }),
     MatToolbarModule,
     SharedModule,
+    LibJlePwdModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
   ],
