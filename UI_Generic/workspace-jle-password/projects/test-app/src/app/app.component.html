@@ -1,2 +1,6 @@
-<h1>Test app v1</h1>
-<lib-jle-pwd></lib-jle-pwd>
+<h1>Test app v2</h1>
+<form [formGroup]="loginForm" class="full-width-form" (ngSubmit)="login()" novalidate>
+  <div>
+    <lib-jle-pwd placeholder="Password" label="Password" formControlName="pwdFormControl"></lib-jle-pwd>
+  </div>
+</form>
