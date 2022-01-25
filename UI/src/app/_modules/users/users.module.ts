@@ -8,6 +8,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UserprofileComponent } from 'src/app/_components/userprofile/userprofile.component';
 import { ErrorMessageComponent } from 'src/app/_components/error-message/error-message.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { LibJlePwdModule } from 'lib-jle-pwd';
 
 @NgModule({
   declarations: [ UserprofileComponent, RegistracionComponent, WelcomeComponent, ErrorMessageComponent ],
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     SharedModule,
     UsersRoutingModule,
-    TranslateModule
+    TranslateModule,
+    LibJlePwdModule
   ],
   entryComponents: [ WelcomeComponent ],
 })

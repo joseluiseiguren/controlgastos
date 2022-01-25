@@ -78,3 +78,8 @@ Backend/.vs/
 /Mobile_Android/src/www
 /Mobile_Android/src/platforms/android/app/release
 /Mobile_Android/src/platforms/android/app/src/*
+/UI_Generic/workspace-jle-password/.vscode
+/UI_Generic/workspace-jle-password/projects/lib-jle-pwd/node_modules
+/UI_Generic/workspace-jle-password/.angular/cache/13.1.4
+/UI_Generic/workspace-jle-password/dist
+/UI_Generic/workspace-jle-password/node_modules

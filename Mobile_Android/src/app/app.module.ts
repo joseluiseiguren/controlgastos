@@ -30,6 +30,7 @@ import { IpService } from 'src/services/ip.service';
 import { FormatingService } from 'src/sharedServices/formatingService';
 import { CalculationService } from 'src/sharedServices/calculationService';
 import { LangService } from 'src/sharedServices/langService';
+import { LibJlePwdModule } from 'lib-jle-pwd';
 
 const routes: Routes = [
 
@@ -86,6 +87,7 @@ const routes: Routes = [
     MatToolbarModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    LibJlePwdModule,
     SharedModule,
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
   ],
