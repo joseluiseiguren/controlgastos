@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -13,14 +13,20 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class LibJlePwdComponent implements ControlValueAccessor {
+export class LibJlePwdComponent implements OnInit, ControlValueAccessor {
 
   hidePassword = true;
 
   @Input () placeholder = '';
   @Input () label = '';
 
-  constructor() { }
+  constructor() {
+    //console.log("xxx")
+  }
+
+  ngOnInit(): void {
+    //debugger;
+  }
 
   onChange: any = () => {}
   onTouch: any = () => {}
