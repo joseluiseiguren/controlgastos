@@ -74,4 +74,15 @@
     white-space: normal;
   }
 
+  #registerLink {
+    padding-left: 0px;
+  }
 
+  #loginButton {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  #registerLink {
+    padding-left: 0px;
+  }

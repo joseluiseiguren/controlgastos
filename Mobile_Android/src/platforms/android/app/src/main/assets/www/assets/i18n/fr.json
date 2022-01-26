@@ -4,6 +4,7 @@
       "password": "Mot de passe",
       "email": "E-Mail",
       "register": "S'inscrire",
+      "forgotPassword": "Mot de passe oublié",
       "accessDenied": "Accès refusé"
   },
   "about": {
@@ -89,5 +90,9 @@
   "welcome": {
     "hello": "Bonjour, {{user}}",
     "message": "Vous pouvez maintenant commencer à charger vos dépenses"
+  },
+  "forgotPassword": {
+    "forgotPassword": "Mot de passe oublié",
+    "checkInbox": "Vérifiez votre messagerie et suivez les instructions"
   }
 }
