@@ -74,4 +74,6 @@
     white-space: normal;
   }
 
-
+  #registerLink {
+    padding-left: 0px;
+  }
