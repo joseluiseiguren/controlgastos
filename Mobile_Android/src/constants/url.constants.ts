@@ -7,6 +7,7 @@ export class UrlConstants {
     static readonly CONCEPTOS = 'conceptos';
     static readonly USERPROFILE = 'profile';
     static readonly REGISTRACION = 'registracion';
+    static readonly FORGOT_PASSWORD = 'forgotpassword';
     static readonly LOGIN = 'login';
     static readonly USERS = 'users';
 }

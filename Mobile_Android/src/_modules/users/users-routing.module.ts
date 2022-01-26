@@ -1,3 +1,4 @@
+import { ForgotPasswordComponent } from './../../_components/forgotPassword/forgotPassword.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UrlConstants } from 'src/constants/url.constants';
@@ -6,7 +7,8 @@ import { UserprofileComponent } from 'src/_components/userprofile/userprofile.co
 
 const routes: Routes = [
   {path: UrlConstants.USERPROFILE, component: UserprofileComponent},
-  {path: UrlConstants.REGISTRACION, component: RegistracionComponent}
+  {path: UrlConstants.REGISTRACION, component: RegistracionComponent},
+  {path: UrlConstants.FORGOT_PASSWORD, component: ForgotPasswordComponent}
 ];
 
 @NgModule({

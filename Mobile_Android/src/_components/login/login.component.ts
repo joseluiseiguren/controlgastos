@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     hidePassword = true;
 
     public registerUrl = '/' + UrlConstants.USERS + '/' + UrlConstants.REGISTRACION;
+    public forgotPasswordUrl = '/' + UrlConstants.USERS + '/' + UrlConstants.FORGOT_PASSWORD;
 
     constructor(private router: Router,
                 private formBuilder: FormBuilder,

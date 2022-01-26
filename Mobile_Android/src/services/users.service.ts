@@ -55,6 +55,12 @@ export class UsersService {
                  language: usuario.language});
     }
 
+    forgotPassword( email: string, lang: string): Observable<void> {
+
+      return this._http.post<any>(this._urlService.urlForgotPassword(),
+              {email: email, language: lang});
+  }
+
     updateProfile(usuario: User): Observable<void> {
         const fechanacimiento = usuario.bornDate.getFullYear().toString() +
                 (usuario.bornDate.getMonth() + 1).toString().padStart(2, '0') +

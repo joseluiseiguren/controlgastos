@@ -45,6 +45,18 @@ namespace Backend.Controllers
             return Ok();
         }
 
+        [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+        [HttpPost]
+        [Route("forgotpassword/request")]
+        public async Task<IActionResult> ForgotPasswordRequest([FromBody] ForgotPasswordRequestDto forgotPasswordRequestDto)
+        {
+            var command = forgotPasswordRequestDto.ToCommand();
+
+            await _applicationMediator.DispatchAsync(command);
+
+            return Ok();
+        }
+
         [Authorize]
         [HttpPut]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateUserProfileDto updateUserProfileDto)
