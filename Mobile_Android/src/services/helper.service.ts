@@ -81,6 +81,6 @@ export class HelperService {
     showSnackBarSuccess(snackBar: MatSnackBar, message: string): void {
       snackBar.open(message,
                     '',
-                    { duration: 2000, panelClass: ['success-snackbar'], direction: 'ltr', verticalPosition: 'bottom' });
+                    { duration: 4000, panelClass: ['success-snackbar'], direction: 'ltr', verticalPosition: 'bottom' });
     }
 }

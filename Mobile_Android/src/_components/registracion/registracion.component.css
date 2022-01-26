@@ -1,20 +1,22 @@
 .registerContainer {
-    padding-top: 25px;  
+    padding-top: 25px;
     text-align: center;
   }
 
   div.register {
-    width: 500px;
+    width: 90%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-shadow: none;
     padding: 10px 10px 0px 10px;
-    border: 1px solid #BFBFBF;
-    box-shadow: 10px 10px 5px #aaaaaa;
     display: inline-block;
+    border: 1px solid #BFBFBF;
   }
 
   .full-width-form {
     width: 100%;
   }
-  
+
   .formfield-full-width {
     min-width: 150px;
     max-width: 500px;
@@ -23,22 +25,22 @@
 
   .register-button-container{
     float: right;
-    text-align: center;  
+    text-align: center;
   }
-  
+
   .buttons-section{
     padding-top: 10px;
     padding-bottom: 50px;
   }
-  
+
   .mat-spinner {
-    float:left; 
+    float:left;
     margin: 5px 10px 0px 0px;
   }
 
   .login-container{
     float: left;
-    text-align: left;  
+    text-align: left;
   }
 
   .mat-login {
@@ -51,5 +53,5 @@
         margin-top: 5px;
         margin-bottom: 10px;
         box-shadow: none;
-    }    
+    }
 }

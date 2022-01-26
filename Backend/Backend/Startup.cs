@@ -49,6 +49,7 @@ namespace Backend
             services.AddMediator()
                .AddAsyncCommandHandler<UserLoginCommand, UserLoginCommandHandler, string>()
                .AddAsyncCommandHandler<UserSignupCommand, UserSignupCommandHandler>()
+               .AddAsyncCommandHandler<UserForgotPasswordRequestCommand, UserForgotPasswordRequestCommandHandler>()
                .AddAsyncCommandHandler<TransactionCreationCommand, TransactionCreationCommandHandler>()
                .AddAsyncCommandHandler<UserUpdateProfileCommand, UserUpdateProfileCommandHandler>()
                .AddAsyncQueryHandler<ConceptsQuery, ConceptQueryHandler, IReadOnlyList<ConceptOutput>>()
