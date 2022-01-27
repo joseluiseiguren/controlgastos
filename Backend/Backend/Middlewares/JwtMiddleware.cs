@@ -50,11 +50,13 @@ namespace Backend.Middlewares
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = jwtToken.Claims.First(x => x.Type == "id").Value;
-                var userName = jwtToken.Claims.First(x => x.Type == "user").Value;
+                var userId = jwtToken.Claims.First(x => x.Type == Constants.ACCESS_TOKEN_USERID).Value;
+                var userName = jwtToken.Claims.First(x => x.Type == Constants.ACCESS_TOKEN_USERNAME).Value;
+                var userAction = jwtToken.Claims.First(x => x.Type == Constants.ACCESS_TOKEN_ACTION).Value;
 
                 context.Items[Constants.HTTP_CONTEXT_USERID] = userId;
                 context.Items[Constants.HTTP_CONTEXT_USERNAME] = userName;
+                context.Items[Constants.HTTP_CONTEXT_ACTION] = userAction;
             }
             catch
             {

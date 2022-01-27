@@ -4,6 +4,7 @@ using Cotecna.Domain.Core;
 using Domain.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Shared.Constants;
 using System.Threading.Tasks;
 
 namespace Backend.Controllers
@@ -51,6 +52,18 @@ namespace Backend.Controllers
         public async Task<IActionResult> ForgotPasswordRequest([FromBody] ForgotPasswordRequestDto forgotPasswordRequestDto)
         {
             var command = forgotPasswordRequestDto.ToCommand();
+
+            await _applicationMediator.DispatchAsync(command);
+
+            return Ok();
+        }
+
+        [Authorize(ActionAllowed = Constants.ACTION_FORGOT_PASSWORD)]
+        [HttpPost]
+        [Route("forgotpassword/apply")]
+        public async Task<IActionResult> ForgotPasswordApply([FromBody] ForgotPasswordApplyDto forgotPasswordApplyDto)
+        {
+            var command = forgotPasswordApplyDto.ToCommand(this.UserId);
 
             await _applicationMediator.DispatchAsync(command);
 

@@ -6,14 +6,13 @@
 - Improve lists management
   - Use string for url routes, instead of dates (diario, mensual)
 - Login with google or facebook
-
 - add gasto desde pantalla de mes
 - url con caracteres especiales, pincha. Por ejemplo con caracter: (
 - poder buscar en las tablas
 - en pc dejar el menu siempre visible
 	- traducciones I18N
 - preguntar antes de hacer el logout
-- en apple hay pantallas que no funcionan
+- Apple: create apk for ios
 - pantalla conceptos: table header mas grande
 - repasar uno por uno los manejos de errores
 - exportacion a excel
@@ -24,7 +23,6 @@
 - en los post validar largos de los campos
 - usar constantes para los status code del frontend
 - el mensaje de error de cada pantalla que tenga un boton de retry
-- probar en distintos browser
 - cuando hay error generico, el desplegable del usuario queda por atras
 - Conceptos que no sumen ni resten: y que puedan ser cargados en multiples monedas
 	- Github CD/CI (backend)
@@ -44,7 +42,9 @@
 - Web project: if mobile browser is detected, force to download apk
 - Use npm ci instead of npm i
 	- Registration: set default language
-- Create npm control for password (use it in login & registration)
+	- Create npm control for password (use it in login & registration)
+- CI in gitub: create trigger for each component/module
+- Azure service bus to send emails
 
 
 
