@@ -1,6 +1,5 @@
 ﻿using Cotecna.Domain.Core;
 using Domain.Commands;
-using Microsoft.IdentityModel.Tokens;
 using Repository.Interfaces;
 using Services.CommandHandlers.Helper;
 using Shared.Constants;
@@ -9,11 +8,7 @@ using Shared.Execptions;
 using Shared.Helpers;
 using Shared.Settings;
 using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
-using UserModel = Domain.Model.User;
 
 namespace Services.Handlers.User
 {
@@ -41,7 +36,7 @@ namespace Services.Handlers.User
             {
                 throw new BusinessException(ResourceHelper.GetString("USER_BLOCKED", command.Language));
             }
-            if (PasswordHelper.HashPassword(command.Password) != user.Password)
+            if (SecurityHelper.HashPassword(command.Password) != user.Password)
             {
                 user.UpdateInvalidLoginAttempts(user.InvalidLoginAttempts + 1);
                 if (user.InvalidLoginAttempts >= MAX_INTENTOS_FALLIDOS_LOGIN)
@@ -61,30 +56,15 @@ namespace Services.Handlers.User
                 }
             }
 
-            var token = GenerateJwtToken(user);
+            var token = SecurityHelper.GenerateJwtToken(_securitySettings.AccessTokenSecret,
+                                                               user.id.ToString(),
+                                                               user.Currency.ToString(),
+                                                               user.Name.ToString(),
+                                                               user.Language.ToString(),
+                                                               Constants.ACTION_LOGGED_IN,
+                                                               DateTime.UtcNow.AddDays(7));
 
             return token;
-        }
-
-        private string GenerateJwtToken(UserModel user)
-        {
-            // generate token that is valid for 7 days
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_securitySettings.AccessTokenSecret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(Constants.ACCESS_TOKEN_USERID, user.id.ToString()),
-                    new Claim(Constants.ACCESS_TOKEN_CURRENCY, user.Currency.ToString()),
-                    new Claim(Constants.ACCESS_TOKEN_USERNAME, user.Name.ToString()),
-                    new Claim(Constants.ACCESS_TOKEN_LANGUAGE, user.Language.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
         }
     }
 }

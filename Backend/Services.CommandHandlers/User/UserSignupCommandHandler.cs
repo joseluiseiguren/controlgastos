@@ -35,7 +35,7 @@ namespace Services.CommandHandlers.User
                                         bornDate: command.BornDate,
                                         statusId: (int)UserStatus.OK,
                                         currency: command.Currency,
-                                        password: PasswordHelper.HashPassword(command.Password),
+                                        password: SecurityHelper.HashPassword(command.Password),
                                         entryDate: DateTime.UtcNow,
                                         language: command.Language);
 

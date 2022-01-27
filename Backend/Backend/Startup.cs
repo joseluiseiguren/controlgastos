@@ -50,6 +50,7 @@ namespace Backend
                .AddAsyncCommandHandler<UserLoginCommand, UserLoginCommandHandler, string>()
                .AddAsyncCommandHandler<UserSignupCommand, UserSignupCommandHandler>()
                .AddAsyncCommandHandler<UserForgotPasswordRequestCommand, UserForgotPasswordRequestCommandHandler>()
+               .AddAsyncCommandHandler<UserForgotPasswordApplyCommand, UserForgotPasswordApplyCommandHandler>()
                .AddAsyncCommandHandler<TransactionCreationCommand, TransactionCreationCommandHandler>()
                .AddAsyncCommandHandler<UserUpdateProfileCommand, UserUpdateProfileCommandHandler>()
                .AddAsyncQueryHandler<ConceptsQuery, ConceptQueryHandler, IReadOnlyList<ConceptOutput>>()
