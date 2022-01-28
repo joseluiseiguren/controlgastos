@@ -93,6 +93,9 @@
   },
   "forgotPassword": {
     "forgotPassword": "Forgot Password",
-    "checkInbox": "Check your email and follow the instructions"
+    "checkInbox": "Check your email and follow the instructions",
+    "passwordUpdate": "Password Update",
+    "updateOK": "Password Updated Successfully",
+    "hello":"Hello, {{userName}}"
   }
 }
