@@ -40,10 +40,11 @@
           <a id="registerLink" mat-button color="register" [routerLink]="forgotPasswordUrl">{{'login.forgotPassword' | translate }}</a>
         </div>
         <div class="login-button-container">
-          <button id="loginButton" mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid || loading">{{'login.login' | translate }}
+          <button id="loginButton" mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid || loading">
+            <span *ngIf="!loading">{{'login.login' | translate }}</span>
             <mat-icon>directions_run</mat-icon>
+            <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
           </button>
-          <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
         </div>
       </div>
     </form>

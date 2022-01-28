@@ -5,8 +5,6 @@ import { UsersService } from '../../services/users.service';
 import { HelperService } from '../../services/helper.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef } from '@angular/material/dialog';
-import { WelcomeComponent } from '../welcome/welcome.component';
 import { firstValueFrom } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -19,7 +17,6 @@ export class ForgotPasswordComponent implements OnInit {
   fpForm: FormGroup;
   loading = false;
   loginUrl = UrlConstants.LOGIN;
-  dialogRef: MatDialogRef<WelcomeComponent>;
 
   constructor(private formBuilder: FormBuilder,
               private usersService: UsersService,

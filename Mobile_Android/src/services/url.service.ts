@@ -53,7 +53,11 @@ export class UrlService {
 
     urlForgotPassword(): string {
       return this._host + 'Account/forgotPassword/request';
-  }
+    }
+
+    urlForgotPasswordApply(): string {
+      return this._host + 'Account/forgotPassword/apply';
+    }
 
     urlUserUpdateProfile(): string {
         return this._host + 'account';

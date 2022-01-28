@@ -45,6 +45,9 @@
 	- Create npm control for password (use it in login & registration)
 - CI in gitub: create trigger for each component/module
 - Azure service bus to send emails
+- Backend: use Microsoft Identity with Azure Table Storage
+- Use redux to handle app status
+
 
 
 
