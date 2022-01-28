@@ -93,6 +93,9 @@
   },
   "forgotPassword": {
     "forgotPassword": "Mot de passe oublié",
-    "checkInbox": "Vérifiez votre messagerie et suivez les instructions"
+    "checkInbox": "Vérifiez votre messagerie et suivez les instructions",
+    "passwordUpdate": "Mise à jour du mot de passe",
+    "updateOK": "Mot de passe mis à jour avec succès",
+    "hello":"Bonjour, {{userName}}"
   }
 }

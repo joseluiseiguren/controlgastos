@@ -40,15 +40,15 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\":\"flopyglorias@gmail.com2\",\n\t\"password\":\"mataderos\"\n}"
+							"raw": "{\n\t\"email\":\"flopyglorias@gmail.com\",\n\t\"password\":\"mataderos\"\n}"
 						},
 						"url": {
-							"raw": "https://localhost:44362/account/login",
+							"raw": "https://localhost:5001/account/login",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44362",
+							"port": "5001",
 							"path": [
 								"account",
 								"login"
@@ -90,7 +90,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\":\"bbb@gmail.com\",\n\t\"password\":\"mataderos11\",\n    \"moneda\": \"USD\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"pepe\"\n}"
+							"raw": "{\n\t\"email\":\"vvv2@gmail.com\",\n\t\"password\":\"mataderos11\",\n    \"moneda\": \"USD\",\n    \"fechanacimiento\": \"19801231\",\n    \"nombre\": \"pepe2\"\n}"
 						},
 						"url": {
 							"raw": "https://localhost:44362/account/signup",
@@ -136,7 +136,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTQ1NjgsImV4cCI6MTYzNzk5OTM2OCwiaWF0IjoxNjM3Mzk0NTY4fQ.pWIcPdQasB-pfNn7NZoGutLdiOW0VbN6os2RdwXbyhU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM5MDYxMzI4LCJleHAiOjE2Mzk2NjYxMjgsImlhdCI6MTYzOTA2MTMyOH0.wr2NGIZZf381fgEzT23GW7Ire1HMW0_QKtr-1BEpt7Q",
 									"type": "string"
 								}
 							]
@@ -150,7 +150,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"flopyglorias@gmail.com2\",\n\t\"password\":\"mataderos\",\n    \"moneda\": \"A\",\n    \"fechanacimiento\": \"19800513\",\n    \"nombre\": \"fora5\"\n}"
+							"raw": "{\n    \"email\": \"flopyglorias@gmail.com\",\n\t\"password\":\"mataderos\",\n    \"moneda\": \"B\",\n    \"fechanacimiento\": \"19800515\",\n    \"nombre\": \"fora5\"\n}"
 						},
 						"url": {
 							"raw": "https://localhost:44362/account",
@@ -175,7 +175,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTQ1NjgsImV4cCI6MTYzNzk5OTM2OCwiaWF0IjoxNjM3Mzk0NTY4fQ.pWIcPdQasB-pfNn7NZoGutLdiOW0VbN6os2RdwXbyhU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yZSIsImxhbmciOiJlbiIsIm5iZiI6MTY0MzI5Mzc4OSwiZXhwIjoxNjQzODk4NTg5LCJpYXQiOjE2NDMyOTM3ODl9.KTpHvgV9JZ6iDvrBehONwS0fZPYzLO7d2GhFFZYnNeQ",
 									"type": "string"
 								}
 							]
@@ -183,15 +183,88 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44362/account/dummy",
+							"raw": "https://localhost:5001/account/dummy",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44362",
+							"port": "5001",
 							"path": [
 								"account",
 								"dummy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ForgotPassword - Request",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"flopyglorias@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/account/forgotpassword/request",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"account",
+								"forgotpassword",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ForgotPassword - Apply",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yZSIsImxhbmciOiJlbiIsImFjdGlvbiI6IkZvcmdvdFBhc3N3b3JkIiwibmJmIjoxNjQzMzAwMzA2LCJleHAiOjE2NDMzMDM5MDYsImlhdCI6MTY0MzMwMDMwNn0.1osUfIG9vTUiS0R6i6laIg4JExJhjn6Yec73I-7wXwQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"mataderos11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/account/forgotpassword/apply",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"account",
+								"forgotpassword",
+								"apply"
 							]
 						}
 					},
@@ -205,7 +278,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IiQiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2MzczOTQ1NjgsImV4cCI6MTYzNzk5OTM2OCwiaWF0IjoxNjM3Mzk0NTY4fQ.pWIcPdQasB-pfNn7NZoGutLdiOW0VbN6os2RdwXbyhU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3ODEwM2ExLTQ1ZDMtNDdhNC1hNmU3LTI2MWNlZmNkYTljYiIsIm1vbmVkYSI6IlVTRCIsInVzZXIiOiJwZXBlMiIsIm5iZiI6MTYzOTA2NDk2NywiZXhwIjoxNjM5NjY5NzY3LCJpYXQiOjE2MzkwNjQ5Njd9.u1jq16dZMF9cC_Na_g6ZPwWzvhkUkkoDBzrjIxtizZg",
 									"type": "string"
 								}
 							]

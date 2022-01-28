@@ -14,7 +14,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (localStorage.getItem('alow') !== null) {
+    if (localStorage.getItem('alow') !== null &&
+        req.headers.get('Authorization') === null) {
       const changedReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('alow')) });
       return next.handle(changedReq).pipe(tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {

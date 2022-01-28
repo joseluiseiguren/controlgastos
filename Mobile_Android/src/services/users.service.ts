@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { User } from '../models/user';
 import { UrlService } from './url.service';
@@ -59,7 +59,16 @@ export class UsersService {
 
       return this._http.post<any>(this._urlService.urlForgotPassword(),
               {email: email, language: lang});
-  }
+    }
+
+    forgotPasswordApply( token: string, password: string ): Observable<void> {
+
+      const headers = new HttpHeaders({'Authorization': 'Bearer ' + token });
+      const data = { "password": password };
+
+      return this._http.post<any>(this._urlService.urlForgotPasswordApply(), data, { headers: headers});
+
+    }
 
     updateProfile(usuario: User): Observable<void> {
         const fechanacimiento = usuario.bornDate.getFullYear().toString() +
