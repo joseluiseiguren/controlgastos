@@ -93,6 +93,9 @@
   },
   "forgotPassword": {
     "forgotPassword": "Olvido de Contraseña",
-    "checkInbox": "Verifique su email y siga las instrucciones"
+    "checkInbox": "Verifique su email y siga las instrucciones",
+    "passwordUpdate": "Actualizar Contraseña",
+    "updateOK": "Contraseña actualizada correctamente",
+    "hello":"Hola, {{userName}}"
   }
 }
