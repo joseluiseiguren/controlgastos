@@ -58,7 +58,7 @@ export class DiarioComponent implements OnInit {
     this.activeRoute.params
       .subscribe(routeParams => {
         const controlDate = this.getDateFromUrl();
-        controlDate.setMonth(controlDate.getMonth() - 1);
+        controlDate.setMonth(controlDate.getMonth());
         this.currentDate = new FormControl(controlDate);
 
         this.getData();
@@ -72,6 +72,7 @@ export class DiarioComponent implements OnInit {
 
   async getData(): Promise<void> {
     this.loading = true;
+
 
     const source$ = this._conceptosDiarioService.getConceptosImportes(this.currentDate.value);
 
@@ -203,7 +204,7 @@ export class DiarioComponent implements OnInit {
     if (dateUrl === null || dateUrl === undefined) {
       throw 'DateUrl is NULL';
     }
-    return new Date(Number(dateUrl[0]), Number(dateUrl[1]), Number(dateUrl[2]));
+    return new Date(Number(dateUrl[0]), Number(dateUrl[1])-1, Number(dateUrl[2]));
   }
 
 
