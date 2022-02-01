@@ -83,3 +83,7 @@ Backend/.vs/
 /UI_Generic/workspace-jle-password/.angular/cache/13.1.4
 /UI_Generic/workspace-jle-password/dist
 /UI_Generic/workspace-jle-password/node_modules
+/Backend/Queue.AzureStorage/bin/Debug/net6.0
+/Backend/Queue.AzureStorage/obj
+/Backend/Queue.Interfaces/bin/Debug/net6.0
+/Backend/Queue.Interfaces/obj

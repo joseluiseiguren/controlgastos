@@ -78,7 +78,9 @@ namespace Backend
             services.AddApplicationInsightsTelemetry().AddLogging();
 
             services.AddSingleton<SecuritySettings>(x => new SecuritySettings(Configuration.GetValue(typeof(string), "AccessTokenSecret").ToString()));
-            services.ConfigureRepository(Configuration.GetConnectionString("cosmosdb"), (Configuration.GetValue(typeof(string), "DatabaseId").ToString()));
+            services.ConfigureRepository(Configuration.GetConnectionString("cosmosdb"), 
+                                         Configuration.GetValue(typeof(string), "DatabaseId").ToString(),
+                                         Configuration.GetConnectionString("queue"));
 
             services.AddControllers().AddJsonOptions(options =>
             {

@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain.Commands\Domain.Commands.csproj" />
+    <ProjectReference Include="..\Queue.Interfaces\Queue.Interfaces.csproj" />
     <ProjectReference Include="..\Repository.Interfaces\Repository.Interfaces.csproj" />
     <ProjectReference Include="..\Shared.Execptions\Shared.csproj" />
   </ItemGroup>
