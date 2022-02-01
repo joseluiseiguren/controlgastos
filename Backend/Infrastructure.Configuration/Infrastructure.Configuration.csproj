@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Queue.AzureStorage\Queue.AzureStorage.csproj" />
+    <ProjectReference Include="..\Queue.Interfaces\Queue.Interfaces.csproj" />
     <ProjectReference Include="..\Repository.CosmosDB\Repository.CosmosDB.csproj" />
     <ProjectReference Include="..\Repository.Interfaces\Repository.Interfaces.csproj" />
   </ItemGroup>

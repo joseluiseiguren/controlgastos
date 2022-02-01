@@ -33,6 +33,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services.QueryHandlers", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Model", "Domain.Model\Domain.Model.csproj", "{E19E305A-B1FF-47CF-9E7F-DE7D0B504F7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.Interfaces", "Queue.Interfaces\Queue.Interfaces.csproj", "{A29D8D8B-1119-4191-AE20-F476E6DE363F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue.AzureStorage", "Queue.AzureStorage\Queue.AzureStorage.csproj", "{DD64F13C-DAD9-4753-B543-70B44906A6DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,14 @@ Global
 		{E19E305A-B1FF-47CF-9E7F-DE7D0B504F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E19E305A-B1FF-47CF-9E7F-DE7D0B504F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E19E305A-B1FF-47CF-9E7F-DE7D0B504F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A29D8D8B-1119-4191-AE20-F476E6DE363F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A29D8D8B-1119-4191-AE20-F476E6DE363F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A29D8D8B-1119-4191-AE20-F476E6DE363F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A29D8D8B-1119-4191-AE20-F476E6DE363F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD64F13C-DAD9-4753-B543-70B44906A6DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD64F13C-DAD9-4753-B543-70B44906A6DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD64F13C-DAD9-4753-B543-70B44906A6DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD64F13C-DAD9-4753-B543-70B44906A6DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +106,8 @@ Global
 		{3F84487F-5EC7-4D75-963D-D0F2233C3DE3} = {AE52E219-A437-4E2C-9EFB-3CB6EB22D00B}
 		{405DA475-D67F-4636-B276-2CB4B3712AF0} = {19201C58-6D68-49FD-AB7D-B73B81DBCF16}
 		{E19E305A-B1FF-47CF-9E7F-DE7D0B504F7E} = {AE52E219-A437-4E2C-9EFB-3CB6EB22D00B}
+		{A29D8D8B-1119-4191-AE20-F476E6DE363F} = {A13DE716-D3DD-4485-925D-77F3F87D21F4}
+		{DD64F13C-DAD9-4753-B543-70B44906A6DE} = {A13DE716-D3DD-4485-925D-77F3F87D21F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {23B91524-CA05-419C-A895-5F305A1D2884}

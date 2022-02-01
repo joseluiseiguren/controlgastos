@@ -8,16 +8,19 @@ using System;
 using UserModel = Domain.Model.User;
 using System.Threading.Tasks;
 using Services.CommandHandlers.Helper;
+using Queue.Interfaces;
 
 namespace Services.CommandHandlers.User
 {
     public class UserSignupCommandHandler : IAsyncCommandHandler<UserSignupCommand>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IQueueRegistrationEvents _registrationQueue;
 
-        public UserSignupCommandHandler(IUserRepository userRepository)
+        public UserSignupCommandHandler(IUserRepository userRepository, IQueueRegistrationEvents registrationQueue)
         {
             _userRepository = userRepository;
+            _registrationQueue = registrationQueue;
         }
 
         public async Task HandleAsync(UserSignupCommand command)
@@ -40,6 +43,7 @@ namespace Services.CommandHandlers.User
                                         language: command.Language);
 
             await _userRepository.InsertUserAsync(user);
+            await _registrationQueue.RegistrationEvent(user);
         }
     }
 }

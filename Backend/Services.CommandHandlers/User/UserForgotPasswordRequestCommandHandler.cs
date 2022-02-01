@@ -8,6 +8,7 @@ using Shared.Settings;
 using Shared.Constants;
 using Shared.Helpers;
 using System;
+using Queue.Interfaces;
 
 namespace Services.CommandHandlers.User
 {
@@ -15,11 +16,13 @@ namespace Services.CommandHandlers.User
     {
         private readonly IUserRepository _userRepository;
         private readonly SecuritySettings _securitySettings;
+        private readonly IQueueForgotPasswordEvents _queueForgotPasswordEvents;
 
-        public UserForgotPasswordRequestCommandHandler(IUserRepository userRepository, SecuritySettings securitySettings)
+        public UserForgotPasswordRequestCommandHandler(IUserRepository userRepository, SecuritySettings securitySettings, IQueueForgotPasswordEvents queueForgotPasswordEvents)
         {
             _userRepository = userRepository;
             _securitySettings = securitySettings;
+            _queueForgotPasswordEvents = queueForgotPasswordEvents;
         }
 
         public async Task HandleAsync(UserForgotPasswordRequestCommand command)
@@ -39,9 +42,7 @@ namespace Services.CommandHandlers.User
                                                                 DateTime.UtcNow.AddMinutes(15));
 
 
-            //TODO: write message to send email in azure queue
-
-
+            await _queueForgotPasswordEvents.ForgotPasswordEvent(existingUser, accessToken);
         }
     }
 }
