@@ -87,3 +87,5 @@ Backend/.vs/
 /Backend/Queue.AzureStorage/obj
 /Backend/Queue.Interfaces/bin/Debug/net6.0
 /Backend/Queue.Interfaces/obj
+/Azure/Functions/ForgotPassword/ForgotPasswordFunction/.vs/ForgotPasswordFunction
+/Azure/Functions/Registration/RegistrationSendEmail/.vs/RegistrationSendEmail

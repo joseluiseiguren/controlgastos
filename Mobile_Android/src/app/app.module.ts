@@ -31,6 +31,8 @@ import { FormatingService } from 'src/sharedServices/formatingService';
 import { CalculationService } from 'src/sharedServices/calculationService';
 import { LangService } from 'src/sharedServices/langService';
 import { LibJlePwdModule } from 'lib-jle-pwd';
+import { FileSystemService } from 'src/sharedServices/fileSystemService';
+import { InternalLogService } from 'src/sharedServices/internalLogService';
 
 const routes: Routes = [
 
@@ -104,6 +106,8 @@ const routes: Routes = [
     CalculationService,
     LangService,
     UrlService,
+    FileSystemService,
+    InternalLogService,
     CurrencyPipe,
     DatePipe,
     AuthGuard,
