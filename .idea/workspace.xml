@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6cab9652-e784-4b46-a4e2-5a74770c9b4f" name="Default Changelist" comment="" />
+    <list default="true" id="6cab9652-e784-4b46-a4e2-5a74770c9b4f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile_Android/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile_Android/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile_Android/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile_Android/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile_Android/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile_Android/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile_Android/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile_Android/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile_Android/src/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile_Android/src/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile_Android/src/platforms/android/app/src/main/assets/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile_Android/src/platforms/android/app/src/main/assets/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/TODO.txt" beforeDir="false" afterPath="$PROJECT_DIR$/UI/TODO.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

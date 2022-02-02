@@ -47,6 +47,8 @@
 - Azure service bus to send emails
 - Backend: use Microsoft Identity with Azure Table Storage
 - Use redux to handle app status
+- When release is in progress, show a message
+- First login: send user to load concepts
 
 
 
