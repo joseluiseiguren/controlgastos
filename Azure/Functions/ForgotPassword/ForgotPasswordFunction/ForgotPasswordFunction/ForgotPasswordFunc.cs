@@ -28,9 +28,12 @@ namespace ForgotPasswordFunction
             var from = new EmailAddress("josheneixe@gmail.com", "Money Guard");
             var subject = Resources.Resource.ResourceManager.GetString("PASSWORD_RECOVERY", CultureInfo.GetCultureInfo(user.Language));
             var to = new EmailAddress(user.Email, "Money Guard");
-            var plainTextContent = "and easy to do anywhere, even with C#";
-            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+
+            const string FORGOT_PASSWORD_URL = "https://blue-desert-01e404210.azurestaticapps.net/forgotpassword/apply/";
+
+            var htmlContent = string.Format(Resources.Resource.ResourceManager.GetString("HTML_HELLO", CultureInfo.GetCultureInfo(user.Language)), user.Name);
+            htmlContent += string.Format(Resources.Resource.ResourceManager.GetString("HTML_USE_THIS_LINK", CultureInfo.GetCultureInfo(user.Language)), FORGOT_PASSWORD_URL + user.Token);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlContent);
             var response = await client.SendEmailAsync(msg);
 
             log.LogInformation($"{id} - Email sent status: {response.StatusCode}");
