@@ -89,3 +89,7 @@ Backend/.vs/
 /Backend/Queue.Interfaces/obj
 /Azure/Functions/ForgotPassword/ForgotPasswordFunction/.vs/ForgotPasswordFunction
 /Azure/Functions/Registration/RegistrationSendEmail/.vs/RegistrationSendEmail
+/Azure/Functions/ForgotPassword/ForgotPasswordFunction/ForgotPasswordFunction/bin
+/Azure/Functions/ForgotPassword/ForgotPasswordFunction/ForgotPasswordFunction/obj
+/Azure/Functions/ForgotPassword/ForgotPasswordFunction/ForgotPasswordFunction/ForgotPasswordFunction.csproj.user
+*.user

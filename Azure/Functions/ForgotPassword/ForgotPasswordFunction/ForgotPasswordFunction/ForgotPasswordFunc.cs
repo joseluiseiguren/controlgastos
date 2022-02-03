@@ -8,7 +8,7 @@ namespace ForgotPasswordFunction
         [FunctionName("ForgotPasswordFunc")]
         public void Run([QueueTrigger("forgotpasswordqueue", Connection = "AzureWebJobsStorage")]string myQueueItem, ILogger log)
         {
-            log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
+            log.LogInformation($"C# Queue trigger function processed yeah: {myQueueItem}");
         }
     }
 }
