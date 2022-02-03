@@ -9,6 +9,7 @@ using SendGrid;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ForgotPasswordFunction.Dto;
+using System.Globalization;
 
 namespace ForgotPasswordFunction
 {
@@ -24,9 +25,9 @@ namespace ForgotPasswordFunction
             //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
             var apiKey = Environment.GetEnvironmentVariable("SendGridKey");
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("josheneixe@gmail.com", "Example User");
-            var subject = "Sending with SendGrid is Fun";
-            var to = new EmailAddress(user.Email, "Example User");
+            var from = new EmailAddress("josheneixe@gmail.com", "Money Guard");
+            var subject = Resources.Resource.ResourceManager.GetString("PASSWORD_RECOVERY", CultureInfo.GetCultureInfo(user.Language));
+            var to = new EmailAddress(user.Email, "Money Guard");
             var plainTextContent = "and easy to do anywhere, even with C#";
             var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
