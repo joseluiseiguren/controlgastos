@@ -61,6 +61,24 @@ namespace ForgotPasswordFunction.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;h1&gt;Hello {0}&lt;/h1&gt;.
+        /// </summary>
+        internal static string HTML_HELLO {
+            get {
+                return ResourceManager.GetString("HTML_HELLO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Use the following &lt;a href=&quot;{0}&quot;&gt;Link&lt;/a&gt; to recover your password&lt;/span&gt;.
+        /// </summary>
+        internal static string HTML_USE_THIS_LINK {
+            get {
+                return ResourceManager.GetString("HTML_USE_THIS_LINK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password Recovery.
         /// </summary>
         internal static string PASSWORD_RECOVERY {
