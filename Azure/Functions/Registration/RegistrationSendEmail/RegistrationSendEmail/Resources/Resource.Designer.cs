@@ -63,9 +63,27 @@ namespace RegistrationSendEmail.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt;h1&gt;Hello {0}&lt;/h1&gt;.
         /// </summary>
-        internal static string _h1_Hello__0___h1_ {
+        internal static string HTML_HELLO {
             get {
-                return ResourceManager.GetString("<h1>Hello {0}</h1>", resourceCulture);
+                return ResourceManager.GetString("HTML_HELLO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Use this &lt;a href=&quot;{0}&quot;&gt;link&lt;/a&gt; to enter into the application&lt;/span&gt;.
+        /// </summary>
+        internal static string LINK_WEB {
+            get {
+                return ResourceManager.GetString("LINK_WEB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome!.
+        /// </summary>
+        internal static string SUBJECT {
+            get {
+                return ResourceManager.GetString("SUBJECT", resourceCulture);
             }
         }
     }

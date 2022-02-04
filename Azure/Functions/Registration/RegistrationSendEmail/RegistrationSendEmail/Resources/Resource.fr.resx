@@ -120,4 +120,10 @@
   <data name="HTML_HELLO" xml:space="preserve">
     <value>&lt;h1&gt;Bonjour {0}&lt;/h1&gt;</value>
   </data>
+  <data name="LINK_WEB" xml:space="preserve">
+    <value>&lt;span&gt;Utilisez ce &lt;a href="{0}"&gt;lien&lt;/a&gt; pour accéder à l'application&lt;/span&gt;</value>
+  </data>
+  <data name="SUBJECT" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
 </root>
