@@ -1,7 +1,17 @@
 name: Azure Function - Registration
 
 on:
-  [push]
+  push:
+    branches:
+      - main
+    paths:
+      - Azure/Functions/Registration/**
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+    paths:
+      - Azure/Functions/Registration/**
 
 # CONFIGURATION
 # For help, go to https://github.com/Azure/Actions

@@ -1,13 +1,20 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - controlgastosbackend
+name: Backend - controlgastosbackend
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+    paths:
+      - Backend/**
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+    paths:
+      - Backend/**
 
 jobs:
   build:
