@@ -121,7 +121,7 @@
     <value>&lt;h1&gt;Hola {0}&lt;/h1&gt;</value>
   </data>
   <data name="HTML_USE_THIS_LINK" xml:space="preserve">
-    <value>&lt;span&gt;Utilice el siguiente &lt;a href="{0}"&gt;Link&lt;/a&gt; para recuperar su contraseña&lt;/span&gt;</value>
+    <value>&lt;span&gt;Utilice este &lt;a href="{0}"&gt;enlace&lt;/a&gt; para recuperar su contraseña&lt;/span&gt;</value>
   </data>
   <data name="PASSWORD_RECOVERY" xml:space="preserve">
     <value>Recuperación de Contraseña</value>

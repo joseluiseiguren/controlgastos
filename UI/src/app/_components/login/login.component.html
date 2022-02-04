@@ -28,6 +28,9 @@
         <div class="register-container">
           <a mat-button color="register" [routerLink]="registerUrl">{{'login.register' | translate }}</a>
         </div>
+        <div class="register-container">
+          <a id="registerLink" mat-button color="register" [routerLink]="forgotPasswordUrl">{{'login.forgotPassword' | translate }}</a>
+        </div>
         <div class="login-button-container">
           <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid || loading">{{'login.login' | translate }}
             <mat-icon>directions_run</mat-icon>

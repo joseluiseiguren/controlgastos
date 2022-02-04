@@ -9,9 +9,11 @@ import { UserprofileComponent } from 'src/app/_components/userprofile/userprofil
 import { ErrorMessageComponent } from 'src/app/_components/error-message/error-message.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { LibJlePwdModule } from 'lib-jle-pwd';
+import { ForgotPasswordComponent } from 'src/app/_components/forgotPassword/forgotPassword.component';
+import { ForgotPasswordApplyComponent } from 'src/app/_components/forgotPasswordApply/forgotPasswordApply.component';
 
 @NgModule({
-  declarations: [ UserprofileComponent, RegistracionComponent, WelcomeComponent, ErrorMessageComponent ],
+  declarations: [ UserprofileComponent, RegistracionComponent, WelcomeComponent, ErrorMessageComponent, ForgotPasswordComponent, ForgotPasswordApplyComponent ],
   imports: [
     CommonModule,
     SharedModule,
