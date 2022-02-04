@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
     location: any = {};
     loginForm: FormGroup;
     currentLang = this.translate.currentLang;
+
     public registerUrl = '/' + UrlConstants.USERS + '/' + UrlConstants.REGISTRACION;
+    public forgotPasswordUrl = '/' + UrlConstants.USERS + '/' + UrlConstants.FORGOT_PASSWORD;
 
     constructor(private router: Router,
                 private formBuilder: FormBuilder,

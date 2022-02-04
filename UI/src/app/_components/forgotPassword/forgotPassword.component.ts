@@ -9,7 +9,7 @@ import { firstValueFrom } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-forgotPassword',
+  selector: 'app-forgotpassword',
   templateUrl: './forgotPassword.component.html',
   styleUrls: ['./forgotPassword.component.css']
 })

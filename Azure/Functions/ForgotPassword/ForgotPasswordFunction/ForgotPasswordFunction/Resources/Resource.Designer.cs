@@ -70,7 +70,7 @@ namespace ForgotPasswordFunction.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;span&gt;Use the following &lt;a href=&quot;{0}&quot;&gt;Link&lt;/a&gt; to recover your password&lt;/span&gt;.
+        ///   Looks up a localized string similar to &lt;span&gt;Use this &lt;a href=&quot;{0}&quot;&gt;link&lt;/a&gt; to recover your password&lt;/span&gt;.
         /// </summary>
         internal static string HTML_USE_THIS_LINK {
             get {

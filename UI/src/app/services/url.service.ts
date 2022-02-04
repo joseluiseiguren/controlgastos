@@ -27,6 +27,14 @@ export class UrlService {
         return this._host + 'transaction';
     }
 
+    urlForgotPassword(): string {
+      return this._host + 'Account/forgotPassword/request';
+    }
+
+    urlForgotPasswordApply(): string {
+      return this._host + 'Account/forgotPassword/apply';
+    }
+
     urlGetPrimerConsumo(): string {
         return this._host + 'transaction/firstlast';
     }

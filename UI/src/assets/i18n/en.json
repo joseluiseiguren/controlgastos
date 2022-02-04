@@ -4,6 +4,7 @@
       "password": "Password",
       "email": "E-Mail",
       "register": "Register",
+      "forgotPassword": "Forgot Password",
       "accessDenied": "Access Denied"
   },
   "about": {
@@ -89,5 +90,12 @@
   "welcome": {
     "hello": "Hello, {{user}}",
     "message": "Now you can start loading your expenses"
+  },
+  "forgotPassword": {
+    "forgotPassword": "Forgot Password",
+    "checkInbox": "Check your email and follow the instructions",
+    "passwordUpdate": "Password Update",
+    "updateOK": "Password Updated Successfully",
+    "hello":"Hello, {{userName}}"
   }
 }
