@@ -5,10 +5,10 @@ using Microsoft.Extensions.Logging;
 
 namespace RegistrationSendEmail
 {
-    public class Function1
+    public class RegistrationFunc
     {
-        [FunctionName("Function1")]
-        public void Run([QueueTrigger("registration-queue", Connection = "")]string myQueueItem, ILogger log)
+        [FunctionName("RegistrationFunc")]
+        public void Run([QueueTrigger("regitrationqueue", Connection = "AzureWebJobsStorage")]string myQueueItem, ILogger log, string id)
         {
             log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
         }

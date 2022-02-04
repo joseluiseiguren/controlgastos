@@ -1,9 +1,6 @@
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using SendGrid.Helpers.Mail;
-using System.Net.Mail;
-using System.Net.Http;
-using System.Net.Mime;
 using System;
 using SendGrid;
 using System.Threading.Tasks;
