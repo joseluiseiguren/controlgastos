@@ -35,7 +35,6 @@ namespace RegistrationSendEmail
             var response = await client.SendEmailAsync(msg);
 
             log.LogInformation($"{id} - Email sent status: {response.StatusCode}");
-            */
         }
     }
 }
