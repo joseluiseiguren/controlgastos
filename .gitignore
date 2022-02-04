@@ -95,3 +95,4 @@ Backend/.vs/
 *.user
 /Azure/Functions/Registration/RegistrationSendEmail/RegistrationSendEmail/bin/Debug/net6.0
 /Azure/Functions/Registration/RegistrationSendEmail/RegistrationSendEmail/obj
+/Azure/Functions/Registration/RegistrationSendEmail/RegistrationSendEmail/bin/Release/net6.0

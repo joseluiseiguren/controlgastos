@@ -17,6 +17,8 @@ namespace ForgotPasswordFunction
         {
             var user = JsonConvert.DeserializeObject<User>(myQueueItem);
 
+            EnsureValidUser(user);
+
             log.LogInformation($"{id} - Sending email to: {user.Email}");
 
             //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
@@ -35,5 +37,25 @@ namespace ForgotPasswordFunction
 
             log.LogInformation($"{id} - Email sent status: {response.StatusCode}");
         }
+
+        private void EnsureValidUser(User user)
+        {
+            if (string.IsNullOrEmpty(user.Token))
+            {
+                throw new Exception("Invalid user token");
+            }
+
+            if (string.IsNullOrEmpty(user.Name))
+            {
+                throw new Exception("Invalid user name");
+            }
+
+            if (string.IsNullOrEmpty(user.Email))
+            {
+                throw new Exception("Invalid user email");
+            }
+        }
     }
+
+   
 }
