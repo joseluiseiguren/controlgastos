@@ -21,7 +21,6 @@ namespace ForgotPasswordFunction
 
             log.LogInformation($"{id} - Sending email to: {user.Email}");
 
-            //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
             var apiKey = Environment.GetEnvironmentVariable("SendGridKey");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("josheneixe@gmail.com", "Money Guard");

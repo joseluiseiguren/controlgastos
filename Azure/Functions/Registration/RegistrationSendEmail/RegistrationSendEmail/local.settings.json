@@ -3,6 +3,6 @@
   "Values": {
     "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=controlgastosqueuedev;AccountKey=FVINxcoFY7x0CKqhmjY1zFpq4cBJjrK5zwszLQTgAvEPTXbHWC1vvE5oRMC0vxwxn97ZspIvD+EWnIFvrloFrw==;BlobEndpoint=https://controlgastosqueuedev.blob.core.windows.net/;TableEndpoint=https://controlgastosqueuedev.table.core.windows.net/;QueueEndpoint=https://controlgastosqueuedev.queue.core.windows.net/;FileEndpoint=https://controlgastosqueuedev.file.core.windows.net/",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "SendGridKey": "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"
+    "SendGridKey": ""
   }
 }
