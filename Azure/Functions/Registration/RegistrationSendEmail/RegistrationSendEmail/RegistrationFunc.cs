@@ -1,12 +1,11 @@
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using SendGrid.Helpers.Mail;
 using System;
-using SendGrid;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Globalization;
 using RegistrationSendEmail.Dto;
+using jle.lib.gmail.send;
 
 namespace RegistrationSendEmail
 {
@@ -19,21 +18,29 @@ namespace RegistrationSendEmail
 
             log.LogInformation($"{id} - Sending email to: {user.Email}");
 
-            var apiKey = Environment.GetEnvironmentVariable("SendGridKey");
-            
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("josheneixe@gmail.com", "Money Guard");
-            var subject = Resources.Resource.ResourceManager.GetString("SUBJECT", CultureInfo.GetCultureInfo(user.Language));
-            var to = new EmailAddress(user.Email, "Money Guard");
+            var emailSender = new SendGmail(fromEmail: Environment.GetEnvironmentVariable("email_sender"),
+                                            fromPassword: Environment.GetEnvironmentVariable("email_password"),
+                                            displayName: "Money Guard");
 
+            var subject = Resources.Resource.ResourceManager.GetString("SUBJECT", CultureInfo.GetCultureInfo(user.Language));
+            var body = CreateBody(user);
+
+            await emailSender.SendAsync(toEmail: user.Email,
+                                        subject: subject,
+                                        htmlBody: body,
+                                        toName: user.Name);
+
+            log.LogInformation($"{id} - Email sent OK");
+        }
+
+        private string CreateBody(User user)
+        {
             const string MONEYGUARD_URL = "https://blue-desert-01e404210.azurestaticapps.net/";
 
             var htmlContent = string.Format(Resources.Resource.ResourceManager.GetString("HTML_HELLO", CultureInfo.GetCultureInfo(user.Language)), user.Name);
             htmlContent += string.Format(Resources.Resource.ResourceManager.GetString("LINK_WEB", CultureInfo.GetCultureInfo(user.Language)), MONEYGUARD_URL);
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlContent);
-            var response = await client.SendEmailAsync(msg);
 
-            log.LogInformation($"{id} - Email sent status: {response.StatusCode}");
+            return htmlContent;
         }
     }
 }
