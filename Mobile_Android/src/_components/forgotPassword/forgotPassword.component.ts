@@ -29,6 +29,13 @@ export class ForgotPasswordComponent implements OnInit {
       this.fpForm = this.formBuilder.group({
         emailFormControl: ['', [Validators.required, Validators.email]]
       });
+
+      this.fpForm.valueChanges.subscribe(x => {
+        if (x.emailFormControl.indexOf(' ') >= 0){
+          const fixedValue = x.emailFormControl.replace(/\s/g, "");
+          this.fpForm.get("emailFormControl")?.setValue(fixedValue, { emitEvent: false });
+        }
+      })
     }
 
     async forgotPassword(): Promise<void> {

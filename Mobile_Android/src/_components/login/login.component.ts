@@ -53,37 +53,12 @@ export class LoginComponent implements OnInit {
         pwdFormControl: ['', [Validators.required]]
       });
 
-      /*
-      //To get IP information
-      const source$ = this._ipService.getClientIp();
-
-      try {
-        const data = await firstValueFrom(source$);
-
-        this.location.ip = data.ip;
-        this.location.city = data.city;
-        this.location.region = data.region;
-        this.location.region_code = data.region_code;
-        this.location.country = data.country;
-        this.location.country_name = data.country_name;
-        this.location.continent_code = data.continent_code;
-        this.location.postal = data.postal;
-        this.location.latitude = data.latitude;
-        this.location.longitude = data.longitude;
-        this.location.timezone = data.timezone;
-        this.location.utc_offset = data.utc_offset;
-        this.location.country_calling_code = data.country_calling_code;
-        this.location.currency = data.currency;
-        this.location.languages = data.languages;
-        this.location.asn = data.asn;
-        this.location.org = data.org;
-
-      } catch (error) {
-        this.loading = false;
-        this._helperService.showSnackBarError(this.snackBar, this._helperService.getErrorMessage(error));
-      }
-      */
-
+      this.loginForm.valueChanges.subscribe(x => {
+        if (x.emailFormControl.indexOf(' ') >= 0){
+          const fixedValue = x.emailFormControl.replace(/\s/g, "");
+          this.loginForm.get("emailFormControl")?.setValue(fixedValue, { emitEvent: false });
+        }
+      })
     }
 
     async login() {
