@@ -51,7 +51,7 @@
 - First login: send user to load concepts
 - Black mode => registration => born date => the component does not show the icons < >
 - Github actins: crear apk automatically
-
+- Concepts: dont reload the list after adding or modifying an item
 
 
 
