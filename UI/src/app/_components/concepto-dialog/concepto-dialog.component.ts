@@ -49,7 +49,7 @@ export class ConceptoDialogComponent implements OnInit {
     this.form.value.conceptoFormControl = this._helperService.toCamelCase(this.form.value.conceptoFormControl);
 
     // Alta
-    if (this.data.concepto === null){
+    if (this.data.concepto === null || this.data.concepto === undefined){
       this.newConcepto();
     } else {
       // Modificacion
