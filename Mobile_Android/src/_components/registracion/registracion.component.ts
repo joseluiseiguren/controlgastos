@@ -48,6 +48,13 @@ export class RegistracionComponent implements OnInit {
       }, {validator: this.usersService.checkPasswords });
 
       this.monedas = this.usersService.getAvailablesCurrencies();
+
+      this.registerForm.valueChanges.subscribe(x => {
+        if (x.emailFormControl.indexOf(' ') >= 0){
+          const fixedValue = x.emailFormControl.replace(/\s/g, "");
+          this.registerForm.get("emailFormControl")?.setValue(fixedValue, { emitEvent: false });
+        }
+      })
     }
 
     async register(): Promise<void> {
