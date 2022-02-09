@@ -9,8 +9,12 @@ on:
       - Backend/**
 
 jobs:
-  build (16.x):
+  build:
     runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v2
