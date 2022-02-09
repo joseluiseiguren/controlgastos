@@ -16,7 +16,7 @@ namespace ForgotPasswordFunction
         {
             var user = JsonConvert.DeserializeObject<User>(myQueueItem);
 
-            EnsureValidUser(user);
+            EnsureValidUser(user); 
 
             log.LogInformation($"{id} - Sending email to: {user.Email}");
 
