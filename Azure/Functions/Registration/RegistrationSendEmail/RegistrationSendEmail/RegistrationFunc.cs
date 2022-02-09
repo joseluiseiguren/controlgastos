@@ -16,7 +16,7 @@ namespace RegistrationSendEmail
         {
             var user = JsonConvert.DeserializeObject<User>(myQueueItem);
 
-            log.LogInformation($"{id} - Sending email to: {user.Email}");
+            log.LogInformation($"{id} - Sending email to: {user.Email}"); 
 
             var emailSender = new SendGmail(fromEmail: Environment.GetEnvironmentVariable("email_sender"),
                                             fromPassword: Environment.GetEnvironmentVariable("email_password"),
