@@ -1,4 +1,4 @@
-name: UI Web
+name: Deploy UI Web
 
 on:
   push:
@@ -6,13 +6,7 @@ on:
       - main
     paths:
       - UI/**
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - main
-    paths:
-      - UI/**
-
+  
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
