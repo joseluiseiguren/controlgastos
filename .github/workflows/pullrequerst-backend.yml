@@ -9,7 +9,7 @@ on:
       - Backend/**
 
 jobs:
-  build:
+  build (16.x):
     runs-on: windows-latest
 
     steps:
