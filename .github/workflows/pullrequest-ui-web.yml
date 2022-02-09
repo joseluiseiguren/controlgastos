@@ -56,8 +56,9 @@ jobs:
 
       - name: Test
         working-directory: UI
+        run: |
+          export CHROME_BIN=/usr/bin/chromium-browser
+          CI=true npm run test-headless
         env:
           CI: true
-        run: |
-          npm run test
 
