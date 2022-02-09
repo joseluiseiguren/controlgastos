@@ -9,7 +9,7 @@ on:
       - UI/**
 
 jobs:
-  ci:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -47,6 +47,7 @@ jobs:
       - name: Build
         working-directory: UI
         run: |
+          echo 'This is a test'
           npm run build --production
 
       - name: Lint
