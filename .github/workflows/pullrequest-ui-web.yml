@@ -54,10 +54,10 @@ jobs:
         run: |
           npm run lint
 
-      - name: Test
-        working-directory: UI
-        run: |
-          npm test -- --watch=false --browsers=ChromeHeadless
-        env:
-          CI: true
+      #- name: Test
+      #  working-directory: UI
+      #  run: |
+      #    npm test -- --watch=false --browsers=ChromeHeadless
+      #  env:
+      #    CI: true
 
