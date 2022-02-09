@@ -56,6 +56,8 @@ jobs:
 
       - name: Test
         working-directory: UI
+        env:
+          CI: true
         run: |
           npm run test
 
