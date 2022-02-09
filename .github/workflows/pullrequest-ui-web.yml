@@ -47,7 +47,7 @@ jobs:
       - name: Build
         working-directory: UI
         run: |
-          npm run build -- --prod
+          npm run build --production
 
       - name: Lint
         working-directory: UI
@@ -57,5 +57,5 @@ jobs:
       - name: Test
         working-directory: UI
         run: |
-          npm run test -- --prod
+          npm run test
 

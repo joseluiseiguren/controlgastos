@@ -53,7 +53,7 @@
 - Github actins: crear apk automatically
 - Concepts: dont reload the list after adding or modifying an item
 - Github actions: fix all actions just like sendgmail
-
+- Android: Send internal log files to server
 
 
 
