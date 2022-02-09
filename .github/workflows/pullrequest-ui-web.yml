@@ -57,8 +57,7 @@ jobs:
       - name: Test
         working-directory: UI
         run: |
-          export CHROME_BIN=/usr/bin/chromium-browser
-          CI=true npm run test
+          npm test -- --watch=false --browsers=ChromeHeadless
         env:
           CI: true
 
