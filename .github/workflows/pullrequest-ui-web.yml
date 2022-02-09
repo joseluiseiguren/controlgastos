@@ -39,6 +39,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
+        working-directory: UI
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: |
           npm i
