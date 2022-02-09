@@ -20,7 +20,7 @@ namespace Services.CommandHandlers.User
         public UserSignupCommandHandler(IUserRepository userRepository, IQueueRegistrationEvents registrationQueue)
         {
             _userRepository = userRepository;
-            _registrationQueue = registrationQueue;
+            _registrationQueue = registrationQueue; 
         }
 
         public async Task HandleAsync(UserSignupCommand command)
