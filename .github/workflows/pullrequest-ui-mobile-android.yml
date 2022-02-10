@@ -49,10 +49,10 @@ jobs:
         run: |
           npm run build --production
 
-      - name: Lint
-        working-directory: Mobile_Android
-        run: |
-          npm run lint
+      # - name: Lint
+      #  working-directory: Mobile_Android
+      #  run: |
+      #    npm run lint
 
       #- name: Test
       #  working-directory: UI
