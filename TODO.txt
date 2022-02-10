@@ -53,8 +53,9 @@
 - Github actins: crear apk automatically
 - Concepts: dont reload the list after adding or modifying an item
 - Github actions: fix all actions just like sendgmail
+	* missing ui_geneeric to push to npm
 - Android: Send internal log files to server
-
+- Push notifications
 
 
 
