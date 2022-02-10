@@ -52,7 +52,7 @@ jobs:
       # - name: Lint
       #  working-directory: Mobile_Android
       #  run: |
-      #    npm run lint
+      #     npm run lint
 
       #- name: Test
       #  working-directory: UI
