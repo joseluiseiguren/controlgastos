@@ -48,7 +48,6 @@ jobs:
         working-directory: Mobile_Android
         run: |
           npm run build --production
-          cordova build android
 
       - name: Lint
         working-directory: Mobile_Android
