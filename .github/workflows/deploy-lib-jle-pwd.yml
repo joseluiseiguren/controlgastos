@@ -10,15 +10,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    
     steps:
-      - name: Push npm
-        - uses: actions/checkout@v1
-        - uses: actions/setup-node@v1
+      - name: Push npm    
           working-directory: UI_Generic/workspace-jle-password/projects/lib-jle-pwd
           with:
             node-version: 12
             registry-url: https://registry.npmjs.org/
-        - run: yarn install
-        - run: npm publish --access public
+          run: yarn install
+          run: npm publish --access public
           env:
             NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
