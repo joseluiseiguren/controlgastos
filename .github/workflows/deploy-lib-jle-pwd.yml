@@ -7,13 +7,13 @@ on:
     paths:
       - UI_Generic/workspace-jle-password/projects/lib-jle-pwd/**
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
+        working-directory: UI_Generic/workspace-jle-password/projects/lib-jle-pwd
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
