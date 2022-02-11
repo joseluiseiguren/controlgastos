@@ -1,4 +1,4 @@
-name: PullRequest Mobile_Android Web
+name: PullRequest - Mobile_Android Web
 
 on:
   pull_request:

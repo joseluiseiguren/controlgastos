@@ -1,5 +1,8 @@
+import { firstValueFrom, Observable } from 'rxjs';
+import { UrlService } from 'src/services/url.service';
 import { Injectable } from "@angular/core";
 import { FileSystemService } from './fileSystemService';
+import { HttpClient } from '@angular/common/http';
 //import { environment } from '../../../environments/environment';
 //import { FilesystemDirectory, GetUriOptions } from "@capacitor/core";
 ////import { CustomDialogsService } from "./custom-dialogs.service";
@@ -13,7 +16,9 @@ import { FileSystemService } from './fileSystemService';
 export class InternalLogService {
     readonly LOGGING_FILE_NAME = 'moneyguard-log.txt';
 
-    constructor(private fileSystemService: FileSystemService)
+    constructor(private fileSystemService: FileSystemService,
+                private urlService: UrlService,
+                private httpClient: HttpClient)
     {
     }
 
@@ -48,14 +53,23 @@ export class InternalLogService {
     }
     */
 
+    async uploadInternalLogFile(): Promise<void> {
+      const fileContent = await this.fileSystemService.readFile(this.getFileName());
+
+      const source$ = await this.httpClient.post(this.urlService.urlPostInternalLog(), {FileName: this.getFileName(), LogContent: fileContent.data});
+
+      await firstValueFrom(source$);
+  }
+
+
     private async logFileExists(): Promise<boolean> {
-        try {
-            await this.fileSystemService.readFile(this.getFileName());
-            return true;
-        }
-        catch(err) {
-            return false;
-        }
+      try {
+          await this.fileSystemService.readFile(this.getFileName());
+          return true;
+      }
+      catch(err) {
+          return false;
+      }
     }
 
     private logFileTitle(): string {

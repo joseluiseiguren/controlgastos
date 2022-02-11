@@ -17,7 +17,6 @@ import { LangService } from 'src/sharedServices/langService';
 })
 export class LoginComponent implements OnInit {
     loading = false;
-    location: any = {};
     loginForm: FormGroup;
     currentLang = this.translate.currentLang;
     hidePassword = true;
@@ -37,14 +36,6 @@ export class LoginComponent implements OnInit {
       if (this.usersService.isSessionExpired() === false) {
         this.ingresarApp();
       }
-
-      this.location.height = window.screen.height;
-      this.location.width = window.screen.width;
-      this.location.appCodeName = window.navigator.appCodeName;
-      this.location.appVersion = window.navigator.appVersion;
-      this.location.language = window.navigator.language;
-      this.location.platform = window.navigator.platform;
-      this.location.userAgent = window.navigator.userAgent;
     }
 
     async ngOnInit(): Promise<void> {

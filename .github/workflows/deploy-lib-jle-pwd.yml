@@ -1,4 +1,4 @@
-name: Push to npm lib-jle-pwd
+name: Deploy - lib-jle-pwd to npm
 
 on:
   push:
