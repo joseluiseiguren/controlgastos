@@ -10,9 +10,12 @@ export class HelperService {
     getErrorMessage(error: any): string {
         let message = '';
 
-        if (error === undefined ||
-            error.status === undefined) {
-                return message;
+        if (error === undefined) {
+          return '[error] is undefined'
+        }
+
+        if (error.status === undefined) {
+              return 'No status code in error';
         }
 
         switch (error.status) {
@@ -31,6 +34,11 @@ export class HelperService {
             case 500: /* internal server error */
               message = this.translate.instant("http.unexpectedError", {error: error.error.ErrorTraceId});
               break;
+
+            default:
+              message = 'Unknown status code: ' + error.status;
+              break;
+
           }
 
           return message;

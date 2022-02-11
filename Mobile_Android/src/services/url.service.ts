@@ -90,4 +90,8 @@ export class UrlService {
     urlGetConceptosMovimHistorico(idConcepto: string): string {
         return this._host + 'concept/' + idConcepto + '/historic/summary';
     }
+
+    urlPostInternalLog(): string {
+      return this._host + 'log/mobile/internal';
+  }
 }

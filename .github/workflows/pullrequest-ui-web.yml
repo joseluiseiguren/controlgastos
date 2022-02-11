@@ -1,4 +1,4 @@
-name: PullRequest UI Web
+name: PullRequest - UI Web
 
 on:
   pull_request:

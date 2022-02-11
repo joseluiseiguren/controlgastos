@@ -43,13 +43,17 @@
 							"raw": "{\n\t\"email\":\"flopyglorias@gmail.com\",\n\t\"password\":\"mataderos\"\n}"
 						},
 						"url": {
-							"raw": "https://localhost:5001/account/login",
+							"raw": "https://192.168.1.143:4433/backend/account/login",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"192",
+								"168",
+								"1",
+								"143"
 							],
-							"port": "5001",
+							"port": "4433",
 							"path": [
+								"backend",
 								"account",
 								"login"
 							]
@@ -893,6 +897,80 @@
 								"2021-12-31"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Log",
+			"item": [
+				{
+					"name": "Mobile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "log",
+									"value": "my file content\n",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/log/mobile/internal",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"log",
+								"mobile",
+								"internal"
+							],
+							"query": [
+								{
+									"key": "log",
+									"value": "123",
+									"disabled": true
+								}
+							]
+						},
+						"description": "X\t"
 					},
 					"response": []
 				}

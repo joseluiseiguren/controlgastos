@@ -1,4 +1,4 @@
-name: Pull Request - Azure Function - Registration
+name: PullRequest - Azure Function - Registration
 
 on:
   pull_request:

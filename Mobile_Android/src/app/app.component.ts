@@ -2,6 +2,7 @@ import { LangService } from './../sharedServices/langService';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { InternalLogService } from 'src/sharedServices/internalLogService';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.internalLogService.createLogFile();
+    //await this.internalLogService.createLogFile();
+    //await this.internalLogService.uploadInternalLogFile();
   }
 }

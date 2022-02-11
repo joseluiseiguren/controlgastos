@@ -38,9 +38,9 @@
 	- Logo in login
 	- Show password icon
 	- Flags in language selection
-- Reutilize code for mobile and web projects
+- Reutilize code (services) for mobile and web projects
 - Web project: if mobile browser is detected, force to download apk => https://play.google.com/store/apps/details?id=com.moneyguard.mobile
-- Use npm ci instead of npm i
+	- Use npm ci instead of npm i
 	- Registration: set default language
 	- Create npm control for password (use it in login & registration)
 	- CI in gitub: create trigger for each component/module
@@ -52,11 +52,10 @@
 - Black mode => registration => born date => the component does not show the icons < >
 - Github actins: crear apk automatically
 - Concepts: dont reload the list after adding or modifying an item
-- Github actions: fix all actions just like sendgmail
-	* missing ui_geneeric to push to npm
+	- Github actions: fix all actions just like sendgmail
 - Android: Send internal log files to server
 - Push notifications
-
+- Get DB backup from azure
 
 
 

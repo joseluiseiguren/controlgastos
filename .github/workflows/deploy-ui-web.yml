@@ -1,4 +1,4 @@
-name: Deploy UI Web
+name: Deploy - UI Web
 
 on:
   push:

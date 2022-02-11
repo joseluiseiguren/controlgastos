@@ -1,4 +1,4 @@
-name: PullRequest Lib jle-pwd
+name: PullRequest - lib-jle-pwd
 
 on:
   pull_request:
