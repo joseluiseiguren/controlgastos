@@ -15,7 +15,7 @@ export class HelperService {
         }
 
         if (error.status === undefined) {
-              return 'No status code in error';
+              return 'No status code in error: ' + JSON.stringify(error);
         }
 
         switch (error.status) {

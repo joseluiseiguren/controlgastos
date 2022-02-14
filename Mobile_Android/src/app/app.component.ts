@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
+    //alert(window.navigator.language)
     //await this.internalLogService.createLogFile();
     //await this.internalLogService.uploadInternalLogFile();
   }
