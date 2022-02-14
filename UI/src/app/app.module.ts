@@ -34,10 +34,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
+import localeFr from '@angular/common/locales/fr';
 import { UrlConstants } from './constants/url.constants';
 import { LibJlePwdModule } from 'lib-jle-pwd';
 registerLocaleData(localeEs, localeEs);
 registerLocaleData(localeEn, localeEn);
+registerLocaleData(localeFr);
 
 const routes: Routes = [
 

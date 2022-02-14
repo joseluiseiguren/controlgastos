@@ -34,6 +34,14 @@ import { LibJlePwdModule } from 'lib-jle-pwd';
 import { FileSystemService } from 'src/sharedServices/fileSystemService';
 import { InternalLogService } from 'src/sharedServices/internalLogService';
 
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import localeEs from '@angular/common/locales/es';
+import localeEn from '@angular/common/locales/en';
+registerLocaleData(localeFr);
+registerLocaleData(localeEs);
+registerLocaleData(localeEn);
+
 const routes: Routes = [
 
   { path: '', component: LoginComponent },

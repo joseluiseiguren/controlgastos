@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, throwError } from 'rxjs';
 import { UrlConstants } from '../../constants/url.constants';
 import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
@@ -79,7 +79,12 @@ export class LoginComponent implements OnInit {
     }
 
     private ingresarApp () {
-      const today = this._datePipe.transform(new Date(), 'yyyy-MM-dd');
-      this.router.navigate([UrlConstants.DASHBOARD, UrlConstants.DIARIO, today]);
+      try{
+        const today = this._datePipe.transform(new Date(), 'yyyy-MM-dd');
+        this.router.navigate([UrlConstants.DASHBOARD, UrlConstants.DIARIO, today]);
+      }
+      catch(error){
+        throw('Error parsing date')
+      }
     }
 }
