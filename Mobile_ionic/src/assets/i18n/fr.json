@@ -1,0 +1,101 @@
+{
+  "login": {
+      "login": "Connexion",
+      "password": "Mot de passe",
+      "email": "E-Mail",
+      "register": "S'inscrire",
+      "forgotPassword": "Mot de passe oublié",
+      "accessDenied": "Accès refusé"
+  },
+  "about": {
+    "close": "Fermer",
+    "version": "Version {{version}}"
+  },
+  "http": {
+    "cantConnectWithServer": "Impossible de se connecter au serveur distant. Essayer à nouveau",
+    "sessionExpired": "La session a expiré",
+    "unexpectedError": "Erreur inattendue: {{error}}"
+  },
+  "yearScreen": {
+    "year": "An",
+    "yearBalance": "Solde annuel"
+  },
+  "concept": {
+    "debit": "Débit",
+    "credit": "Crédit",
+    "newConcept": "Nouveau concept",
+    "editConcept": "Modifier le concept",
+    "concept": "Concept",
+    "type": "Type"
+  },
+  "button": {
+    "cancel": "Annuler",
+    "ok": "J'accepte"
+  },
+  "message": {
+    "successfulOperation": "Opération réussie"
+  },
+  "menu": {
+    "daily": "Un journal",
+    "monthly": "Mensuel",
+    "annual": "Annuel",
+    "historic": "Historique",
+    "concepts": "Notions",
+    "profile": "Profil",
+    "logout": "Se déconnecter",
+    "about": "Sur"
+  },
+  "dailyScreen": {
+    "date": "Date",
+    "dailyBalance": "Solde quotidien",
+    "amount": "Montante",
+    "tags": "Étiquettes",
+    "year":"An"
+  },
+  "filter": {
+    "filters": "Filtres",
+    "filterSearch": "Filtrer la recherche",
+    "remove": "Supprimer les filtres",
+    "concepts": "Notions"
+  },
+  "historical": {
+    "balance": "Solde historique",
+    "historical": "Historique"
+  },
+  "monthly": {
+    "month": "Mois",
+    "balanceMobile": "Solde",
+    "balance": "Mois Solde",
+    "year": "An"
+  },
+  "signup": {
+    "name": "Nom",
+    "email": "E-Mail",
+    "bornDate": "Date de Naissance",
+    "currency": "Devise",
+    "password": "Mot de passe",
+    "repeatPassword": "Répéter le mot de passe",
+    "goToLogin": "Aller à la connexion",
+    "signup": "Inscrivez-vous",
+    "language": "Langue"
+  },
+  "balance": {
+    "income": "Revenu",
+    "outcome": "Dépenses",
+    "balance":"Solde"
+  },
+  "userProfile": {
+    "profile": "Profil de l'utilisateur"
+  },
+  "welcome": {
+    "hello": "Bonjour, {{user}}",
+    "message": "Vous pouvez maintenant commencer à charger vos dépenses"
+  },
+  "forgotPassword": {
+    "forgotPassword": "Mot de passe oublié",
+    "checkInbox": "Vérifiez votre messagerie et suivez les instructions",
+    "passwordUpdate": "Mise à jour du mot de passe",
+    "updateOK": "Mot de passe mis à jour avec succès",
+    "hello":"Bonjour, {{userName}}"
+  }
+}

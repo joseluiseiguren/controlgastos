@@ -62,3 +62,4 @@
 - Use USD as main currency for comparing
 - Detect autatically if there is an update in the apk, and redirect to google play
 - Add graphs 
+- Create ionic project

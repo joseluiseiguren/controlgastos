@@ -1,0 +1,7 @@
+{
+  "name": "Mobile_ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

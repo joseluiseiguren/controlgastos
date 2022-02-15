@@ -1,0 +1,101 @@
+{
+  "login": {
+      "login": "Ingresar",
+      "password": "Contraseña",
+      "email": "E-Mail",
+      "register": "Registrarse",
+      "forgotPassword": "Olvido de Contraseña",
+      "accessDenied": "Acceso Denegado"
+  },
+  "about": {
+    "close": "Cerrar",
+    "version": "Versión {{version}}"
+  },
+  "http": {
+    "cantConnectWithServer": "No se pudo conectar al servidor, intentar nuevamente",
+    "sessionExpired": "Session Expirada",
+    "unexpectedError": "Error Inesperado: {{error}}"
+  },
+  "yearScreen": {
+    "year": "Año",
+    "yearBalance": "Saldo Anual"
+  },
+  "concept": {
+    "debit": "Débito",
+    "credit": "Crédito",
+    "newConcept": "Nuevo Concepto",
+    "editConcept": "Modificación de Concepto",
+    "concept": "Concepto",
+    "type": "Tipo"
+  },
+  "button": {
+    "cancel": "Cancelar",
+    "ok": "Aceptar"
+  },
+  "message": {
+    "successfulOperation": "Operación Exitosa"
+  },
+  "menu": {
+    "daily": "Diario",
+    "monthly": "Mensual",
+    "annual": "Anual",
+    "historic": "Histórico",
+    "concepts": "Conceptos",
+    "profile": "Perfil",
+    "logout": "Salir",
+    "about": "Acerca de"
+  },
+  "dailyScreen": {
+    "date": "Fecha",
+    "dailyBalance": "Saldo Diario",
+    "amount": "Importe",
+    "tags": "Etiquetas",
+    "year":"Año"
+  },
+  "filter": {
+    "filters": "Filtros",
+    "filterSearch": "Filtrar Búsqueda",
+    "remove": "Eliminar Filtros",
+    "concepts": "Conceptos"
+  },
+  "historical": {
+    "balance": "Saldo Histórico",
+    "historical": "Histórico"
+  },
+  "monthly": {
+    "month": "Mes",
+    "balanceMobile": "Saldo",
+    "balance": "Saldo Mensual",
+    "year": "Año"
+  },
+  "signup": {
+    "name": "Nombre",
+    "email": "E-Mail",
+    "bornDate": "Fecha Nacimiento",
+    "currency": "Moneda",
+    "password": "Contraseña",
+    "repeatPassword": "Repetir Contraseña",
+    "goToLogin": "Ir al Login",
+    "signup": "Registración",
+    "language": "Idioma"
+  },
+  "balance": {
+    "income": "Ingresos",
+    "outcome": "Egresos",
+    "balance":"Saldo"
+  },
+  "userProfile": {
+    "profile": "Perfil de Usuario"
+  },
+  "welcome": {
+    "hello": "Hola, {{user}}",
+    "message": "Ya podes comenzar a cargar tus gastos"
+  },
+  "forgotPassword": {
+    "forgotPassword": "Olvido de Contraseña",
+    "checkInbox": "Verifique su email y siga las instrucciones",
+    "passwordUpdate": "Actualizar Contraseña",
+    "updateOK": "Contraseña actualizada correctamente",
+    "hello":"Hola, {{userName}}"
+  }
+}
