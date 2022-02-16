@@ -6,15 +6,6 @@
           <ion-list-header>Money Guard</ion-list-header>
           <ion-note>hi@ionicframework.com</ion-note>
 
-          <!--
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-
-          </ion-menu-toggle>
-          -->
           <ion-menu-toggle auto-hide="false">
             <ion-item routerDirection="root" [routerLink]="dailyLink" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" [ios]="'calendar-outline'" [md]="'calendar-sharp'"></ion-icon>
@@ -47,7 +38,7 @@
               <ion-icon slot="start" [ios]="'cog-outline'" [md]="'cog-sharp'"></ion-icon>
               <ion-label>{{'menu.about' | translate }}</ion-label>
             </ion-item>
-            <ion-item routerDirection="root" [routerLink]="" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item routerDirection="root" [routerLink]="userLoginLink" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" [ios]="'log-out-outline'" [md]="'log-out-sharp'"></ion-icon>
               <ion-label>{{'menu.logout' | translate }}</ion-label>
             </ion-item>

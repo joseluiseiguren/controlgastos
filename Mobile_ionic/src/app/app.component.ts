@@ -43,4 +43,8 @@ export class AppComponent {
   get userProfileLink(): string {
     return UrlConstants.userProfile;
   }
+
+  get userLoginLink(): string {
+    return UrlConstants.logIn;
+  }
 }

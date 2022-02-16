@@ -2,9 +2,20 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+//Backend: IIS
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://192.168.1.143:4433/backend/'
 };
+
+
+/*
+//Backend: IIS Express
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:5000/'
+};
+*/
 
 /*
  * For easier debugging in development mode, you can import the following file

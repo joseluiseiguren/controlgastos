@@ -1,0 +1,65 @@
+<ion-content>
+  <ion-row>
+    <ion-col size="2">
+      <div>
+        <img src="./../../../assets/icon/icon-52x52.png" alt="">
+      </div>
+    </ion-col>
+    <ion-col style="text-align: center">
+      <div>
+        <h2>Money Guard</h2>
+      </div>
+    </ion-col>
+    <ion-col size="2.5">
+      <div class="in-text-end">
+        <ion-list style="width: 4rem;">
+          <ion-item>
+            <ion-select id="langDropDown"
+                [ngStyle]="selectedLang"
+                (click)="loadFlags()"
+                (ionChange)="onChangeLang($event)"
+                okText="{{'button.ok' | translate}}"
+                cancelText="{{'button.cancel' | translate}}">
+              <ion-select-option *ngFor="let lang of this.langService.langsLocal" value="{{lang.value}}">
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">{{'login.email' | translate }}</ion-label>
+      <ion-input formControlName="emailFormControl" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">{{'login.password' | translate }}</ion-label>
+      <ion-input formControlName="pwdFormControl" [type]="passwordType" clearOnEdit="false"></ion-input>
+      <ion-icon slot="end" [name]="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="primary" expand="block" [disabled]="!loginForm.valid || loading">
+          <ion-spinner *ngIf="loading === true" name="bubbles"></ion-spinner>
+          <div *ngIf="loading === false">{{'login.login' | translate }}</div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  <ion-row style="margin-top: 1.5rem;">
+    <ion-col>
+      <a id="registerLink" [routerLink]="">{{'login.register' | translate }}</a>
+    </ion-col>
+    <ion-col>
+      <div class="ion-text-end">
+        <a id="forgotPassword" [routerLink]="">{{'login.forgotPassword' | translate }}</a>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { UrlConstants } from 'src/constants/url.constants';
+import { UserLoginComponent } from './login/user-login/user-login.component';
 
 const routes: Routes = [
   {
@@ -28,8 +29,12 @@ const routes: Routes = [
     loadChildren: () => import('./user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
   {
+    path: UrlConstants.logIn,
+    component: UserLoginComponent,
+  },
+  {
     path: '**',
-    redirectTo: UrlConstants.daily
+    redirectTo: UrlConstants.logIn
   }
 ];
 

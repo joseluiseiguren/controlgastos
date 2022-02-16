@@ -12,23 +12,32 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import { LangService } from 'src/services/lang.service.service';
+import { DiarioService } from 'src/services/diario.service';
+import { UserLoginComponent } from './login/user-login/user-login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HelperService } from 'src/services/helper.service.service';
+import { SnackBarService } from 'src/services/snackBar.service';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    UserLoginComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
          provide: TranslateLoader,
@@ -38,7 +47,11 @@ registerLocaleData(localeEn);
       }),
   ],
   providers: [
+    DatePipe,
+    HelperService,
+    SnackBarService,
     LangService,
+    DiarioService,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy

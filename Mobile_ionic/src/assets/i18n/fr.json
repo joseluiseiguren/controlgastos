@@ -1,11 +1,11 @@
 {
   "login": {
-      "login": "Connexion",
-      "password": "Mot de passe",
-      "email": "E-Mail",
-      "register": "S'inscrire",
-      "forgotPassword": "Mot de passe oublié",
-      "accessDenied": "Accès refusé"
+    "login": "Connexion",
+    "password": "Mot de passe",
+    "email": "E-Mail",
+    "register": "S'inscrire",
+    "forgotPassword": "Mot de passe oublié",
+    "accessDenied": "Accès refusé"
   },
   "about": {
     "close": "Fermer",

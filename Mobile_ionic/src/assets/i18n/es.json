@@ -1,11 +1,11 @@
 {
   "login": {
-      "login": "Ingresar",
-      "password": "Contraseña",
-      "email": "E-Mail",
-      "register": "Registrarse",
-      "forgotPassword": "Olvido de Contraseña",
-      "accessDenied": "Acceso Denegado"
+    "login": "Ingresar",
+    "password": "Contraseña",
+    "email": "E-Mail",
+    "register": "Registrarse",
+    "forgotPassword": "Olvido de Contraseña",
+    "accessDenied": "Acceso Denegado"
   },
   "about": {
     "close": "Cerrar",

@@ -1,11 +1,11 @@
 {
   "login": {
-      "login": "Login",
-      "password": "Password",
-      "email": "E-Mail",
-      "register": "Register",
-      "forgotPassword": "Forgot Password",
-      "accessDenied": "Access Denied"
+    "login": "Login",
+    "password": "Password",
+    "email": "E-Mail",
+    "register": "Register",
+    "forgotPassword": "Forgot Password",
+    "accessDenied": "Access Denied"
   },
   "about": {
     "close": "Close",

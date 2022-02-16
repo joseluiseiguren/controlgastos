@@ -8,8 +8,8 @@ import { User } from 'src/models/user';
 import { UrlService } from './url.service';
 import { map } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { TranslateService } from '@ngx-translate/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
