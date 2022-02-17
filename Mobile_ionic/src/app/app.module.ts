@@ -22,6 +22,7 @@ import { UserLoginComponent } from './login/user-login/user-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HelperService } from 'src/services/helper.service.service';
 import { SnackBarService } from 'src/services/snackBar.service';
+import { AuthGuard } from 'src/guards/auth.guard';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -29,7 +30,8 @@ registerLocaleData(localeEn);
 @NgModule({
   declarations: [
     AppComponent,
-    UserLoginComponent],
+    UserLoginComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ registerLocaleData(localeEn);
   ],
   providers: [
     DatePipe,
+    AuthGuard,
     HelperService,
     SnackBarService,
     LangService,

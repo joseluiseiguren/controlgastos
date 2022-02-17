@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   private userAlowed(): boolean {
-    /* TODO: remove
     if (this.userService.isSessionExpired() === false) {
       return true;
     }
@@ -26,9 +25,5 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     this.userService.logout();
     this.router.navigate([UrlConstants.logIn]);
     return false;
-
-    */
-
-    return true;
   }
 }

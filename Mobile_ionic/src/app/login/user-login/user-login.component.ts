@@ -44,6 +44,14 @@ export class UserLoginComponent implements OnInit {
     }
   }
 
+  get userSignupLink(): string {
+    return UrlConstants.signUp;
+  }
+
+  get userForgotPasswordLink(): string {
+    return UrlConstants.forgotPasswordRequest;
+  }
+
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       emailFormControl: ['', [Validators.required, Validators.email]],
@@ -51,11 +59,11 @@ export class UserLoginComponent implements OnInit {
     });
 
     this.loginForm.valueChanges.subscribe(x => {
-      if (x.emailFormControl.indexOf(' ') >= 0){
+      if (x.emailFormControl?.indexOf(' ') >= 0){
         const fixedValue = x.emailFormControl.replace(/\s/g, '');
         this.loginForm.get('emailFormControl')?.setValue(fixedValue, { emitEvent: false });
       }
-    })
+    });
   }
 
  async onLogin() {
@@ -67,6 +75,7 @@ export class UserLoginComponent implements OnInit {
     const data = await firstValueFrom(source$);
     if (data === true) {
       this.loading = false;
+      this.loginForm.reset();
       this.ingresarApp();
     } else {
       this.snackBarService.showSnackBarError(this.translate.instant('login.accessDenied'));

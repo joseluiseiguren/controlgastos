@@ -1,7 +1,10 @@
+import { environment } from './../environments/environment';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from 'src/services/lang.service.service';
 import { UrlConstants } from 'src/constants/url.constants';
+import { Router } from '@angular/router';
+import { UsersService } from 'src/services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +14,8 @@ import { UrlConstants } from 'src/constants/url.constants';
 export class AppComponent {
 
   constructor(public translate: TranslateService,
+              private router: Router,
+              private userService: UsersService,
               private langService: LangService) {
 
     const availableLangs = this.langService.langsLocal.map(x => x.value);
@@ -46,5 +51,10 @@ export class AppComponent {
 
   get userLoginLink(): string {
     return UrlConstants.logIn;
+  }
+
+  logout(){
+    this.userService.logout();
+    this.router.navigate([UrlConstants.logIn]);
   }
 }
