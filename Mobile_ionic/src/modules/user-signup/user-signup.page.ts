@@ -1,14 +1,18 @@
 /* eslint-disable max-len */
 import { DatePipe } from '@angular/common';
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { firstValueFrom } from 'rxjs';
+import { ModalDateComponent } from 'src/components/modal-date/modal-date.component';
 import { UrlConstants } from 'src/constants/url.constants';
+import { User } from 'src/models/user';
+import { HelperService } from 'src/services/helper.service.service';
 import { LangService } from 'src/services/lang.service.service';
 import { SnackBarService } from 'src/services/snackBar.service';
 import { UsersService } from 'src/services/users.service';
-import { ModalDateComponent } from '../components/modal-date/modal-date.component';
 
 @Component({
   selector: 'app-user-signup',
@@ -28,10 +32,14 @@ export class UserSignupPage implements OnInit {
   passwordRepeatType = 'password';
   passwordRepeatIcon = 'eye-off';
 
+  currencies: string[];
+
   constructor(public formBuilder: FormBuilder,
               public langService: LangService,
               private snackBarService: SnackBarService,
+              private helperService: HelperService,
               private datePipe: DatePipe,
+              private router: Router,
               private modalCtrl: ModalController,
               private usersService: UsersService,
               public translate: TranslateService) { }
@@ -50,6 +58,8 @@ export class UserSignupPage implements OnInit {
       monedaFormControl: ['', [Validators.required]],
       languageFormControl: [this.translate.currentLang, [Validators.required]]
     }, {validator: this.usersService.checkPasswords });
+
+    this.currencies = this.usersService.getAvailablesCurrencies();
   }
 
   async closeModal(){
@@ -74,13 +84,31 @@ export class UserSignupPage implements OnInit {
     modal.onDidDismiss()
       .then((data) => {
         this.signupForm.controls.fechaNacimientoFormControl.setValue(this.datePipe.transform(new Date(data.data), 'mediumDate'));
-        //console.log(new Date(this.signupForm.controls.fechaNacimientoFormControl.value.toString()));
     });
 
     return await modal.present();
   }
 
-  onSignup(){
+  async onSignup(): Promise<void>{
+    console.log(this.signupForm.controls);
+
+    this.loading  = true;
+    const user = this.createUser();
+
+    const source$ = this.usersService.register(user);
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.loading  = false;
+
+      this.snackBarService.showSnackBarSuccess(this.translate.instant('signup.success'));
+      this.router.navigate([UrlConstants.logIn]);
+
+    } catch (error) {
+      this.loading = false;
+      this.snackBarService.showSnackBarError(this.helperService.getErrorMessage(error));
+    }
   }
 
   hideShowPassword() {
@@ -91,6 +119,26 @@ export class UserSignupPage implements OnInit {
   hideShowRepeatPassword() {
     this.passwordRepeatType = this.passwordRepeatType === 'text' ? 'password' : 'text';
     this.passwordRepeatIcon = this.passwordRepeatIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
+
+  public selectLang(lang): void {
+    this.translate.use(lang.detail.value);
+  }
+
+  private createUser(): User {
+    const user: User = {
+      email: this.signupForm.value.emailFormControl,
+      bornDate: new Date(this.signupForm.controls.fechaNacimientoFormControl.value.toString()),
+      currency: this.signupForm.value.monedaFormControl,
+      language: this.signupForm.value.languageFormControl,
+      name: this.signupForm.value.nameFormControl,
+      entryDate: null,
+      id: null,
+      statusId: null,
+      password: this.signupForm.value.passwordFormControl
+    };
+
+    return user;
   }
 
 }

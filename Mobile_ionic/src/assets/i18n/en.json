@@ -77,7 +77,8 @@
     "repeatPassword": "Repeat Password",
     "goToLogin": "Go To Login",
     "signup": "Signup",
-    "language": "Language"
+    "language": "Language",
+    "success": "Successful registration. You can now start using the application"
   },
   "balance": {
     "income": "Income",

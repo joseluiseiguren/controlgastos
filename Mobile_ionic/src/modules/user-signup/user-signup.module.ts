@@ -10,7 +10,7 @@ import { UserSignupPage } from './user-signup.page';
 import { httpTranslateLoader } from 'src/modules/custom-translate-module/custom-translate-module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
-import { ModalDateComponent } from '../components/modal-date/modal-date.component';
+import { ModalDateComponent } from 'src/components/modal-date/modal-date.component';
 
 @NgModule({
   imports: [

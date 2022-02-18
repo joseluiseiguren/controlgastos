@@ -77,7 +77,8 @@
     "repeatPassword": "Répéter le mot de passe",
     "goToLogin": "Aller à la connexion",
     "signup": "Inscrivez-vous",
-    "language": "Langue"
+    "language": "Langue",
+    "success": "Inscription réussie. Vous pouvez maintenant commencer à utiliser l'application"
   },
   "balance": {
     "income": "Revenu",

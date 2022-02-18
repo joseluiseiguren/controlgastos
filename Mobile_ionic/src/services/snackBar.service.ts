@@ -29,7 +29,7 @@ export class SnackBarService {
   async showSnackBarSuccess(message: string): Promise<void> {
     const toast = await this.toastController.create({
       message,
-      duration: 2000,
+      duration: 5000,
       color: 'success'
     });
     toast.present();
