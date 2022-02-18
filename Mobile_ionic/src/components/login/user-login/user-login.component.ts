@@ -25,7 +25,7 @@ export class UserLoginComponent implements OnInit {
   hidePassword = true;
   loginForm: FormGroup;
   currentLang = this.translate.currentLang;
-  selectedLang = {'background-image':`url(./../../../../assets/icon/${this.translate.currentLang}Flag.png)`};
+  selectedLang = { 'padding-left': '1rem', 'background-repeat': 'no-repeat', 'background-image':`url(./../../../../assets/icon/${this.translate.currentLang}Flag.png)`};
 
   passwordType = 'password';
   passwordIcon = 'eye-off';
@@ -101,7 +101,7 @@ export class UserLoginComponent implements OnInit {
   onChangeLang($event) {
     this.currentLang = $event.target.value;
     this.translate.use(this.currentLang);
-    this.selectedLang = {'background-image':`url(./../../../../assets/icon/${this.currentLang}Flag.png)`};
+    this.selectedLang = { 'padding-left': '1rem', 'background-repeat': 'no-repeat', 'background-image':`url(./../../../../assets/icon/${this.currentLang}Flag.png)`};
     localStorage.setItem('lastLangUsed', this.currentLang);
   }
 

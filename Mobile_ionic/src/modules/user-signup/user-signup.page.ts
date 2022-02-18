@@ -24,7 +24,7 @@ export class UserSignupPage implements OnInit {
   hidePassword = true;
   signupForm: FormGroup;
   currentLang = this.translate.currentLang;
-  selectedLang = {'background-image':`url(./../../../../assets/icon/${this.translate.currentLang}Flag.png)`};
+  selectedLang = { 'padding-left': '1rem', 'background-repeat': 'no-repeat', 'background-image':`url(./../../../assets/icon/${this.translate.currentLang}Flag.png)`};
 
   passwordType = 'password';
   passwordIcon = 'eye-off';
@@ -90,10 +90,11 @@ export class UserSignupPage implements OnInit {
   }
 
   async onSignup(): Promise<void>{
-    console.log(this.signupForm.controls);
 
     this.loading  = true;
     const user = this.createUser();
+
+    console.log(user);
 
     const source$ = this.usersService.register(user);
 
@@ -125,6 +126,23 @@ export class UserSignupPage implements OnInit {
     this.translate.use(lang.detail.value);
   }
 
+  loadFlags() {
+    setTimeout(() => {
+     const radios=document.getElementsByClassName('alert-radio-label');
+     for (let index = 0; index < radios.length; index++) {
+        const element = radios[index];
+        element.innerHTML = element.innerHTML.concat(`<img src="./../../../assets/icon/${this.langService.langsLocal[index].value}Flag.png" />`);
+      }
+     }, 200);
+  }
+
+  onChangeLang($event) {
+    this.currentLang = $event.target.value;
+    this.translate.use(this.currentLang);
+    this.selectedLang = { 'padding-left': '1rem', 'background-repeat': 'no-repeat', 'background-image':`url(./../../../assets/icon/${this.currentLang}Flag.png)`};
+    localStorage.setItem('lastLangUsed', this.currentLang);
+  }
+
   private createUser(): User {
     const user: User = {
       email: this.signupForm.value.emailFormControl,
@@ -140,5 +158,7 @@ export class UserSignupPage implements OnInit {
 
     return user;
   }
+
+
 
 }

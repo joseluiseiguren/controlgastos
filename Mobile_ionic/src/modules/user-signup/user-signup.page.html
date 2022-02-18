@@ -30,11 +30,27 @@
         </ion-select>
       </ion-item>
 
+      <!--
       <ion-item>
         <ion-label>{{'signup.language' | translate }}</ion-label>
         <ion-select formControlName="languageFormControl" interface="action-sheet" (ionChange)="selectLang($event)">
           <ion-select-option *ngFor="let lang of this.langService.langsLocal" [value]="lang.value">{{lang.value}}</ion-select-option>
         </ion-select>
+      </ion-item>
+      -->
+
+      <ion-item>
+        <ion-label>{{'signup.language' | translate }}</ion-label>
+          <ion-select id="langDropDown"
+                      [ngStyle]="selectedLang"
+                      formControlName="languageFormControl"
+                      (click)="loadFlags()"
+                      (ionChange)="onChangeLang($event)"
+                      okText="{{'button.ok' | translate}}"
+                      cancelText="{{'button.cancel' | translate}}">
+            <ion-select-option *ngFor="let lang of this.langService.langsLocal" value="{{lang.value}}">
+            </ion-select-option>
+          </ion-select>
       </ion-item>
 
       <ion-item lines="full">
