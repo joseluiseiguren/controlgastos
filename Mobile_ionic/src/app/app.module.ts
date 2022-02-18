@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HelperService } from 'src/services/helper.service.service';
 import { SnackBarService } from 'src/services/snackBar.service';
 import { AuthGuard } from 'src/guards/auth.guard';
+import { httpTranslateLoader } from 'src/modules/custom-translate-module/custom-translate-module';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -39,14 +40,15 @@ registerLocaleData(localeEn);
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
          provide: TranslateLoader,
          useFactory: httpTranslateLoader,
          deps: [HttpClient]
-         }
+         },
+         isolate : false
       }),
+    ReactiveFormsModule
   ],
   providers: [
     DatePipe,
@@ -64,7 +66,4 @@ registerLocaleData(localeEn);
 })
 export class AppModule {}
 
-// AOT compilation support
-export function httpTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
+
