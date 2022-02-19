@@ -40,6 +40,10 @@ const routes: Routes = [
     loadChildren: () => import('./../modules/user-signup/user-signup.module').then( m => m.UserSignupPageModule)
   },
   {
+    path: UrlConstants.forgotPasswordRequest,
+    loadChildren: () => import('./../modules/user-forgot-password/user-forgot-password.module').then( m => m.UserForgotPasswordPageModule)
+  },
+  {
     path: UrlConstants.logIn,
     component: UserLoginComponent,
   },

@@ -45,7 +45,7 @@
 
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="primary" expand="block" [disabled]="loading">
+          <ion-button type="submit" color="primary" expand="block" [disabled]="!loginForm.valid || loading">
             <ion-spinner *ngIf="loading === true" name="bubbles"></ion-spinner>
             <div *ngIf="loading === false">{{'login.login' | translate }}</div>
           </ion-button>

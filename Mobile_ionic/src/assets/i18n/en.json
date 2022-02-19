@@ -3,7 +3,7 @@
     "login": "Login",
     "password": "Password",
     "email": "E-Mail",
-    "register": "Register",
+    "register": "Signup",
     "forgotPassword": "Forgot Password",
     "accessDenied": "Access Denied"
   },
