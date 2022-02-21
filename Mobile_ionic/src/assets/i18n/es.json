@@ -30,7 +30,8 @@
   },
   "button": {
     "cancel": "Cancelar",
-    "ok": "Aceptar"
+    "ok": "Aceptar",
+    "close": "Cerrar"
   },
   "message": {
     "successfulOperation": "Operación Exitosa"
@@ -98,5 +99,9 @@
     "passwordUpdate": "Actualizar Contraseña",
     "updateOK": "Contraseña actualizada correctamente",
     "hello":"Hola, {{userName}}"
+  },
+  "settings": {
+    "settings": "Configuración",
+    "themeDark": "Modo Noche"
   }
 }

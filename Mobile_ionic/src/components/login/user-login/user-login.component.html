@@ -11,21 +11,9 @@
           <h2>Money Guard</h2>
         </div>
       </ion-col>
-      <ion-col size="2.5">
+      <ion-col size="1.5" style="text-align: right; padding-top: 1.3rem;">
         <div class="in-text-end">
-          <ion-list style="width: 6rem;">
-            <ion-item>
-              <ion-select id="langDropDown"
-                  [ngStyle]="selectedLang"
-                  (click)="loadFlags()"
-                  (ionChange)="onChangeLang($event)"
-                  okText="{{'button.ok' | translate}}"
-                  cancelText="{{'button.cancel' | translate}}">
-                <ion-select-option *ngFor="let lang of this.langService.langsLocal" value="{{lang.value}}">
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-list>
+          <app-setting  [showLanguage]="true"></app-setting>
         </div>
       </ion-col>
     </ion-row>
@@ -63,6 +51,5 @@
         </div>
       </ion-col>
     </ion-row>
-
   </div>
 </ion-content>

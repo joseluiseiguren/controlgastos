@@ -30,7 +30,8 @@
   },
   "button": {
     "cancel": "Annuler",
-    "ok": "J'accepte"
+    "ok": "J'accepte",
+    "close": "Fermer"
   },
   "message": {
     "successfulOperation": "Opération réussie"
@@ -98,5 +99,9 @@
     "passwordUpdate": "Mise à jour du mot de passe",
     "updateOK": "Mot de passe mis à jour avec succès",
     "hello":"Bonjour, {{userName}}"
+  },
+  "settings": {
+    "settings": "Réglages",
+    "themeDark": "Thème sombre"
   }
 }

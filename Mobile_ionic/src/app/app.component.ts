@@ -1,10 +1,12 @@
 import { environment } from './../environments/environment';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from 'src/services/lang.service.service';
 import { UrlConstants } from 'src/constants/url.constants';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/services/users.service';
+import { StorageConstants } from 'src/constants/storage.constants';
+import { ColorThemeService } from 'src/services/color-theme.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,8 @@ export class AppComponent {
   constructor(public translate: TranslateService,
               private router: Router,
               private userService: UsersService,
+              private render: Renderer2,
+              private colorThemeService: ColorThemeService,
               private langService: LangService) {
 
     const availableLangs = this.langService.langsLocal.map(x => x.value);
@@ -23,6 +27,8 @@ export class AppComponent {
     translate.addLangs(availableLangs);
     translate.setDefaultLang(this.langService.defaultLang);
     translate.use(this.langService.defaultLang);
+
+    this.colorThemeService.initTheme();
   }
 
   get dailyLink(): string {

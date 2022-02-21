@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
 import { UrlConstants } from 'src/constants/url.constants';
-import { LangService } from 'src/services/lang.service.service';
 import { UsersService } from 'src/services/users.service';
 import { SnackBarService } from 'src/services/snackBar.service';
 import { HelperService } from './../../../services/helper.service.service';
@@ -24,14 +23,11 @@ export class UserLoginComponent implements OnInit {
   loading = false;
   hidePassword = true;
   loginForm: FormGroup;
-  currentLang = this.translate.currentLang;
-  selectedLang = { 'padding-left': '1rem', 'background-repeat': 'no-repeat', 'background-image':`url(./../../../../assets/icon/${this.translate.currentLang}Flag.png)`};
 
   passwordType = 'password';
   passwordIcon = 'eye-off';
 
   constructor(public formBuilder: FormBuilder,
-              public langService: LangService,
               private snackBarService: SnackBarService,
               private helperService: HelperService,
               private router: Router,
@@ -87,23 +83,6 @@ export class UserLoginComponent implements OnInit {
     this.snackBarService.showSnackBarError(this.helperService.getErrorMessage(error));
   }
  }
-
- loadFlags() {
-  setTimeout(() => {
-   const radios=document.getElementsByClassName('alert-radio-label');
-   for (let index = 0; index < radios.length; index++) {
-      const element = radios[index];
-      element.innerHTML = element.innerHTML.concat(`<img src="./../../../assets/icon/${this.langService.langsLocal[index].value}Flag.png" />`);
-    }
-   }, 200);
-  }
-
-  onChangeLang($event) {
-    this.currentLang = $event.target.value;
-    this.translate.use(this.currentLang);
-    this.selectedLang = { 'padding-left': '1rem', 'background-repeat': 'no-repeat', 'background-image':`url(./../../../../assets/icon/${this.currentLang}Flag.png)`};
-    localStorage.setItem('lastLangUsed', this.currentLang);
-  }
 
   private ingresarApp() {
     try{

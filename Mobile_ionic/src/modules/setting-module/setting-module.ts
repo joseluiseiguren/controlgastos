@@ -1,24 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
-import { UserForgotPasswordPageRoutingModule } from './user-forgot-password-routing.module';
-
-import { UserForgotPasswordPage } from './user-forgot-password.page';
+import { ModalSettingsComponent } from 'src/components/modal-settings/modal-settings.component';
+import { SettingComponent } from 'src/components/setting/setting.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
 
 @NgModule({
+  declarations: [
+    ModalSettingsComponent,
+    SettingComponent
+  ],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    IonicModule,
-    UserForgotPasswordPageRoutingModule,
-    TranslateModule.forChild({
+    TranslateModule.forRoot({
       loader: {
          provide: TranslateLoader,
          useFactory: httpTranslateLoader,
@@ -27,6 +22,8 @@ import { HttpClient } from '@angular/common/http';
          isolate : false
       }),
   ],
-  declarations: [UserForgotPasswordPage]
+  exports: [
+    SettingComponent
+]
 })
-export class UserForgotPasswordPageModule {}
+export class SettingModuleModule { }

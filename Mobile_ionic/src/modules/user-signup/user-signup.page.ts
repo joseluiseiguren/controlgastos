@@ -65,7 +65,6 @@ export class UserSignupPage implements OnInit {
   async closeModal(){
     const modal = await this.modalCtrl.getTop();
     if (modal) {
-      console.log(modal);
       modal.dismiss();
     }
   }

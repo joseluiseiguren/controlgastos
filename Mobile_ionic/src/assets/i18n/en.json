@@ -30,7 +30,8 @@
   },
   "button": {
     "cancel": "Cancel",
-    "ok": "Accept"
+    "ok": "Accept",
+    "close": "Close"
   },
   "message": {
     "successfulOperation": "Successful Operation"
@@ -98,5 +99,9 @@
     "passwordUpdate": "Password Update",
     "updateOK": "Password Updated Successfully",
     "hello":"Hello, {{userName}}"
+  },
+  "settings": {
+    "settings": "Settings",
+    "themeDark": "Dark Theme"
   }
 }

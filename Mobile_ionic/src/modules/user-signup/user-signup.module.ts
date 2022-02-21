@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { UserSignupPageRoutingModule } from './user-signup-routing.module';
 
 import { UserSignupPage } from './user-signup.page';
-import { httpTranslateLoader } from 'src/modules/custom-translate-module/custom-translate-module';
+import { httpTranslateLoader } from 'src/modules/custom-translate-module/translate.loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { ModalDateComponent } from 'src/components/modal-date/modal-date.component';

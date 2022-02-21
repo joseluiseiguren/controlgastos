@@ -8,7 +8,7 @@ import { DailyPageRoutingModule } from './daily-routing.module';
 
 import { DailyPage } from './daily.page';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { httpTranslateLoader } from '../custom-translate-module/custom-translate-module';
+import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
 
 @NgModule({

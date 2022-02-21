@@ -21,9 +21,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HelperService } from 'src/services/helper.service.service';
 import { SnackBarService } from 'src/services/snackBar.service';
 import { AuthGuard } from 'src/guards/auth.guard';
-import { httpTranslateLoader } from 'src/modules/custom-translate-module/custom-translate-module';
+import { httpTranslateLoader } from 'src/modules/custom-translate-module/translate.loader';
 import { UserLoginComponent } from 'src/components/login/user-login/user-login.component';
 import { AuthInterceptor } from 'src/interceptors/AuthInterceptor';
+import { ColorThemeService } from 'src/services/color-theme.service';
+import { SettingModuleModule } from 'src/modules/setting-module/setting-module';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -40,6 +42,7 @@ registerLocaleData(localeEn);
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    SettingModuleModule,
     TranslateModule.forRoot({
       loader: {
          provide: TranslateLoader,
@@ -59,6 +62,7 @@ registerLocaleData(localeEn);
       multi: true,
     },
     HelperService,
+    ColorThemeService,
     SnackBarService,
     LangService,
     DiarioService,
