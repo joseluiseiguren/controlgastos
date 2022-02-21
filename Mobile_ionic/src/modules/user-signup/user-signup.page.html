@@ -1,8 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="ion-text-center">{{'signup.signup' | translate }}</ion-title>
-
-
+    <ion-row>
+      <ion-col size="3" style="margin-top: 0.5rem;">
+        <div>
+          <img src="./../../../assets/icon/icon-52x52.png" alt="">
+        </div>
+      </ion-col>
+      <ion-col size="6" style="text-align: center">
+        <div>
+          <h2>{{'signup.signup' | translate }}</h2>
+        </div>
+      </ion-col>
+      <ion-col size="3" style="text-align: right; padding-top: 1.3rem; padding-right: 1rem;">
+        <div class="in-text-end">
+          <app-setting  [showLanguage]="false"></app-setting>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 

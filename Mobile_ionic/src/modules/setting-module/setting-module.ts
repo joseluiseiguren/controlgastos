@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    TranslateModule.forRoot({
+    TranslateModule.forChild({
       loader: {
          provide: TranslateLoader,
          useFactory: httpTranslateLoader,
@@ -26,4 +26,4 @@ import { HttpClient } from '@angular/common/http';
     SettingComponent
 ]
 })
-export class SettingModuleModule { }
+export class SettingModule { }

@@ -10,6 +10,7 @@ import { UserForgotPasswordPage } from './user-forgot-password.page';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
+import { SettingModule } from '../setting-module/setting-module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
     ReactiveFormsModule,
     IonicModule,
     UserForgotPasswordPageRoutingModule,
+    SettingModule,
     TranslateModule.forChild({
       loader: {
          provide: TranslateLoader,

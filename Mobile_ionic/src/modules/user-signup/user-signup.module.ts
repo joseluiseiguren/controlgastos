@@ -11,6 +11,7 @@ import { httpTranslateLoader } from 'src/modules/custom-translate-module/transla
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { ModalDateComponent } from 'src/components/modal-date/modal-date.component';
+import { SettingModule  } from '../setting-module/setting-module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ModalDateComponent } from 'src/components/modal-date/modal-date.compone
     ReactiveFormsModule,
     IonicModule,
     UserSignupPageRoutingModule,
+    SettingModule,
     TranslateModule.forChild({
       loader: {
          provide: TranslateLoader,
