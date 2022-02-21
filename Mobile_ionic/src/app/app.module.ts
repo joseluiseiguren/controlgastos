@@ -9,7 +9,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
@@ -23,6 +23,7 @@ import { SnackBarService } from 'src/services/snackBar.service';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { httpTranslateLoader } from 'src/modules/custom-translate-module/custom-translate-module';
 import { UserLoginComponent } from 'src/components/login/user-login/user-login.component';
+import { AuthInterceptor } from 'src/interceptors/AuthInterceptor';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -52,6 +53,11 @@ registerLocaleData(localeEn);
   providers: [
     DatePipe,
     AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     HelperService,
     SnackBarService,
     LangService,

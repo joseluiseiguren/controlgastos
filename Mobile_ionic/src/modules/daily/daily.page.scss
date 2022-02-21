@@ -1,0 +1,46 @@
+.spinnerCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+ion-spinner {
+  transform: scale(3);
+}
+
+.gridText {
+  font-size: smaller;
+  padding-top: 0.2rem;
+}
+
+.odd {
+  background-color: rgb(227, 225, 210);
+}
+
+.even {
+  background-color: lightgray;
+}
+
+.leftCol {
+  padding-left: 0.7rem;
+}
+
+.rightCol {
+  padding-right: 0.7rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    .odd {
+      color: black;
+      background-color: white;
+    }
+
+    .even {
+      color: red;
+      background-color: blue;
+    }
+  }
+}

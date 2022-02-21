@@ -1,60 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" style="float: left;">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Daily title</ion-title>
+    <ion-title style="width: 100%; position: absolute; left: 0%; height: 0; text-align: center;">{{'menu.daily' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
+
+  <div class="spinnerCenter" *ngIf="loading === true">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+
+  <div *ngIf="loading === false">
     <ion-grid [fixed]="true">
-      <ion-row>
-        <ion-col>Sueldo</ion-col>
-        <ion-col>
+      <ion-row [ngClass]="(i % 2 === 0) ? 'odd' : 'even'" class="gridText" *ngFor="let item of conceptos; let i = index">
+        <ion-col class="leftCol" size="9">{{item.description}}</ion-col>
+        <ion-col class="rightCol" size="3">
           <div class="ion-text-end">
-            1500.00
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>Perros</ion-col>
-        <ion-col>
-          <div class="ion-text-end">
-            5.33
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>Vacaciones</ion-col>
-        <ion-col>
-          <div class="ion-text-end">
-            254.11
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>Supermercado</ion-col>
-        <ion-col>
-          <div class="ion-text-end">
-            254.11
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>Auto</ion-col>
-        <ion-col>
-          <div class="ion-text-end">
-            254.11
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>Catamaranes del sur</ion-col>
-        <ion-col>
-          <div class="ion-text-end">
-            254.11
+            {{item.ammount | currency: this.userService.userCurrency}}
           </div>
         </ion-col>
       </ion-row>

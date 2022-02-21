@@ -63,3 +63,4 @@
 - Detect autatically if there is an update in the apk, and redirect to google play
 - Add graphs 
 - Create ionic project
+- Daily screen: toogle with 'more used concepts'
