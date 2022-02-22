@@ -5,6 +5,7 @@ import { SettingComponent } from 'src/components/setting/setting.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
+    IonicModule,
     TranslateModule.forChild({
       loader: {
          provide: TranslateLoader,

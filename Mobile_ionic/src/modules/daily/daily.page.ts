@@ -7,6 +7,7 @@ import { firstValueFrom } from 'rxjs';
 import { DiarioService } from 'src/services/diario.service';
 import { IConceptoDiario } from 'src/models/concepto.diario';
 import { UsersService } from 'src/services/users.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-daily',

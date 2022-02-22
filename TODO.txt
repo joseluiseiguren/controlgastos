@@ -64,3 +64,4 @@
 - Add graphs 
 - Create ionic project
 - Daily screen: toogle with 'more used concepts'
+- UI: add transitions effects between screens

@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MenuController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class UsersService {
 
   constructor(private http: HttpClient,
               private translate: TranslateService,
+              public menuCtrl: MenuController,
               private urlService: UrlService) {
     this.setUserName(this.getUserNameFromToken());
   }
@@ -37,6 +39,7 @@ export class UsersService {
                       this.userCurrency = this.getMoneda();
                       this.setUserName(this.getUserNameFromToken());
                       this.setLang(this.getUserLanguageFromToken());
+                      this.menuCtrl.enable(true);
                       return true;
                   }
 
@@ -91,6 +94,7 @@ export class UsersService {
   logout() {
       // remove user from local storage to log user out
       localStorage.removeItem('alow');
+      this.menuCtrl.enable(false);
   }
 
   isSessionExpired(): boolean {

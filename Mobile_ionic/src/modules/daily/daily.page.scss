@@ -16,11 +16,7 @@ ion-spinner {
 }
 
 .odd {
-  background-color: rgb(227, 225, 210);
-}
-
-.even {
-  background-color: lightgray;
+  background-color: var(--ion-custom-grid-background)
 }
 
 .leftCol {
@@ -31,16 +27,11 @@ ion-spinner {
   padding-right: 0.7rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    .odd {
-      color: black;
-      background-color: white;
-    }
+ion-grid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 
-    .even {
-      color: red;
-      background-color: blue;
-    }
-  }
+.negativeAmmount {
+  color: red;
 }

@@ -1,24 +1,24 @@
-import { environment } from './../environments/environment';
-import { Component, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from 'src/services/lang.service.service';
 import { UrlConstants } from 'src/constants/url.constants';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { UsersService } from 'src/services/users.service';
-import { StorageConstants } from 'src/constants/storage.constants';
 import { ColorThemeService } from 'src/services/color-theme.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  userName = '';
 
   constructor(public translate: TranslateService,
               private router: Router,
               private userService: UsersService,
-              private render: Renderer2,
+              public menuCtrl: MenuController,
               private colorThemeService: ColorThemeService,
               private langService: LangService) {
 
@@ -57,6 +57,18 @@ export class AppComponent {
 
   get userLoginLink(): string {
     return UrlConstants.logIn;
+  }
+
+  ngOnInit(): void {
+    if (this.userService.isSessionExpired()){
+      this.menuCtrl.enable(false);
+    } else {
+      this.menuCtrl.enable(true);
+    }
+
+    this.userService.userName.subscribe(x => {
+      this.userName = x;
+    });
   }
 
   logout(){

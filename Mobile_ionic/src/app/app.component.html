@@ -3,8 +3,15 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Money Guard</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          <div style="display: flow-root;">
+            <div style="float: left;">
+              <ion-list-header>Money Guard</ion-list-header>
+              <ion-note>{{userName}}</ion-note>
+            </div>
+            <div style="position: absolute; left: 12rem; top: 0px;">
+              <img src="./../assets/icon/icon-72x72.png" alt="" style="margin-left: 0.5rem; margin-right: 2rem;">
+            </div>
+          </div>
 
           <ion-menu-toggle auto-hide="false">
             <ion-item routerDirection="root" [routerLink]="dailyLink" lines="none" detail="false" routerLinkActive="selected">
@@ -50,3 +57,6 @@
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
+
+
+<!-- *ngIf="userLogged === true" -->

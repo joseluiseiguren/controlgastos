@@ -3,7 +3,10 @@
     <ion-buttons slot="start" style="float: left;">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title style="width: 100%; position: absolute; left: 0%; height: 0; text-align: center;">{{'menu.daily' | translate }}</ion-title>
+    <ion-title style="width: 100%; position: absolute; left: 0%; height: 0; text-align: center; padding-top: 14px;">{{'menu.daily' | translate }}</ion-title>
+    <div style="float: right; margin-right: 1rem;">
+      <app-setting [showLanguage]="false"></app-setting>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -15,10 +18,11 @@
 
   <div *ngIf="loading === false">
     <ion-grid [fixed]="true">
-      <ion-row [ngClass]="(i % 2 === 0) ? 'odd' : 'even'" class="gridText" *ngFor="let item of conceptos; let i = index">
+      <ion-row [ngClass]="(i % 2 === 0) ? 'odd' : ''" class="gridText" *ngFor="let item of conceptos; let i = index">
         <ion-col class="leftCol" size="9">{{item.description}}</ion-col>
         <ion-col class="rightCol" size="3">
-          <div class="ion-text-end">
+          <div class="ion-text-end"
+               [ngClass]="(item.ammount < 0) ? 'negativeAmmount' : ''">
             {{item.ammount | currency: this.userService.userCurrency}}
           </div>
         </ion-col>

@@ -2,7 +2,7 @@
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { RouteReuseStrategy, RouterModule } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -26,6 +26,7 @@ import { UserLoginComponent } from 'src/components/login/user-login/user-login.c
 import { AuthInterceptor } from 'src/interceptors/AuthInterceptor';
 import { ColorThemeService } from 'src/services/color-theme.service';
 import { SettingModule  } from 'src/modules/setting-module/setting-module';
+import { customAnimation } from 'src/animations/custom.animation';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -38,6 +39,7 @@ registerLocaleData(localeEn);
   entryComponents: [],
   imports: [
     BrowserModule,
+    //IonicModule.forRoot({navAnimation: customAnimation}),
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,

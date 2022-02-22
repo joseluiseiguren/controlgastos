@@ -10,12 +10,14 @@ import { DailyPage } from './daily.page';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
+import { SettingModule } from '../setting-module/setting-module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SettingModule,
     DailyPageRoutingModule,
     TranslateModule.forChild({
       loader: {
