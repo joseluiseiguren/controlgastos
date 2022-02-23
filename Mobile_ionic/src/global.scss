@@ -37,8 +37,17 @@ ion-modal.settings-modal {
   --border-radius: 8px;
 }
 
+ion-modal.dailyInput-modal {
+  --width: 290px;
+  --height: 350px;
+  --border-radius: 8px;
+}
+
 a {
   color: var(--ion-color-secondary);
   text-decoration: none;
 }
 
+ion-button {
+  text-transform: none;
+ }

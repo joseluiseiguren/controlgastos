@@ -12,6 +12,7 @@ import { ModalDateComponent } from 'src/components/modal-date/modal-date.compone
 import { DatePipe } from '@angular/common';
 import { UrlConstants } from 'src/constants/url.constants';
 import { CalculationService } from 'src/sharedServices/calculationService';
+import { ModalDailyInputComponent } from 'src/components/modal-daily-input/modal-daily-input.component';
 
 @Component({
   selector: 'app-daily',
@@ -88,6 +89,24 @@ export class DailyPage implements OnInit {
 
   favoriteClicked(event: boolean) {
     console.log(event);
+  }
+
+  async gridItemClicked(item: IConceptoDiario) {
+
+    const modal = await this.modalCtrl.create({
+      component: ModalDailyInputComponent,
+      componentProps: { data: item },
+      cssClass: 'dailyInput-modal'
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        if (data.data){
+          console.log(data.data);
+        }
+    });
+
+    return await modal.present();
   }
 
   private getDateFromUrl(): Date {

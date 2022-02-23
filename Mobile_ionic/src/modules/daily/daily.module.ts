@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -15,11 +15,14 @@ import { DateModalModule } from '../date-modal/date.modal.module';
 import { BalanceModule } from '../balance/balance.module';
 import { CalculationService } from 'src/sharedServices/calculationService';
 import { FavoriteModule } from '../favorite/favorite.module';
+import { ModalDailyInputComponent } from 'src/components/modal-daily-input/modal-daily-input.component';
+import { TwoDigitDecimaNumberDirective } from 'src/directives/TwoDigitDecimaNumberDirective';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     SettingModule,
     DateModalModule,
@@ -38,6 +41,6 @@ import { FavoriteModule } from '../favorite/favorite.module';
   providers: [
     CalculationService
   ],
-  declarations: [DailyPage]
+  declarations: [DailyPage, ModalDailyInputComponent, TwoDigitDecimaNumberDirective]
 })
 export class DailyPageModule {}

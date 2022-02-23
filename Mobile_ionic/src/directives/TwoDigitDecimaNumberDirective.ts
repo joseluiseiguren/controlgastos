@@ -5,8 +5,8 @@ import { Directive, ElementRef, HostListener, Inject, LOCALE_ID } from '@angular
 })
 export class TwoDigitDecimaNumberDirective {
   // Allow decimal numbers and negative values
-  private regexEn: RegExp = new RegExp(/^\d*\.?\d{0,2}$/g);
-  private regexEs: RegExp = new RegExp(/^\d*\,?\d{0,2}$/g);
+  private regexEn = new RegExp(/^\d*\.?\d{0,2}$/g);
+  private regexEs = new RegExp(/^\d*\,?\d{0,2}$/g);
   // Allow key codes for special events. Reflect :
   // Backspace, tab, end, home
   private specialKeys: Array<string> = ['Enter', 'Backspace', 'Tab', 'End', 'Home', '-', 'ArrowLeft', 'ArrowRight', 'Del', 'Delete'];
@@ -51,7 +51,7 @@ export class TwoDigitDecimaNumberDirective {
       this.el.nativeElement.value = this.el.nativeElement.value.replace('.', ',');
       event.preventDefault();
 
-    }, 10)
+    }, 10);
   }
 
   private whatDecimalSeparator(): string {
