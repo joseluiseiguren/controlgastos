@@ -51,7 +51,8 @@
     "dailyBalance": "Saldo Diario",
     "amount": "Importe",
     "tags": "Etiquetas",
-    "year":"Año"
+    "year":"Año",
+    "balance": "Saldo Diario"
   },
   "filter": {
     "filters": "Filtros",

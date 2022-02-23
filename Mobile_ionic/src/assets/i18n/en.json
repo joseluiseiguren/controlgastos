@@ -51,7 +51,8 @@
     "dailyBalance": "Daily Balance",
     "amount": "Amount",
     "tags": "Tags",
-    "year":"Year"
+    "year":"Year",
+    "balance": "Daily Balance"
   },
   "filter": {
     "filters": "Filters",

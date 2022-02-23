@@ -62,13 +62,6 @@ export class UserSignupPage implements OnInit {
     this.currencies = this.usersService.getAvailablesCurrencies();
   }
 
-  async closeModal(){
-    const modal = await this.modalCtrl.getTop();
-    if (modal) {
-      modal.dismiss();
-    }
-  }
-
   async openModal(){
     const currentDate = this.signupForm.controls.fechaNacimientoFormControl.value === '' ?
       this.datePipe.transform(new Date(), 'yyyy-MM-dd') :

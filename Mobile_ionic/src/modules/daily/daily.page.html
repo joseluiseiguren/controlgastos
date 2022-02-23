@@ -16,6 +16,28 @@
     <ion-spinner name="bubbles"></ion-spinner>
   </div>
 
+  <div style="position: sticky; top: 0; z-index: 1;">
+    <ion-grid id="headerGrid">
+      <ion-row>
+        <ion-col size="5">
+          <div style="font-size: small; padding-left: 0.5rem; padding-top: 0.2rem;">
+            <ion-input [(ngModel)]="dateCtrl" type="text" (ionFocus)="openDateModal()" readonly class="datePicker">
+              <ion-icon slot="start" [ios]="'calendar-outline'" [md]="'calendar-sharp'" (click)="openDateModal()"></ion-icon>
+            </ion-input>
+          </div>
+        </ion-col>
+        <ion-col size="5">
+          <app-balance [title]="'dailyScreen.balance' | translate" [balance]="saldoDiario"></app-balance>
+        </ion-col>
+        <ion-col size="2" style="text-align: right; padding-right: 1rem;">
+          <div>
+            <app-favorite [on]="false" (starClicked)="favoriteClicked($event)"></app-favorite>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
   <div *ngIf="loading === false">
     <ion-grid [fixed]="true">
       <ion-row [ngClass]="(i % 2 === 0) ? 'odd' : ''" class="gridText" *ngFor="let item of conceptos; let i = index">

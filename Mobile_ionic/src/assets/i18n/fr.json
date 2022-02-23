@@ -51,7 +51,8 @@
     "dailyBalance": "Solde quotidien",
     "amount": "Montante",
     "tags": "Étiquettes",
-    "year":"An"
+    "year":"An",
+    "balance": "Solde quotidien"
   },
   "filter": {
     "filters": "Filtres",

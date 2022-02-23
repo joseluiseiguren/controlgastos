@@ -11,6 +11,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
 import { SettingModule } from '../setting-module/setting-module';
+import { DateModalModule } from '../date-modal/date.modal.module';
+import { BalanceModule } from '../balance/balance.module';
+import { CalculationService } from 'src/sharedServices/calculationService';
+import { FavoriteModule } from '../favorite/favorite.module';
 
 @NgModule({
   imports: [
@@ -18,6 +22,9 @@ import { SettingModule } from '../setting-module/setting-module';
     FormsModule,
     IonicModule,
     SettingModule,
+    DateModalModule,
+    BalanceModule,
+    FavoriteModule,
     DailyPageRoutingModule,
     TranslateModule.forChild({
       loader: {
@@ -27,6 +34,9 @@ import { SettingModule } from '../setting-module/setting-module';
          },
          isolate : false
       }),
+  ],
+  providers: [
+    CalculationService
   ],
   declarations: [DailyPage]
 })

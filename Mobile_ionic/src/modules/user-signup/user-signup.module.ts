@@ -10,8 +10,8 @@ import { UserSignupPage } from './user-signup.page';
 import { httpTranslateLoader } from 'src/modules/custom-translate-module/translate.loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
-import { ModalDateComponent } from 'src/components/modal-date/modal-date.component';
 import { SettingModule  } from '../setting-module/setting-module';
+import { DateModalModule } from '../date-modal/date.modal.module';
 
 @NgModule({
   imports: [
@@ -21,6 +21,7 @@ import { SettingModule  } from '../setting-module/setting-module';
     IonicModule,
     UserSignupPageRoutingModule,
     SettingModule,
+    DateModalModule,
     TranslateModule.forChild({
       loader: {
          provide: TranslateLoader,
@@ -30,6 +31,6 @@ import { SettingModule  } from '../setting-module/setting-module';
          isolate : false
       }),
   ],
-  declarations: [UserSignupPage, ModalDateComponent]
+  declarations: [UserSignupPage]
 })
 export class UserSignupPageModule {}
