@@ -19,6 +19,9 @@ import { ModalDailyInputComponent } from 'src/components/modal-daily-input/modal
 import { TwoDigitDecimaNumberDirective } from 'src/directives/TwoDigitDecimaNumberDirective';
 import { FormatingService } from 'src/sharedServices/formatingService';
 import { DiarioService } from 'src/services/diario.service';
+import { BalanceModalModule } from '../balance-modal/balance-modal.module';
+import { SumaryAnioService } from 'src/services/sumary-anio.service';
+import { SumaryMonthService } from 'src/services/sumary-month.service';
 
 @NgModule({
   imports: [
@@ -29,6 +32,7 @@ import { DiarioService } from 'src/services/diario.service';
     SettingModule,
     DateModalModule,
     BalanceModule,
+    BalanceModalModule,
     FavoriteModule,
     DailyPageRoutingModule,
     TranslateModule.forChild({
@@ -43,7 +47,9 @@ import { DiarioService } from 'src/services/diario.service';
   providers: [
     CalculationService,
     FormatingService,
-    DiarioService
+    DiarioService,
+    SumaryMonthService,
+    SumaryAnioService
   ],
   declarations: [DailyPage, ModalDailyInputComponent, TwoDigitDecimaNumberDirective]
 })

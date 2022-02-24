@@ -1,0 +1,48 @@
+
+<ion-content>
+  <ion-card *ngFor="let item of this.data">
+    <ion-card-header>
+      <ion-card-title>
+        <div style="display: contents;">
+          <ion-icon slot="start" [ios]="item.icon" [md]="item.icon"></ion-icon>
+        </div>
+        {{item.title}}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>{{'balance.income' | translate }}</ion-label>
+          </ion-col>
+          <ion-col style="text-align: right">
+            <ion-label>{{item.ingresos | currency: this.userService.userCurrency}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>{{'balance.outcome' | translate }}</ion-label>
+          </ion-col>
+          <ion-col style="text-align: right">
+            <ion-label>{{item.egresos | currency: this.userService.userCurrency}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label [class.negative]="(item.ingresos - item.egresos) < 0"
+                       [class.positive]="(item.ingresos - item.egresos) >= 0">
+              {{'balance.balance' | translate }}
+            </ion-label>
+          </ion-col>
+          <ion-col style="text-align: right">
+            <ion-label [class.negative]="(item.ingresos - item.egresos) < 0"
+                       [class.positive]="(item.ingresos - item.egresos) >= 0">
+              {{item.ingresos - item.egresos | currency: this.userService.userCurrency}}
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

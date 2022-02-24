@@ -47,6 +47,11 @@ ion-grid {
   padding: 0px;
 }
 
+.balanceSpinner {
+  transform: scale(1);
+  display: contents;
+}
+
 .datePicker {
   --padding-bottom: 0px;
   --padding-top: 0px;

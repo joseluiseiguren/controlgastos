@@ -3,7 +3,7 @@ import { HelperService } from './../../services/helper.service.service';
 import { SnackBarService } from './../../services/snackBar.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import { combineLatest, firstValueFrom, map } from 'rxjs';
 import { DiarioService } from 'src/services/diario.service';
 import { IConceptoDiario } from 'src/models/concepto.diario';
 import { UsersService } from 'src/services/users.service';
@@ -13,6 +13,13 @@ import { DatePipe } from '@angular/common';
 import { UrlConstants } from 'src/constants/url.constants';
 import { CalculationService } from 'src/sharedServices/calculationService';
 import { ModalDailyInputComponent } from 'src/components/modal-daily-input/modal-daily-input.component';
+import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balance.component';
+import { ISaldoItem } from 'src/models/saldoItem';
+import { SumaryMonthService } from 'src/services/sumary-month.service';
+import { SumaryAnioService } from 'src/services/sumary-anio.service';
+import { SumaryMonth } from 'src/models/sumaryMonth';
+import { SumaryAnio } from 'src/models/sumaryAnio';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-daily',
@@ -21,6 +28,7 @@ import { ModalDailyInputComponent } from 'src/components/modal-daily-input/modal
 })
 export class DailyPage implements OnInit {
   loading = false;
+  loadingBalance = false;
   currentDate: Date;
   dateCtrl = '';
   conceptos: IConceptoDiario[];
@@ -28,9 +36,12 @@ export class DailyPage implements OnInit {
 
   constructor(private diarioService: DiarioService,
               private snackBarService: SnackBarService,
+              private sumaryMonthService: SumaryMonthService,
+              private sumaryAnioService: SumaryAnioService,
               private modalCtrl: ModalController,
               public userService: UsersService,
               private calculationService: CalculationService,
+              private translateService: TranslateService,
               private datePipe: DatePipe,
               private router: Router,
               private helperService: HelperService,
@@ -109,6 +120,86 @@ export class DailyPage implements OnInit {
     return await modal.present();
   }
 
+  async openBalance(){
+    this.loadingBalance = true;
+
+    const saldos: ISaldoItem[] = [];
+
+    const saldoItemDiario: ISaldoItem = {
+      title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.currentDate, 'mediumDate')),
+      icon: 'calendar-outline',
+      ingresos: this.getIngresos(),
+      egresos: this.getEgresos(),
+      concept: 'diario',
+      date: this.currentDate
+    };
+
+    saldos.push(saldoItemDiario);
+
+    const source1$ = this.sumaryMonthService.getSumary(this.currentDate);
+    const source2$ = this.sumaryAnioService.getSumary(this.currentDate);
+
+    try {
+
+      const resultData = await combineLatest({
+        mensual: source1$,
+        anual: source2$
+      })
+      .pipe(
+        map(response => {
+          const mensual = response.mensual as SumaryMonth;
+          const anual = response.anual as SumaryAnio;
+          const result: any = {};
+
+          result.mensual = mensual;
+          result.anual = anual;
+
+          return result;
+        })
+      ).toPromise();
+
+      const saldoItemMensual: ISaldoItem = {
+        title: '' + this.helperService.toCamelCase(this.datePipe.transform(new Date(this.currentDate), 'LLLL yyyy')),
+        icon: 'calendar-clear-outline',
+        ingresos: resultData.mensual.in,
+        egresos: resultData.mensual.out,
+        concept: 'mensual',
+        date: this.currentDate
+      };
+      saldos.push(saldoItemMensual);
+
+      const saldoItemAnual: ISaldoItem = {
+        title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.currentDate, 'yyyy'),
+        icon: 'albums-outline',
+        ingresos: resultData.anual.in,
+        egresos: resultData.anual.out,
+        concept: 'mensual',
+        date: this.currentDate
+      };
+      saldos.push(saldoItemAnual);
+
+      this.loadingBalance =false;
+
+      const modal = await this.modalCtrl.create({
+        component: ModalBalanceComponent,
+        componentProps: { data: saldos },
+        cssClass: 'balance-modal-x3'
+      });
+
+      modal.onDidDismiss()
+        .then((data) => {
+          if (data.data){
+          }
+      });
+
+      return await modal.present();
+
+    } catch (error) {
+      this.loadingBalance = false;
+      this.snackBarService.showSnackBarError(this.helperService.getErrorMessage(error));
+    }
+  }
+
   private getDateFromUrl(): Date {
     const dateUrl = this.activeRoute.snapshot.paramMap.get('day')?.split('-');
     if (dateUrl === null || dateUrl === undefined) {
@@ -137,6 +228,4 @@ export class DailyPage implements OnInit {
 
     return importes;
   }
-
-
 }

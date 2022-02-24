@@ -43,6 +43,18 @@ ion-modal.dailyInput-modal {
   --border-radius: 8px;
 }
 
+ion-modal.balance-modal {
+  --width: 290px;
+  --height: 350px;
+  --border-radius: 8px;
+}
+
+ion-modal.balance-modal-x3 {
+  --width: 290px;
+  --height: 560px;
+  --border-radius: 8px;
+}
+
 a {
   color: var(--ion-color-secondary);
   text-decoration: none;
