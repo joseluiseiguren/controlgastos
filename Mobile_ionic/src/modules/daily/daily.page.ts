@@ -102,7 +102,7 @@ export class DailyPage implements OnInit {
     modal.onDidDismiss()
       .then((data) => {
         if (data.data){
-          console.log(data.data);
+          this.saldoDiario = this.getIngresos() - this.getEgresos();
         }
     });
 

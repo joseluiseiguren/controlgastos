@@ -17,6 +17,8 @@ import { CalculationService } from 'src/sharedServices/calculationService';
 import { FavoriteModule } from '../favorite/favorite.module';
 import { ModalDailyInputComponent } from 'src/components/modal-daily-input/modal-daily-input.component';
 import { TwoDigitDecimaNumberDirective } from 'src/directives/TwoDigitDecimaNumberDirective';
+import { FormatingService } from 'src/sharedServices/formatingService';
+import { DiarioService } from 'src/services/diario.service';
 
 @NgModule({
   imports: [
@@ -39,7 +41,9 @@ import { TwoDigitDecimaNumberDirective } from 'src/directives/TwoDigitDecimaNumb
       }),
   ],
   providers: [
-    CalculationService
+    CalculationService,
+    FormatingService,
+    DiarioService
   ],
   declarations: [DailyPage, ModalDailyInputComponent, TwoDigitDecimaNumberDirective]
 })
