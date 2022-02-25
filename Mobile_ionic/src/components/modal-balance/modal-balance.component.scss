@@ -5,3 +5,21 @@
 .positive {
   color: var(--ion-color-success);
 }
+
+ion-card {
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+ion-card-header {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+ion-card-content {
+  padding-bottom: 0px;
+}
+
+ion-card-title {
+  font-size: medium;
+}

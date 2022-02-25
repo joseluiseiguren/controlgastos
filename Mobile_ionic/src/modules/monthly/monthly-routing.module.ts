@@ -5,7 +5,11 @@ import { MonthlyPage } from './monthly.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':month',
+    component: MonthlyPage
+  },
+  {
+    path: '**',
     component: MonthlyPage
   }
 ];

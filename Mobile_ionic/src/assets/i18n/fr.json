@@ -104,5 +104,21 @@
   "settings": {
     "settings": "Réglages",
     "themeDark": "Thème sombre"
+  },
+  "monthPicker": {
+    "month": "Mois",
+    "year":"An",
+    "january": "Janvier",
+    "febraury": "Février",
+    "march": "Mars",
+    "april": "Avril",
+    "may": "Mai",
+    "june": "Juin",
+    "july": "Juillet",
+    "august": "Août",
+    "september": "Septembre",
+    "october": "Octobre",
+    "november": "Novembre",
+    "december": "Décembre"
   }
 }

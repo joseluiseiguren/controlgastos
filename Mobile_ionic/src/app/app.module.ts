@@ -26,7 +26,6 @@ import { UserLoginComponent } from 'src/components/login/user-login/user-login.c
 import { AuthInterceptor } from 'src/interceptors/AuthInterceptor';
 import { ColorThemeService } from 'src/services/color-theme.service';
 import { SettingModule  } from 'src/modules/setting-module/setting-module';
-import { customAnimation } from 'src/animations/custom.animation';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);

@@ -31,6 +31,12 @@ ion-modal.datetime-modal {
   --border-radius: 8px;
 }
 
+ion-modal.date-month-modal {
+  --width: 290px;
+  --height: 180px;
+  --border-radius: 8px;
+}
+
 ion-modal.settings-modal {
   --width: 290px;
   --height: 350px;
@@ -50,8 +56,8 @@ ion-modal.balance-modal {
 }
 
 ion-modal.balance-modal-x3 {
-  --width: 290px;
-  --height: 560px;
+  --width: 250px;
+  --height: 500px;
   --border-radius: 8px;
 }
 

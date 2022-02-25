@@ -94,6 +94,7 @@ export class UsersService {
   logout() {
       // remove user from local storage to log user out
       localStorage.removeItem('alow');
+      sessionStorage.clear();
       this.menuCtrl.enable(false);
   }
 

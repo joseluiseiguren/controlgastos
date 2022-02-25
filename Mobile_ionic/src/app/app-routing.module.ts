@@ -11,7 +11,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: UrlConstants.monthly + '/:month/:open',
+    path: UrlConstants.monthly,
     loadChildren: () => import('./../modules/monthly/monthly.module').then( m => m.MonthlyPageModule),
     canActivate: [AuthGuard]
   },

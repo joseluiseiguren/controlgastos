@@ -1,15 +1,78 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" style="float: left;">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Monthly title</ion-title>
+    <ion-title style="width: 100%; position: absolute; left: 0%; height: 0; text-align: center; padding-top: 14px;">{{'menu.monthly' | translate }}</ion-title>
+    <div style="float: right; margin-right: 1rem;">
+      <app-setting [showLanguage]="false"></app-setting>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
-    <strong class="capitalize">MyContent-Month</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+  <div class="spinnerCenter" *ngIf="loading === true">
+    <ion-spinner name="bubbles"></ion-spinner>
   </div>
+
+  <div style="position: sticky; top: 0; z-index: 1;">
+    <ion-grid id="headerGrid">
+      <ion-row>
+        <ion-col size="5">
+          <div style="font-size: small; padding-left: 0.5rem; padding-top: 0.2rem;">
+            <ion-input [(ngModel)]="dateCtrl" type="text" (ionFocus)="openDateModal()" readonly class="datePicker">
+              <ion-icon slot="start" [ios]="'calendar-outline'" [md]="'calendar-sharp'" (click)="openDateModal()"></ion-icon>
+            </ion-input>
+          </div>
+        </ion-col>
+        <ion-col size="5">
+          <ion-spinner *ngIf="loadingBalance === true" name="dots" class="balanceSpinner" ></ion-spinner>
+          <app-balance *ngIf="loadingBalance === false" [title]="'monthly.balance' | translate" [balance]="monthlyBalance" (saldoClicked)="openBalance()"></app-balance>
+        </ion-col>
+        <ion-col size="2" style="text-align: right; padding-right: 1rem;">
+          <div style="padding-top: 0.2rem;">
+            <app-favorite [on]="false" (starClicked)="favoriteClicked($event)"></app-favorite>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-accordion-group>
+    <ion-accordion value="{{monthData.description}}" *ngFor="let monthData of monthlyData">
+      <ion-item slot="header">
+        <ion-label style="font-size: smaller;">{{monthData.description}}</ion-label>
+      </ion-item>
+
+      <ion-list slot="content">
+        <ion-item>
+          <ion-label>Red</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Green</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Blue</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <!-- <div *ngIf="loading === false">
+    <ion-grid [fixed]="true">
+      <ion-row [ngClass]="(i % 2 === 0) ? 'odd' : ''"
+               class="gridText"
+               (click)="gridItemClicked(item)"
+               *ngFor="let item of conceptos; let i = index">
+        <ion-col class="leftCol" size="9">{{item.description}}</ion-col>
+        <ion-col class="rightCol" size="3">
+          <div class="ion-text-end"
+               [ngClass]="(item.ammount < 0) ? 'negativeAmmount' : ''">
+            {{item.ammount | currency: this.userService.userCurrency}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div> -->
 </ion-content>

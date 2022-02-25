@@ -104,5 +104,21 @@
   "settings": {
     "settings": "Settings",
     "themeDark": "Dark Theme"
+  },
+  "monthPicker": {
+    "month": "Month",
+    "year":"Year",
+    "january": "January",
+    "febraury": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
   }
 }
