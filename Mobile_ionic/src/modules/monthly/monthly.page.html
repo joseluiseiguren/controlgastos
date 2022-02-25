@@ -26,7 +26,7 @@
             </ion-input>
           </div>
         </ion-col>
-        <ion-col size="5">
+        <ion-col size="5" style="padding-top: 2px;">
           <ion-spinner *ngIf="loadingBalance === true" name="dots" class="balanceSpinner" ></ion-spinner>
           <app-balance *ngIf="loadingBalance === false" [title]="'monthly.balance' | translate" [balance]="monthlyBalance" (saldoClicked)="openBalance()"></app-balance>
         </ion-col>
@@ -39,40 +39,37 @@
     </ion-grid>
   </div>
 
-  <ion-accordion-group>
-    <ion-accordion value="{{monthData.description}}" *ngFor="let monthData of monthlyData">
+  <ion-accordion-group (ionChange)="loadMonthDetails($event)">
+    <ion-accordion value="{{monthData.conceptId}}" *ngFor="let monthData of monthlyData">
       <ion-item slot="header">
-        <ion-label style="font-size: smaller;">{{monthData.description}}</ion-label>
+        <ion-grid [fixed]="true">
+          <ion-row>
+            <ion-col class="leftCol" size="9">{{monthData.description}}</ion-col>
+            <ion-col class="rightCol" style="padding-right: 0px;" size="3">
+              <div class="ion-text-end" [ngClass]="(monthData.balance < 0) ? 'negativeAmmount' : ''">
+                {{monthData.balance | currency: this.userService.userCurrency}}
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
-
       <ion-list slot="content">
-        <ion-item>
-          <ion-label>Red</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Green</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Blue</ion-label>
-        </ion-item>
+        <div *ngIf="loadingDetail === true">
+          <ion-spinner class="balanceSpinner" name="dots"></ion-spinner>
+        </div>
+        <div *ngIf="loadingDetail === false">
+          <ion-grid [fixed]="true" style="padding-top: 0px;">
+            <ion-row *ngFor="let item of itemDetail; let j = index">
+              <ion-col class="leftColDetail" size="6">{{item.date | date:'mediumDate'}}</ion-col>
+              <ion-col class="rightColDetail" size="6">
+                <div class="ion-text-end" [ngClass]="(item.balance < 0) ? 'negativeAmmount' : ''">
+                  {{item.balance | currency: this.userService.userCurrency}}
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
       </ion-list>
     </ion-accordion>
   </ion-accordion-group>
-
-  <!-- <div *ngIf="loading === false">
-    <ion-grid [fixed]="true">
-      <ion-row [ngClass]="(i % 2 === 0) ? 'odd' : ''"
-               class="gridText"
-               (click)="gridItemClicked(item)"
-               *ngFor="let item of conceptos; let i = index">
-        <ion-col class="leftCol" size="9">{{item.description}}</ion-col>
-        <ion-col class="rightCol" size="3">
-          <div class="ion-text-end"
-               [ngClass]="(item.ammount < 0) ? 'negativeAmmount' : ''">
-            {{item.ammount | currency: this.userService.userCurrency}}
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div> -->
 </ion-content>

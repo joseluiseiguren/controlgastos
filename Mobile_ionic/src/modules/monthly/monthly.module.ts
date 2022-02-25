@@ -15,6 +15,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
 import { DateMonthModalModule } from '../date-month-modal/date.month.modal.module';
+import { CalculationService } from 'src/sharedServices/calculationService';
+import { SumaryAnioService } from 'src/services/sumary-anio.service';
 
 @NgModule({
   imports: [
@@ -35,6 +37,10 @@ import { DateMonthModalModule } from '../date-month-modal/date.month.modal.modul
          },
          isolate : false
       }),
+  ],
+  providers: [
+    CalculationService,
+    SumaryAnioService
   ],
   declarations: [MonthlyPage]
 })

@@ -1,13 +1,20 @@
+import { UsersService } from 'src/services/users.service';
 import { HelperService } from 'src/services/helper.service.service';
 import { SnackBarService } from 'src/services/snackBar.service';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { firstValueFrom } from 'rxjs';
+import { combineLatest, firstValueFrom, map } from 'rxjs';
 import { ModalDateMonthComponent } from 'src/components/mmodal-date-month/mmodal-date-month.component';
 import { UrlConstants } from 'src/constants/url.constants';
 import { DiarioService } from 'src/services/diario.service';
+import { CalculationService } from 'src/sharedServices/calculationService';
+import { ISaldoItem } from 'src/models/saldoItem';
+import { SumaryAnio } from 'src/models/sumaryAnio';
+import { SumaryAnioService } from 'src/services/sumary-anio.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balance.component';
 
 @Component({
   selector: 'app-monthly',
@@ -18,18 +25,24 @@ export class MonthlyPage implements OnInit {
   currentDate: Date;
   loading = false;
   loadingBalance = false;
+  loadingDetail = false;
   monthlyBalance = 0;
   dateCtrl = '';
   private; previousMonth = '';
   monthlyData: any[];
+  itemDetail: any[];
 
   private availableYears = [];
 
   constructor(private activeRoute: ActivatedRoute,
               private datePipe: DatePipe,
               private diarioService: DiarioService,
+              private sumaryAnioService: SumaryAnioService,
               private snackbarService: SnackBarService,
+              private translateService: TranslateService,
+              private calculationService: CalculationService,
               private helperService: HelperService,
+              public userService: UsersService,
               private modalCtrl: ModalController,
               private router: Router) { }
 
@@ -62,15 +75,104 @@ export class MonthlyPage implements OnInit {
       const data = await firstValueFrom(source$);
 
       this.monthlyData = data;
-      console.log(this.monthlyData);
-      //this.saldoActual = this.getIngresos() - this.getEgresos();
+      this.monthlyBalance = this.getIngresos() - this.getEgresos();
     } catch (error) {
       this.loading = false;
       this.snackbarService.showSnackBarError(this.helperService.getErrorMessage(error));
     }
   }
 
-  openBalance(){
+  async openBalance(){
+    this.loadingBalance = true;
+
+    const saldos: ISaldoItem[] = [];
+
+    const saldoItemMensual: ISaldoItem = {
+      title: '' + this.helperService.toCamelCase(this.datePipe.transform(new Date(this.currentDate), 'LLLL yyyy')),
+      icon: 'calendar-clear-outline',
+      ingresos: this.getIngresos(),
+      egresos: this.getEgresos(),
+      concept: 'mensual',
+      date: this.currentDate
+    };
+
+    saldos.push(saldoItemMensual);
+
+    const source2$ = this.sumaryAnioService.getSumary(this.currentDate);
+
+    try {
+
+      const resultData = await combineLatest({
+        anual: source2$
+      })
+      .pipe(
+        map(response => {
+          const anual = response.anual as SumaryAnio;
+          const result: any = {};
+
+          result.anual = anual;
+
+          return result;
+        })
+      ).toPromise();
+
+      const saldoItemAnual: ISaldoItem = {
+        title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.currentDate, 'yyyy'),
+        icon: 'albums-outline',
+        ingresos: resultData.anual.in,
+        egresos: resultData.anual.out,
+        concept: 'mensual',
+        date: this.currentDate
+      };
+      saldos.push(saldoItemAnual);
+
+      this.loadingBalance =false;
+
+      const modal = await this.modalCtrl.create({
+        component: ModalBalanceComponent,
+        componentProps: { data: saldos },
+        cssClass: 'balance-modal-x2'
+      });
+
+      modal.onDidDismiss()
+        .then((data) => {
+          if (data.data){
+          }
+      });
+
+      return await modal.present();
+
+    } catch (error) {
+      this.loadingBalance = false;
+      this.snackbarService.showSnackBarError(this.helperService.getErrorMessage(error));
+    }
+  }
+
+  async loadMonthDetails(row: any): Promise<void> {
+    if (!row.detail.value){
+      return;
+    }
+
+    this.loadingDetail = true;
+    this.itemDetail = [];
+    const fecha = this.getMonthStringFromUrl(true);
+
+    const source$ = this.diarioService.getConceptosMovimMes(row.detail.value, fecha);
+
+    try {
+      const data = await firstValueFrom(source$);
+
+      this.itemDetail = data;
+
+      console.log(this.itemDetail);
+      this.loadingDetail = false;
+      const activeRouteMonth = this.getMonthStringFromUrl(false);
+      //this.router.navigate([UrlConstants.DASHBOARD, UrlConstants.MENSUAL, activeRouteMonth, row.description], {replaceUrl: false});
+
+    } catch (error) {
+      this.loading = false;
+      this.snackbarService.showSnackBarError(this.helperService.getErrorMessage(error));
+    }
   }
 
   async openDateModal(){
@@ -140,6 +242,23 @@ export class MonthlyPage implements OnInit {
     } else {
       this.availableYears = stAvailabeYears.split(',');
     }
+  }
+
+  private getIngresos(): number {
+    return this.calculationService.getIngresos(this.convertToNumberArray(this.monthlyData));
+  }
+
+  private getEgresos(): number {
+    return this.calculationService.getEgresos(this.convertToNumberArray(this.monthlyData));
+  }
+
+  private convertToNumberArray(dataIn: any[]): number[] {
+    const importes: number[] = [];
+    dataIn.forEach(value => {
+      importes.push(value.balance);
+    });
+
+    return importes;
   }
 
 }
