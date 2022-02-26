@@ -3,8 +3,8 @@
     <ion-buttons slot="start" style="float: left;">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title style="width: 100%; position: absolute; left: 0%; height: 0; text-align: center; padding-top: 14px;">{{'menu.daily' | translate }}</ion-title>
-    <div style="float: right; margin-right: 1rem;">
+    <ion-title class="pageHeaderTitle">{{'menu.daily' | translate }}</ion-title>
+    <div class="pageHeaderSettingsIcon">
       <app-setting [showLanguage]="false"></app-setting>
     </div>
   </ion-toolbar>
@@ -16,17 +16,17 @@
     <ion-spinner name="bubbles"></ion-spinner>
   </div>
 
-  <div style="position: sticky; top: 0; z-index: 1;">
-    <ion-grid id="headerGrid">
+  <div class="headerGridSticky">
+    <ion-grid class="headerGrid">
       <ion-row>
         <ion-col size="5">
-          <div style="font-size: small; padding-left: 0.5rem; padding-top: 0.2rem;">
+          <div style="font-size: small; padding-left: 0.5rem; padding-top: 0.3rem;">
             <ion-input [(ngModel)]="dateCtrl" type="text" (ionFocus)="openDateModal()" readonly class="datePicker">
               <ion-icon slot="start" [ios]="'calendar-outline'" [md]="'calendar-sharp'" (click)="openDateModal()"></ion-icon>
             </ion-input>
           </div>
         </ion-col>
-        <ion-col size="5">
+        <ion-col size="5" style="padding-top: 0.1rem;">
           <ion-spinner *ngIf="loadingBalance === true" name="dots" class="balanceSpinner" ></ion-spinner>
           <app-balance *ngIf="loadingBalance === false" [title]="'dailyScreen.balance' | translate" [balance]="saldoDiario" (saldoClicked)="openBalance()"></app-balance>
         </ion-col>
@@ -48,7 +48,7 @@
         <ion-col class="leftCol" size="9">{{item.description}}</ion-col>
         <ion-col class="rightCol" size="3">
           <div class="ion-text-end"
-               [ngClass]="(item.ammount < 0) ? 'negativeAmmount' : ''">
+               [ngClass]="{'negativeAmmount': item.ammount < 0, 'positiveAmmount': item.ammount > 0}">
             {{item.ammount | currency: this.userService.userCurrency}}
           </div>
         </ion-col>

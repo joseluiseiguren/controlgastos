@@ -67,7 +67,6 @@ ion-modal.balance-modal-x2 {
   --border-radius: 8px;
 }
 
-
 a {
   color: var(--ion-color-secondary);
   text-decoration: none;
@@ -75,4 +74,78 @@ a {
 
 ion-button {
   text-transform: none;
- }
+}
+
+ .negativeAmmount {
+  color: var(--ion-color-danger);
+}
+
+.positiveAmmount {
+  color: var(--ion-color-success);
+}
+
+.pageHeaderTitle {
+  width: 100%;
+  position: absolute;
+  left: 0%;
+  height: 0;
+  text-align: center;
+  padding-top: 14px;
+}
+
+.pageHeaderSettingsIcon {
+  float: right;
+  margin-right: 1rem;
+}
+
+.spinnerCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transform: scale(3);
+}
+
+.headerGrid {
+  background-color: var(--ion-color-light-shade);
+  border-bottom: 1px solid rgb(209, 209, 209);
+}
+
+.headerGrid ion-col {
+  padding: 0px;
+}
+
+.headerGridSticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.balanceSpinner {
+  transform: scale(1);
+  display: contents;
+}
+
+.accordionLeftCol {
+  padding-left: 0.7rem;
+}
+
+.accordionLeftColDetail {
+  padding-left: 3rem;
+  font-size: 0.7rem !important;
+}
+
+.accordionRightCol {
+  padding-right: 0.7rem;
+  padding-right: 0px;
+}
+
+.accordionRightColDetail {
+  padding-right: 4.5rem;
+  font-size: 0.7rem !important;
+}
+
+.accordionDetailGrid {
+  padding-top: 0px;
+}

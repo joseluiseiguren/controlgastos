@@ -1,38 +1,6 @@
-.spinnerCenter {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-ion-spinner {
-  transform: scale(3);
-}
-
 .gridText {
   font-size: smaller;
   padding-top: 0.2rem;
-}
-
-.odd {
-  background-color: var(--ion-custom-grid-background)
-}
-
-.leftCol {
-  padding-left: 0.7rem;
-}
-
-.leftColDetail {
-  padding-left: 3rem;
-}
-
-.rightCol {
-  padding-right: 0.7rem;
-}
-
-.rightColDetail {
-  padding-right: 3.5rem;
 }
 
 ion-grid {
@@ -42,24 +10,6 @@ ion-grid {
 
 ion-col {
   font-size: smaller;
-}
-
-.negativeAmmount {
-  color: var(--ion-color-danger);
-}
-
-#headerGrid {
-  background-color: var(--ion-color-light-shade);
-  border-bottom: 1px solid rgb(209, 209, 209);
-}
-
-#headerGrid ion-col {
-  padding: 0px;
-}
-
-.balanceSpinner {
-  transform: scale(1);
-  display: contents;
 }
 
 .datePicker {

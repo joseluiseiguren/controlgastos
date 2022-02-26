@@ -5,6 +5,10 @@ import { DailyPage } from './daily.page';
 
 const routes: Routes = [
   {
+    path: ':day',
+    component: DailyPage
+  },
+  {
     path: '',
     component: DailyPage
   }

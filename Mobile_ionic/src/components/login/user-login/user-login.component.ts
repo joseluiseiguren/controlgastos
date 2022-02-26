@@ -86,8 +86,7 @@ export class UserLoginComponent implements OnInit {
 
   private ingresarApp() {
     try{
-      const today = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-      this.router.navigate([UrlConstants.daily, today]);
+      this.router.navigate([UrlConstants.daily]);
     }
     catch(error){
       throw('Error parsing date');

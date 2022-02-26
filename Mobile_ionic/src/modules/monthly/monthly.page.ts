@@ -28,7 +28,6 @@ export class MonthlyPage implements OnInit {
   loadingDetail = false;
   monthlyBalance = 0;
   dateCtrl = '';
-  private; previousMonth = '';
   monthlyData: any[];
   itemDetail: any[];
 

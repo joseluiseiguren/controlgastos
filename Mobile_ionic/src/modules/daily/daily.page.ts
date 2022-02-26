@@ -51,11 +51,15 @@ export class DailyPage implements OnInit {
     this.activeRoute.params
       .subscribe(routeParams => {
         const controlDate = this.getDateFromUrl();
-        controlDate.setMonth(controlDate.getMonth());
-        this.currentDate = controlDate;
-        this.setDateCtrl();
+        if (controlDate === null){
+          this.router.navigate([UrlConstants.daily, this.datePipe.transform(new Date(), 'yyyy-MM-dd')]);
+        } else {
+          controlDate.setMonth(controlDate.getMonth());
+          this.currentDate = controlDate;
+          this.setDateCtrl();
 
-        this.getData();
+          this.getData();
+        }
       });
   }
 
@@ -203,7 +207,7 @@ export class DailyPage implements OnInit {
   private getDateFromUrl(): Date {
     const dateUrl = this.activeRoute.snapshot.paramMap.get('day')?.split('-');
     if (dateUrl === null || dateUrl === undefined) {
-      throw 'DateUrl is NULL';
+      return null;
     }
     return new Date(Number(dateUrl[0]), Number(dateUrl[1])-1, Number(dateUrl[2]));
   }

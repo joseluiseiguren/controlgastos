@@ -6,7 +6,7 @@ import { AuthGuard } from 'src/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: UrlConstants.daily + '/:day',
+    path: UrlConstants.daily,
     loadChildren: () => import('./../modules/daily/daily.module').then( m => m.DailyPageModule),
     canActivate: [AuthGuard]
   },
@@ -16,7 +16,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: UrlConstants.year + '/:anio/:open',
+    path: UrlConstants.year + '',
     loadChildren: () => import('./../modules/year/year.module').then( m => m.YearPageModule),
     canActivate: [AuthGuard]
   },
