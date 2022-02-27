@@ -15,6 +15,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { SettingModule } from '../setting-module/setting-module';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
+import { CalculationService } from 'src/sharedServices/calculationService';
 
 @NgModule({
   imports: [
@@ -35,6 +36,9 @@ import { HttpClient } from '@angular/common/http';
          isolate : false
       }),
     YearPageRoutingModule
+  ],
+  providers: [
+    CalculationService
   ],
   declarations: [YearPage]
 })

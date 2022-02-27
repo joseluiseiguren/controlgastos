@@ -5,7 +5,7 @@ import { YearPage } from './year.page';
 
 const routes: Routes = [
   {
-    path: '/:anio',
+    path: ':anio',
     component: YearPage
   },
   {

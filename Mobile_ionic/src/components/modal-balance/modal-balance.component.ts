@@ -17,8 +17,6 @@ export class ModalBalanceComponent implements OnInit {
               public userService: UsersService,
               public translateService: TranslateService) { }
 
-  ngOnInit() {
-    console.log(this.data);
-  }
+  ngOnInit() {}
 
 }

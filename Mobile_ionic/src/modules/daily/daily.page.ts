@@ -29,7 +29,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class DailyPage implements OnInit {
   loading = false;
   loadingBalance = false;
-  currentDate: Date;
   dateCtrl = '';
   conceptos: IConceptoDiario[];
   saldoDiario = 0;
@@ -55,9 +54,7 @@ export class DailyPage implements OnInit {
           this.router.navigate([UrlConstants.daily, this.datePipe.transform(new Date(), 'yyyy-MM-dd')]);
         } else {
           controlDate.setMonth(controlDate.getMonth());
-          this.currentDate = controlDate;
           this.setDateCtrl();
-
           this.getData();
         }
       });
@@ -66,7 +63,7 @@ export class DailyPage implements OnInit {
   async getData(): Promise<void> {
     this.loading = true;
 
-    const source$ = this.diarioService.getConceptosImportes(this.currentDate);
+    const source$ = this.diarioService.getConceptosImportes(this.getDateFromUrl());
 
     try {
       const data = await firstValueFrom(source$);
@@ -82,7 +79,7 @@ export class DailyPage implements OnInit {
   }
 
   async openDateModal(){
-    const popupDate = this.datePipe.transform(new Date(this.currentDate), 'yyyy-MM-dd');
+    const popupDate = this.datePipe.transform(this.getDateFromUrl(), 'yyyy-MM-dd');
 
     const modal = await this.modalCtrl.create({
       component: ModalDateComponent,
@@ -93,9 +90,7 @@ export class DailyPage implements OnInit {
     modal.onDidDismiss()
       .then((data) => {
         if (data.data){
-          this.currentDate = new Date(data.data);
-          this.setDateCtrl();
-          this.router.navigate([UrlConstants.daily, this.datePipe.transform(new Date(this.currentDate), 'yyyy-MM-dd')]);
+          this.router.navigate([UrlConstants.daily, this.datePipe.transform(new Date(data.data), 'yyyy-MM-dd')]);
         }
     });
 
@@ -130,18 +125,18 @@ export class DailyPage implements OnInit {
     const saldos: ISaldoItem[] = [];
 
     const saldoItemDiario: ISaldoItem = {
-      title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.currentDate, 'mediumDate')),
+      title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.getDateFromUrl(), 'mediumDate')),
       icon: 'calendar-outline',
       ingresos: this.getIngresos(),
       egresos: this.getEgresos(),
       concept: 'diario',
-      date: this.currentDate
+      date: this.getDateFromUrl()
     };
 
     saldos.push(saldoItemDiario);
 
-    const source1$ = this.sumaryMonthService.getSumary(this.currentDate);
-    const source2$ = this.sumaryAnioService.getSumary(this.currentDate);
+    const source1$ = this.sumaryMonthService.getSumary(this.getDateFromUrl());
+    const source2$ = this.sumaryAnioService.getSumary(this.getDateFromUrl());
 
     try {
 
@@ -163,22 +158,22 @@ export class DailyPage implements OnInit {
       ).toPromise();
 
       const saldoItemMensual: ISaldoItem = {
-        title: '' + this.helperService.toCamelCase(this.datePipe.transform(new Date(this.currentDate), 'LLLL yyyy')),
+        title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.getDateFromUrl(), 'LLLL yyyy')),
         icon: 'calendar-clear-outline',
         ingresos: resultData.mensual.in,
         egresos: resultData.mensual.out,
         concept: 'mensual',
-        date: this.currentDate
+        date: this.getDateFromUrl()
       };
       saldos.push(saldoItemMensual);
 
       const saldoItemAnual: ISaldoItem = {
-        title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.currentDate, 'yyyy'),
+        title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.getDateFromUrl(), 'yyyy'),
         icon: 'albums-outline',
         ingresos: resultData.anual.in,
         egresos: resultData.anual.out,
         concept: 'mensual',
-        date: this.currentDate
+        date: this.getDateFromUrl()
       };
       saldos.push(saldoItemAnual);
 
@@ -213,7 +208,7 @@ export class DailyPage implements OnInit {
   }
 
   private setDateCtrl() {
-    this.dateCtrl = this.datePipe.transform(new Date(this.currentDate), 'mediumDate');
+    this.dateCtrl = this.datePipe.transform(this.getDateFromUrl(), 'mediumDate');
   }
 
   private getIngresos(): number {
