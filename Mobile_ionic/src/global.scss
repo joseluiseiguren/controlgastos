@@ -27,7 +27,7 @@
 
 ion-modal.datetime-modal {
   --width: 290px;
-  --height: 350px;
+  --height: 28rem;
   --border-radius: 8px;
 }
 
@@ -87,7 +87,7 @@ ion-button {
 }
 
 .positiveAmmount {
-  color: var(--ion-color-success);
+  color: var(--ion-color-positive-amount);
 }
 
 .pageHeaderTitle {
