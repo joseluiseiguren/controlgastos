@@ -31,6 +31,7 @@ export class MonthlyPage implements OnInit {
   itemDetail: any[];
 
   private availableYears = [];
+  private monthlyDataOriginal: any[];
 
   constructor(private activeRoute: ActivatedRoute,
               private datePipe: DatePipe,
@@ -71,6 +72,8 @@ export class MonthlyPage implements OnInit {
       const data = await firstValueFrom(source$);
 
       this.monthlyData = data;
+      this.monthlyDataOriginal = data;
+
       this.monthlyBalance = this.getIngresos() - this.getEgresos();
     } catch (error) {
       this.loading = false;
@@ -189,6 +192,11 @@ export class MonthlyPage implements OnInit {
   }
 
   favoriteClicked(event){
+    if (event === true){
+      this.monthlyData = this.monthlyDataOriginal.filter(x => x.favorite === true);
+    } else {
+      this.monthlyData = this.monthlyDataOriginal;
+    }
   }
 
   private getDateFromUrl(): Date {
@@ -237,11 +245,11 @@ export class MonthlyPage implements OnInit {
   }
 
   private getIngresos(): number {
-    return this.calculationService.getIngresos(this.convertToNumberArray(this.monthlyData));
+    return this.calculationService.getIngresos(this.convertToNumberArray(this.monthlyDataOriginal));
   }
 
   private getEgresos(): number {
-    return this.calculationService.getEgresos(this.convertToNumberArray(this.monthlyData));
+    return this.calculationService.getEgresos(this.convertToNumberArray(this.monthlyDataOriginal));
   }
 
   private convertToNumberArray(dataIn: any[]): number[] {

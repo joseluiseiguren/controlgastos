@@ -69,12 +69,6 @@ export class HelperService {
       throw 'Invalid parameter NULL';
     }
 
-    const str = strInput?.toString().split(' ');
-
-    for (let i = 0, x = str.length; i < x; i++) {
-        str[i] = str[i][0].toUpperCase() + str[i].substr(1);
-    }
-
-    return str.join(' ');
+    return strInput[0].toUpperCase() + strInput.slice(1);
   }
 }

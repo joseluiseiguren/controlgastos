@@ -31,7 +31,10 @@ namespace Services.QueryHandlers.Concept
             foreach (var userConcept in userConcepts.OrderBy(x => x.Description))
             {
                 var totalAmmount = await _transactionRepository.GetTotalAmmountByFilterAsync(dateFrom, dateTo, userConcept.id);
-                result.Add(new ConceptPeriodOutput() { ConceptId = userConcept.id, Description = userConcept.Description, Balance = Math.Round(totalAmmount, 2) });
+                result.Add(new ConceptPeriodOutput() { ConceptId = userConcept.id, 
+                                                       Description = userConcept.Description, 
+                                                       Favorite = userConcept.Favorite,
+                                                       Balance = Math.Round(totalAmmount, 2) });
             }
 
             return result;

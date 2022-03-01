@@ -23,6 +23,8 @@ export class HistoricalPage implements OnInit {
   historicData: any[];
   itemDetail: any[];
 
+  private historicDataOriginal: any[];
+
   constructor(private snackbarService: SnackBarService,
               private translateService: TranslateService,
               private calculationService: CalculationService,
@@ -71,6 +73,11 @@ export class HistoricalPage implements OnInit {
   }
 
   favoriteClicked(event){
+    if (event === true){
+      this.historicData = this.historicDataOriginal.filter(x => x.favorite === true);
+    } else {
+      this.historicData = this.historicDataOriginal;
+    }
   }
 
   async loadHistoricDetails(row){
@@ -105,6 +112,8 @@ export class HistoricalPage implements OnInit {
       const data = await firstValueFrom(source$);
 
       this.historicData = data;
+      this.historicDataOriginal = data;
+
       this.historicalBalance = this.getIngresos() - this.getEgresos();
 
       this.loading = false;
@@ -116,11 +125,11 @@ export class HistoricalPage implements OnInit {
   }
 
   private getIngresos(): number {
-    return this.calculationService.getIngresos(this.convertToNumberArray(this.historicData));
+    return this.calculationService.getIngresos(this.convertToNumberArray(this.historicDataOriginal));
   }
 
   private getEgresos(): number {
-    return this.calculationService.getEgresos(this.convertToNumberArray(this.historicData));
+    return this.calculationService.getEgresos(this.convertToNumberArray(this.historicDataOriginal));
   }
 
   private convertToNumberArray(dataIn: any[]): number[] {
