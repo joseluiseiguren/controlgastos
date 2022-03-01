@@ -13,5 +13,7 @@ namespace Domain.Queries.Outputs
         public string TransactionDate { get; set; } //YYYY-MM-DD
 
         public bool Credit { get; set; }
+
+        public bool Favorite { get; set; }
     }
 }

@@ -26,7 +26,8 @@
     "newConcept": "Nouveau concept",
     "editConcept": "Modifier le concept",
     "concept": "Concept",
-    "type": "Type"
+    "type": "Type",
+    "favorite": "Favori"
   },
   "button": {
     "cancel": "Annuler",

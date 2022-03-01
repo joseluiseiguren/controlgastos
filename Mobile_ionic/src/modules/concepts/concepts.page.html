@@ -1,15 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" style="float: left;">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Concepts title</ion-title>
+    <ion-title class="pageHeaderTitle">{{'menu.concepts' | translate }}</ion-title>
+    <div class="pageHeaderSettingsIcon">
+      <app-setting [showLanguage]="false"></app-setting>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
-    <strong class="capitalize">MyContent</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addClicked()">
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="spinnerCenter" *ngIf="loading === true">
+    <ion-spinner name="bubbles"></ion-spinner>
   </div>
+  <ion-grid>
+    <ion-row *ngFor="let concept of concepts; let i = index"
+              (click)="gridItemClicked(concept)"
+              [ngClass]="(i % 2 === 0) ? 'odd' : ''">
+      <ion-col class="accordionLeftCol" size="8">
+        {{concept.descripcion}}
+      </ion-col>
+      <ion-col class="accordionRightCol" size="4">
+        <div class="ion-text-end"
+              style="padding-right: 1rem;"
+              [ngClass]="{'negativeAmmount': concept.credito === false, 'positiveAmmount': concept.credito === true}">
+          {{concept.credito === false ? this.debitTitle : this.creditTitle }}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
 </ion-content>

@@ -21,6 +21,7 @@ using Services.QueryHandlers.Period;
 using Services.QueryHandlers.Transaction;
 using Services.QueryHandlers.User;
 using Shared.Settings;
+using System;
 using System.Collections.Generic;
 
 namespace Backend
@@ -66,7 +67,7 @@ namespace Backend
                .AddAsyncQueryHandler<ConceptSummaryHistoricQuery, ConceptSummaryHistoricHandler, IReadOnlyList<ConceptBalanceOutputByYear>>()
                .AddAsyncQueryHandler<TransactionsByDateQuery, TransactionByDateQueryHandler, IReadOnlyList<TransactionByDateOutput>>()
                .AddAsyncQueryHandler<TransactionFirstLastQuery, TransactionFirstLastQueryHandler, TransactionFirstLastOutput>()
-               .AddAsyncCommandHandler<ConceptCreationCommand, ConceptCreationCommandHandler>()
+               .AddAsyncCommandHandler<ConceptCreationCommand, ConceptCreationCommandHandler, Guid>()
                .AddAsyncCommandHandler<ConceptUpdateCommand, ConceptUpdateCommandHandler>();
 
             services.AddLogging(config =>

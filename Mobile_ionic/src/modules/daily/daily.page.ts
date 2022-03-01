@@ -33,6 +33,8 @@ export class DailyPage implements OnInit {
   conceptos: IConceptoDiario[];
   saldoDiario = 0;
 
+  private conceptosOriginal: IConceptoDiario[];
+
   constructor(private diarioService: DiarioService,
               private snackBarService: SnackBarService,
               private sumaryMonthService: SumaryMonthService,
@@ -69,6 +71,8 @@ export class DailyPage implements OnInit {
       const data = await firstValueFrom(source$);
 
       this.conceptos = data;
+      this.conceptosOriginal = data;
+
       this.saldoDiario = this.getIngresos() - this.getEgresos();
       this.loading = false;
 
@@ -98,7 +102,11 @@ export class DailyPage implements OnInit {
   }
 
   favoriteClicked(event: boolean) {
-    console.log(event);
+    if (event === true){
+      this.conceptos = this.conceptosOriginal.filter(x => x.favorite === true);
+    } else {
+      this.conceptos = this.conceptosOriginal;
+    }
   }
 
   async gridItemClicked(item: IConceptoDiario) {

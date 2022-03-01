@@ -1,4 +1,5 @@
 ﻿using Domain.Commands;
+using System;
 
 namespace Backend.Dto
 {
@@ -8,7 +9,9 @@ namespace Backend.Dto
 
         public bool Credit { get; set; }
 
+        public bool Favorite { get; set; }
+
         internal ConceptCreationCommand ToCommand(string userId)
-            => new(userId, Description, Credit);
+            => new(userId, Description, Credit, Favorite);
     }
 }

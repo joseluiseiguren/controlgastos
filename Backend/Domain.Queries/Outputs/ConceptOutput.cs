@@ -10,6 +10,8 @@ namespace Domain.Queries.Outputs
 
         public bool Credit { get; set; }
 
+        public bool Favorite { get; set; }
+
         public string User { get; set; }
 
         public DateTime EntryDate { get; set; }

@@ -9,6 +9,8 @@ namespace Domain.Model
 
         public bool Credit { get; private set; }
 
+        public bool Favorite { get; private set; }
+
         public string UserId { get; private set; }
 
         public DateTime EntryDate { get; private set; }
@@ -16,12 +18,14 @@ namespace Domain.Model
         public Concept(string id, 
                        string description, 
                        bool credit, 
+                       bool favorite,
                        string userId, 
                        DateTime entryDate)
         {
             UpdateId(id);
             UpdateDescription(description);
             UpdateCredit(credit);
+            UpdateFavorite(favorite);
             UpdateUserId(userId);
             UpdateEntryDate(entryDate);
         }
@@ -39,6 +43,11 @@ namespace Domain.Model
         public void UpdateCredit(bool credit)
         {
             this.Credit = credit;
+        }
+
+        public void UpdateFavorite(bool favorite)
+        {
+            this.Favorite = favorite;
         }
 
         public void UpdateUserId(string userId)

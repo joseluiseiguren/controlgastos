@@ -96,9 +96,10 @@ namespace Repository.CosmosDB
                 return null;
             }
 
-            return new Concept(id: conceptDB.id.ToString(),
+           return new Concept(id: conceptDB.id.ToString(),
                                 description: conceptDB.Description.ToString(),
                                 userId: conceptDB.UserId.ToString(),
+                                favorite: conceptDB.Favorite == null ? false : Convert.ToBoolean(conceptDB.Favorite),
                                 credit: Convert.ToBoolean(conceptDB.Credit.ToString()),
                                 entryDate: DateTime.Parse(conceptDB.EntryDate.ToString()));
         }

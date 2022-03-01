@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
@@ -24,8 +23,7 @@ export class HistoricalPage implements OnInit {
   historicData: any[];
   itemDetail: any[];
 
-  constructor(private datePipe: DatePipe,
-              private snackbarService: SnackBarService,
+  constructor(private snackbarService: SnackBarService,
               private translateService: TranslateService,
               private calculationService: CalculationService,
               private helperService: HelperService,

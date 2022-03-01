@@ -5,6 +5,7 @@ using Domain.Queries;
 using Domain.Queries.Outputs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -112,9 +113,9 @@ namespace Backend.Controllers
         {
             var command = createConceptDto.ToCommand(this.UserId);
 
-            await _applicationMediator.DispatchAsync(command);
+            var id = await _applicationMediator.DispatchAsync<Guid>(command);
 
-            return Ok();
+            return Ok(new { id = id });
         }
 
         [Authorize]
@@ -133,6 +134,7 @@ namespace Backend.Controllers
             return new ConceptDto()
             {
                 Credito = conceptOutput.Credit,
+                Favorite = conceptOutput.Favorite,
                 Descripcion = conceptOutput.Description,
                 Fechaalta = conceptOutput.EntryDate,
                 Id = conceptOutput.Id,
