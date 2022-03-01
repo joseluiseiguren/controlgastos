@@ -28,6 +28,8 @@ export class YearPage implements OnInit {
   years = [];
   selectedYear = 0;
 
+  private yearDataOriginal: any[];
+
   constructor(private activeRoute: ActivatedRoute,
               private datePipe: DatePipe,
               private snackbarService: SnackBarService,
@@ -57,6 +59,11 @@ export class YearPage implements OnInit {
   }
 
   favoriteClicked(event) {
+    if (event === true){
+      this.yearData = this.yearDataOriginal.filter(x => x.favorite === true);
+    } else {
+      this.yearData = this.yearDataOriginal;
+    }
   }
 
   async openBalance(){
@@ -164,6 +171,8 @@ export class YearPage implements OnInit {
       const data = await firstValueFrom(source$);
 
       this.yearData = data;
+      this.yearDataOriginal = data;
+
       this.annualBalance = this.getIngresos() - this.getEgresos();
 
       this.loading = false;
@@ -175,11 +184,11 @@ export class YearPage implements OnInit {
   }
 
   private getIngresos(): number {
-    return this.calculationService.getIngresos(this.convertToNumberArray(this.yearData));
+    return this.calculationService.getIngresos(this.convertToNumberArray(this.yearDataOriginal));
   }
 
   private getEgresos(): number {
-    return this.calculationService.getEgresos(this.convertToNumberArray(this.yearData));
+    return this.calculationService.getEgresos(this.convertToNumberArray(this.yearDataOriginal));
   }
 
   private convertToNumberArray(dataIn: any[]): number[] {

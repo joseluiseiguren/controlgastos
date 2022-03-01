@@ -7,5 +7,7 @@
         public string Description { get; set; }
 
         public decimal Balance { get; set; }
+
+        public bool Favorite { get; set; }
     }
 }
