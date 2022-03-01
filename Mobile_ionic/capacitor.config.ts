@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'Mobile_ionic',
+  appId: 'com.moneyguard.mobile',
+  appName: 'MoneyGuard',
   webDir: 'www',
   bundledWebRuntime: false
 };

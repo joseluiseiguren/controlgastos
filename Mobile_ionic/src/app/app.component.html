@@ -41,7 +41,7 @@
               <ion-label>{{'menu.profile' | translate }}</ion-label>
             </ion-item>
             <hr style="margin-right: 0.5rem;" color="gray">
-            <ion-item routerDirection="root" [routerLink]="" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item routerDirection="root" (click)="showAbout()" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" [ios]="'cog-outline'" [md]="'cog-sharp'"></ion-icon>
               <ion-label>{{'menu.about' | translate }}</ion-label>
             </ion-item>

@@ -75,4 +75,6 @@ export class AppComponent implements OnInit {
     this.userService.logout();
     this.router.navigate([UrlConstants.logIn]);
   }
+
+  showAbout(){}
 }

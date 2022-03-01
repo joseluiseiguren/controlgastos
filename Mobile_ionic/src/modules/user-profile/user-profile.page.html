@@ -1,15 +1,68 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" style="float: left;">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>User Profile title</ion-title>
+    <ion-title class="pageHeaderTitle">{{'userProfile.profile' | translate }}</ion-title>
+    <div class="pageHeaderSettingsIcon">
+      <app-setting [showLanguage]="false"></app-setting>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
-    <strong class="capitalize">MyContent</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+  <div class="spinnerCenter" *ngIf="loadingBig === true">
+    <ion-spinner name="bubbles"></ion-spinner>
   </div>
+
+  <div *ngIf="loadingBig === false">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" novalidate>
+      <ion-item lines="full">
+        <ion-label position="floating">{{'signup.name' | translate }}</ion-label>
+        <ion-input formControlName="nameFormControl" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">{{'signup.email' | translate }}</ion-label>
+        <ion-input formControlName="emailFormControl" type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">{{'signup.bornDate' | translate }}</ion-label>
+        <ion-input formControlName="fechaNacimientoFormControl"type="text" (ionFocus)="openModalBornDate()" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{'signup.currency' | translate }}</ion-label>
+        <ion-select formControlName="monedaFormControl" interface="action-sheet">
+          <ion-select-option *ngFor="let currency of currencies" value="{{currency}}">{{currency}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{'signup.language' | translate }}</ion-label>
+          <ion-select id="langDropDown"
+                      [ngStyle]="selectedLang"
+                      formControlName="languageFormControl"
+                      (click)="loadFlags()"
+                      (ionChange)="onChangeLang($event)"
+                      okText="{{'button.ok' | translate}}"
+                      cancelText="{{'button.cancel' | translate}}">
+            <ion-select-option *ngFor="let lang of this.langService.langsLocal" value="{{lang.value}}">
+            </ion-select-option>
+          </ion-select>
+      </ion-item>
+    </form>
+  </div>
+
 </ion-content>
+
+<ion-footer *ngIf="loadingBig === false">
+  <ion-toolbar>
+    <ion-button type="submit" color="primary" (click)="onSubmit()" expand="block" [disabled]="!profileForm.valid || loadingButton || !profileForm.dirty">
+      <ion-spinner *ngIf="loadingButton === true" name="bubbles"></ion-spinner>
+      <div *ngIf="loadingButton === false">{{'button.ok' | translate }}</div>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
