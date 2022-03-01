@@ -10,6 +10,8 @@ namespace Backend.Dto
 
         public bool Credito { get; set; }
 
+        public bool Favorite { get; set; }
+
         public string User { get; set; }
 
         public DateTime Fechaalta { get; set; }

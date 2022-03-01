@@ -1,0 +1,55 @@
+<ion-content>
+  <div style="padding-left: 2rem; padding-right: 2rem; margin-top: 1rem;">
+
+    <form [formGroup]="conceptForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <div style="margin-bottom: 0.5rem;">
+        <ion-label style="font-size: medium; font-weight: bold;">{{'concept.newConcept' | translate }}</ion-label>
+      </div>
+
+      <ion-item lines="full">
+        <ion-label position="floating">{{'concept.concept' | translate }}</ion-label>
+        <ion-input formControlName="conceptFormControl"
+                   (ionFocus)="selectAllText($event)"
+                   type="text"></ion-input>
+      </ion-item>
+
+      <ion-item style="margin-top: 0.5rem;">
+        <ion-label>{{'concept.favorite' | translate }}</ion-label>
+        <ion-toggle slot="start" name="banana" color="warning" formControlName="favoriteFormControl"></ion-toggle>
+      </ion-item>
+
+      <ion-item style="margin-top: 0.5rem;">
+        <ion-radio-group value="Operation" formControlName="operationFormControl">
+          <ion-item>
+            <ion-label>{{'concept.debit' | translate }}</ion-label>
+            <ion-radio slot="start" color="danger" value="0"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'concept.credit' | translate }}</ion-label>
+            <ion-radio slot="start" color="tertiary" value="1"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-item>
+
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button color="secondary" (click)="closeModal()">
+          {{'button.cancel' | translate }}
+        </ion-button>
+      </ion-col>
+      <ion-col style="text-align: center;">
+        <ion-button (click)="onSubmit()" color="primary" [disabled]="!conceptForm.valid || loading || conceptForm.dirty === false">
+          <ion-spinner *ngIf="loading === true" name="bubbles"></ion-spinner>
+          <div *ngIf="loading === false">{{'button.ok' | translate }}</div>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

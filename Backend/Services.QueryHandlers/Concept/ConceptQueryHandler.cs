@@ -33,6 +33,7 @@ namespace Services.QueryHandlers.Concept
                 Description = concept.Description,
                 EntryDate = concept.EntryDate,
                 Id = concept.id,
+                Favorite = concept.Favorite,
                 User = concept.UserId
             };
         }

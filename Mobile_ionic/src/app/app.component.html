@@ -1,0 +1,62 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <div style="display: flow-root;">
+            <div style="float: left;">
+              <ion-list-header>Money Guard</ion-list-header>
+              <ion-note>{{userName}}</ion-note>
+            </div>
+            <div style="position: absolute; left: 12rem; top: 0px;">
+              <img src="./../assets/icon/icon-72x72.png" alt="" style="margin-left: 0.5rem; margin-right: 2rem;">
+            </div>
+          </div>
+
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerDirection="root" [routerLink]="dailyLink" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="'calendar-outline'" [md]="'calendar-sharp'"></ion-icon>
+              <ion-label>{{'menu.daily' | translate }}</ion-label>
+            </ion-item>
+            <ion-item routerDirection="root" [routerLink]="monthlyLink" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="'calendar-clear-outline'" [md]="'calendar-clear-sharp'"></ion-icon>
+              <ion-label>{{'menu.monthly' | translate }}</ion-label>
+            </ion-item>
+            <ion-item routerDirection="root" [routerLink]="yearLink" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="'albums-outline'" [md]="'albums-sharp'"></ion-icon>
+              <ion-label>{{'menu.annual' | translate }}</ion-label>
+            </ion-item>
+            <ion-item routerDirection="root" [routerLink]="historicLink" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="'apps-outline'" [md]="'apps-sharp'"></ion-icon>
+              <ion-label>{{'menu.historic' | translate }}</ion-label>
+            </ion-item>
+            <hr style="margin-right: 0.5rem;" color="gray">
+            <ion-item routerDirection="root" [routerLink]="conceptsLink" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="'bag-add-outline'" [md]="'bag-add-sharp'"></ion-icon>
+              <ion-label>{{'menu.concepts' | translate }}</ion-label>
+            </ion-item>
+            <hr style="margin-right: 0.5rem;" color="gray">
+            <ion-item routerDirection="root" [routerLink]="userProfileLink" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="'person-circle-outline'" [md]="'person-circle-sharp'"></ion-icon>
+              <ion-label>{{'menu.profile' | translate }}</ion-label>
+            </ion-item>
+            <hr style="margin-right: 0.5rem;" color="gray">
+            <ion-item routerDirection="root" [routerLink]="" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="'cog-outline'" [md]="'cog-sharp'"></ion-icon>
+              <ion-label>{{'menu.about' | translate }}</ion-label>
+            </ion-item>
+            <ion-item routerDirection="root" (click)="logout()" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="'log-out-outline'" [md]="'log-out-sharp'"></ion-icon>
+              <ion-label>{{'menu.logout' | translate }}</ion-label>
+            </ion-item>
+
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
+
+
+<!-- *ngIf="userLogged === true" -->

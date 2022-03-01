@@ -10,7 +10,9 @@ namespace Backend.Dto
 
         public bool Credit { get; set; }
 
+        public bool Favorite { get; set; }
+
         internal ConceptUpdateCommand ToCommand(string userId)
-            => new(userId, ConceptId, Description, Credit);
+            => new(userId, ConceptId, Description, Credit, Favorite);
     }
 }

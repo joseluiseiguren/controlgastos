@@ -1,0 +1,26 @@
+.gridText {
+  font-size: smaller;
+  padding-top: 0.2rem;
+}
+
+.odd {
+  background-color: var(--ion-custom-grid-background)
+}
+
+.leftCol {
+  padding-left: 0.7rem;
+}
+
+.rightCol {
+  padding-right: 0.7rem;
+}
+
+ion-grid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.datePicker {
+  --padding-bottom: 0px;
+  --padding-top: 0px;
+}

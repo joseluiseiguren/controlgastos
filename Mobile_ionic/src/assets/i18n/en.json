@@ -1,0 +1,125 @@
+{
+  "login": {
+    "login": "Login",
+    "password": "Password",
+    "email": "E-Mail",
+    "register": "Signup",
+    "forgotPassword": "Forgot Password",
+    "accessDenied": "Access Denied"
+  },
+  "about": {
+    "close": "Close",
+    "version": "Version {{version}}"
+  },
+  "http": {
+    "cantConnectWithServer": "Can't connect with remote server. Try again",
+    "sessionExpired": "Session Expired",
+    "unexpectedError": "Unexpected Error: {{error}}"
+  },
+  "yearScreen": {
+    "year": "Year",
+    "yearBalance": "Balance"
+  },
+  "concept": {
+    "debit": "Debit",
+    "credit": "Credit",
+    "newConcept": "New Concept",
+    "editConcept": "Edit Concept",
+    "concept": "Concept",
+    "type": "Type",
+    "favorite": "Favorite"
+  },
+  "button": {
+    "cancel": "Cancel",
+    "ok": "Accept",
+    "close": "Close"
+  },
+  "message": {
+    "successfulOperation": "Successful Operation"
+  },
+  "menu": {
+    "daily": "Daily",
+    "monthly": "Monthly",
+    "annual": "Annual",
+    "historic": "Historical",
+    "concepts": "Concepts",
+    "profile": "Profile",
+    "logout": "LogOut",
+    "about": "About"
+  },
+  "dailyScreen": {
+    "date": "Date",
+    "dailyBalance": "Daily Balance",
+    "amount": "Amount",
+    "tags": "Tags",
+    "year":"Year",
+    "balance": "Daily Balance"
+  },
+  "filter": {
+    "filters": "Filters",
+    "filterSearch": "Filter Search",
+    "remove": "Remove Filters",
+    "concepts": "Concepts"
+  },
+  "historical": {
+    "balance": "Balance",
+    "historical": "Historical"
+  },
+  "monthly": {
+    "month": "Month",
+    "balanceMobile": "Balance",
+    "balance": "Balance",
+    "year": "Year"
+  },
+  "signup": {
+    "name": "Name",
+    "email": "E-Mail",
+    "bornDate": "Born Date",
+    "currency": "Currency",
+    "password": "Password",
+    "repeatPassword": "Repeat Password",
+    "goToLogin": "Go To Login",
+    "signup": "Signup",
+    "language": "Language",
+    "success": "Successful registration. You can now start using the application"
+  },
+  "balance": {
+    "income": "Income",
+    "outcome": "Outcome",
+    "balance":"Balance"
+  },
+  "userProfile": {
+    "profile": "User Profile"
+  },
+  "welcome": {
+    "hello": "Hello, {{user}}",
+    "message": "Now you can start loading your expenses"
+  },
+  "forgotPassword": {
+    "forgotPassword": "Forgot Password",
+    "checkInbox": "Check your email and follow the instructions",
+    "passwordUpdate": "Password Update",
+    "updateOK": "Password Updated Successfully",
+    "hello":"Hello, {{userName}}"
+  },
+  "settings": {
+    "settings": "Settings",
+    "themeDark": "Dark Theme"
+  },
+  "monthPicker": {
+    "month": "Month",
+    "year":"Year",
+    "january": "January",
+    "febraury": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
+  }
+}

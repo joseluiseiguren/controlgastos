@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-item>
+    <ion-label>{{'monthPicker.month' | translate }}</ion-label>
+    <ion-select interface="popover" value="{{selectedMonth}}" (ionChange)="onMonthChange($event)">
+      <ion-select-option *ngFor="let month of months; let i = index" value="{{i}}">{{month}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>{{'monthPicker.year' | translate }}</ion-label>
+    <ion-select interface="popover" value="{{selectedYear}}" (ionChange)="onYearChange($event)">
+      <ion-select-option *ngFor="let year of years" value="{{year}}">{{year}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button color="secondary" (click)="closeModal()">
+          {{'button.cancel' | translate }}
+        </ion-button>
+      </ion-col>
+      <ion-col style="text-align: center;">
+        <ion-button (click)="onSubmit()" color="primary">
+          {{'button.ok' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -10,12 +10,15 @@ namespace Domain.Commands
 
         public bool Credit { get; init; }
 
-        public ConceptUpdateCommand(string userId, string conceptId, string description, bool credit)
+        public bool Favorite { get; init; }
+
+        public ConceptUpdateCommand(string userId, string conceptId, string description, bool credit, bool favorite)
             : base(userId)
         {
             this.ConceptId = conceptId;
             this.Description = description;
             this.Credit = credit;
+            this.Favorite = favorite;
         }
     }
 }

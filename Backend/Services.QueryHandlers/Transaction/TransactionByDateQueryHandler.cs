@@ -35,6 +35,7 @@ namespace Services.QueryHandlers.Transaction
                     ConceptId = userConcept.id,
                     TransactionDate = query.Date.ToString("yyyy-MM-dd"),
                     Credit = userConcept.Credit,
+                    Favorite = userConcept.Favorite,
                     Ammount = transaction.Count == 0 ? 0m : transaction.First().Ammount
                 });
             }

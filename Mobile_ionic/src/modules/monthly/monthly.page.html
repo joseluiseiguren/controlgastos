@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start" style="float: left;">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="pageHeaderTitle">{{'menu.monthly' | translate }}</ion-title>
+    <div class="pageHeaderSettingsIcon">
+      <app-setting [showLanguage]="false"></app-setting>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="spinnerCenter" *ngIf="loading === true">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+
+  <div class="headerGridSticky">
+    <ion-grid class="headerGrid">
+      <ion-row>
+        <ion-col size="5">
+          <div style="font-size: small; padding-left: 0.5rem; padding-top: 0.2rem;">
+            <ion-input [(ngModel)]="dateCtrl" type="text" (ionFocus)="openDateModal()" readonly class="datePicker">
+              <ion-icon slot="start" [ios]="'calendar-outline'" [md]="'calendar-sharp'" (click)="openDateModal()"></ion-icon>
+            </ion-input>
+          </div>
+        </ion-col>
+        <ion-col size="5" style="padding-top: 2px;">
+          <ion-spinner *ngIf="loadingBalance === true" name="dots" class="balanceSpinner" ></ion-spinner>
+          <app-balance *ngIf="loadingBalance === false" [title]="'monthly.balance' | translate" [balance]="monthlyBalance" (saldoClicked)="openBalance()"></app-balance>
+        </ion-col>
+        <ion-col size="2" style="text-align: right; padding-right: 1rem;">
+          <div style="padding-top: 0.2rem;">
+            <app-favorite [on]="false" (starClicked)="favoriteClicked($event)"></app-favorite>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-accordion-group (ionChange)="loadMonthDetails($event)">
+    <ion-accordion value="{{monthData.conceptId}}" *ngFor="let monthData of monthlyData">
+      <ion-item slot="header">
+        <ion-grid [fixed]="true">
+          <ion-row>
+            <ion-col class="accordionLeftCol" size="9">{{monthData.description}}</ion-col>
+            <ion-col class="accordionRightCol" size="3">
+              <div class="ion-text-end"
+                [ngClass]="{'negativeAmmount': monthData.balance < 0, 'positiveAmmount': monthData.balance > 0}">
+                {{monthData.balance | currency: this.userService.userCurrency}}
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-list slot="content">
+        <div *ngIf="loadingDetail === true">
+          <ion-spinner class="balanceSpinner" name="dots"></ion-spinner>
+        </div>
+        <div *ngIf="loadingDetail === false">
+          <ion-grid [fixed]="true" class="accordionDetailGrid">
+            <ion-row *ngFor="let item of itemDetail; let j = index">
+              <ion-col class="accordionLeftColDetail" size="6">{{item.date | date:'mediumDate'}}</ion-col>
+              <ion-col class="accordionRightColDetail" size="6">
+                <div class="ion-text-end"
+                    [ngClass]="{'negativeAmmount': item.balance < 0, 'positiveAmmount': item.balance > 0}">
+                  {{item.balance | currency: this.userService.userCurrency}}
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-list>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-content>

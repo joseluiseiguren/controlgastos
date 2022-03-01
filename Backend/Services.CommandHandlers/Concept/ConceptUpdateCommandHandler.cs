@@ -31,6 +31,7 @@ namespace Services.CommandHandlers.Concept
 
             conceptToUpdate.UpdateDescription(command.Description);
             conceptToUpdate.UpdateCredit(command.Credit);
+            conceptToUpdate.UpdateFavorite(command.Favorite);
             await _conceptRepository.UpdateConceptAsync(conceptToUpdate);
         }
     }

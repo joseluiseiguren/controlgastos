@@ -1,0 +1,5 @@
+<span [ngClass]="{'negativeAmmount': balance < 0, 'positiveAmmount': balance > 0}"
+      (click)="onClick()"
+      class="balance">
+  {{title}}: {{balance | currency: this.userService.userCurrency}}
+</span>

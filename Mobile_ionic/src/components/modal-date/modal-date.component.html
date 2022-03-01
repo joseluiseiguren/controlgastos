@@ -1,0 +1,10 @@
+<ion-content>
+  <ion-datetime [(ngModel)]="data" style="height: 360px !important;"></ion-datetime>
+</ion-content>
+<ion-footer style="margin-top: 10px;">
+  <ion-toolbar>
+    <ion-button id="backbutton" (click)="closeModal()" color="secondary"expand="block">
+      {{'button.ok' | translate }}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

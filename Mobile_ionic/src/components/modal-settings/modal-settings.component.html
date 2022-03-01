@@ -1,0 +1,35 @@
+<ion-content>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title class="ion-text-center">{{'settings.settings' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item style="margin-top: 1rem;" *ngIf="data.showLanguage === true">
+    <ion-label>{{'signup.language' | translate }}</ion-label>
+    <ion-select id="langDropDown"
+                [ngStyle]="selectedLang"
+                (click)="loadFlags()"
+                (ionChange)="onChangeLang($event)"
+                okText="{{'button.ok' | translate}}"
+                cancelText="{{'button.cancel' | translate}}">
+      <ion-select-option *ngFor="let lang of this.langService.langsLocal" value="{{lang.value}}">
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>{{'settings.themeDark' | translate }}</ion-label>
+    <ion-toggle slot="end" color="tertiary" (ionChange)="changeTheme($event)" checked="{{modeDarkOn === true}}"></ion-toggle>
+  </ion-item>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button id="backbutton" (click)="closeModal()" color="secondary"expand="block">
+      {{'button.close' | translate }}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
