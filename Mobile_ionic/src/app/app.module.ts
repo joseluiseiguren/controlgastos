@@ -26,6 +26,7 @@ import { UserLoginComponent } from 'src/components/login/user-login/user-login.c
 import { AuthInterceptor } from 'src/interceptors/AuthInterceptor';
 import { ColorThemeService } from 'src/services/color-theme.service';
 import { SettingModule  } from 'src/modules/setting-module/setting-module';
+import { ModalAboutComponent } from 'src/components/modal-about/modal-about.component';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -33,7 +34,8 @@ registerLocaleData(localeEn);
 @NgModule({
   declarations: [
     AppComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    ModalAboutComponent
   ],
   entryComponents: [],
   imports: [

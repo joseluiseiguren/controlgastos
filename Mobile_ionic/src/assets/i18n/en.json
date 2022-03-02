@@ -9,7 +9,8 @@
   },
   "about": {
     "close": "Close",
-    "version": "Version {{version}}"
+    "version": "Version",
+    "support": "Support"
   },
   "http": {
     "cantConnectWithServer": "Can't connect with remote server. Try again",
