@@ -9,7 +9,8 @@
   },
   "about": {
     "close": "Fermer",
-    "version": "Version {{version}}"
+    "version": "Version",
+    "support": "Support"
   },
   "http": {
     "cantConnectWithServer": "Impossible de se connecter au serveur distant. Essayer à nouveau",

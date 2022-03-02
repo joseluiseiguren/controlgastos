@@ -9,7 +9,8 @@
   },
   "about": {
     "close": "Cerrar",
-    "version": "Versión {{version}}"
+    "version": "Versión",
+    "support": "Soporte"
   },
   "http": {
     "cantConnectWithServer": "No se pudo conectar al servidor, intentar nuevamente",

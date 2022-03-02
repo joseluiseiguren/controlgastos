@@ -79,6 +79,12 @@ ion-modal.balance-modal-x1 {
   --border-radius: 8px;
 }
 
+ion-modal.about-modal {
+  --width: 280px;
+  --height: 250px;
+  --border-radius: 8px;
+}
+
 a {
   color: var(--ion-color-secondary);
   text-decoration: none;

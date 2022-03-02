@@ -1,11 +1,12 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from 'src/services/lang.service.service';
 import { UrlConstants } from 'src/constants/url.constants';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/services/users.service';
 import { ColorThemeService } from 'src/services/color-theme.service';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { ModalAboutComponent } from 'src/components/modal-about/modal-about.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
               private router: Router,
               private userService: UsersService,
               public menuCtrl: MenuController,
+              private modalCtrl: ModalController,
               private colorThemeService: ColorThemeService,
               private langService: LangService) {
 
@@ -74,5 +76,21 @@ export class AppComponent implements OnInit {
   logout(){
     this.userService.logout();
     this.router.navigate([UrlConstants.logIn]);
+  }
+
+  async showAbout(){
+    const modal = await this.modalCtrl.create({
+      component: ModalAboutComponent,
+      componentProps: { data: null },
+      cssClass: 'about-modal'
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        if (data.data){
+        }
+    });
+
+    return await modal.present();
   }
 }

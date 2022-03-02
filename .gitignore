@@ -100,5 +100,5 @@ Backend/.vs/
 /Mobile_ionic/.vscode
 /Mobile_ionic/node_modules
 /Mobile_ionic/www
-/Mobile_ionic/android
 /Mobile_ionic/release_android_aab
+/Mobile_ionic/android/app/release
