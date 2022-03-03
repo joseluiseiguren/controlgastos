@@ -49,6 +49,7 @@ export class ModalSettingsComponent implements OnInit {
     this.translate.use(this.currentLang);
     this.selectedLang = { 'padding-left': '1rem', 'background-repeat': 'no-repeat', 'background-image':`url(./../../../assets/icon/${this.currentLang}Flag.png)`};
     localStorage.setItem('lastLangUsed', this.currentLang);
+    this.closeModal();
   }
 
   public changeTheme(e){
@@ -57,5 +58,6 @@ export class ModalSettingsComponent implements OnInit {
     } else {
       this.colorThemeService.setColorTheme('light');
     }
+    this.closeModal();
   }
 }

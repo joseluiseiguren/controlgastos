@@ -26,7 +26,7 @@ export class YearPage implements OnInit {
   yearData: any[];
   itemDetail: any[];
   years = [];
-  selectedYear = 0;
+  selectedYear = this.getYearFromUrl();
 
   private yearDataOriginal: any[];
 
