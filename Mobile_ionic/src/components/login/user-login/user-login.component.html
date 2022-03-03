@@ -1,6 +1,131 @@
 <ion-content>
-  <div style="padding-top: 2rem; padding-left: 2rem; padding-right: 2rem;">
-    <ion-row>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <app-setting  [showLanguage]="true"></app-setting>
+  </ion-fab>
+
+  <div style="height: 60%;">
+    <div id="titleMain">
+      <div id="titleSecondary">
+        <span style="font-size: 5vh; font-family: Verdana, sans-serif;">Money Guard</span>
+      </div>
+    </div>
+    <div id="logo">
+      <img src="./../../../assets/icon/giphy2.gif" alt="">
+    </div>
+  </div>
+  <div id="fomrMain">
+    <div id="fromSecondary">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+
+        <ion-item lines="full">
+          <ion-label position="floating">{{'login.email' | translate }}</ion-label>
+          <ion-input formControlName="emailFormControl" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">{{'login.password' | translate }}</ion-label>
+          <ion-input formControlName="pwdFormControl" [type]="passwordType" clearOnEdit="false"></ion-input>
+          <ion-icon slot="end" [name]="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+        </ion-item>
+
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" color="primary" expand="block" [disabled]="!loginForm.valid || loading">
+              <ion-spinner *ngIf="loading === true" name="bubbles"></ion-spinner>
+              <div *ngIf="loading === false">{{'login.login' | translate }}</div>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+
+      <ion-row style="padding-top: 0.5rem;">
+        <ion-col>
+          <a id="registerLink" href="{{userSignupLink}}">{{'login.register' | translate }}</a>
+        </ion-col>
+        <ion-col>
+          <div class="ion-text-end">
+            <a id="forgotPassword" href="{{userForgotPasswordLink}}">{{'login.forgotPassword' | translate }}</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div style="background-color: aliceblue; height: 100%;">
+    <div style="height: 60%; padding-top: 2rem; background-color: aqua;">
+      <ion-row>
+        <ion-col size="12" style="margin-top: 0.5rem; text-align: center;">
+          <ion-label style="font-size: 2rem;">
+            Money Guard
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" style="margin-top: 0.5rem; text-align: center;">
+          <div>
+            <img src="./../../../assets/icon/icon-192x192.png" alt="">
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+    <div style="background-color: burlywood; height: 40%; padding-top: 1.5rem; padding-left: 1.5rem; padding-right: 1.5rem;">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+
+        <ion-item lines="full">
+          <ion-label position="floating">{{'login.email' | translate }}</ion-label>
+          <ion-input formControlName="emailFormControl" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">{{'login.password' | translate }}</ion-label>
+          <ion-input formControlName="pwdFormControl" [type]="passwordType" clearOnEdit="false"></ion-input>
+          <ion-icon slot="end" [name]="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+        </ion-item>
+
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" color="primary" expand="block" [disabled]="!loginForm.valid || loading">
+              <ion-spinner *ngIf="loading === true" name="bubbles"></ion-spinner>
+              <div *ngIf="loading === false">{{'login.login' | translate }}</div>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+
+      <ion-row style="margin-top: 1.5rem;">
+        <ion-col>
+          <a id="registerLink" href="{{userSignupLink}}">{{'login.register' | translate }}</a>
+        </ion-col>
+        <ion-col>
+          <div class="ion-text-end">
+            <a id="forgotPassword" href="{{userForgotPasswordLink}}">{{'login.forgotPassword' | translate }}</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div> -->
+
+
+
+
+
+
+
+
+    <!-- <ion-row>
       <ion-col size="2" style="margin-top: 0.5rem;">
         <div>
           <img src="./../../../assets/icon/icon-52x52.png" alt="">
@@ -16,9 +141,9 @@
           <app-setting  [showLanguage]="true"></app-setting>
         </div>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+    <!-- <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
 
       <ion-item lines="full">
         <ion-label position="floating">{{'login.email' | translate }}</ion-label>
@@ -39,9 +164,9 @@
           </ion-button>
         </ion-col>
       </ion-row>
-    </form>
+    </form>-->
 
-    <ion-row style="margin-top: 1.5rem;">
+    <!--<ion-row style="margin-top: 1.5rem;">
       <ion-col>
         <a id="registerLink" href="{{userSignupLink}}">{{'login.register' | translate }}</a>
       </ion-col>
@@ -50,6 +175,6 @@
           <a id="forgotPassword" href="{{userForgotPasswordLink}}">{{'login.forgotPassword' | translate }}</a>
         </div>
       </ion-col>
-    </ion-row>
-  </div>
+    </ion-row> -->
+
 </ion-content>
