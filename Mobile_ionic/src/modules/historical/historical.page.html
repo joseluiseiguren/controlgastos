@@ -27,6 +27,7 @@
         <ion-col size="2" style="text-align: right; padding-right: 1rem; padding-top: 0.1rem;">
           <div style="padding-top: 0.2rem;">
             <app-favorite [on]="false" (starClicked)="favoriteClicked($event)"></app-favorite>
+            <app-hide-cero [on]="false" (iconClicked)="hideceroClicked($event)"></app-hide-cero>
           </div>
         </ion-col>
       </ion-row>

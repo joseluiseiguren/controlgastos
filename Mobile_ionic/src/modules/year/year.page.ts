@@ -30,6 +30,9 @@ export class YearPage implements OnInit {
 
   private yearDataOriginal: any[];
 
+  private filterFavoriteOn = false;
+  private filterHideceroOn = false;
+
   constructor(private activeRoute: ActivatedRoute,
               private datePipe: DatePipe,
               private snackbarService: SnackBarService,
@@ -58,12 +61,14 @@ export class YearPage implements OnInit {
       });
   }
 
-  favoriteClicked(event) {
-    if (event === true){
-      this.yearData = this.yearDataOriginal.filter(x => x.favorite === true);
-    } else {
-      this.yearData = this.yearDataOriginal;
-    }
+  favoriteClicked(event: boolean) {
+    this.filterFavoriteOn = event;
+    this.applyFilters();
+  }
+
+  hideceroClicked(event: boolean) {
+    this.filterHideceroOn = event;
+    this.applyFilters();
   }
 
   async openBalance(){
@@ -202,6 +207,19 @@ export class YearPage implements OnInit {
     }
 
     return [];
+  }
+
+  private applyFilters(){
+    this.yearData = this.yearDataOriginal;
+
+    if (this.filterFavoriteOn === true || this.filterHideceroOn === true){
+      if (this.filterFavoriteOn === true){
+        this.yearData = this.yearData.filter(x => x.favorite === true);
+      }
+      if (this.filterHideceroOn === true){
+        this.yearData = this.yearData.filter(x => this.filterHideceroOn === true && x.balance !== 0);
+      }
+    }
   }
 
 }

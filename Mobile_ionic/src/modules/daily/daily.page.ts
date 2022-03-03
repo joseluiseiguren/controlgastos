@@ -33,6 +33,9 @@ export class DailyPage implements OnInit {
   conceptos: IConceptoDiario[];
   saldoDiario = 0;
 
+  private filterFavoriteOn = false;
+  private filterHideceroOn = false;
+
   private conceptosOriginal: IConceptoDiario[];
 
   constructor(private diarioService: DiarioService,
@@ -102,11 +105,13 @@ export class DailyPage implements OnInit {
   }
 
   favoriteClicked(event: boolean) {
-    if (event === true){
-      this.conceptos = this.conceptosOriginal.filter(x => x.favorite === true);
-    } else {
-      this.conceptos = this.conceptosOriginal;
-    }
+    this.filterFavoriteOn = event;
+    this.applyFilters();
+  }
+
+  hideceroClicked(event: boolean) {
+    this.filterHideceroOn = event;
+    this.applyFilters();
   }
 
   async gridItemClicked(item: IConceptoDiario) {
@@ -234,5 +239,18 @@ export class DailyPage implements OnInit {
     });
 
     return importes;
+  }
+
+  private applyFilters(){
+    this.conceptos = this.conceptosOriginal;
+
+    if (this.filterFavoriteOn === true || this.filterHideceroOn === true){
+      if (this.filterFavoriteOn === true){
+        this.conceptos = this.conceptos.filter(x => x.favorite === true);
+      }
+      if (this.filterHideceroOn === true){
+        this.conceptos = this.conceptos.filter(x => this.filterHideceroOn === true && x.ammount !== 0);
+      }
+    }
   }
 }

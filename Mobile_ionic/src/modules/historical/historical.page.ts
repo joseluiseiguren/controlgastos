@@ -25,6 +25,9 @@ export class HistoricalPage implements OnInit {
 
   private historicDataOriginal: any[];
 
+  private filterFavoriteOn = false;
+  private filterHideceroOn = false;
+
   constructor(private snackbarService: SnackBarService,
               private translateService: TranslateService,
               private calculationService: CalculationService,
@@ -72,12 +75,14 @@ export class HistoricalPage implements OnInit {
     return await modal.present();
   }
 
-  favoriteClicked(event){
-    if (event === true){
-      this.historicData = this.historicDataOriginal.filter(x => x.favorite === true);
-    } else {
-      this.historicData = this.historicDataOriginal;
-    }
+  favoriteClicked(event: boolean) {
+    this.filterFavoriteOn = event;
+    this.applyFilters();
+  }
+
+  hideceroClicked(event: boolean) {
+    this.filterHideceroOn = event;
+    this.applyFilters();
   }
 
   async loadHistoricDetails(row){
@@ -143,6 +148,19 @@ export class HistoricalPage implements OnInit {
     }
 
     return [];
+  }
+
+  private applyFilters(){
+    this.historicData = this.historicDataOriginal;
+
+    if (this.filterFavoriteOn === true || this.filterHideceroOn === true){
+      if (this.filterFavoriteOn === true){
+        this.historicData = this.historicData.filter(x => x.favorite === true);
+      }
+      if (this.filterHideceroOn === true){
+        this.historicData = this.historicData.filter(x => this.filterHideceroOn === true && x.balance !== 0);
+      }
+    }
   }
 
 }

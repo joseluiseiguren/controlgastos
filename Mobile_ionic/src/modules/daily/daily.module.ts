@@ -22,6 +22,7 @@ import { DiarioService } from 'src/services/diario.service';
 import { BalanceModalModule } from '../balance-modal/balance-modal.module';
 import { SumaryAnioService } from 'src/services/sumary-anio.service';
 import { SumaryMonthService } from 'src/services/sumary-month.service';
+import { HideCeroModule } from '../hideCero/hidecero.module';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { SumaryMonthService } from 'src/services/sumary-month.service';
     BalanceModule,
     BalanceModalModule,
     FavoriteModule,
+    HideCeroModule,
     DailyPageRoutingModule,
     TranslateModule.forChild({
       loader: {

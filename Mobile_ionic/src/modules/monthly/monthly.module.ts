@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import { DateMonthModalModule } from '../date-month-modal/date.month.modal.module';
 import { CalculationService } from 'src/sharedServices/calculationService';
 import { SumaryAnioService } from 'src/services/sumary-anio.service';
+import { HideCeroModule } from '../hideCero/hidecero.module';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { SumaryAnioService } from 'src/services/sumary-anio.service';
     BalanceModule,
     BalanceModalModule,
     FavoriteModule,
+    HideCeroModule,
     SettingModule,
     DateMonthModalModule,
     TranslateModule.forChild({

@@ -1,9 +1,7 @@
   - Lazy Loading
   - Credit doesn't work
-- Input's: not function
   - Subscriptions: add subscription and destroy
   - Use interfaces
-- Improve lists management
 - Use string for url routes, instead of dates (diario, mensual)
 - Login with google or facebook
 - add gasto desde pantalla de mes
@@ -12,10 +10,7 @@
 - en pc dejar el menu siempre visible
 	- traducciones I18N
 - preguntar antes de hacer el logout
-- Apple: create apk for ios
-- pantalla conceptos: table header mas grande
-- repasar uno por uno los manejos de errores
-- exportacion a excel
+- Interceptor de errores
 - hay modelos que se comparten entre webapi y frontend, por ejemplo el de usuarios -> unirlos
 - prevenir sql inyection en los forms
 - capcha en registracion
@@ -23,7 +18,6 @@
 - en los post validar largos de los campos
 - usar constantes para los status code del frontend
 - el mensaje de error de cada pantalla que tenga un boton de retry
-- cuando hay error generico, el desplegable del usuario queda por atras
 - Conceptos que no sumen ni resten: y que puedan ser cargados en multiples monedas
 	- Github CD/CI (backend)
 	- Login remove key sensitive in email
@@ -31,7 +25,6 @@
 	- Forgot password
 - Enviar email al finallizar mes con summary
 	- Mensual: remove items with ammount 0
-- Replace deprecated subscribe
 - There are deprecated warnings when running npm install
 	- Create APK app
 	- Loading animation when app is starting
@@ -68,3 +61,4 @@
 - Export to excel file
 - Apple compatibility
 - Forgot password => unblock user if blocked
+- Filter to hide items with amount 0

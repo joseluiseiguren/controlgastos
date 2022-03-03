@@ -33,6 +33,9 @@ export class MonthlyPage implements OnInit {
   private availableYears = [];
   private monthlyDataOriginal: any[];
 
+  private filterFavoriteOn = false;
+  private filterHideceroOn = false;
+
   constructor(private activeRoute: ActivatedRoute,
               private datePipe: DatePipe,
               private diarioService: DiarioService,
@@ -191,12 +194,14 @@ export class MonthlyPage implements OnInit {
     return await modal.present();
   }
 
-  favoriteClicked(event){
-    if (event === true){
-      this.monthlyData = this.monthlyDataOriginal.filter(x => x.favorite === true);
-    } else {
-      this.monthlyData = this.monthlyDataOriginal;
-    }
+  favoriteClicked(event: boolean) {
+    this.filterFavoriteOn = event;
+    this.applyFilters();
+  }
+
+  hideceroClicked(event: boolean) {
+    this.filterHideceroOn = event;
+    this.applyFilters();
   }
 
   private getDateFromUrl(): Date {
@@ -259,6 +264,19 @@ export class MonthlyPage implements OnInit {
     });
 
     return importes;
+  }
+
+  private applyFilters(){
+    this.monthlyData = this.monthlyDataOriginal;
+
+    if (this.filterFavoriteOn === true || this.filterHideceroOn === true){
+      if (this.filterFavoriteOn === true){
+        this.monthlyData = this.monthlyData.filter(x => x.favorite === true);
+      }
+      if (this.filterHideceroOn === true){
+        this.monthlyData = this.monthlyData.filter(x => this.filterHideceroOn === true && x.balance !== 0);
+      }
+    }
   }
 
 }
