@@ -67,4 +67,4 @@
 - UI: add transitions effects between screens
 - Export to excel file
 - Apple compatibility
-
+- Forgot password => unblock user if blocked
