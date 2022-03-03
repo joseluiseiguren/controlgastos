@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Services.CommandHandlers.Helper;
 using Shared.Constants;
 using Shared.Helpers;
+using Shared.Enums;
 
 namespace Services.CommandHandlers.User
 {
@@ -29,6 +30,10 @@ namespace Services.CommandHandlers.User
             var newPassword = SecurityHelper.HashPassword(command.Password);
 
             existingUser.UpdatePassword(newPassword);
+            if (existingUser.StatusId == (int)UserStatus.BLOCKED)
+            {
+                existingUser.UpdateStatus((int)UserStatus.OK);
+            }
 
             await _userRepository.UpdateUserAsync(existingUser);
         }
