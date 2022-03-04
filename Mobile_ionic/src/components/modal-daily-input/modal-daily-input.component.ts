@@ -8,7 +8,6 @@ import { ModalController } from '@ionic/angular';
 import { IConceptoDiario } from 'src/models/concepto.diario';
 import { FormatingService } from 'src/sharedServices/formatingService';
 import { HelperService } from 'src/services/helper.service.service';
-import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-modal-daily-input',
@@ -56,14 +55,12 @@ export class ModalDailyInputComponent implements OnInit {
 
     const newImporte = parseFloat(this.dailyInputForm.value.ammountFormControl.toString().replace(',', '.'));
 
-    const source$ = this.diarioService.setConceptoImporte(trasactionDate,
-                                                          (this.dailyInputForm.value.operationFormControl === '1') ? newImporte : newImporte * -1,
-                                                          this.data.conceptId,
-                                                          null);
-
     try {
 
-      await firstValueFrom(source$);
+      await this.diarioService.setConceptoImporte(trasactionDate,
+                                                  (this.dailyInputForm.value.operationFormControl === '1') ? newImporte : newImporte * -1,
+                                                  this.data.conceptId,
+                                                  null).toPromise();
 
       this.data.ammount = (this.dailyInputForm.value.operationFormControl === '1' || this.dailyInputForm.value.ammountFormControl === 0)
                                               ? newImporte

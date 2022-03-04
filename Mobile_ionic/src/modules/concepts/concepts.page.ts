@@ -4,7 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { IConcepto } from 'src/models/concepto';
 import { HelperService } from 'src/services/helper.service.service';
 import { ConceptoService } from 'src/services/concepto.service';
-import { firstValueFrom } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { ModalConceptComponent } from 'src/components/modal-concept/modal-concept.component';
 
@@ -77,10 +76,9 @@ export class ConceptsPage implements OnInit {
   }
 
   private async getConceptos(): Promise<void> {
-    const source$ = this.conceptoService.getConceptos();
 
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.conceptoService.getConceptos().toPromise();
 
       this.concepts = data;
 

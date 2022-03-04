@@ -5,10 +5,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
-import { ModalDateComponent } from 'src/components/modal-date/modal-date.component';
 import { UrlConstants } from 'src/constants/url.constants';
 import { User } from 'src/models/user';
+import { DateNativeModalService } from 'src/services/date-native-modal.service';
 import { HelperService } from 'src/services/helper.service.service';
 import { LangService } from 'src/services/lang.service.service';
 import { SnackBarService } from 'src/services/snackBar.service';
@@ -40,6 +39,7 @@ export class UserSignupPage implements OnInit {
               private helperService: HelperService,
               private datePipe: DatePipe,
               private router: Router,
+              private dateNative: DateNativeModalService,
               private modalCtrl: ModalController,
               private usersService: UsersService,
               public translate: TranslateService) { }
@@ -62,23 +62,16 @@ export class UserSignupPage implements OnInit {
     this.currencies = this.usersService.getAvailablesCurrencies();
   }
 
-  async openModal(){
+  async openDateModal(){
     const currentDate = this.signupForm.controls.fechaNacimientoFormControl.value === '' ?
-      this.datePipe.transform(new Date(), 'yyyy-MM-dd') :
-      this.datePipe.transform(new Date(this.signupForm.controls.fechaNacimientoFormControl.value), 'yyyy-MM-dd');
+      new Date() :
+      new Date(this.signupForm.controls.fechaNacimientoFormControl.value);
 
-    const modal = await this.modalCtrl.create({
-      component: ModalDateComponent,
-      componentProps: { data: currentDate },
-      cssClass: 'datetime-modal'
-    });
+    const dateSelected = await this.dateNative.openDateModal(currentDate, this.currentLang);
 
-    modal.onDidDismiss()
-      .then((data) => {
-        this.signupForm.controls.fechaNacimientoFormControl.setValue(this.datePipe.transform(new Date(data.data), 'mediumDate'));
-    });
-
-    return await modal.present();
+    if (dateSelected !== undefined) {
+      this.signupForm.controls.fechaNacimientoFormControl.setValue(this.datePipe.transform(dateSelected, 'mediumDate'));
+    }
   }
 
   async onSignup(): Promise<void>{
@@ -86,12 +79,8 @@ export class UserSignupPage implements OnInit {
     this.loading  = true;
     const user = this.createUser();
 
-    console.log(user);
-
-    const source$ = this.usersService.register(user);
-
     try {
-      const data = await firstValueFrom(source$);
+      await this.usersService.register(user).toPromise();
 
       this.loading  = false;
 

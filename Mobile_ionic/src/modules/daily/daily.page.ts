@@ -1,14 +1,14 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable no-throw-literal */
 import { HelperService } from './../../services/helper.service.service';
 import { SnackBarService } from './../../services/snackBar.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest, firstValueFrom, map } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { DiarioService } from 'src/services/diario.service';
 import { IConceptoDiario } from 'src/models/concepto.diario';
 import { UsersService } from 'src/services/users.service';
 import { ModalController } from '@ionic/angular';
-import { ModalDateComponent } from 'src/components/modal-date/modal-date.component';
 import { DatePipe } from '@angular/common';
 import { UrlConstants } from 'src/constants/url.constants';
 import { CalculationService } from 'src/sharedServices/calculationService';
@@ -17,9 +17,8 @@ import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balanc
 import { ISaldoItem } from 'src/models/saldoItem';
 import { SumaryMonthService } from 'src/services/sumary-month.service';
 import { SumaryAnioService } from 'src/services/sumary-anio.service';
-import { SumaryMonth } from 'src/models/sumaryMonth';
-import { SumaryAnio } from 'src/models/sumaryAnio';
 import { TranslateService } from '@ngx-translate/core';
+import { DateNativeModalService } from 'src/services/date-native-modal.service';
 
 @Component({
   selector: 'app-daily',
@@ -42,6 +41,7 @@ export class DailyPage implements OnInit {
               private snackBarService: SnackBarService,
               private sumaryMonthService: SumaryMonthService,
               private sumaryAnioService: SumaryAnioService,
+              private dateNative: DateNativeModalService,
               private modalCtrl: ModalController,
               public userService: UsersService,
               private calculationService: CalculationService,
@@ -68,10 +68,8 @@ export class DailyPage implements OnInit {
   async getData(): Promise<void> {
     this.loading = true;
 
-    const source$ = this.diarioService.getConceptosImportes(this.getDateFromUrl());
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getConceptosImportes(this.getDateFromUrl()).toPromise();
 
       this.conceptos = data;
       this.conceptosOriginal = data;
@@ -86,22 +84,11 @@ export class DailyPage implements OnInit {
   }
 
   async openDateModal(){
-    const popupDate = this.datePipe.transform(this.getDateFromUrl(), 'yyyy-MM-dd');
+    const dateSelected = await this.dateNative.openDateModal(this.getDateFromUrl(), this.userService.userLanguage);
 
-    const modal = await this.modalCtrl.create({
-      component: ModalDateComponent,
-      componentProps: { data: popupDate },
-      cssClass: 'datetime-modal'
-    });
-
-    modal.onDidDismiss()
-      .then((data) => {
-        if (data.data){
-          this.router.navigate([UrlConstants.daily, this.datePipe.transform(new Date(data.data), 'yyyy-MM-dd')]);
-        }
-    });
-
-    return await modal.present();
+    if (dateSelected !== undefined) {
+      this.router.navigate([UrlConstants.daily, this.datePipe.transform(dateSelected, 'yyyy-MM-dd')]);
+    }
   }
 
   favoriteClicked(event: boolean) {
@@ -152,29 +139,13 @@ export class DailyPage implements OnInit {
     const source2$ = this.sumaryAnioService.getSumary(this.getDateFromUrl());
 
     try {
-
-      const resultData = await combineLatest({
-        mensual: source1$,
-        anual: source2$
-      })
-      .pipe(
-        map(response => {
-          const mensual = response.mensual as SumaryMonth;
-          const anual = response.anual as SumaryAnio;
-          const result: any = {};
-
-          result.mensual = mensual;
-          result.anual = anual;
-
-          return result;
-        })
-      ).toPromise();
+      const resultData: any = await forkJoin([source1$, source2$]).toPromise();
 
       const saldoItemMensual: ISaldoItem = {
         title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.getDateFromUrl(), 'LLLL yyyy')),
         icon: 'calendar-clear-outline',
-        ingresos: resultData.mensual.in,
-        egresos: resultData.mensual.out,
+        ingresos: resultData[0].in,
+        egresos: resultData[0].out,
         concept: 'mensual',
         date: this.getDateFromUrl()
       };
@@ -183,8 +154,8 @@ export class DailyPage implements OnInit {
       const saldoItemAnual: ISaldoItem = {
         title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.getDateFromUrl(), 'yyyy'),
         icon: 'albums-outline',
-        ingresos: resultData.anual.in,
-        egresos: resultData.anual.out,
+        ingresos: resultData[1].in,
+        egresos: resultData[1].out,
         concept: 'mensual',
         date: this.getDateFromUrl()
       };

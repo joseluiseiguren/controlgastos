@@ -42,7 +42,7 @@
 - Use redux to handle app status
 - When release is in progress, show a message
 - First login: send user to load concepts
-- Black mode => registration => born date => the component does not show the icons < >
+	- Black mode => registration => born date => the component does not show the icons < >
 - Github actins: crear apk automatically
 - Concepts: dont reload the list after adding or modifying an item
 	- Github actions: fix all actions just like sendgmail
@@ -60,5 +60,7 @@
 - UI: add transitions effects between screens
 - Export to excel file
 - Apple compatibility
-- Forgot password => unblock user if blocked
+	- Forgot password => unblock user if blocked
 	- Filter to hide items with amount 0
+	- Use native date pickers
+- Login => don`t create component if authentication is correct. Put condition on routing

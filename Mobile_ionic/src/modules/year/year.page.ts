@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
 import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balance.component';
 import { UrlConstants } from 'src/constants/url.constants';
 import { ISaldoItem } from 'src/models/saldoItem';
@@ -117,10 +116,8 @@ export class YearPage implements OnInit {
 
     this.itemDetail = [];
 
-    const source$ = this.diarioService.getConceptosMovimAnio(row.detail.value, this.selectedYear);
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getConceptosMovimAnio(row.detail.value, this.selectedYear).toPromise();
 
       this.itemDetail = data;
 
@@ -150,9 +147,7 @@ export class YearPage implements OnInit {
     const stAvailabeYears = sessionStorage.getItem('availableYears');
     if(stAvailabeYears == null){
 
-      const source$ = await this.diarioService.getPrimerConsumo();
-
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getPrimerConsumo().toPromise();
 
       const anioPrimerConsumo = Number(data.firstTransaction.substring(0, 4));
       const anioUltimoConsumo = Number(data.lastTransaction.substring(0, 4));
@@ -170,10 +165,8 @@ export class YearPage implements OnInit {
   private async getData(): Promise<void> {
     this.loading = true;
 
-    const source$ = this.diarioService.getConceptosTotalAnio(this.selectedYear);
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getConceptosTotalAnio(this.selectedYear).toPromise();
 
       this.yearData = data;
       this.yearDataOriginal = data;

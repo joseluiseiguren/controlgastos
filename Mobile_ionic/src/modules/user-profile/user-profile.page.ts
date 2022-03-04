@@ -2,12 +2,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
-import { ModalDateComponent } from 'src/components/modal-date/modal-date.component';
 import { User } from 'src/models/user';
+import { DateNativeModalService } from 'src/services/date-native-modal.service';
 import { HelperService } from 'src/services/helper.service.service';
 import { LangService } from 'src/services/lang.service.service';
 import { SnackBarService } from 'src/services/snackBar.service';
@@ -31,8 +28,7 @@ export class UserProfilePage implements OnInit {
               private snackBarService: SnackBarService,
               private helperService: HelperService,
               private datePipe: DatePipe,
-              private modalCtrl: ModalController,
-              private router: Router,
+              private dateNative: DateNativeModalService,
               private usersService: UsersService,
               public translate: TranslateService) { }
 
@@ -55,10 +51,8 @@ export class UserProfilePage implements OnInit {
 
     const userProfile = this.createUser();
 
-    const source$ = this.usersService.updateProfile(userProfile);
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.usersService.updateProfile(userProfile).toPromise();
 
       this.usersService.setUserName(userProfile.name);
       this.snackBarService.showSnackBarSuccess(this.translate.instant('message.successfulOperation'));
@@ -73,22 +67,15 @@ export class UserProfilePage implements OnInit {
 
   async openModalBornDate(){
     const currentDate = this.profileForm.controls.fechaNacimientoFormControl.value === '' ?
-      this.datePipe.transform(new Date(), 'yyyy-MM-dd') :
-      this.datePipe.transform(new Date(this.profileForm.controls.fechaNacimientoFormControl.value), 'yyyy-MM-dd');
+      new Date() :
+      new Date(this.profileForm.controls.fechaNacimientoFormControl.value);
 
-    const modal = await this.modalCtrl.create({
-      component: ModalDateComponent,
-      componentProps: { data: currentDate },
-      cssClass: 'datetime-modal'
-    });
+    const dateSelected = await this.dateNative.openDateModal(currentDate, this.currentLang);
 
-    modal.onDidDismiss()
-      .then((data) => {
-        this.profileForm.controls.fechaNacimientoFormControl.setValue(this.datePipe.transform(new Date(data.data), 'mediumDate'));
-        this.profileForm.markAsDirty();
-    });
-
-    return await modal.present();
+    if (dateSelected !== undefined) {
+      this.profileForm.controls.fechaNacimientoFormControl.setValue(this.datePipe.transform(dateSelected, 'mediumDate'));
+      this.profileForm.markAsDirty();
+    }
   }
 
   loadFlags() {
@@ -111,10 +98,8 @@ export class UserProfilePage implements OnInit {
   async getData(): Promise<void> {
     this.loadingBig = true;
 
-    const source$ = this.usersService.getProfile();
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.usersService.getProfile().toPromise();
 
       this.profileForm.setValue({emailFormControl: data.email,
               nameFormControl: data.name,

@@ -11,7 +11,7 @@ import { SettingModule } from '../setting-module/setting-module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
-import { DateModalModule } from '../date-modal/date.modal.module';
+import { DateNativeModalService } from 'src/services/date-native-modal.service';
 
 @NgModule({
   imports: [
@@ -20,7 +20,6 @@ import { DateModalModule } from '../date-modal/date.modal.module';
     ReactiveFormsModule,
     IonicModule,
     SettingModule,
-    DateModalModule,
     UserProfilePageRoutingModule,
     TranslateModule.forChild({
       loader: {
@@ -30,6 +29,9 @@ import { DateModalModule } from '../date-modal/date.modal.module';
          },
          isolate : false
       }),
+  ],
+  providers: [
+    DateNativeModalService
   ],
   declarations: [UserProfilePage]
 })

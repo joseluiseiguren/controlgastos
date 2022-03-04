@@ -17,6 +17,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class UsersService {
   public userCurrency: string;
+  public userLanguage: string;
   public userName = new BehaviorSubject<string>('');
   private jwtHelper = new JwtHelperService();
 
@@ -37,6 +38,7 @@ export class UsersService {
                       // store user details and jwt token in local storage to keep user logged in between page refreshes
                       localStorage.setItem('alow', user.token);
                       this.userCurrency = this.getMoneda();
+                      this.userLanguage = this.getLanguage();
                       this.setUserName(this.getUserNameFromToken());
                       this.setLang(this.getUserLanguageFromToken());
                       this.menuCtrl.enable(true);
@@ -162,6 +164,17 @@ export class UsersService {
 
       return moneda;
   }
+
+  private getLanguage(): string {
+    const token = localStorage.getItem('alow');
+    let lang = '';
+
+    if (token !== null) {
+        lang = this.jwtHelper.decodeToken(token).lang;
+    }
+
+    return lang;
+}
 
   getProfile(): Observable<User> {
     return this.http.get<User>(this.urlService.urlGetUserProfile())

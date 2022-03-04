@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
 import { UrlConstants } from 'src/constants/url.constants';
 import { UsersService } from 'src/services/users.service';
 import { SnackBarService } from 'src/services/snackBar.service';
@@ -34,7 +33,6 @@ export class UserLoginComponent implements OnInit {
               private datePipe: DatePipe,
               private usersService: UsersService,
               public translate: TranslateService) {
-
     if (this.usersService.isSessionExpired() === false) {
       this.ingresarApp();
     }
@@ -65,10 +63,8 @@ export class UserLoginComponent implements OnInit {
  async onLogin() {
   this.loading = true;
 
-  const source$ = this.usersService.login(this.loginForm.value.emailFormControl, this.loginForm.value.pwdFormControl, this.translate.currentLang);
-
   try {
-    const data = await firstValueFrom(source$);
+    const data = await this.usersService.login(this.loginForm.value.emailFormControl, this.loginForm.value.pwdFormControl, this.translate.currentLang).toPromise();
     if (data === true) {
       this.loading = false;
       this.loginForm.reset();

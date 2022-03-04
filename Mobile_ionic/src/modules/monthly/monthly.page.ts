@@ -5,7 +5,6 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { combineLatest, firstValueFrom, map } from 'rxjs';
 import { ModalDateMonthComponent } from 'src/components/mmodal-date-month/mmodal-date-month.component';
 import { UrlConstants } from 'src/constants/url.constants';
 import { DiarioService } from 'src/services/diario.service';
@@ -68,11 +67,9 @@ export class MonthlyPage implements OnInit {
   async getData(): Promise<void> {
     const fecha = this.getMonthStringFromUrl(true);
 
-    const source$ = this.diarioService.getConceptosTotalMes(fecha);
-
     try {
 
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getConceptosTotalMes(fecha).toPromise();
 
       this.monthlyData = data;
       this.monthlyDataOriginal = data;
@@ -100,29 +97,15 @@ export class MonthlyPage implements OnInit {
 
     saldos.push(saldoItemMensual);
 
-    const source2$ = this.sumaryAnioService.getSumary(this.getDateFromUrl());
-
     try {
 
-      const resultData = await combineLatest({
-        anual: source2$
-      })
-      .pipe(
-        map(response => {
-          const anual = response.anual as SumaryAnio;
-          const result: any = {};
-
-          result.anual = anual;
-
-          return result;
-        })
-      ).toPromise();
+      const resultData = await this.sumaryAnioService.getSumary(this.getDateFromUrl()).toPromise();
 
       const saldoItemAnual: ISaldoItem = {
         title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.getDateFromUrl(), 'yyyy'),
         icon: 'albums-outline',
-        ingresos: resultData.anual.in,
-        egresos: resultData.anual.out,
+        ingresos: resultData.in,
+        egresos: resultData.out,
         concept: 'mensual',
         date: this.getDateFromUrl()
       };
@@ -159,10 +142,8 @@ export class MonthlyPage implements OnInit {
     this.itemDetail = [];
     const fecha = this.getMonthStringFromUrl(true);
 
-    const source$ = this.diarioService.getConceptosMovimMes(row.detail.value, fecha);
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getConceptosMovimMes(row.detail.value, fecha).toPromise();
 
       this.itemDetail = data;
 
@@ -232,9 +213,7 @@ export class MonthlyPage implements OnInit {
     const stAvailabeYears = sessionStorage.getItem('availableYears');
     if(stAvailabeYears == null){
 
-      const source$ = await this.diarioService.getPrimerConsumo();
-
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getPrimerConsumo().toPromise();
 
       const anioPrimerConsumo = Number(data.firstTransaction.substring(0, 4));
       const anioUltimoConsumo = Number(data.lastTransaction.substring(0, 4));

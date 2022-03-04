@@ -1,6 +1,7 @@
-import { firstValueFrom, Observable } from 'rxjs';
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { UrlService } from 'src/services/url.service';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { FileSystemService } from './fileSystemService';
 import { HttpClient } from '@angular/common/http';
 //import { environment } from '../../../environments/environment';
@@ -56,9 +57,7 @@ export class InternalLogService {
     async uploadInternalLogFile(): Promise<void> {
       const fileContent = await this.fileSystemService.readFile(this.getFileName());
 
-      const source$ = await this.httpClient.post(this.urlService.urlPostInternalLog(), {FileName: this.getFileName(), LogContent: fileContent.data});
-
-      await firstValueFrom(source$);
+      await this.httpClient.post(this.urlService.urlPostInternalLog(), {FileName: this.getFileName(), LogContent: fileContent.data}).toPromise();
   }
 
 
