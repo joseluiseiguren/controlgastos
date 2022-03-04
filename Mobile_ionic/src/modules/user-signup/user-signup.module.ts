@@ -11,7 +11,7 @@ import { httpTranslateLoader } from 'src/modules/custom-translate-module/transla
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { SettingModule  } from '../setting-module/setting-module';
-import { DateModalModule } from '../date-modal/date.modal.module';
+import { DateNativeModalService } from 'src/services/date-native-modal.service';
 
 @NgModule({
   imports: [
@@ -21,7 +21,6 @@ import { DateModalModule } from '../date-modal/date.modal.module';
     IonicModule,
     UserSignupPageRoutingModule,
     SettingModule,
-    DateModalModule,
     TranslateModule.forChild({
       loader: {
          provide: TranslateLoader,
@@ -30,6 +29,9 @@ import { DateModalModule } from '../date-modal/date.modal.module';
          },
          isolate : false
       }),
+  ],
+  providers: [
+    DateNativeModalService
   ],
   declarations: [UserSignupPage]
 })

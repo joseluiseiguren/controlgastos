@@ -1,0 +1,3 @@
+Build for production
+  ng build --configuration production
+  npx cap sync android

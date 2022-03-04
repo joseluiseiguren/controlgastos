@@ -11,7 +11,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
 import { SettingModule } from '../setting-module/setting-module';
-import { DateModalModule } from '../date-modal/date.modal.module';
 import { BalanceModule } from '../balance/balance.module';
 import { CalculationService } from 'src/sharedServices/calculationService';
 import { FavoriteModule } from '../favorite/favorite.module';
@@ -22,6 +21,8 @@ import { DiarioService } from 'src/services/diario.service';
 import { BalanceModalModule } from '../balance-modal/balance-modal.module';
 import { SumaryAnioService } from 'src/services/sumary-anio.service';
 import { SumaryMonthService } from 'src/services/sumary-month.service';
+import { HideCeroModule } from '../hideCero/hidecero.module';
+import { DateNativeModalService } from 'src/services/date-native-modal.service';
 
 @NgModule({
   imports: [
@@ -30,10 +31,10 @@ import { SumaryMonthService } from 'src/services/sumary-month.service';
     ReactiveFormsModule,
     IonicModule,
     SettingModule,
-    DateModalModule,
     BalanceModule,
     BalanceModalModule,
     FavoriteModule,
+    HideCeroModule,
     DailyPageRoutingModule,
     TranslateModule.forChild({
       loader: {
@@ -45,6 +46,7 @@ import { SumaryMonthService } from 'src/services/sumary-month.service';
       }),
   ],
   providers: [
+    DateNativeModalService,
     CalculationService,
     FormatingService,
     DiarioService,

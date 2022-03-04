@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from 'src/services/lang.service.service';
@@ -71,6 +72,8 @@ export class AppComponent implements OnInit {
     this.userService.userName.subscribe(x => {
       this.userName = x;
     });
+
+    //alert(environment.apiUrl);
   }
 
   logout(){

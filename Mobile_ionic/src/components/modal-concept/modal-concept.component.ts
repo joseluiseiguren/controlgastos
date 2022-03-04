@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
 import { IConcepto } from 'src/models/concepto';
 import { ConceptoService } from 'src/services/concepto.service';
 import { HelperService } from 'src/services/helper.service.service';
@@ -64,12 +63,10 @@ export class ModalConceptComponent implements OnInit {
 
     const conceptToInsert = this.createConceptToInsert(null);
 
-    const source$ = this.conceptService.insertConcepto(conceptToInsert.descripcion,
-                                                       conceptToInsert.credito,
-                                                       conceptToInsert.favorite);
-
     try {
-      const idInserted = await firstValueFrom(source$);
+      const idInserted = await this.conceptService.insertConcepto(conceptToInsert.descripcion,
+                                                                  conceptToInsert.credito,
+                                                                  conceptToInsert.favorite).toPromise();
 
       conceptToInsert.id = idInserted;
       this.data = conceptToInsert;
@@ -87,13 +84,11 @@ export class ModalConceptComponent implements OnInit {
 
     const conceptToUpdate = this.createConceptToInsert(this.data.id);
 
-    const source$ = this.conceptService.updateConcepto(conceptToUpdate.id,
-                                                       conceptToUpdate.descripcion,
-                                                       conceptToUpdate.credito,
-                                                       conceptToUpdate.favorite);
-
     try {
-      await firstValueFrom(source$);
+      await this.conceptService.updateConcepto(conceptToUpdate.id,
+                                                conceptToUpdate.descripcion,
+                                                conceptToUpdate.credito,
+                                                conceptToUpdate.favorite).toPromise();
 
       this.data = conceptToUpdate;
 

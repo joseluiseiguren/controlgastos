@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
 import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balance.component';
 import { UrlConstants } from 'src/constants/url.constants';
 import { ISaldoItem } from 'src/models/saldoItem';
@@ -30,6 +29,9 @@ export class YearPage implements OnInit {
 
   private yearDataOriginal: any[];
 
+  private filterFavoriteOn = false;
+  private filterHideceroOn = false;
+
   constructor(private activeRoute: ActivatedRoute,
               private datePipe: DatePipe,
               private snackbarService: SnackBarService,
@@ -50,20 +52,22 @@ export class YearPage implements OnInit {
         } else {
 
           this.loading = true;
-          this.selectedYear = this.getYearFromUrl();
           await this.fillAvailablesYears();
+          this.selectedYear = this.getYearFromUrl();
           await this.getData();
           this.loading = false;
         }
       });
   }
 
-  favoriteClicked(event) {
-    if (event === true){
-      this.yearData = this.yearDataOriginal.filter(x => x.favorite === true);
-    } else {
-      this.yearData = this.yearDataOriginal;
-    }
+  favoriteClicked(event: boolean) {
+    this.filterFavoriteOn = event;
+    this.applyFilters();
+  }
+
+  hideceroClicked(event: boolean) {
+    this.filterHideceroOn = event;
+    this.applyFilters();
   }
 
   async openBalance(){
@@ -112,10 +116,8 @@ export class YearPage implements OnInit {
 
     this.itemDetail = [];
 
-    const source$ = this.diarioService.getConceptosMovimAnio(row.detail.value, this.selectedYear);
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getConceptosMovimAnio(row.detail.value, this.selectedYear).toPromise();
 
       this.itemDetail = data;
 
@@ -145,9 +147,7 @@ export class YearPage implements OnInit {
     const stAvailabeYears = sessionStorage.getItem('availableYears');
     if(stAvailabeYears == null){
 
-      const source$ = await this.diarioService.getPrimerConsumo();
-
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getPrimerConsumo().toPromise();
 
       const anioPrimerConsumo = Number(data.firstTransaction.substring(0, 4));
       const anioUltimoConsumo = Number(data.lastTransaction.substring(0, 4));
@@ -165,10 +165,8 @@ export class YearPage implements OnInit {
   private async getData(): Promise<void> {
     this.loading = true;
 
-    const source$ = this.diarioService.getConceptosTotalAnio(this.selectedYear);
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getConceptosTotalAnio(this.selectedYear).toPromise();
 
       this.yearData = data;
       this.yearDataOriginal = data;
@@ -202,6 +200,19 @@ export class YearPage implements OnInit {
     }
 
     return [];
+  }
+
+  private applyFilters(){
+    this.yearData = this.yearDataOriginal;
+
+    if (this.filterFavoriteOn === true || this.filterHideceroOn === true){
+      if (this.filterFavoriteOn === true){
+        this.yearData = this.yearData.filter(x => x.favorite === true);
+      }
+      if (this.filterHideceroOn === true){
+        this.yearData = this.yearData.filter(x => this.filterHideceroOn === true && x.balance !== 0);
+      }
+    }
   }
 
 }

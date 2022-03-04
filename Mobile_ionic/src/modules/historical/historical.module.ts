@@ -15,6 +15,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
 import { CalculationService } from 'src/sharedServices/calculationService';
+import { HideCeroModule } from '../hideCero/hidecero.module';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { CalculationService } from 'src/sharedServices/calculationService';
     BalanceModalModule,
     FavoriteModule,
     SettingModule,
+    HideCeroModule,
     TranslateModule.forChild({
       loader: {
          provide: TranslateLoader,

@@ -16,6 +16,7 @@ import { SettingModule } from '../setting-module/setting-module';
 import { httpTranslateLoader } from '../custom-translate-module/translate.loader';
 import { HttpClient } from '@angular/common/http';
 import { CalculationService } from 'src/sharedServices/calculationService';
+import { HideCeroModule } from '../hideCero/hidecero.module';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { CalculationService } from 'src/sharedServices/calculationService';
     BalanceModule,
     BalanceModalModule,
     FavoriteModule,
+    HideCeroModule,
     SettingModule,
     DateMonthModalModule,
     TranslateModule.forChild({

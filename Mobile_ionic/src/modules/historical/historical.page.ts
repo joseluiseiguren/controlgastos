@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
 import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balance.component';
 import { ISaldoItem } from 'src/models/saldoItem';
 import { DiarioService } from 'src/services/diario.service';
@@ -24,6 +23,9 @@ export class HistoricalPage implements OnInit {
   itemDetail: any[];
 
   private historicDataOriginal: any[];
+
+  private filterFavoriteOn = false;
+  private filterHideceroOn = false;
 
   constructor(private snackbarService: SnackBarService,
               private translateService: TranslateService,
@@ -72,12 +74,14 @@ export class HistoricalPage implements OnInit {
     return await modal.present();
   }
 
-  favoriteClicked(event){
-    if (event === true){
-      this.historicData = this.historicDataOriginal.filter(x => x.favorite === true);
-    } else {
-      this.historicData = this.historicDataOriginal;
-    }
+  favoriteClicked(event: boolean) {
+    this.filterFavoriteOn = event;
+    this.applyFilters();
+  }
+
+  hideceroClicked(event: boolean) {
+    this.filterHideceroOn = event;
+    this.applyFilters();
   }
 
   async loadHistoricDetails(row){
@@ -89,10 +93,8 @@ export class HistoricalPage implements OnInit {
 
     this.itemDetail = [];
 
-    const source$ = this.diarioService.getConceptosMovimHistorico(row.detail.value);
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getConceptosMovimHistorico(row.detail.value).toPromise();
 
       this.itemDetail = data;
 
@@ -106,10 +108,8 @@ export class HistoricalPage implements OnInit {
   private async getData(): Promise<void> {
     this.loading = true;
 
-    const source$ = this.diarioService.getConceptosTotalHistorico();
-
     try {
-      const data = await firstValueFrom(source$);
+      const data = await this.diarioService.getConceptosTotalHistorico().toPromise();
 
       this.historicData = data;
       this.historicDataOriginal = data;
@@ -143,6 +143,19 @@ export class HistoricalPage implements OnInit {
     }
 
     return [];
+  }
+
+  private applyFilters(){
+    this.historicData = this.historicDataOriginal;
+
+    if (this.filterFavoriteOn === true || this.filterHideceroOn === true){
+      if (this.filterFavoriteOn === true){
+        this.historicData = this.historicData.filter(x => x.favorite === true);
+      }
+      if (this.filterHideceroOn === true){
+        this.historicData = this.historicData.filter(x => this.filterHideceroOn === true && x.balance !== 0);
+      }
+    }
   }
 
 }

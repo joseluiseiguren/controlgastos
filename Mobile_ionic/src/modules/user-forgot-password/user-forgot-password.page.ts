@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { firstValueFrom } from 'rxjs';
 import { UrlConstants } from 'src/constants/url.constants';
 import { HelperService } from 'src/services/helper.service.service';
 import { LangService } from 'src/services/lang.service.service';
@@ -49,10 +48,8 @@ export class UserForgotPasswordPage implements OnInit {
   async forgotPassword(): Promise<void> {
     this.loading  = true;
 
-    const source$ = this.usersService.forgotPassword(this.fpForm.value.emailFormControl, this.translate.currentLang);
-
     try {
-      await firstValueFrom(source$);
+      await this.usersService.forgotPassword(this.fpForm.value.emailFormControl, this.translate.currentLang).toPromise();
 
       this.loading  = false;
 
