@@ -61,4 +61,4 @@
 - Export to excel file
 - Apple compatibility
 - Forgot password => unblock user if blocked
-- Filter to hide items with amount 0
+	- Filter to hide items with amount 0

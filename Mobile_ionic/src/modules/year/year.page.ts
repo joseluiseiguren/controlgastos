@@ -53,8 +53,8 @@ export class YearPage implements OnInit {
         } else {
 
           this.loading = true;
-          this.selectedYear = this.getYearFromUrl();
           await this.fillAvailablesYears();
+          this.selectedYear = this.getYearFromUrl();
           await this.getData();
           this.loading = false;
         }
