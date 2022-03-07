@@ -10,7 +10,6 @@ import { UrlConstants } from 'src/constants/url.constants';
 import { DiarioService } from 'src/services/diario.service';
 import { CalculationService } from 'src/sharedServices/calculationService';
 import { ISaldoItem } from 'src/models/saldoItem';
-import { SumaryAnio } from 'src/models/sumaryAnio';
 import { SumaryAnioService } from 'src/services/sumary-anio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balance.component';
@@ -35,6 +34,8 @@ export class MonthlyPage implements OnInit {
   private filterFavoriteOn = false;
   private filterHideceroOn = false;
 
+  private selectedDate: Date;
+
   constructor(private activeRoute: ActivatedRoute,
               private datePipe: DatePipe,
               private diarioService: DiarioService,
@@ -48,24 +49,22 @@ export class MonthlyPage implements OnInit {
               private router: Router) { }
 
   async ngOnInit() {
-    this.activeRoute.params
-      .subscribe(async routeParams => {
-        const dateUrl = this.getDateFromUrl();
-        if (dateUrl === null) {
-          this.router.navigate([UrlConstants.monthly, this.datePipe.transform(new Date(), 'yyyy-MM')]);
-        } else {
-          this.loading = true;
-          await this.getData();
-          await this.fillAvailablesYears();
-          this.loading = false;
+    let dateUrl = this.getDateFromUrl();
+    if (dateUrl === null) {
+      dateUrl = new Date();
+    }
 
-          this.setDateCtrl();
-        }
-      });
+    this.loading = true;
+    this.selectedDate = dateUrl;
+    await this.getData();
+    await this.fillAvailablesYears();
+    this.loading = false;
+
+    this.setDateCtrl();
   }
 
   async getData(): Promise<void> {
-    const fecha = this.getMonthStringFromUrl(true);
+    const fecha = this.datePipe.transform(this.selectedDate, 'yyyyMM');
 
     try {
 
@@ -87,27 +86,27 @@ export class MonthlyPage implements OnInit {
     const saldos: ISaldoItem[] = [];
 
     const saldoItemMensual: ISaldoItem = {
-      title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.getDateFromUrl(), 'LLLL yyyy')),
+      title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.selectedDate, 'LLLL yyyy')),
       icon: 'calendar-clear-outline',
       ingresos: this.getIngresos(),
       egresos: this.getEgresos(),
       concept: 'mensual',
-      date: this.getDateFromUrl()
+      date: this.selectedDate
     };
 
     saldos.push(saldoItemMensual);
 
     try {
 
-      const resultData = await this.sumaryAnioService.getSumary(this.getDateFromUrl()).toPromise();
+      const resultData = await this.sumaryAnioService.getSumary(this.selectedDate).toPromise();
 
       const saldoItemAnual: ISaldoItem = {
-        title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.getDateFromUrl(), 'yyyy'),
+        title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.selectedDate, 'yyyy'),
         icon: 'albums-outline',
         ingresos: resultData.in,
         egresos: resultData.out,
         concept: 'mensual',
-        date: this.getDateFromUrl()
+        date: this.selectedDate
       };
       saldos.push(saldoItemAnual);
 
@@ -140,7 +139,7 @@ export class MonthlyPage implements OnInit {
 
     this.loadingDetail = true;
     this.itemDetail = [];
-    const fecha = this.getMonthStringFromUrl(true);
+    const fecha = this.datePipe.transform(this.selectedDate, 'yyyyMM');
 
     try {
       const data = await this.diarioService.getConceptosMovimMes(row.detail.value, fecha).toPromise();
@@ -156,7 +155,7 @@ export class MonthlyPage implements OnInit {
 
   async openDateModal(){
     const popupData: any = {};
-    popupData.selected = this.datePipe.transform(this.getDateFromUrl(), 'yyyy-MM');
+    popupData.selected = this.datePipe.transform(this.selectedDate, 'yyyy-MM');
     popupData.years = this.availableYears;
 
     const modal = await this.modalCtrl.create({
@@ -196,16 +195,8 @@ export class MonthlyPage implements OnInit {
     return new Date(Number(year), Number(month) - 1, 1);
   }
 
-  private getMonthStringFromUrl(removeSeparator: boolean): string {
-    if (removeSeparator) {
-      return this.activeRoute.snapshot.paramMap.get('month')?.replace('-', '') ?? '';
-    } else {
-      return this.activeRoute.snapshot.paramMap.get('month') ?? '';
-    }
-  }
-
   private setDateCtrl() {
-    this.dateCtrl = this.datePipe.transform(this.getDateFromUrl(), 'LLLL yyyy');
+    this.dateCtrl = this.datePipe.transform(this.selectedDate, 'LLLL yyyy');
   }
 
   private async fillAvailablesYears(): Promise<void> {

@@ -37,6 +37,8 @@ export class DailyPage implements OnInit {
 
   private conceptosOriginal: IConceptoDiario[];
 
+  private selectedDate: Date;
+
   constructor(private diarioService: DiarioService,
               private snackBarService: SnackBarService,
               private sumaryMonthService: SumaryMonthService,
@@ -52,24 +54,21 @@ export class DailyPage implements OnInit {
               private activeRoute: ActivatedRoute) { }
 
   async ngOnInit() {
-    this.activeRoute.params
-      .subscribe(routeParams => {
-        const controlDate = this.getDateFromUrl();
-        if (controlDate === null){
-          this.router.navigate([UrlConstants.daily, this.datePipe.transform(new Date(), 'yyyy-MM-dd')]);
-        } else {
-          controlDate.setMonth(controlDate.getMonth());
-          this.setDateCtrl();
-          this.getData();
-        }
-      });
+    let controlDate = this.getDateFromUrl();
+    if (controlDate === null){
+      controlDate = new Date();
+    }
+
+    this.selectedDate = controlDate;
+    this.setDateCtrl();
+    this.getData();
   }
 
   async getData(): Promise<void> {
     this.loading = true;
 
     try {
-      const data = await this.diarioService.getConceptosImportes(this.getDateFromUrl()).toPromise();
+      const data = await this.diarioService.getConceptosImportes(this.selectedDate).toPromise();
 
       this.conceptos = data;
       this.conceptosOriginal = data;
@@ -84,7 +83,7 @@ export class DailyPage implements OnInit {
   }
 
   async openDateModal(){
-    const dateSelected = await this.dateNative.openDateModal(this.getDateFromUrl(), this.userService.userLanguage);
+    const dateSelected = await this.dateNative.openDateModal(this.selectedDate, this.userService.userLanguage);
 
     if (dateSelected !== undefined) {
       this.router.navigate([UrlConstants.daily, this.datePipe.transform(dateSelected, 'yyyy-MM-dd')]);
@@ -125,39 +124,39 @@ export class DailyPage implements OnInit {
     const saldos: ISaldoItem[] = [];
 
     const saldoItemDiario: ISaldoItem = {
-      title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.getDateFromUrl(), 'mediumDate')),
+      title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.selectedDate, 'mediumDate')),
       icon: 'calendar-outline',
       ingresos: this.getIngresos(),
       egresos: this.getEgresos(),
       concept: 'diario',
-      date: this.getDateFromUrl()
+      date: this.selectedDate
     };
 
     saldos.push(saldoItemDiario);
 
-    const source1$ = this.sumaryMonthService.getSumary(this.getDateFromUrl());
-    const source2$ = this.sumaryAnioService.getSumary(this.getDateFromUrl());
+    const source1$ = this.sumaryMonthService.getSumary(this.selectedDate);
+    const source2$ = this.sumaryAnioService.getSumary(this.selectedDate);
 
     try {
       const resultData: any = await forkJoin([source1$, source2$]).toPromise();
 
       const saldoItemMensual: ISaldoItem = {
-        title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.getDateFromUrl(), 'LLLL yyyy')),
+        title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.selectedDate, 'LLLL yyyy')),
         icon: 'calendar-clear-outline',
         ingresos: resultData[0].in,
         egresos: resultData[0].out,
         concept: 'mensual',
-        date: this.getDateFromUrl()
+        date: this.selectedDate
       };
       saldos.push(saldoItemMensual);
 
       const saldoItemAnual: ISaldoItem = {
-        title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.getDateFromUrl(), 'yyyy'),
+        title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.selectedDate, 'yyyy'),
         icon: 'albums-outline',
         ingresos: resultData[1].in,
         egresos: resultData[1].out,
         concept: 'mensual',
-        date: this.getDateFromUrl()
+        date: this.selectedDate
       };
       saldos.push(saldoItemAnual);
 
@@ -192,7 +191,7 @@ export class DailyPage implements OnInit {
   }
 
   private setDateCtrl() {
-    this.dateCtrl = this.datePipe.transform(this.getDateFromUrl(), 'mediumDate');
+    this.dateCtrl = this.datePipe.transform(this.selectedDate, 'mediumDate');
   }
 
   private getIngresos(): number {

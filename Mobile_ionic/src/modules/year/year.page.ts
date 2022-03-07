@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,7 +25,8 @@ export class YearPage implements OnInit {
   yearData: any[];
   itemDetail: any[];
   years = [];
-  selectedYear = this.getYearFromUrl();
+  selectedYear: number;
+  loadingHackYearDropdown = true;
 
   private yearDataOriginal: any[];
 
@@ -40,24 +41,29 @@ export class YearPage implements OnInit {
               private helperService: HelperService,
               public userService: UsersService,
               private diarioService: DiarioService,
+              private cdr: ChangeDetectorRef,
               private modalCtrl: ModalController,
               private router: Router) { }
 
-  ngOnInit() {
-    this.activeRoute.params
-      .subscribe(async routeParams => {
-        const yearUrl = this.getYearFromUrl();
-        if (yearUrl === null) {
-          this.router.navigate([UrlConstants.year, new Date().getFullYear()]);
-        } else {
+  async ngOnInit() {
+    let yearUrl = this.getYearFromUrl();
+    if (yearUrl === null) {
+      yearUrl = new Date().getFullYear();
+    }
 
-          this.loading = true;
-          await this.fillAvailablesYears();
-          this.selectedYear = this.getYearFromUrl();
-          await this.getData();
-          this.loading = false;
-        }
-      });
+    this.loading = true;
+    await this.fillAvailablesYears();
+    this.selectedYear = yearUrl;
+    await this.getData();
+    this.loading = false;
+
+    setTimeout(() => {
+      this.selectedYear = 0;
+      this.cdr.detectChanges();
+      this.selectedYear = yearUrl;
+      this.cdr.detectChanges();
+      this.loadingHackYearDropdown = false;
+    }, 200);
   }
 
   favoriteClicked(event: boolean) {
@@ -76,12 +82,12 @@ export class YearPage implements OnInit {
     const saldos: ISaldoItem[] = [];
 
     const saldoItemAnual: ISaldoItem = {
-      title: this.translateService.instant('dailyScreen.year') + ' ' + this.getYearFromUrl(),
+      title: this.translateService.instant('dailyScreen.year') + ' ' + this.selectedYear,
       icon: 'albums-outline',
       ingresos: this.getIngresos(),
       egresos: this.getEgresos(),
       concept: 'mensual',
-      date: new Date(this.getYearFromUrl(), 1, 1)
+      date: new Date(this.selectedYear, 1, 1)
     };
 
     saldos.push(saldoItemAnual);
@@ -104,7 +110,9 @@ export class YearPage implements OnInit {
   }
 
   onYearChange(event){
-    this.router.navigate([UrlConstants.year, event.detail.value]);
+    if (this.loadingHackYearDropdown === false){
+      this.router.navigate([UrlConstants.year, event.detail.value]);
+    }
   }
 
   async loadYearDetails(row: any): Promise<void> {

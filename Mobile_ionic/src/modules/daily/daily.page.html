@@ -20,9 +20,9 @@
     <ion-grid class="headerGrid">
       <ion-row>
         <ion-col size="5">
-          <div style="font-size: small; padding-left: 0.5rem; padding-top: 0.3rem;">
-            <ion-input [(ngModel)]="dateCtrl" type="text" (ionFocus)="openDateModal()" readonly class="datePicker">
-              <ion-icon slot="start" [ios]="'calendar-outline'" [md]="'calendar-sharp'" (click)="openDateModal()"></ion-icon>
+          <div style="font-size: small; padding-left: 0.5rem; padding-top: 0.3rem;" (click)="openDateModal()">
+            <ion-input [(ngModel)]="dateCtrl" type="text" readonly class="datePicker">
+              <ion-icon slot="start" [ios]="'calendar-outline'" [md]="'calendar-sharp'"></ion-icon>
             </ion-input>
           </div>
         </ion-col>
