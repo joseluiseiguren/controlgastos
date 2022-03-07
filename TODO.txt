@@ -63,4 +63,4 @@
 	- Forgot password => unblock user if blocked
 	- Filter to hide items with amount 0
 	- Use native date pickers
-- Login => don`t create component if authentication is correct. Put condition on routing
+- Login => don`t create component if authentication is correct. Put condition on routing	
