@@ -26,19 +26,7 @@ namespace Services.QueryHandlers.Period
             {
                 result.Add(new TotalInOutMonthOutput() { Month = i, Out = 0, In = 0 });
             }
-
-            //foreach (var item in result)
-            //{
-            //    var dateFrom = DateOnly.ParseExact($"{query.Year}{item.Month.ToString().PadLeft(2, '0')}01", "yyyyMMdd", null);
-            //    var dateTo = dateFrom.AddMonths(1).AddDays(-1);
-
-            //    var income = Math.Round(await _transactionRepository.GetTotalAmmountByUserAsync(dateFrom, dateTo, query.UserId, true), 2);
-            //    var outcome = Math.Round(await _transactionRepository.GetTotalAmmountByUserAsync(dateFrom, dateTo, query.UserId, false), 2);
-
-            //    item.In = income;
-            //    item.Out = outcome;
-            //}
-
+            
             ParallelOptions parallelOptions = new()
             {
                 MaxDegreeOfParallelism = 4
@@ -49,8 +37,8 @@ namespace Services.QueryHandlers.Period
                 var dateFrom = DateOnly.ParseExact($"{query.Year}{item.Month.ToString().PadLeft(2, '0')}01", "yyyyMMdd", null);
                 var dateTo = dateFrom.AddMonths(1).AddDays(-1);
 
-                var income = Math.Round(await _transactionRepository.GetTotalAmmountByUserAsync(dateFrom, dateTo, query.UserId, true), 2);
-                var outcome = Math.Round(await _transactionRepository.GetTotalAmmountByUserAsync(dateFrom, dateTo, query.UserId, false), 2);
+                var income = Math.Abs(Math.Round(await _transactionRepository.GetTotalAmmountByUserAsync(dateFrom, dateTo, query.UserId, true), 2));
+                var outcome = Math.Abs(Math.Round(await _transactionRepository.GetTotalAmmountByUserAsync(dateFrom, dateTo, query.UserId, false), 2));
 
                 item.In = income;
                 item.Out = outcome;
