@@ -54,7 +54,7 @@
 - Performance metric for cosmosdb
 - Use USD as main currency for comparing
 - Detect autatically if there is an update in the apk, and redirect to google play
-- Add graphs 
+	- Add graphs 
 	- Create ionic project
 	- Daily screen: toogle with 'more used concepts'
 - UI: add transitions effects between screens
@@ -64,3 +64,4 @@
 	- Filter to hide items with amount 0
 	- Use native date pickers
 - Login => don`t create component if authentication is correct. Put condition on routing	
+- After install new version, the default currency is '$'. You have to logout and login to fix it

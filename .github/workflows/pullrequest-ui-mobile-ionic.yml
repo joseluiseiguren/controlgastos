@@ -47,7 +47,7 @@ jobs:
       - name: Build
         working-directory: Mobile_ionic
         run: |
-          npm run build --production
+          ng build --configuration production
 
       # - name: Lint
       #  working-directory: Mobile_ionic
