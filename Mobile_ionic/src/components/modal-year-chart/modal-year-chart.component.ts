@@ -37,8 +37,10 @@ export class ModalYearChartComponent implements OnInit {
     //Font color
     if (this.colorThemeService.getCurrentTheme() === 'dark'){
       Chart.defaults.color = 'white';
+      Chart.defaults.borderColor = 'white';
     } else {
       Chart.defaults.color = 'black';
+      Chart.defaults.borderColor = 'black';
     }
 
     const labels = [this.translateService.instant('monthPicker.january'),
@@ -90,7 +92,7 @@ export class ModalYearChartComponent implements OnInit {
               plugins: {
                 title: {
                   display: true,
-                  text: 'Año 2022'
+                  text: this.translateService.instant('yearScreen.year') +  ' ' + this.data
                 }
               },
               scales: {
@@ -98,6 +100,12 @@ export class ModalYearChartComponent implements OnInit {
                   type: 'linear',
                   display: true,
                   position: 'left',
+                  grid: {
+                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                    //color: getComputedStyle(document.documentElement).getPropertyValue('--ion-color-dark-tint')
+                    //color: 'yellow',
+                    drawBorder: true
+                  },
                 },
                 y1: {
                   type: 'linear',
@@ -107,6 +115,9 @@ export class ModalYearChartComponent implements OnInit {
                   // grid line settings
                   grid: {
                     drawOnChartArea: false, // only want the grid lines for one axis to show up
+                    //color: getComputedStyle(document.documentElement).getPropertyValue('--ion-color-dark-tint')
+                    //color: 'blue',
+                    drawBorder: true
                   },
                 },
               }
