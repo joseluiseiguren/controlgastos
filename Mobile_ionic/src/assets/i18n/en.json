@@ -122,5 +122,19 @@
     "october": "October",
     "november": "November",
     "december": "December"
+  },
+  "monthShort": {
+    "january": "Jan",
+    "febraury": "Feb",
+    "march": "Mar",
+    "april": "Apr",
+    "may": "May",
+    "june": "Jun",
+    "july": "Jul",
+    "august": "Aug",
+    "september": "Sep",
+    "october": "Oct",
+    "november": "Nov",
+    "december": "Dec"
   }
 }
