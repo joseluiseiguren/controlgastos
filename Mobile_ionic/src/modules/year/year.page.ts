@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balance.component';
+import { ModalYearChartComponent } from 'src/components/modal-year-chart/modal-year-chart.component';
 import { UrlConstants } from 'src/constants/url.constants';
 import { ISaldoItem } from 'src/models/saldoItem';
 import { DiarioService } from 'src/services/diario.service';
@@ -74,6 +75,22 @@ export class YearPage implements OnInit {
   hideceroClicked(event: boolean) {
     this.filterHideceroOn = event;
     this.applyFilters();
+  }
+
+  async openYearChart(){
+    window.screen.orientation.lock('landscape');
+    const modal = await this.modalCtrl.create({
+      component: ModalYearChartComponent,
+      componentProps: { data: this.selectedYear },
+      cssClass: 'chart-year-modal'
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        window.screen.orientation.unlock();
+    });
+
+    return await modal.present();
   }
 
   async openBalance(){

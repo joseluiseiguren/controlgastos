@@ -40,18 +40,18 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\":\"flopyglorias@gmail.com\",\n\t\"password\":\"mataderos\"\n}"
+							"raw": "{\n\t\"email\":\"flopyglorias@gmail.com\",\n\t\"password\":\"123456\"\n}"
 						},
 						"url": {
-							"raw": "https://192.168.1.143:4433/backend/account/login",
-							"protocol": "https",
+							"raw": "http://192.168.1.143:8089/backend/account/login",
+							"protocol": "http",
 							"host": [
 								"192",
 								"168",
 								"1",
 								"143"
 							],
-							"port": "4433",
+							"port": "8089",
 							"path": [
 								"backend",
 								"account",
@@ -346,7 +346,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IkEiLCJ1c2VyIjoiZm9yYTUiLCJuYmYiOjE2Mzc0MDQ0NDgsImV4cCI6MTYzODAwOTI0OCwiaWF0IjoxNjM3NDA0NDQ4fQ.rmGtIKey5VLNppzZoZhvro_bWglXtTeQCRIdiZl43fc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yZSIsImxhbmciOiJlbiIsImFjdGlvbiI6IkxvZ2dlZEluIiwibmJmIjoxNjQ2MTIzMjY3LCJleHAiOjE2NDY3MjgwNjcsImlhdCI6MTY0NjEyMzI2N30.jerk7lpY0epxb_PIr7Wwc30mTCnHya0wXeuzMTViHeQ",
 									"type": "string"
 								}
 							]
@@ -354,12 +354,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44362/concept",
+							"raw": "https://localhost:5001/concept",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44362",
+							"port": "5001",
 							"path": [
 								"concept"
 							]
@@ -493,7 +493,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yIiwibmJmIjoxNjM2ODgyOTQwLCJleHAiOjE2Mzc0ODc3NDAsImlhdCI6MTYzNjg4Mjk0MH0.4EBVoIxbkTj10vZWPVhGt2CjSj04RYvOXNcfF3S7iFI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yZSIsImxhbmciOiJlbiIsImFjdGlvbiI6IkxvZ2dlZEluIiwibmJmIjoxNjQ2MTIzMjY3LCJleHAiOjE2NDY3MjgwNjcsImlhdCI6MTY0NjEyMzI2N30.jerk7lpY0epxb_PIr7Wwc30mTCnHya0wXeuzMTViHeQ",
 									"type": "string"
 								}
 							]
@@ -510,12 +510,12 @@
 							"raw": "{\n\t\"Description\":\"Sueldo-cccz\",\n\t\"credit\": false\n}"
 						},
 						"url": {
-							"raw": "https://localhost:44362/concept",
+							"raw": "https://localhost:5001/concept",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "44362",
+							"port": "5001",
 							"path": [
 								"concept"
 							]
@@ -775,6 +775,42 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Total InOut Annual Spliited By Month",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDFjZTRjYmVmZDI1MmY3NGI0MTNjOSIsIm1vbmVkYSI6IuKCrCIsInVzZXIiOiJGbG9yZW5jaWEiLCJsYW5nIjoiZW4iLCJhY3Rpb24iOiJMb2dnZWRJbiIsIm5iZiI6MTY0NjY3MTY2NywiZXhwIjoxNjQ3Mjc2NDY3LCJpYXQiOjE2NDY2NzE2Njd9.XLt5JtqlVfBAisN5uTBa60venZyvrQelcV4alrhtiv4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.143:8089/backend/period/totalinout/2020/splittedByMonth",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"143"
+							],
+							"port": "8089",
+							"path": [
+								"backend",
+								"period",
+								"totalinout",
+								"2020",
+								"splittedByMonth"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -943,12 +979,7 @@
 									"value": "my file content\n",
 									"type": "text"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "text"
-								}
-							}
+							]
 						},
 						"url": {
 							"raw": "https://localhost:5001/log/mobile/internal",

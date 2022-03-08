@@ -58,6 +58,7 @@ namespace Backend
                .AddAsyncQueryHandler<UserProfileQuery, UserProfileQueryHandler, UserProfileOutput>()
                .AddAsyncQueryHandler<TotalInOutMonthyQuery, TotalInOutMonthyQueryHandler, TotalInOutOutput>()
                .AddAsyncQueryHandler<TotalInOutAnnualQuery, TotalInOutAnnualQueryHandler, TotalInOutOutput>()
+               .AddAsyncQueryHandler<TotalInOutAnnualMonthQuery, TotalInOutAnnualMonthQueryHandler, IEnumerable<TotalInOutMonthOutput>>()
                .AddAsyncQueryHandler<TotalInOutHistoricQuery, TotalInOutHistoricQueryHandler, TotalInOutOutput>()
                .AddAsyncQueryHandler<ConceptMonthlyQuery, ConceptMonthlyQueryHandler, IReadOnlyList<ConceptPeriodOutput>>()
                .AddAsyncQueryHandler<ConceptAnnualQuery, ConceptAnnualQueryHandler, IReadOnlyList<ConceptPeriodOutput>>()

@@ -17,6 +17,7 @@ import { httpTranslateLoader } from '../custom-translate-module/translate.loader
 import { HttpClient } from '@angular/common/http';
 import { CalculationService } from 'src/sharedServices/calculationService';
 import { HideCeroModule } from '../hideCero/hidecero.module';
+import { YearChartModalModule } from '../year-chart-modal/year.chart.modal.module';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { HideCeroModule } from '../hideCero/hidecero.module';
     HideCeroModule,
     SettingModule,
     DateMonthModalModule,
+    YearChartModalModule,
     TranslateModule.forChild({
       loader: {
          provide: TranslateLoader,

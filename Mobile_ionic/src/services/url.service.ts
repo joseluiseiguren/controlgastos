@@ -69,6 +69,10 @@ export class UrlService {
       return this.host + 'period/totalinout/' + fecha.toString();
   }
 
+  urlGetSumaryAnualSplittedByMonth(fecha: string): string {
+    return this.host + 'period/totalinout/' + fecha.toString() + '/splittedByMonth';
+}
+
   urlGetConceptosTotalAnio(anio: number): string {
       return this.host + 'concept/annual/' + anio.toString() + '/summary';
   }
