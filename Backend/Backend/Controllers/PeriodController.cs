@@ -46,6 +46,18 @@ namespace Backend.Controllers
 
         [Authorize]
         [HttpGet]
+        [Route("totalinout/{year}/splittedByMonth")]
+        public async Task<IActionResult> GetTotalInOutByYearSplittedByMonth(int year)
+        {
+            var query = new TotalInOutAnnualMonthQuery(this.UserId, year);
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpGet]
         [Route("totalinout")]
         public async Task<IActionResult> GetTotalInOutHistoric()
         {

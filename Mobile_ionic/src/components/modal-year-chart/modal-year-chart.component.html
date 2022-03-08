@@ -1,0 +1,4 @@
+<div class="spinnerCenter" *ngIf="loading === true">
+  <ion-spinner style="color: var(--ion-color-primary);" name="bubbles"></ion-spinner>
+</div>
+<canvas *ngIf="loading === false" id="chart"></canvas>
