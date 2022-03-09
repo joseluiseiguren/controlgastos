@@ -18,6 +18,7 @@ import { DateMonthModalModule } from '../date-month-modal/date.month.modal.modul
 import { CalculationService } from 'src/sharedServices/calculationService';
 import { SumaryAnioService } from 'src/services/sumary-anio.service';
 import { HideCeroModule } from '../hideCero/hidecero.module';
+import { SumaryMonthService } from 'src/services/sumary-month.service';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { HideCeroModule } from '../hideCero/hidecero.module';
   ],
   providers: [
     CalculationService,
-    SumaryAnioService
+    SumaryAnioService,
+    SumaryMonthService
   ],
   declarations: [MonthlyPage]
 })

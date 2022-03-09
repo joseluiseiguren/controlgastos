@@ -43,18 +43,18 @@ export class ModalYearChartComponent implements OnInit {
       Chart.defaults.borderColor = 'black';
     }
 
-    const labels = [this.translateService.instant('monthPicker.january'),
-                    this.translateService.instant('monthPicker.febraury'),
-                    this.translateService.instant('monthPicker.march'),
-                    this.translateService.instant('monthPicker.april'),
-                    this.translateService.instant('monthPicker.may'),
-                    this.translateService.instant('monthPicker.june'),
-                    this.translateService.instant('monthPicker.july'),
-                    this.translateService.instant('monthPicker.august'),
-                    this.translateService.instant('monthPicker.september'),
-                    this.translateService.instant('monthPicker.october'),
-                    this.translateService.instant('monthPicker.november'),
-                    this.translateService.instant('monthPicker.december')];
+    const labels = [this.translateService.instant('monthShort.january'),
+                    this.translateService.instant('monthShort.febraury'),
+                    this.translateService.instant('monthShort.march'),
+                    this.translateService.instant('monthShort.april'),
+                    this.translateService.instant('monthShort.may'),
+                    this.translateService.instant('monthShort.june'),
+                    this.translateService.instant('monthShort.july'),
+                    this.translateService.instant('monthShort.august'),
+                    this.translateService.instant('monthShort.september'),
+                    this.translateService.instant('monthShort.october'),
+                    this.translateService.instant('monthShort.november'),
+                    this.translateService.instant('monthShort.december')];
 
     this.loading = false;
 

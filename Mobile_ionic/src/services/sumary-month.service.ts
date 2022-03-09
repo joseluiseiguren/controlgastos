@@ -8,12 +8,12 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class SumaryMonthService {
 
-  constructor(private _http: HttpClient,
-              private _urlService: UrlService) { }
+  constructor(private http: HttpClient,
+              private urlService: UrlService) { }
 
   getSumary(fecha: Date): Observable<SumaryMonth> {
     const year = fecha.getFullYear();
-    return this._http.get<SumaryMonth>(this._urlService.urlGetSumaryMensual(year, fecha.getMonth() + 1))
+    return this.http.get<SumaryMonth>(this.urlService.urlGetSumaryMensual(year, fecha.getMonth() + 1))
                     .pipe(tap(data => JSON.stringify(data)));
   }
 }

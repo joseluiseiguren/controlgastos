@@ -1,3 +1,5 @@
+import { CacheService } from 'src/services/cache-service.service';
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable no-throw-literal */
 /* eslint-disable @typescript-eslint/member-ordering */
@@ -16,14 +18,29 @@ import { MenuController } from '@ionic/angular';
   providedIn: 'root'
 })
 export class UsersService {
-  public userCurrency: string;
-  public userLanguage: string;
+  private _userCurrency: string;
+  private _userLanguage: string;
   public userName = new BehaviorSubject<string>('');
   private jwtHelper = new JwtHelperService();
+
+  get userCurrency(): string {
+    if (this._userCurrency === undefined){
+      this._userCurrency = this.getMoneda();
+    }
+    return this._userCurrency;
+  }
+
+  get userLanguage(): string {
+    if (this._userLanguage === undefined){
+      this._userLanguage = this.getLanguage();
+    }
+    return this._userLanguage;
+  }
 
   constructor(private http: HttpClient,
               private translate: TranslateService,
               public menuCtrl: MenuController,
+              private cacheService: CacheService,
               private urlService: UrlService) {
     this.setUserName(this.getUserNameFromToken());
   }
@@ -37,8 +54,8 @@ export class UsersService {
                   if (user && user.token) {
                       // store user details and jwt token in local storage to keep user logged in between page refreshes
                       localStorage.setItem('alow', user.token);
-                      this.userCurrency = this.getMoneda();
-                      this.userLanguage = this.getLanguage();
+                      this._userCurrency = this.getMoneda();
+                      this._userLanguage = this.getLanguage();
                       this.setUserName(this.getUserNameFromToken());
                       this.setLang(this.getUserLanguageFromToken());
                       this.menuCtrl.enable(true);
@@ -97,6 +114,7 @@ export class UsersService {
       // remove user from local storage to log user out
       localStorage.removeItem('alow');
       sessionStorage.clear();
+      this.cacheService.invalidate();
       this.menuCtrl.enable(false);
   }
 

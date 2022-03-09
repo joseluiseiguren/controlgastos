@@ -13,6 +13,8 @@ import { ISaldoItem } from 'src/models/saldoItem';
 import { SumaryAnioService } from 'src/services/sumary-anio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balance.component';
+import { SumaryMonthService } from 'src/services/sumary-month.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-monthly',
@@ -40,6 +42,7 @@ export class MonthlyPage implements OnInit {
               private datePipe: DatePipe,
               private diarioService: DiarioService,
               private sumaryAnioService: SumaryAnioService,
+              private sumaryMonthService: SumaryMonthService,
               private snackbarService: SnackBarService,
               private translateService: TranslateService,
               private calculationService: CalculationService,
@@ -85,32 +88,34 @@ export class MonthlyPage implements OnInit {
 
     const saldos: ISaldoItem[] = [];
 
-    const saldoItemMensual: ISaldoItem = {
-      title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.selectedDate, 'LLLL yyyy')),
-      icon: 'calendar-clear-outline',
-      ingresos: this.getIngresos(),
-      egresos: this.getEgresos(),
-      concept: 'mensual',
-      date: this.selectedDate
-    };
-
-    saldos.push(saldoItemMensual);
-
     try {
 
-      const resultData = await this.sumaryAnioService.getSumary(this.selectedDate).toPromise();
+      const source1$ = this.sumaryMonthService.getSumary(this.selectedDate);
+      const source2$ = this.sumaryAnioService.getSumary(this.selectedDate);
+
+      const resultData: any = await forkJoin([source1$, source2$]).toPromise();
+
+      const saldoItemMensual: ISaldoItem = {
+        title: '' + this.helperService.toCamelCase(this.datePipe.transform(this.selectedDate, 'LLLL yyyy')),
+        icon: 'calendar-clear-outline',
+        ingresos: resultData[0].in,
+        egresos: resultData[0].out,
+        concept: 'mensual',
+        date: this.selectedDate
+      };
+      saldos.push(saldoItemMensual);
 
       const saldoItemAnual: ISaldoItem = {
         title: this.translateService.instant('dailyScreen.year') + ' ' + this.datePipe.transform(this.selectedDate, 'yyyy'),
         icon: 'albums-outline',
-        ingresos: resultData.in,
-        egresos: resultData.out,
+        ingresos: resultData[1].in,
+        egresos: resultData[1].out,
         concept: 'mensual',
         date: this.selectedDate
       };
       saldos.push(saldoItemAnual);
 
-      this.loadingBalance =false;
+      this.loadingBalance = false;
 
       const modal = await this.modalCtrl.create({
         component: ModalBalanceComponent,

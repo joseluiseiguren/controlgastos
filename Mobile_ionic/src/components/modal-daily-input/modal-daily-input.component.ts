@@ -47,7 +47,7 @@ export class ModalDailyInputComponent implements OnInit {
     event.detail.srcElement.select();
   }
 
-  async onSubmit(): Promise<void> {
+  onSubmit() {
     this.loading = true;
 
     const dateSplitted = this.data.transactionDate.split('-');
@@ -57,10 +57,10 @@ export class ModalDailyInputComponent implements OnInit {
 
     try {
 
-      await this.diarioService.setConceptoImporte(trasactionDate,
+      this.diarioService.setConceptoImporte(trasactionDate,
                                                   (this.dailyInputForm.value.operationFormControl === '1') ? newImporte : newImporte * -1,
                                                   this.data.conceptId,
-                                                  null).toPromise();
+                                                  null);
 
       this.data.ammount = (this.dailyInputForm.value.operationFormControl === '1' || this.dailyInputForm.value.ammountFormControl === 0)
                                               ? newImporte
