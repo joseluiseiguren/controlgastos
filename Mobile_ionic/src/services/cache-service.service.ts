@@ -13,6 +13,10 @@ export class CacheService {
   }
 
   public invalidate(){
+    this.dailyGrid.forEach((value: IConceptoDiario[], key: string) => {
+      //console.log(key, value);
+      sessionStorage.removeItem(key);
+    });
     this.dailyGrid.clear();
   }
 
