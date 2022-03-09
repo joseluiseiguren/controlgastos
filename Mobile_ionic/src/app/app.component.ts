@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -32,6 +33,14 @@ export class AppComponent implements OnInit {
     translate.use(this.langService.defaultLang);
 
     this.colorThemeService.initTheme();
+
+    // for (let i = 0; i < sessionStorage.length; i++) {
+    //   const key = sessionStorage.key(i);
+    //   //console.log('Key: ' + key);
+    //   alert(key);
+    // }
+
+    // alert(sessionStorage.length);
   }
 
   get dailyLink(): string {

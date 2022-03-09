@@ -1,3 +1,4 @@
+import { CacheService } from 'src/services/cache-service.service';
 /* eslint-disable eol-last */
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ import { AuthInterceptor } from 'src/interceptors/AuthInterceptor';
 import { ColorThemeService } from 'src/services/color-theme.service';
 import { SettingModule  } from 'src/modules/setting-module/setting-module';
 import { ModalAboutComponent } from 'src/components/modal-about/modal-about.component';
+import { BackgroundService } from 'src/services/background-service.service';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -69,6 +71,8 @@ registerLocaleData(localeEn);
     SnackBarService,
     LangService,
     DiarioService,
+    BackgroundService,
+    CacheService,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
