@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { IConcepto } from 'src/models/concepto';
+import { CacheService } from 'src/services/cache-service.service';
 import { ConceptoService } from 'src/services/concepto.service';
 import { HelperService } from 'src/services/helper.service.service';
 import { SnackBarService } from 'src/services/snackBar.service';
@@ -23,6 +24,7 @@ export class ModalConceptComponent implements OnInit {
   constructor(private modalCtrl: ModalController,
               public translateService: TranslateService,
               public snackbarService: SnackBarService,
+              public cacheService: CacheService,
               public formBuilder: FormBuilder,
               private conceptService: ConceptoService,
               public helperService: HelperService) { }
@@ -70,6 +72,8 @@ export class ModalConceptComponent implements OnInit {
 
       conceptToInsert.id = idInserted;
       this.data = conceptToInsert;
+
+      this.cacheService.invalidate();
 
       this.snackbarService.showSnackBarSuccess(this.translateService.instant('message.successfulOperation'));
       this.closeModal();

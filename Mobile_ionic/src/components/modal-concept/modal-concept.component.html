@@ -4,7 +4,8 @@
     <form [formGroup]="conceptForm" (ngSubmit)="onSubmit()" novalidate>
 
       <div style="margin-bottom: 0.5rem;">
-        <ion-label style="font-size: medium; font-weight: bold;">{{'concept.newConcept' | translate }}</ion-label>
+        <ion-label *ngIf="data === null" style="font-size: medium; font-weight: bold;">{{'concept.newConcept' | translate }}</ion-label>
+        <ion-label *ngIf="data !== null" style="font-size: medium; font-weight: bold;">{{'concept.editConcept' | translate }}</ion-label>
       </div>
 
       <ion-item lines="full">
