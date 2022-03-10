@@ -29,6 +29,10 @@ export class UrlService {
       return this.host + 'transaction';
   }
 
+  urlRequestDownloadTransactions(): string {
+    return this.host + 'transaction/download/request';
+}
+
   urlGetPrimerConsumo(): string {
       return this.host + 'transaction/firstlast';
   }

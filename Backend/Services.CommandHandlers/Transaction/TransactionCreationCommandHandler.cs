@@ -2,7 +2,6 @@
 using Domain.Commands;
 using Repository.Interfaces;
 using Shared.Execptions;
-using Shared.Extensions;
 using System;
 using System.Threading.Tasks;
 using TransactionModel = Domain.Model.Transaction;

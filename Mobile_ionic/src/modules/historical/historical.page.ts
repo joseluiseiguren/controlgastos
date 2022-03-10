@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalBalanceComponent } from 'src/components/modal-balance/modal-balance.component';
+import { ModalDownloadTransactionsComponent } from 'src/components/modal-download-transactions/modal-download-transactions.component';
 import { ISaldoItem } from 'src/models/saldoItem';
 import { DiarioService } from 'src/services/diario.service';
 import { HelperService } from 'src/services/helper.service.service';
@@ -103,6 +104,22 @@ export class HistoricalPage implements OnInit {
       this.loading = false;
       this.snackbarService.showSnackBarError(this.helperService.getErrorMessage(error));
     }
+  }
+
+  async downloadTransactions(){
+    const modal = await this.modalCtrl.create({
+      component: ModalDownloadTransactionsComponent,
+      componentProps: { data: null },
+      cssClass: 'download-transactions-modal'
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        if (data.data){
+        }
+    });
+
+    return await modal.present();
   }
 
   private async getData(): Promise<void> {

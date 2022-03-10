@@ -8,6 +8,8 @@
         public const string ACCESS_TOKEN_USERNAME = "user";
         public const string ACCESS_TOKEN_ACTION = "action";
 
+        public const string HTTP_CONTEXT_APIKEY_ALLOWED = "apikeyAllowed";
+
         public const string HTTP_CONTEXT_USERID = "UserId";
         public const string HTTP_CONTEXT_USERNAME = "UserName";
         public const string HTTP_CONTEXT_ACTION = "Action";

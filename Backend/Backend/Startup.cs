@@ -67,9 +67,11 @@ namespace Backend
                .AddAsyncQueryHandler<ConceptSummaryByYearQuery, ConceptSummaryByYearHandler, IReadOnlyList<ConceptBalanceOutputByMonth>>()
                .AddAsyncQueryHandler<ConceptSummaryHistoricQuery, ConceptSummaryHistoricHandler, IReadOnlyList<ConceptBalanceOutputByYear>>()
                .AddAsyncQueryHandler<TransactionsByDateQuery, TransactionByDateQueryHandler, IReadOnlyList<TransactionByDateOutput>>()
+               .AddAsyncQueryHandler<TransactionsByUserQuery, TransactionByUserQueryHandler, IReadOnlyList<TransactionsAllByUserOutput>>()
                .AddAsyncQueryHandler<TransactionFirstLastQuery, TransactionFirstLastQueryHandler, TransactionFirstLastOutput>()
                .AddAsyncCommandHandler<ConceptCreationCommand, ConceptCreationCommandHandler, Guid>()
-               .AddAsyncCommandHandler<ConceptUpdateCommand, ConceptUpdateCommandHandler>();
+               .AddAsyncCommandHandler<ConceptUpdateCommand, ConceptUpdateCommandHandler>()
+               .AddAsyncCommandHandler<TransactionDownloadCommand, TransactionDownloadCommandHandler>();
 
             services.AddLogging(config =>
             {
@@ -79,7 +81,9 @@ namespace Backend
 
             services.AddApplicationInsightsTelemetry().AddLogging();
 
-            services.AddSingleton<SecuritySettings>(x => new SecuritySettings(Configuration.GetValue(typeof(string), "AccessTokenSecret").ToString()));
+            services.AddSingleton<SecuritySettings>(x => new SecuritySettings(Configuration.GetValue(typeof(string), "AccessTokenSecret").ToString(),
+                                                                              Configuration.GetValue(typeof(string), "ApikeyHeader").ToString(),
+                                                                              Configuration.GetValue(typeof(string), "ApikeyPwd").ToString()));
             services.ConfigureRepository(Configuration.GetConnectionString("cosmosdb"), 
                                          Configuration.GetValue(typeof(string), "DatabaseId").ToString(),
                                          Configuration.GetConnectionString("queue"));

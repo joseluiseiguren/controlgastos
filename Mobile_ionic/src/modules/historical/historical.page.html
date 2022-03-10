@@ -18,16 +18,15 @@
   <div class="headerGridSticky">
     <ion-grid class="headerGrid">
       <ion-row>
-        <ion-col size="4">
-        </ion-col>
-        <ion-col size="6" style="padding-top: 0.3rem;">
+        <ion-col size="6" style="padding-top: 0.3rem; padding-left: 0.5rem;">
           <ion-spinner *ngIf="loadingBalance === true" name="dots" class="balanceSpinner" ></ion-spinner>
           <app-balance *ngIf="loadingBalance === false" [title]="'historical.balance' | translate" [balance]="historicalBalance" (saldoClicked)="openBalance()"></app-balance>
         </ion-col>
-        <ion-col size="2" style="text-align: right; padding-right: 1rem; padding-top: 0.1rem;">
+        <ion-col size="6" style="text-align: right; padding-right: 1rem; padding-top: 0.1rem;">
           <div style="padding-top: 0.2rem;">
             <app-favorite [on]="false" (starClicked)="favoriteClicked($event)"></app-favorite>
-            <app-hide-cero [on]="false" (iconClicked)="hideceroClicked($event)"></app-hide-cero>
+            <app-hide-cero [on]="false" (iconClicked)="hideceroClicked($event)" style="padding-left: 0.3rem;"></app-hide-cero>
+            <ion-icon name="cloud-download-outline" (click)="downloadTransactions()" style="padding-left: 0.3rem;"></ion-icon>
           </div>
         </ion-col>
       </ion-row>

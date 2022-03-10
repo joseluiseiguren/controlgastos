@@ -33,7 +33,8 @@
   "button": {
     "cancel": "Annuler",
     "ok": "J'accepte",
-    "close": "Fermer"
+    "close": "Fermer",
+    "confirm": "Confirmer"
   },
   "message": {
     "successfulOperation": "Opération réussie"
@@ -136,5 +137,10 @@
     "october": "Oct",
     "november": "Nov",
     "december": "Déc"
+  },
+  "downloadTransactions": {
+    "downloadTransactions": "Télécharger les opérations",
+    "confirm": "Confirmez-vous de télécharger toutes les transactions?",
+    "successMessaage": "Vous recevrez un email avec vos transactions"
   }
 }

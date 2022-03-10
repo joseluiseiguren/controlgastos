@@ -109,5 +109,22 @@ namespace Backend.Controllers
             var j = 10 / i;
             return Ok(await Task.FromResult(new { UserId = this.UserId, Name = UserName }));
         }
+
+        [ApiKey]
+        [HttpGet]
+        [Route("{userId}")]
+        public async Task<IActionResult> GetUserInformation(string userId)
+        {
+            var query = new UserProfileQuery(userId);
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            if (result == null)
+            {
+                return BadRequest("User not found");
+            }
+
+            return Ok(result);
+        }
     }
 }

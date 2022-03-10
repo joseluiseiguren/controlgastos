@@ -1,6 +1,4 @@
-﻿using Cotecna.Domain.Core;
-
-namespace Domain.Commands
+﻿namespace Domain.Commands
 {
     public class ConceptUpdateCommand : CommandBase
     {

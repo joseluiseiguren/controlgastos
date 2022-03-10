@@ -1,6 +1,7 @@
 ﻿using Backend.Attributes;
 using Backend.Dto;
 using Cotecna.Domain.Core;
+using Domain.Commands;
 using Domain.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -51,6 +52,30 @@ namespace Backend.Controllers
         public async Task<IActionResult> GetTransactions(string date)
         {
             var query = new TransactionsByDateQuery(this.UserId, DateOnly.ParseExact(date, "yyyy-MM-dd", null));
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("download/request")]
+        public async Task<IActionResult> TransactionsDownloadRequest()
+        {
+            var command = new TransactionDownloadCommand(this.UserId);
+
+            await _applicationMediator.DispatchAsync(command);
+
+            return Ok();
+        }
+
+        [ApiKey]
+        [HttpGet]
+        [Route("{userId}/all")]
+        public async Task<IActionResult> GetAllTransactionsByUser(string userId)
+        {
+            var query = new TransactionsByUserQuery(userId);
 
             var result = await _applicationMediator.DispatchAsync(query);
 

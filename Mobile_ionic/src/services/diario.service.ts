@@ -43,14 +43,10 @@ export class DiarioService {
     );
 
     this.cacheService.updateDailyGridItem(fecha, importe, idConcepto);
+  }
 
-    // return this.http.post<any>(this.urlService.urlSetConceptoImporte(),
-    //         {transactionDate: fecha.getFullYear().toString() +
-    //                 (fecha.getMonth() + 1).toString().padStart(2, '0') +
-    //                 fecha.getDate().toString().padStart(2, '0'),
-    //           ammount: importe,
-    //           conceptId: idConcepto,
-    //           movimientoTags: tags});
+  requestDownloadTransactions(){
+    return this.http.post<any>(this.urlService.urlRequestDownloadTransactions(), {});
   }
 
   getPrimerConsumo(): Observable<any> {

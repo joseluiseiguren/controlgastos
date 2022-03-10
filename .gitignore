@@ -102,3 +102,7 @@ Backend/.vs/
 /Mobile_ionic/www
 /Mobile_ionic/release_android_aab
 /Mobile_ionic/android/app/release
+/Azure/Functions/Registration/RegistrationSendEmail/.vs/ProjectEvaluation
+/Azure/Functions/SendTransactions/.vs
+/Azure/Functions/SendTransactions/SendTransactions/bin/Debug/net6.0
+/Azure/Functions/SendTransactions/SendTransactions/obj
