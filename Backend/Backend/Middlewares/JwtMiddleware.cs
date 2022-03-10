@@ -24,10 +24,15 @@ namespace Backend.Middlewares
         public async Task Invoke(HttpContext context)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
             if (token != null)
             {
                 AttachUserToContext(context, token);
+            }
+
+            var apikeyPwd = context.Request.Headers[_securitySettings.ApikeyHeader].FirstOrDefault();
+            if (!string.IsNullOrEmpty(apikeyPwd) && apikeyPwd == _securitySettings.ApikeyPwd)
+            {
+                AttachApiKeyToContext(context);
             }
 
             await _next(context);
@@ -63,6 +68,11 @@ namespace Backend.Middlewares
                 // do nothing if jwt validation fails
                 // user is not attached to context so request won't have access to secure routes
             }
+        }
+
+        private void AttachApiKeyToContext(HttpContext context)
+        {
+            context.Items[Constants.HTTP_CONTEXT_APIKEY_ALLOWED] = "true";
         }
     }
 }

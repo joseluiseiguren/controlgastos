@@ -99,6 +99,29 @@ namespace Repository.CosmosDB
             return result;
         }
 
+        public async Task<IReadOnlyList<Transaction>> GetTransactionsByUserAsync(string userId)
+        {
+            var sqlQueryText = $"SELECT * FROM c WHERE c.UserId = '{userId}'";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
+            var container = database.GetContainer(_containerTransactions);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var result = new List<Transaction>();
+            while (queryResultSetIterator.HasMoreResults)
+            {
+                FeedResponse<dynamic> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (dynamic conceptCosmos in currentResultSet)
+                {
+                    result.Add(CreateTransactionObjetcFromDynamic(conceptCosmos));
+                }
+            }
+
+            return result;
+        }
+
         public async Task<Transaction> GetTransactionByFilterAsync(DateOnly transactionDate, string conceptId)
         {
             var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' " +

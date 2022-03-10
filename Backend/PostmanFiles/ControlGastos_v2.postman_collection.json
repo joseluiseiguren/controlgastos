@@ -202,6 +202,39 @@
 					"response": []
 				},
 				{
+					"name": "User Information (Apikey)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey_allowed_user",
+								"value": "apikey_pwd",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.168.1.143:8089/backend/account/5ad1ce4cbefd252f74b413c9",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"143"
+							],
+							"port": "8089",
+							"path": [
+								"backend",
+								"account",
+								"5ad1ce4cbefd252f74b413c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "ForgotPassword - Request",
 					"request": {
 						"auth": {
@@ -931,6 +964,40 @@
 							"path": [
 								"transaction",
 								"2021-12-31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transactions by user (Api Key)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey_allowed_user",
+								"value": "apikey_pwd",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://192.168.1.143:8089/backend/transaction/5ad1ce4cbefd252f74b413c9/all",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"143"
+							],
+							"port": "8089",
+							"path": [
+								"backend",
+								"transaction",
+								"5ad1ce4cbefd252f74b413c9",
+								"all"
 							]
 						}
 					},
