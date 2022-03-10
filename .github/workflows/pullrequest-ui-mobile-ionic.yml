@@ -24,4 +24,4 @@ jobs:
         run: npm ci
       - name: Build
         working-directory: Mobile_ionic
-        run: npm run build:ci
+        run: ng build --configuration production
