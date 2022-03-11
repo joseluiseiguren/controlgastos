@@ -117,17 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AMOUNT" xml:space="preserve">
+    <value>Amount</value>
+  </data>
   <data name="CHEERS" xml:space="preserve">
     <value>Cheers</value>
   </data>
-  <data name="DESCRIPTION" xml:space="preserve">
-    <value>You can now start to control your expenses</value>
+  <data name="CONCEPT" xml:space="preserve">
+    <value>Concept</value>
+  </data>
+  <data name="DATE" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="HTML_DESCRIPTION" xml:space="preserve">
+    <value>You will find attached a csv file with your transactions</value>
   </data>
   <data name="HTML_HELLO" xml:space="preserve">
     <value>Hello {0}</value>
   </data>
   <data name="SUBJECT" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Your Transactions!</value>
   </data>
   <data name="TEAM" xml:space="preserve">
     <value>Money Guard Team</value>

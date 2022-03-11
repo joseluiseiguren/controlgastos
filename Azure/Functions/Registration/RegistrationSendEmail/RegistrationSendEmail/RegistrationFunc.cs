@@ -35,10 +35,15 @@ namespace RegistrationSendEmail
 
         private string CreateBody(User user)
         {
-            const string MONEYGUARD_URL = "https://blue-desert-01e404210.azurestaticapps.net/";
+            const string ANDROID_URL = "https://play.google.com/store/apps/details?id=com.moneyguard.mobile";
 
-            var htmlContent = string.Format(Resources.Resource.ResourceManager.GetString("HTML_HELLO", CultureInfo.GetCultureInfo(user.Language)), user.Name);
-            htmlContent += string.Format(Resources.Resource.ResourceManager.GetString("LINK_WEB", CultureInfo.GetCultureInfo(user.Language)), MONEYGUARD_URL);
+            var htmlContent = $"<h1>{string.Format(Resources.Resource.ResourceManager.GetString("HTML_HELLO", CultureInfo.GetCultureInfo(user.Language)), user.Name)}</h1>";
+            htmlContent += $"<div><span style=\"font-family: Verdana, sans-serif; font-size: 1rem;\">{Resources.Resource.ResourceManager.GetString("DESCRIPTION", CultureInfo.GetCultureInfo(user.Language))}</span></div>";
+            htmlContent += $"<div><a href=\"{ANDROID_URL}\">Android</a></div>";
+
+            htmlContent += $"<div style=\"margin-top: 2rem;\"><span style=\"font-family: Verdana, sans-serif; font-size: 0.8rem;\">{Resources.Resource.ResourceManager.GetString("CHEERS", CultureInfo.GetCultureInfo(user.Language))}</span></div>";
+            htmlContent += $"<div><span style=\"font-family: Verdana, sans-serif; font-size: 0.8rem;\">{Resources.Resource.ResourceManager.GetString("TEAM", CultureInfo.GetCultureInfo(user.Language))}</span></div>";
+            htmlContent += "<img src=\"https://blue-desert-01e404210.azurestaticapps.net/assets/icons/icon-52x52.png\" alt=\"\">";
 
             return htmlContent;
         }
