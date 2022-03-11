@@ -46,7 +46,7 @@ export class UrlService {
   }
 
   urlGetSumaryMensual(year: number, month: number): string {
-      return this.host + 'period/totalinout/' + year + '/' + month ;
+      return this.host + 'period/totalinout/' + year + '/' + month;
   }
 
   urlLogin(): string {
