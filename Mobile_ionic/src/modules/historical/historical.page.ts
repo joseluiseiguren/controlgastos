@@ -123,8 +123,6 @@ export class HistoricalPage implements OnInit {
   }
 
   private async getData(): Promise<void> {
-    this.loading = true;
-
     try {
       const data = await this.diarioService.getConceptosTotalHistorico().toPromise();
 
