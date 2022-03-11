@@ -106,3 +106,4 @@ Backend/.vs/
 /Azure/Functions/SendTransactions/.vs
 /Azure/Functions/SendTransactions/SendTransactions/bin/Debug/net6.0
 /Azure/Functions/SendTransactions/SendTransactions/obj
+/Azure/Functions/ForgotPassword/ForgotPasswordFunction/.vs/ProjectEvaluation

@@ -13,6 +13,8 @@
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "BackendApi_Host": "",
     "BackendApi_User": "",
-    "BackendApi_Pwd": ""
+    "BackendApi_Pwd": "",
+    "email_sender": "",
+    "email_password": ""
   }
 }

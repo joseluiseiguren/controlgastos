@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationSendEmail.Resources {
+namespace SendTransactions.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace RegistrationSendEmail.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RegistrationSendEmail.Resources.Resource", typeof(Resource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SendTransactions.Resources.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,6 +61,15 @@ namespace RegistrationSendEmail.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        internal static string AMOUNT {
+            get {
+                return ResourceManager.GetString("AMOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cheers.
         /// </summary>
         internal static string CHEERS {
@@ -70,11 +79,29 @@ namespace RegistrationSendEmail.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can now start to control your expenses.
+        ///   Looks up a localized string similar to Concept.
         /// </summary>
-        internal static string DESCRIPTION {
+        internal static string CONCEPT {
             get {
-                return ResourceManager.GetString("DESCRIPTION", resourceCulture);
+                return ResourceManager.GetString("CONCEPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string DATE {
+            get {
+                return ResourceManager.GetString("DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will find attached a csv file with your transactions.
+        /// </summary>
+        internal static string HTML_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("HTML_DESCRIPTION", resourceCulture);
             }
         }
         
@@ -88,7 +115,7 @@ namespace RegistrationSendEmail.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome!.
+        ///   Looks up a localized string similar to Your Transactions!.
         /// </summary>
         internal static string SUBJECT {
             get {

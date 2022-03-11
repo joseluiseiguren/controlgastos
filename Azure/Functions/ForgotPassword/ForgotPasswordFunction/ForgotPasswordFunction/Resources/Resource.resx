@@ -117,13 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CHEERS" xml:space="preserve">
+    <value>Cheers</value>
+  </data>
   <data name="HTML_HELLO" xml:space="preserve">
-    <value>&lt;h1&gt;Hello {0}&lt;/h1&gt;</value>
+    <value>Hello {0}</value>
   </data>
   <data name="HTML_USE_THIS_LINK" xml:space="preserve">
-    <value>&lt;span&gt;Use this &lt;a href="{0}"&gt;link&lt;/a&gt; to recover your password&lt;/span&gt;</value>
+    <value>Use this &lt;a href="{0}"&gt;link&lt;/a&gt; to recover your password</value>
   </data>
   <data name="PASSWORD_RECOVERY" xml:space="preserve">
     <value>Password Recovery</value>
+  </data>
+  <data name="TEAM" xml:space="preserve">
+    <value>Money Guard Team</value>
   </data>
 </root>
