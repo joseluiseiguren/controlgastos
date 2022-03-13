@@ -143,5 +143,8 @@
     "downloadTransactions": "Descargar Transacciones",
     "confirm": "¿Confirma que desea descargar todas sus transacciones?",
     "successMessaage": "Recibirá un email con sus transacciones"
+  },
+  "unhandledError": {
+    "message": "Error inesperado ☹. Estamos resolviendolo!"
   }
 }

@@ -1,7 +1,7 @@
 import { CacheService } from 'src/services/cache-service.service';
 /* eslint-disable eol-last */
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 
@@ -29,6 +29,8 @@ import { ColorThemeService } from 'src/services/color-theme.service';
 import { SettingModule  } from 'src/modules/setting-module/setting-module';
 import { ModalAboutComponent } from 'src/components/modal-about/modal-about.component';
 import { BackgroundService } from 'src/services/background-service.service';
+import { GlobalErrorHandler } from 'src/interceptors/ErrorInterceptor';
+import { ErrorService } from 'src/services/error-service.service';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -66,7 +68,12 @@ registerLocaleData(localeEn);
       useClass: AuthInterceptor,
       multi: true,
     },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    },
     HelperService,
+    ErrorService,
     ColorThemeService,
     SnackBarService,
     LangService,

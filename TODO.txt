@@ -41,7 +41,7 @@
 - Backend: use Microsoft Identity with Azure Table Storage
 - Use redux to handle app status
 - When release is in progress, show a message
-- First login: send user to load concepts
+	- First login: send user to load concepts
 	- Black mode => registration => born date => the component does not show the icons < >
 - Github actins: crear apk automatically
 - Concepts: dont reload the list after adding or modifying an item
@@ -58,10 +58,10 @@
 	- Create ionic project
 	- Daily screen: toogle with 'more used concepts'
 - UI: add transitions effects between screens
-- Export to excel file
+	- Export to excel file
 - Apple compatibility
 	- Forgot password => unblock user if blocked
 	- Filter to hide items with amount 0
 	- Use native date pickers
 - Login => don`t create component if authentication is correct. Put condition on routing	
-- After install new version, the default currency is '$'. You have to logout and login to fix it
+	- After install new version, the default currency is '$'. You have to logout and login to fix it
