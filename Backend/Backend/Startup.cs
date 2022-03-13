@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Services.CommandHandlers.Concept;
 using Services.CommandHandlers.Transaction;
+using Services.CommandHandlers.UiError;
 using Services.CommandHandlers.User;
 using Services.Handlers.User;
 using Services.QueryHandlers.Concept;
@@ -52,6 +53,7 @@ namespace Backend
                .AddAsyncCommandHandler<UserSignupCommand, UserSignupCommandHandler>()
                .AddAsyncCommandHandler<UserForgotPasswordRequestCommand, UserForgotPasswordRequestCommandHandler>()
                .AddAsyncCommandHandler<UserForgotPasswordApplyCommand, UserForgotPasswordApplyCommandHandler>()
+               .AddAsyncCommandHandler<UiErrorCreationCommand, UiErrorCreationCommandHandler>()
                .AddAsyncCommandHandler<TransactionCreationCommand, TransactionCreationCommandHandler>()
                .AddAsyncCommandHandler<UserUpdateProfileCommand, UserUpdateProfileCommandHandler>()
                .AddAsyncQueryHandler<ConceptsQuery, ConceptQueryHandler, IReadOnlyList<ConceptOutput>>()

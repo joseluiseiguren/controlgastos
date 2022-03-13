@@ -10,6 +10,7 @@ namespace Repository.CosmosDB
         protected const string _containerUsers = "users";
         protected const string _containerAudits = "audits";
         protected const string _containerConcepts = "concepts";
+        protected const string _containerUiError = "uierror";
         protected const string _containerTransactions = "transactions";
 
         public CosmosRepositoryBase(string connectionString, string databaseId)

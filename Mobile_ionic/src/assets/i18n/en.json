@@ -143,5 +143,8 @@
     "downloadTransactions": "Download Transactions",
     "confirm": "Do you confirm to download all transactions?",
     "successMessaage": "You will receive an email with your transactions"
+  },
+  "unhandledError": {
+    "message": "Unexpected error ☹. Working on it!"
   }
 }

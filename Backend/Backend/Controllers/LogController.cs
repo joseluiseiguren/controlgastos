@@ -35,5 +35,17 @@ namespace Backend.Controllers
 
             return Ok();
         }
+
+        [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+        [HttpPost]
+        [Route("mobile/error")]
+        public async Task<IActionResult> MobileError([FromBody] UiErrorDto dto)
+        {
+            var command = dto.ToCommand();
+
+            await _applicationMediator.DispatchAsync(command);
+
+            return Ok();
+        }
     }
 }

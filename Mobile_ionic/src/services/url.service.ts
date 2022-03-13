@@ -31,7 +31,11 @@ export class UrlService {
 
   urlRequestDownloadTransactions(): string {
     return this.host + 'transaction/download/request';
-}
+  }
+
+  urlSendError(): string {
+    return this.host + 'log/mobile/error';
+  }
 
   urlGetPrimerConsumo(): string {
       return this.host + 'transaction/firstlast';
