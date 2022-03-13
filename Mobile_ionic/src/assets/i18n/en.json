@@ -95,7 +95,8 @@
   },
   "welcome": {
     "hello": "Hello, {{user}}",
-    "message": "Now you can start loading your expenses"
+    "start": "Let's start",
+    "message": "You have to enter some concepts in order to start tracking your expenses"
   },
   "forgotPassword": {
     "forgotPassword": "Forgot Password",

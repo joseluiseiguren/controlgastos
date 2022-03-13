@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { SettingModule } from '../setting-module/setting-module';
 import { ConceptoService } from 'src/services/concepto.service';
 import { ModalConceptComponent } from 'src/components/modal-concept/modal-concept.component';
+import { ModalInitPopupComponent } from 'src/components/modal-init-popup/modal-init-popup.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,6 @@ import { ModalConceptComponent } from 'src/components/modal-concept/modal-concep
   providers:[
     ConceptoService,
   ],
-  declarations: [ConceptsPage, ModalConceptComponent]
+  declarations: [ConceptsPage, ModalConceptComponent, ModalInitPopupComponent]
 })
 export class ConceptsPageModule {}

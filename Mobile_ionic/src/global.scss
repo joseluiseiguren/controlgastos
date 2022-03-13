@@ -26,14 +26,21 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 ion-modal.chart-year-modal {
-  --width: 90%;
+  --width: 85%;
   --height: 85%;
   --border-radius: 8px;
   --box-shadow: 0 28px 48px rgba(243, 239, 239, 0.4);
 }
 
 ion-modal.download-transactions-modal {
-  --width: 310px;
+  --width: 90%;
+  --height: 180px;
+  --border-radius: 8px;
+  --box-shadow: 0 28px 48px rgba(243, 239, 239, 0.4);
+}
+
+ion-modal.init-popup {
+  --width: 290px;
   --height: 180px;
   --border-radius: 8px;
   --box-shadow: 0 28px 48px rgba(243, 239, 239, 0.4);

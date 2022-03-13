@@ -6,6 +6,7 @@ import { HelperService } from 'src/services/helper.service.service';
 import { ConceptoService } from 'src/services/concepto.service';
 import { ModalController } from '@ionic/angular';
 import { ModalConceptComponent } from 'src/components/modal-concept/modal-concept.component';
+import { ModalInitPopupComponent } from 'src/components/modal-init-popup/modal-init-popup.component';
 
 @Component({
   selector: 'app-concepts',
@@ -80,6 +81,10 @@ export class ConceptsPage implements OnInit {
     try {
       const data = await this.conceptoService.getConceptos().toPromise();
 
+      if (data.length === 0){
+        this.openInitPopup();
+      }
+
       this.concepts = data;
 
     } catch (error) {
@@ -100,6 +105,22 @@ export class ConceptsPage implements OnInit {
 
       return 0;
     });
+  }
+
+  private async openInitPopup() {
+    const modal = await this.modalCtrl.create({
+      component: ModalInitPopupComponent,
+      componentProps: { data: null },
+      cssClass: 'init-popup'
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        if (data.data){
+        }
+    });
+
+    return await modal.present();
   }
 
 }
