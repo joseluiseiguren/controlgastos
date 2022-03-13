@@ -70,6 +70,11 @@ export class DailyPage implements OnInit {
     try {
       const data = await this.diarioService.getConceptosImportes(this.selectedDate).toPromise();
 
+      if (data.length === 0){
+        this.router.navigate([UrlConstants.concepts]);
+        return;
+      }
+
       this.conceptos = data;
       this.conceptosOriginal = data;
 
