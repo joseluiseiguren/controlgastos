@@ -1,9 +1,9 @@
-import { CacheService } from 'src/services/cache-service.service';
 /* eslint-disable eol-last */
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
+import { CacheService } from 'src/services/cache-service.service';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -31,6 +31,7 @@ import { ModalAboutComponent } from 'src/components/modal-about/modal-about.comp
 import { BackgroundService } from 'src/services/background-service.service';
 import { GlobalErrorHandler } from 'src/interceptors/ErrorInterceptor';
 import { ErrorService } from 'src/services/error-service.service';
+import { DeviceInfoService } from 'src/services/device-info.service';
 registerLocaleData(localeFr);
 registerLocaleData(localeEs);
 registerLocaleData(localeEn);
@@ -83,7 +84,8 @@ registerLocaleData(localeEn);
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
-    }
+    },
+    DeviceInfoService
   ],
   bootstrap: [AppComponent],
 })
