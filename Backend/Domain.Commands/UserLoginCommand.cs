@@ -1,4 +1,5 @@
 ﻿using Cotecna.Domain.Core;
+using Domain.Model;
 
 namespace Domain.Commands
 {
@@ -10,11 +11,14 @@ namespace Domain.Commands
 
         public string Language { get; set; }
 
-        public UserLoginCommand(string email, string password, string language)
+        public DeviceInfo DeviceInfo { get; private set; }
+
+        public UserLoginCommand(string email, string password, string language, DeviceInfo DeviceInfo)
         {
             this.Email = email;
             this.Password = password;
             this.Language = language;
+            this.DeviceInfo = DeviceInfo;
         }
     }
 }

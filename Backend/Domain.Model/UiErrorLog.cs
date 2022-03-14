@@ -5,16 +5,24 @@ namespace Domain.Model
 {
     public class UiErrorLog : ModelBase
     {
+        public string? UserId { get; private set; }
+
         public string Message { get; private set; }
 
         public DateTime EntryDate { get; private set; }
 
+        public DeviceInfo DeviceInfo { get; private set; }
+
         public UiErrorLog(string id,
+                          string userId,
                           string message,
+                          DeviceInfo deviceInfo,
                           DateTime entryDate)
         {
             UpdateId(id);
+            UpdateUserId(userId);
             UpdateMessage(message);
+            UpdateDeviceInfo(deviceInfo);
             UpdateEntryDate(entryDate);
         }
 
@@ -28,6 +36,11 @@ namespace Domain.Model
             this.Message = message;
         }
 
+        public void UpdateUserId(string userId)
+        {
+            this.UserId = userId;
+        }
+
         public void UpdateEntryDate(DateTime entryDate)
         {
             if (entryDate == DateTime.MinValue || entryDate == DateTime.MaxValue)
@@ -36,6 +49,16 @@ namespace Domain.Model
             }
 
             this.EntryDate = entryDate;
+        }
+
+        public void UpdateDeviceInfo(DeviceInfo deviceInfo)
+        {
+            if (deviceInfo == null)
+            {
+                throw new BusinessException($"Error Device Info is invalid");
+            }
+
+            this.DeviceInfo = deviceInfo;
         }
     }
 }

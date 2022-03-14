@@ -1,5 +1,6 @@
 ﻿using Cotecna.Domain.Core;
 using Domain.Commands;
+using Domain.Model;
 using Repository.Interfaces;
 using Services.CommandHandlers.Helper;
 using Shared.Constants;
@@ -15,14 +16,16 @@ namespace Services.Handlers.User
     public class UserLoginCommandHandler : IAsyncCommandHandler<UserLoginCommand, string>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IAuditRepository _auditRepository;
         private readonly SecuritySettings _securitySettings;
 
         private const int MAX_INTENTOS_FALLIDOS_LOGIN = 3;
 
-        public UserLoginCommandHandler(IUserRepository userRepository, SecuritySettings securitySettings)
+        public UserLoginCommandHandler(IUserRepository userRepository, IAuditRepository auditRepository, SecuritySettings securitySettings)
         {
             _userRepository = userRepository;
             _securitySettings = securitySettings;
+            _auditRepository = auditRepository;
         }
 
         public async Task<string> HandleAsync(UserLoginCommand command)
@@ -63,6 +66,14 @@ namespace Services.Handlers.User
                                                                user.Language.ToString(),
                                                                Constants.ACTION_LOGGED_IN,
                                                                DateTime.UtcNow.AddDays(7));
+
+            var audit = new Audit(id: Guid.NewGuid().ToString(),
+                                  userId: user.id,
+                                  deviceInfo: command.DeviceInfo,
+                                  operationType: (int)OperationType.LOGIN,
+                                  entryDate: DateTime.UtcNow);
+            
+            await this._auditRepository.InsertAuditAsync(audit);
 
             return token;
         }

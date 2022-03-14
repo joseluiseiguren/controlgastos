@@ -10,7 +10,9 @@ namespace Backend.Dto
 
         public string Language { get; set; }
 
+        public DeviceInfoDto DeviceInfo { get; set; }
+
         internal UserLoginCommand ToCommand()
-            => new(Email, Password, Language);
+            => new(Email, Password, Language, new Domain.Model.DeviceInfo(DeviceInfo.DeviceId, DeviceInfo.Name, DeviceInfo.Model, DeviceInfo.Platform, DeviceInfo.OpSystem, DeviceInfo.OsVersion, DeviceInfo.Manufacturer));
     }
 }

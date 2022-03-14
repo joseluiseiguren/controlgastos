@@ -11,6 +11,7 @@ namespace Infrastructure.Configuration
         public static void ConfigureRepository(this IServiceCollection serviceCollection, string coreConnectionString, string databaseId, string queueConnectionString)
         {
             serviceCollection.AddTransient<IUserRepository>(x => new UserRepository(coreConnectionString, databaseId));
+            serviceCollection.AddTransient<IAuditRepository>(x => new AuditRepository(coreConnectionString, databaseId));
             serviceCollection.AddTransient<IConceptRepository>(x => new ConceptRepository(coreConnectionString, databaseId));
             serviceCollection.AddTransient<ITransactionRepository>(x => new TransactionRepository(coreConnectionString, databaseId));
             serviceCollection.AddTransient<IUiErrorRepository>(x => new UiErrorRepository(coreConnectionString, databaseId));

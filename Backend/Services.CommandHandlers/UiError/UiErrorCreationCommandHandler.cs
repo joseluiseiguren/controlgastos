@@ -20,6 +20,8 @@ namespace Services.CommandHandlers.UiError
         {
             var errorToInsert = new UiErrorModel(id: Guid.NewGuid().ToString(),
                                                  message: command.Message,
+                                                 userId: command.UserId,
+                                                 deviceInfo: command.DeviceInfo,
                                                  entryDate: DateTime.UtcNow);
 
             await _uiErrorRepository.InsertUiErrorAsync(errorToInsert);

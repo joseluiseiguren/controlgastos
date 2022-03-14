@@ -8,4 +8,8 @@
     <PackageReference Include="Cotecna.Domain.Core" Version="1.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.Model\Domain.Model.csproj" />
+  </ItemGroup>
+
 </Project>

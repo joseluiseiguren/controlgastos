@@ -1,3 +1,5 @@
+import { IDeviceInformation } from 'src/models/device.information';
+/* eslint-disable @typescript-eslint/naming-convention */
 import { CacheService } from 'src/services/cache-service.service';
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/quotes */
@@ -45,9 +47,13 @@ export class UsersService {
     this.setUserName(this.getUserNameFromToken());
   }
 
-  login(email: string, password: string, language: string ): Observable<boolean> {
-      return this.http.post<any>(this.urlService.urlLogin(),
-              {email, password, language})
+  login(email: string, password: string, language: string, deviceInfo: IDeviceInformation): Observable<boolean> {
+    return this.http.post<any>(this.urlService.urlLogin(),
+              { email,
+                password,
+                language,
+                DeviceInfo: deviceInfo
+              })
               .pipe(
                 map(user => {
                   // login successful if there's a jwt token in the response

@@ -1,3 +1,5 @@
+import { DeviceInfoService } from './../services/device-info.service';
+import { UsersService } from './../services/users.service';
 import { ErrorHandler, Injectable, NgZone } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorService } from 'src/services/error-service.service';
@@ -9,6 +11,8 @@ export class GlobalErrorHandler implements ErrorHandler {
     private zone: NgZone,
     private snackBarService: SnackBarService,
     private translateService: TranslateService,
+    private userService: UsersService,
+    private deviceInfoService: DeviceInfoService,
     private errorService: ErrorService
   ) {}
 
@@ -17,6 +21,8 @@ export class GlobalErrorHandler implements ErrorHandler {
       this.snackBarService.showSnackBarError(this.translateService.instant('unhandledError.message'))
     );
 
-    await this.errorService.sendError(error).toPromise();
+    const userId = this.userService.getUserId();
+
+    await this.errorService.sendError(error, this.deviceInfoService.deviceInfo, userId).toPromise();
   }
 }

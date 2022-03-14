@@ -44,10 +44,10 @@
 	- First login: send user to load concepts
 	- Black mode => registration => born date => the component does not show the icons < >
 - Github actins: crear apk automatically
-- Concepts: dont reload the list after adding or modifying an item
+	- Concepts: dont reload the list after adding or modifying an item
 	- Github actions: fix all actions just like sendgmail
-- Android: use generic error handler and save those errors in the internal log file => https://pkief.medium.com/global-error-handling-in-angular-ea395ce174b1
-- Android: Send internal log files to server
+	- Android: use generic error handler and save those errors in the internal log file => https://pkief.medium.com/global-error-handling-in-angular-ea395ce174b1
+	- Android: Send internal log files to server
 - Push notifications
 - Get DB backup from azure
 - Performance metric for backend

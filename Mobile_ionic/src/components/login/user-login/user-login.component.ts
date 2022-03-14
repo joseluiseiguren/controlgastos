@@ -12,6 +12,7 @@ import { UrlConstants } from 'src/constants/url.constants';
 import { UsersService } from 'src/services/users.service';
 import { SnackBarService } from 'src/services/snackBar.service';
 import { HelperService } from './../../../services/helper.service.service';
+import { DeviceInfoService } from 'src/services/device-info.service';
 
 @Component({
   selector: 'app-user-login',
@@ -29,6 +30,7 @@ export class UserLoginComponent implements OnInit {
   constructor(public formBuilder: FormBuilder,
               private snackBarService: SnackBarService,
               private helperService: HelperService,
+              private deviceInfoService: DeviceInfoService,
               private router: Router,
               private datePipe: DatePipe,
               private usersService: UsersService,
@@ -64,7 +66,10 @@ export class UserLoginComponent implements OnInit {
   this.loading = true;
 
   try {
-    const data = await this.usersService.login(this.loginForm.value.emailFormControl, this.loginForm.value.pwdFormControl, this.translate.currentLang).toPromise();
+    const data = await this.usersService.login(this.loginForm.value.emailFormControl,
+                                               this.loginForm.value.pwdFormControl,
+                                               this.translate.currentLang,
+                                               this.deviceInfoService.deviceInfo).toPromise();
     if (data === true) {
       this.loading = false;
       this.loginForm.reset();
