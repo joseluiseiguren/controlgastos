@@ -49,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: UrlConstants.logIn
+    redirectTo: UrlConstants.daily
   }
 ];
 
