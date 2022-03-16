@@ -43,7 +43,7 @@ namespace MonthlyReport
 
             var subject = Resources.Resource.ResourceManager.GetString("SUBJECT", CultureInfo.GetCultureInfo(userProfile.Language));
             
-            await emailSender.SendAsync(toEmail: "joseluiseiguren@gmail.com", //userProfile.Email,
+            await emailSender.SendAsync(toEmail: userProfile.Email,
                                         subject: subject,
                                         htmlBody: CreateBody(userProfile, currentMonthSummary, prevMonthSummary, currentYear, currentMonth, prevYear, prevMonth),
                                         toName: userProfile.Name,
