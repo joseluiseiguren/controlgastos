@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SendTransactions.Dto
+namespace MonthlyReport.Dto
 {
     internal class UserProfileDto
     {

@@ -4,22 +4,24 @@ using Domain.Queries.Outputs;
 using Repository.Interfaces;
 using UserModel = Domain.Model.User;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Services.QueryHandlers.User
 {
-    public class UserProfileQueryHandler : IAsyncQueryHandler<UserProfileQuery, UserProfileOutput>
+    public class UsersQueryHandler : IAsyncQueryHandler<UsersQuery, IReadOnlyList<UserProfileOutput>>
     {
         private readonly IUserRepository _userRepository;
 
-        public UserProfileQueryHandler(IUserRepository userRepository)
+        public UsersQueryHandler(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public async Task<UserProfileOutput> HandleAsync(UserProfileQuery query)
+        public async Task<IReadOnlyList<UserProfileOutput>> HandleAsync(UsersQuery query)
         {
-            var userFound = await _userRepository.GetUserByIdAsync(query.UserId);
-            return Map(userFound);
+            var users = await _userRepository.GetUsersAsync();
+            return users.Select(x => Map(x)).ToList();
         }
 
         private UserProfileOutput Map(UserModel user)

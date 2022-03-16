@@ -70,6 +70,7 @@ namespace Backend
                .AddAsyncQueryHandler<ConceptSummaryHistoricQuery, ConceptSummaryHistoricHandler, IReadOnlyList<ConceptBalanceOutputByYear>>()
                .AddAsyncQueryHandler<TransactionsByDateQuery, TransactionByDateQueryHandler, IReadOnlyList<TransactionByDateOutput>>()
                .AddAsyncQueryHandler<TransactionsByUserQuery, TransactionByUserQueryHandler, IReadOnlyList<TransactionsAllByUserOutput>>()
+               .AddAsyncQueryHandler<UsersQuery, UsersQueryHandler, IReadOnlyList<UserProfileOutput>>()
                .AddAsyncQueryHandler<TransactionFirstLastQuery, TransactionFirstLastQueryHandler, TransactionFirstLastOutput>()
                .AddAsyncCommandHandler<ConceptCreationCommand, ConceptCreationCommandHandler, Guid>()
                .AddAsyncCommandHandler<ConceptUpdateCommand, ConceptUpdateCommandHandler>()
