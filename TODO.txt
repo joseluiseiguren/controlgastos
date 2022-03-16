@@ -10,8 +10,7 @@
 - en pc dejar el menu siempre visible
 	- traducciones I18N
 - preguntar antes de hacer el logout
-- Interceptor de errores
-- hay modelos que se comparten entre webapi y frontend, por ejemplo el de usuarios -> unirlos
+	- Interceptor de errores
 - prevenir sql inyection en los forms
 - capcha en registracion
 - unit testing frontend
@@ -63,5 +62,5 @@
 	- Forgot password => unblock user if blocked
 	- Filter to hide items with amount 0
 	- Use native date pickers
-- Login => don`t create component if authentication is correct. Put condition on routing	
+	- Login => don`t create component if authentication is correct. Put condition on routing	
 	- After install new version, the default currency is '$'. You have to logout and login to fix it

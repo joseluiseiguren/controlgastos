@@ -1,6 +1,7 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Repository.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using User = Domain.Model.User;
@@ -59,6 +60,29 @@ namespace Repository.CosmosDB
             var container = database.GetContainer(_containerUsers);
 
             await container.CreateItemAsync<User>(user);
+        }
+
+        public async Task<IReadOnlyList<User>> GetUsersAsync()
+        {
+            var sqlQueryText = $"SELECT * FROM c";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
+            var container = database.GetContainer(_containerUsers);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var result = new List<User>();
+            while (queryResultSetIterator.HasMoreResults)
+            {
+                FeedResponse<dynamic> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (dynamic userCosmos in currentResultSet)
+                {
+                    result.Add(CreateUserObjetcFromDynamic(userCosmos));
+                }
+            }
+
+            return result;
         }
 
         private User CreateUserObjetcFromDynamic(dynamic userDB)

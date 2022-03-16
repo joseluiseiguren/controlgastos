@@ -32,6 +32,18 @@ namespace Backend.Controllers
             return Ok(result);
         }
 
+        [ApiKey]
+        [HttpGet]
+        [Route("totalinout/{userId}/{year}/{month}")]
+        public async Task<IActionResult> GetTotalInOutByMonth(string userId, int year, int month)
+        {
+            var query = new TotalInOutMonthyQuery(userId, month, year);
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }
+
         [Authorize]
         [HttpGet]
         [Route("totalinout/{year}")]

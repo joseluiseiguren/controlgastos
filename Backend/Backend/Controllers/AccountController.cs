@@ -126,5 +126,17 @@ namespace Backend.Controllers
 
             return Ok(result);
         }
+
+        [ApiKey]
+        [HttpGet]
+        [Route("all")]
+        public async Task<IActionResult> GetUsers()
+        {
+            var query = new UsersQuery();
+
+            var result = await _applicationMediator.DispatchAsync(query);
+
+            return Ok(result);
+        }
     }
 }
