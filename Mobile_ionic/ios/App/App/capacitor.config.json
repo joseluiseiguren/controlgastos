@@ -1,0 +1,6 @@
+{
+	"appId": "com.moneyguard.mobile",
+	"appName": "Money Guard",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

@@ -22,7 +22,7 @@
 	- Login remove key sensitive in email
 	- Update to angular 13
 	- Forgot password
-- Enviar email al finallizar mes con summary
+	- Enviar email al finallizar mes con summary
 	- Mensual: remove items with ammount 0
 - There are deprecated warnings when running npm install
 	- Create APK app
