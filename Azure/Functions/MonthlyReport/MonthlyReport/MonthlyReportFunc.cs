@@ -11,7 +11,7 @@ namespace MonthlyReport
     public class MonthlyReportFunc
     {
         [FunctionName("MonthlyReportFunc")]
-        public async Task Run([TimerTrigger("0 0 0 1 * *")]TimerInfo myTimer, ILogger log)
+        public async Task Run([TimerTrigger(/*"0 * * * * *"*/ "0 0 0 1 * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
@@ -57,7 +57,7 @@ namespace MonthlyReport
             var outcomeComp = currentMonthSummary.Out >= prevMonthSummary.Out ? currentMonthSummary.Out - prevMonthSummary.Out : prevMonthSummary.Out - currentMonthSummary.Out;
 
             var htmlContent = $"<h1>{string.Format(Resources.Resource.ResourceManager.GetString("HTML_HELLO", CultureInfo.GetCultureInfo(user.Language)), user.Name)}</h1>";
-            htmlContent += $"<div style=\"margin-bottom: 1.5rem;\"><span style=\"font-family: Verdana, sans-serif; font-size: 1rem;\">{string.Format(Resources.Resource.ResourceManager.GetString("DATE", CultureInfo.GetCultureInfo(user.Language)), $"<div style=\"font-weight: bold; display: contents;\">{new DateOnly(currentYear, currentMonth, 1).ToString("MMMM yyyy")}</div>")}</span></div>";
+            htmlContent += $"<div style=\"margin-bottom: 1.5rem;\"><span style=\"font-family: Verdana, sans-serif; font-size: 1rem;\">{string.Format(Resources.Resource.ResourceManager.GetString("DATE", CultureInfo.GetCultureInfo(user.Language)), $"<div style=\"font-weight: bold; display: contents;\">{DateToMediumString(new DateOnly(currentYear, currentMonth, 1), user.Language)}</div>")}</span></div>";
 
             htmlContent += "<ul>";
             htmlContent += $"<li><div><span style=\"font-family: Verdana, sans-serif; font-size: 1rem; color: green;\">{string.Format(Resources.Resource.ResourceManager.GetString("INCOME", CultureInfo.GetCultureInfo(user.Language)), user.Currency, currentMonthSummary.In)}</span></div></li>";
@@ -71,11 +71,11 @@ namespace MonthlyReport
                 Resources.Resource.ResourceManager.GetString("COMPARISON_UP", CultureInfo.GetCultureInfo(user.Language)) :
                 Resources.Resource.ResourceManager.GetString("COMPARISON_DOWN", CultureInfo.GetCultureInfo(user.Language));
 
-            htmlContent += $"<li><div><span style=\"font-family: Verdana, sans-serif; font-size: 0.7rem;\">{string.Format(strComparisonIncome, user.Currency, incomeComp, new DateOnly(prevYear, prevMonth, 1).ToString("MMMM yyyy"))}</span></div></li>";
+            htmlContent += $"<li><div><span style=\"font-family: Verdana, sans-serif; font-size: 0.7rem;\">{string.Format(strComparisonIncome, user.Currency, incomeComp, DateToMediumString(new DateOnly(prevYear, prevMonth, 1), user.Language))}</span></div></li>";
             htmlContent += "</ul>";
             htmlContent += $"<li style=\"margin-top: 1rem;\"><div><span style=\"font-family: Verdana, sans-serif; font-size: 1rem; color: red;\">{string.Format(Resources.Resource.ResourceManager.GetString("OUTCOME", CultureInfo.GetCultureInfo(user.Language)), user.Currency, currentMonthSummary.Out)}</span></div></li>";
             htmlContent += "<ul>";
-            htmlContent += $"<li><div><span style=\"font-family: Verdana, sans-serif; font-size: 0.7rem;\">{string.Format(strComparisonOutcome, user.Currency, outcomeComp, new DateOnly(prevYear, prevMonth, 1).ToString("MMMM yyyy"))}</span></div></li>";
+            htmlContent += $"<li><div><span style=\"font-family: Verdana, sans-serif; font-size: 0.7rem;\">{string.Format(strComparisonOutcome, user.Currency, outcomeComp, DateToMediumString(new DateOnly(prevYear, prevMonth, 1), user.Language))}</span></div></li>";
             htmlContent += "</ul>";
             htmlContent += "</ul>";
 
@@ -84,6 +84,11 @@ namespace MonthlyReport
             htmlContent += "<img src=\"https://blue-desert-01e404210.azurestaticapps.net/assets/icons/icon-52x52.png\" alt=\"\">";
 
             return htmlContent;
+        }
+
+        private string DateToMediumString(DateOnly date, string language)
+        {
+            return date.ToString("MMMM yyyy", CultureInfo.GetCultureInfo(language));
         }
     }
 }
