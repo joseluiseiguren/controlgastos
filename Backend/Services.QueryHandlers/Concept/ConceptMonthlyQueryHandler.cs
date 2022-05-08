@@ -28,13 +28,16 @@ namespace Services.QueryHandlers.Concept
             var dateTo = dateFrom.AddMonths(1).AddDays(-1);
 
             var userConcepts = await _conceptRepository.GetConceptsByUser(query.UserId);
+            var totalAmmount = await _transactionRepository.GetTotalAmmountByFilterAsync(dateFrom, dateTo, userConcepts.Select(x => x.id));
+
             foreach (var userConcept in userConcepts.OrderBy(x => x.Description))
             {
-                var totalAmmount = await _transactionRepository.GetTotalAmmountByFilterAsync(dateFrom, dateTo, userConcept.id);
+                var total = totalAmmount.FirstOrDefault(x => x.ConceptId == userConcept.id);
+
                 result.Add(new ConceptPeriodOutput() { ConceptId = userConcept.id, 
                                                        Description = userConcept.Description, 
                                                        Favorite = userConcept.Favorite,
-                                                       Balance = Math.Round(totalAmmount, 2) });
+                                                       Balance = Math.Round(total == null ? 0 : total.TotalAmount, 2) });
             }
 
             return result;
