@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <ApplicationInsightsResourceId>/subscriptions/e9dcb062-296d-4d41-8db6-54dd36cc7130/resourceGroups/rg_controlgastos/providers/microsoft.insights/components/controlgastosbackend</ApplicationInsightsResourceId>
+    <UserSecretsId>ed37cbe0-e3cb-4082-aed9-2d9b2dc52614</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
