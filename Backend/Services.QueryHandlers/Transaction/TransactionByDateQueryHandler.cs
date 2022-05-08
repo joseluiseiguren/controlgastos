@@ -24,9 +24,13 @@ namespace Services.QueryHandlers.Transaction
             var result = new List<TransactionByDateOutput>();
 
             var userConcepts = await _conceptRepository.GetConceptsByUser(query.UserId);
+            var transactions = await _transactionRepository.GetTransactionsByFilterAsync(dateFrom: query.Date, 
+                                                                                         dateTo: query.Date, 
+                                                                                         conceptsId: userConcepts.Select(x => x.id));
+
             foreach (var userConcept in userConcepts.OrderBy(x => x.Description))
             {
-                var transaction = await _transactionRepository.GetTransactionsByFilterAsync(query.Date, query.Date, userConcept.id);
+                var transaction = transactions.FirstOrDefault(x => x.ConceptId == userConcept.id);
                 
                 result.Add(new TransactionByDateOutput() 
                 { 
@@ -35,7 +39,7 @@ namespace Services.QueryHandlers.Transaction
                     TransactionDate = query.Date.ToString("yyyy-MM-dd"),
                     Credit = userConcept.Credit,
                     Favorite = userConcept.Favorite,
-                    Ammount = transaction.Count == 0 ? 0m : transaction.First().Ammount
+                    Ammount = transaction == null ? 0m : transaction.Ammount
                 });
             }
             

@@ -1,6 +1,7 @@
 ﻿using Domain.Model;
 using Microsoft.Azure.Cosmos;
 using Repository.Interfaces;
+using Repository.Interfaces.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,18 @@ namespace Repository.CosmosDB
             : base(connectionString, databaseId)
         { }
 
-        public async Task<decimal> GetTotalAmmountByFilterAsync(DateOnly dateFrom, DateOnly dateTo, string conceptId)
+        public async Task<IEnumerable<TotalConcept>> GetTotalAmmountByFilterAsync(DateOnly dateFrom, DateOnly dateTo, IEnumerable<string> conceptsId)
         {
-            var sqlQueryText = $"SELECT SUM(c.Ammount) as Total FROM c WHERE c.ConceptId = '{conceptId}' " +
+            var conceptsFortmatted = string.Join(',', conceptsId.Select(x => $"'{x}'"));
+
+            var sqlQueryText = $"SELECT SUM(c.Ammount) as Total, c.ConceptId FROM c WHERE c.ConceptId IN ({conceptsFortmatted}) " +
                 $"AND c.TransactionDate.Year >= {dateFrom.Year} " +
                 $"AND c.TransactionDate.Month >= {dateFrom.Month} " +
                 $"AND c.TransactionDate.Day >= {dateFrom.Day} " +
                 $"AND c.TransactionDate.Year <= {dateTo.Year} " +
                 $"AND c.TransactionDate.Month <= {dateTo.Month} " +
-                $"AND c.TransactionDate.Day <= {dateTo.Day} ";
+                $"AND c.TransactionDate.Day <= {dateTo.Day} " +
+                $"GROUP BY c.ConceptId";
 
             var queryDefinition = new QueryDefinition(sqlQueryText);
 
@@ -30,10 +34,24 @@ namespace Repository.CosmosDB
             var container = database.GetContainer(_containerTransactions);
             var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
 
-            var currentResultSet = await queryResultSetIterator.ReadNextAsync();
-            var totalAmmount = currentResultSet.First();
+            var result = new List<TotalConcept>();
+            while (queryResultSetIterator.HasMoreResults)
+            {
+                FeedResponse<dynamic> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (dynamic conceptCosmos in currentResultSet)
+                {
+                    if (conceptCosmos != null)
+                    {
+                        result.Add(new TotalConcept()
+                        {
+                            ConceptId = conceptCosmos.ConceptId.ToString(),
+                            TotalAmount = Convert.ToDecimal(conceptCosmos.Total.ToString())
+                        });
+                    }                    
+                }
+            }
 
-            return Convert.ToDecimal(totalAmmount.Total.ToString());
+            return result;
         }
 
         public async Task<decimal> GetTotalAmmountByUserAsync(DateOnly dateFrom, DateOnly dateTo, string userId, bool? income)
@@ -73,6 +91,37 @@ namespace Repository.CosmosDB
         public async Task<IReadOnlyList<Transaction>> GetTransactionsByFilterAsync(DateOnly dateFrom, DateOnly dateTo, string conceptId)
         {
             var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId = '{conceptId}' " +
+                $"AND c.TransactionDate.Year >= {dateFrom.Year} " +
+                $"AND c.TransactionDate.Month >= {dateFrom.Month} " +
+                $"AND c.TransactionDate.Day >= {dateFrom.Day} " +
+                $"AND c.TransactionDate.Year <= {dateTo.Year} " +
+                $"AND c.TransactionDate.Month <= {dateTo.Month} " +
+                $"AND c.TransactionDate.Day <= {dateTo.Day} ";
+
+            var queryDefinition = new QueryDefinition(sqlQueryText);
+
+            var database = this._cosmosClient.GetDatabase(this.DatabaseId);
+            var container = database.GetContainer(_containerTransactions);
+            var queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition);
+
+            var result = new List<Transaction>();
+            while (queryResultSetIterator.HasMoreResults)
+            {
+                FeedResponse<dynamic> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (dynamic conceptCosmos in currentResultSet)
+                {
+                    result.Add(CreateTransactionObjetcFromDynamic(conceptCosmos));
+                }
+            }
+
+            return result;
+        }
+
+        public async Task<IReadOnlyList<Transaction>> GetTransactionsByFilterAsync(DateOnly dateFrom, DateOnly dateTo, IEnumerable<string> conceptsId)
+        {
+            var conceptsFortmatted = string.Join(',', conceptsId.Select(x => $"'{x}'"));
+
+            var sqlQueryText = $"SELECT * FROM c WHERE c.ConceptId IN ({conceptsFortmatted}) " +
                 $"AND c.TransactionDate.Year >= {dateFrom.Year} " +
                 $"AND c.TransactionDate.Month >= {dateFrom.Month} " +
                 $"AND c.TransactionDate.Day >= {dateFrom.Day} " +
