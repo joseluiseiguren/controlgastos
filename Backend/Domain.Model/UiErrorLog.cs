@@ -5,7 +5,7 @@ namespace Domain.Model
 {
     public class UiErrorLog : ModelBase
     {
-        public string? UserId { get; private set; }
+        public string UserId { get; private set; }
 
         public string Message { get; private set; }
 
