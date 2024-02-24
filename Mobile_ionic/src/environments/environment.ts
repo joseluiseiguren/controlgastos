@@ -5,7 +5,7 @@
 //Backend: IIS
 export const environment = {
   production: false,
-  apiUrl: 'http://192.168.1.143:8089/backend/'
+  apiUrl: 'https://localhost:5001/'
 };
 
 //Backend: IIS

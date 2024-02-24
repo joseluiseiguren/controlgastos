@@ -1,6 +1,7 @@
 Build for production
   ng build --configuration production
   npx cap sync android
+  npx cap open android
 
 Debug on huawei tablet
   ionic capacitor run android --verbose --target=JJN6R18611001118
